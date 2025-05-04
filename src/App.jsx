@@ -1,24 +1,30 @@
-//App.jsx
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import './App.css'
+
+// App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import News from './pages/News';
+import Dashboard from './pages/Dashboard';
 
 function App() {
-  const [data, setData] = useState(null)
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/posts') // adjust to match your backend
-      .then((res) => setData(res.data))
-      .catch((err) => console.error(err))
-  }, [])
-
   return (
-    <div className="App">
-      <h1>My App</h1>
-      <p>Data from backend:</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  )
+    <Router>
+      <div id="root">
+        <Navbar />
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </div>
+        <footer>
+          <p>&copy; 2025 My Blog Project</p>
+        </footer>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
+
