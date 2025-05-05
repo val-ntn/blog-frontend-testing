@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import News from './pages/News';
 import Dashboard from './pages/Dashboard';
+import Calendar from './pages/Calendar';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/news" element={<News />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/calendar" element={<Calendar />} /> 
           </Routes>
         </div>
         <footer>
