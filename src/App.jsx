@@ -1,4 +1,3 @@
-
 // App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -6,6 +5,8 @@ import Home from './pages/Home';
 import News from './pages/News';
 import Dashboard from './pages/Dashboard';
 import Calendar from './pages/Calendar';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin from './pages/AdminLogin';
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/news" element={<News />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/calendar" element={<Calendar />} /> 
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
           </Routes>
         </div>
         <footer>
@@ -29,4 +32,5 @@ function App() {
 }
 
 export default App;
+
 
