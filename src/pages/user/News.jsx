@@ -1,4 +1,4 @@
-// src/pages/News.jsx
+// src/user/pages/News.jsx
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 

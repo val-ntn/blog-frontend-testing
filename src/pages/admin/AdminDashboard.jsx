@@ -1,7 +1,7 @@
-// src/pages/AdminDashboard.jsx
+// src/pages/admin/AdminDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Dashboard from './Dashboard'; // import the child dashboard component
+import Dashboard from '../user/Dashboard'; // import the child dashboard component
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);

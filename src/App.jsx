@@ -1,12 +1,12 @@
 // App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import News from './pages/News';
-import Dashboard from './pages/Dashboard';
-import Calendar from './pages/Calendar';
-import AdminDashboard from './pages/AdminDashboard';
-import AdminLogin from './pages/AdminLogin';
+import Navbar from './components/Shared/Navbar';
+import Home from './pages/user/Home';
+import News from './pages/user/News';
+import Dashboard from './pages/user/Dashboard';
+import Calendar from './pages/user/Calendar';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminLogin from './pages/admin/AdminLogin';
 
 function App() {
   return (
