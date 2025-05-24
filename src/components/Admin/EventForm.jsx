@@ -1,4 +1,4 @@
-//src/pages/user/EventForm.jsx
+//src/components/Admin/EventForm.jsx
 import { useState } from 'react';
 import axios from 'axios';
 

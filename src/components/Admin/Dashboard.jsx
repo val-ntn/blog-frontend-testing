@@ -1,4 +1,4 @@
-// src/pages/Dashboard.jsx
+// src/components/Admin/Dashboard.jsx
 
 import PostForm from './PostForm';
 import EventForm from './EventForm';

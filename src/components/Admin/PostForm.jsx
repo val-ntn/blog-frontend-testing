@@ -1,4 +1,4 @@
-//src/pages/user/PostForm.jsx
+//src/components/Admin/PostForm.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
