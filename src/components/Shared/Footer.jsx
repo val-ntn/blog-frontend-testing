@@ -1,0 +1,10 @@
+// src/components/Shared/Footer.jsx
+import React from 'react';
+
+export default function Footer() {
+  return (
+    <footer>
+      <p>&copy; 2025 My Blog Project</p>
+    </footer>
+  );
+}

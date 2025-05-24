@@ -7,6 +7,7 @@ import Dashboard from './pages/user/Dashboard';
 import Calendar from './pages/user/Calendar';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLogin from './pages/admin/AdminLogin';
+import Footer from './components/Shared/Footer';
 
 function App() {
   return (
@@ -23,9 +24,7 @@ function App() {
             <Route path="/admin/login" element={<AdminLogin />} />
           </Routes>
         </div>
-        <footer>
-          <p>&copy; 2025 My Blog Project</p>
-        </footer>
+        <Footer/>  
       </div>
     </Router>
   );
