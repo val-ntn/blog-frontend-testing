@@ -1,32 +1,29 @@
-
 // src/pages/admin/AdminLogin.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 function AdminLogin() {
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, setUser, loading } = useAuth();  // <-- include setUser here
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check if admin is already logged in, redirect to dashboard if yes
-    axios.get('http://localhost:5000/api/admin/dashboard', { withCredentials: true })
-      .then(res => {
-        if (res.data.message) {
-          setIsLoggedIn(true);
-          navigate('/admin'); // redirect to dashboard
-        }
-      })
-      .catch(() => {
-        setIsLoggedIn(false);
-      })
-      .finally(() => setLoading(false));
-  }, [navigate]);
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
 
-  const handleChange = e => {
+  // Redirect if already logged in as admin
+  useEffect(() => {
+    if (!loading && user) {
+      if (user.role === 'admin') {
+        navigate('/admin'); // Redirect to admin dashboard
+      } else {
+        // Optional: Redirect unauthorized roles elsewhere
+        navigate('/unauthorized');
+      }
+    }
+  }, [user, loading, navigate]);
+
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -35,8 +32,9 @@ function AdminLogin() {
     setError('');
     try {
       await axios.post('http://localhost:5000/api/auth/login', form, { withCredentials: true });
-      setIsLoggedIn(true);
-      navigate('/admin'); // Redirect to dashboard after successful login
+      const userRes = await axios.get('http://localhost:5000/api/auth/me', { withCredentials: true });
+      setUser(userRes.data.user); // update context with user data
+      navigate('/admin'); // redirect to admin dashboard
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }

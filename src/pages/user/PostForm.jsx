@@ -19,22 +19,27 @@ export default function PostForm() {
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('http://localhost:5000/api/posts', {
-      title,
-      content,
-      author,
-      category,
-      tags: tags.split(','),
-      thumbnailURL,
-      externalLinks: externalLinks.split(',')
+  e.preventDefault();
+
+  axios.post('http://localhost:5000/api/posts', {
+    title,
+    content,
+    author,
+    category,
+    tags: tags.split(','),
+    thumbnailURL,
+    externalLinks: externalLinks.split(',')
+  }, {
+    withCredentials: true  // ✅ crucial for sending the token cookie
+  })
+    .then(res => {
+      console.log('Post created:', res.data);
+      // Optional: reset form fields here
     })
-      .then(res => {
-        console.log('Post created:', res.data);
-        // Optionally reset form here
-      })
-      .catch(console.error);
-  };
+    .catch(err => {
+      console.error('Error creating post:', err.response?.data || err.message);
+    });
+};
 
   return (
     <>
