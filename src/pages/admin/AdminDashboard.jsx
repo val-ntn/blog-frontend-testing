@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dashboard from '../user/Dashboard'; // import the child dashboard component
-
+import LogoutButton from '../../components/Admin/LogoutButton';
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -40,6 +40,7 @@ export default function AdminDashboard() {
       <h1>Admin Dashboard</h1>
       <p>Welcome, admin! You have access to this page.</p>
       <Dashboard /> {/* Render the dashboard UI component here */}
+      <LogoutButton />
     </div>
   );
 }
