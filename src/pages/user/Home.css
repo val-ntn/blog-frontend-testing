@@ -1,0 +1,15 @@
+/* Page-specific styling for Home page */
+
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+section {
+  border: 2px dashed var(--secondary-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+/* If you want to add any home-only tweaks, put here */

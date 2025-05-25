@@ -9,7 +9,7 @@ export default function EventList({ limit, onlyUpcoming, compact }) {
     fetch('http://localhost:5000/api/events') // adjust your API URL
       .then(res => res.json())
       .then(data => {
-        console.log('Raw events:', data); // Debug raw data from API
+        
 
         let filtered = data;
 

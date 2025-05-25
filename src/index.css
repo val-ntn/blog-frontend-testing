@@ -1,32 +1,39 @@
 
 
  /* index.css - global styles and resets */
-:root {
-  --font-body: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --text-color: rgba(255, 255, 255, 0.87);
-  --bg-color: #121212;
-  --link-color: #646cff;
-  --link-hover: #ff6347;
-}
+/* 
+Global resets
+CSS variables
+Base element styles (body, links, typography, etc.)
+No layout-specific styles here — keep it generic and reusable */
 
-* {
+/* Global resets and base styles */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  min-height: 100vh;
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #111; /* dark background */
+  color: #eee;
   line-height: 1.6;
 }
 
-a {
-  color: var(--link-color);
-  text-decoration: none;
+/* CSS variables for consistent design tokens */
+:root {
+  --max-content-width: 1280px;
+  --grid-gap: 1rem;
+  --primary-color: #ff6347; /* tomato */
+  --secondary-color: #646cff;
+  --background-dark: #222;
 }
-a:hover {
-  color: var(--link-hover);
+
+/* Utility */
+.hidden {
+  display: none !important;
 }

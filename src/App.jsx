@@ -9,11 +9,12 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLogin from './pages/admin/AdminLogin';
 import Footer from './components/Shared/Footer';
 import AdminRoute from './routes/AdminRoute';
+import './App.css'
 
 function App() {
   return (
     <Router>
-      <div id="root">
+      <div className="app-container">
         <Navbar />
         <div className="main-content">
           <Routes>

@@ -1,27 +1,43 @@
 /* App.css - layout and wrapper styles */
 
-#root {
+/* Layout styles: max-width container
+Grid setup for main content (e.g., an 8-column grid)
+Navbar/footer wrappers & centering content
+General page-level spacing and containers */
+
+/* App-level layout wrappers */
+
+.app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  background-color: var(--background-dark);
 }
 
 .main-content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  max-width: 1200px;
+ 
+  max-width: var(--max-content-width);
   margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+  padding: 0; 
+  box-sizing: border-box;
+  background-color: #383535; /* optional background for the whole area */
+
+}
+/* Navbar and footer common styles */
+.navbar,
+.footer {
+  width: 100%;
+  background-color: var(--background-dark);
+  color: white;
+  padding: 1rem 0;
 }
 
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
+.navbar > .container,
+.footer > .container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 1rem;
 }
+
