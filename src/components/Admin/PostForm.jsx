@@ -35,6 +35,14 @@ export default function PostForm() {
     .then(res => {
       console.log('Post created:', res.data);
       // Optional: reset form fields here
+      // Clear form
+  setTitle('');
+  setContent('');
+  setAuthor('');
+  setCategory('');
+  setTags('');
+  setThumbnailURL('');
+  setExternalLinks('');
     })
     .catch(err => {
       console.error('Error creating post:', err.response?.data || err.message);
