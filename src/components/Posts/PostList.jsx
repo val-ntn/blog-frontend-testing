@@ -1,12 +1,13 @@
 // src/components/Posts/PostList.jsx
 import React, { useEffect, useState } from 'react';
 import PostItem from './PostItem';
+import { API_BASE_URL } from '../../utils/api';
 
 export default function PostList({ limit, compact }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/posts') // adjust your API URL
+    fetch(`${API_BASE_URL}/posts`) // adjust your API URL
       .then(res => res.json())
       .then(data => {
         const sorted = data.sort(

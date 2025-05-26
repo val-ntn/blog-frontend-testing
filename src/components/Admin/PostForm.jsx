@@ -1,6 +1,7 @@
 //src/components/Admin/PostForm.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
 
 export default function PostForm() {
   const [users, setUsers] = useState([]);
@@ -13,7 +14,7 @@ export default function PostForm() {
   const [externalLinks, setExternalLinks] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/users')
+    axios.get(`${API_BASE_URL}/users`)
       .then(res => setUsers(res.data))
       .catch(console.error);
   }, []);
@@ -21,7 +22,7 @@ export default function PostForm() {
   const handleSubmit = (e) => {
   e.preventDefault();
 
-  axios.post('http://localhost:5000/api/posts', {
+  axios.post(`${API_BASE_URL}/posts`, {
     title,
     content,
     author,

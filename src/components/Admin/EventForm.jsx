@@ -1,6 +1,8 @@
 //src/components/Admin/EventForm.jsx
 import { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
+
 
 export default function EventForm() {
   const [eventTitle, setEventTitle] = useState('');
@@ -16,7 +18,7 @@ export default function EventForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/events', {
+    axios.post(`${API_BASE_URL}/events`, {
       title: eventTitle,
       startDate,
       endDate,
@@ -31,6 +33,17 @@ export default function EventForm() {
       .then(res => {
         console.log('Event created:', res.data);
         // Optionally reset form here
+        // Clear form fields after successful submission
+  setEventTitle('');
+  setStartDate('');
+  setEndDate('');
+  setLocation('');
+  setContact('');
+  setSchedule('');
+  setCosts('');
+  setSource('');
+  setIconURL('');
+  setImageURL('');
       })
       .catch(console.error);
   };

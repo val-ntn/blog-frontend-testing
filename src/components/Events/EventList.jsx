@@ -1,12 +1,13 @@
 // src/components/Events/EventList.jsx
 import React, { useEffect, useState } from 'react';
 import EventItem from './EventItem';
+import { API_BASE_URL } from '../../utils/api';
 
 export default function EventList({ limit, onlyUpcoming, compact }) {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/events') // adjust your API URL
+    fetch(`${API_BASE_URL}/events`) // adjust your API URL
       .then(res => res.json())
       .then(data => {
         

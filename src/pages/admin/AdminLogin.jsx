@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { API_BASE_URL } from '../../utils/api';
 
 function AdminLogin() {
   const { user, setUser, loading } = useAuth();  // <-- include setUser here
@@ -31,8 +32,8 @@ function AdminLogin() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/auth/login', form, { withCredentials: true });
-      const userRes = await axios.get('http://localhost:5000/api/auth/me', { withCredentials: true });
+      await axios.post(`${API_BASE_URL}/auth/login`, form, { withCredentials: true });
+      const userRes = await axios.get(`${API_BASE_URL}/auth/me`, { withCredentials: true });
       setUser(userRes.data.user); // update context with user data
       navigate('/admin'); // redirect to admin dashboard
     } catch (err) {

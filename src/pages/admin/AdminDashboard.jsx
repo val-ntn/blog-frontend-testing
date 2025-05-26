@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dashboard from '../../components/Admin/Dashboard'; // import the child dashboard component
 import LogoutButton from '../../components/Admin/LogoutButton';
+import { API_BASE_URL } from '../../utils/api';
+
+
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/admin/dashboard', {
+    fetch(`${API_BASE_URL}/admin/dashboard`, {
       method: 'GET',
       credentials: 'include',
     })
