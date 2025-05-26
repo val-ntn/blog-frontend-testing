@@ -29,7 +29,10 @@ export default function EventForm() {
       source,
       iconURL,
       imageURL
-    })
+    },
+  {
+  withCredentials: true  // sends token cookie
+})
       .then(res => {
         console.log('Event created:', res.data);
         // Optionally reset form here
