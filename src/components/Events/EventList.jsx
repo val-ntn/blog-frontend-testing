@@ -3,15 +3,13 @@ import React, { useEffect, useState } from 'react';
 import EventItem from './EventItem';
 import { API_BASE_URL } from '../../utils/api';
 
-export default function EventList({ limit, onlyUpcoming, compact }) {
+export default function EventList({ limit, onlyUpcoming, compact, renderActions, refreshFlag }) {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/events`) // adjust your API URL
+    fetch(`${API_BASE_URL}/events`)
       .then(res => res.json())
       .then(data => {
-        
-
         let filtered = data;
 
         if (onlyUpcoming) {
@@ -26,15 +24,17 @@ export default function EventList({ limit, onlyUpcoming, compact }) {
         setEvents(limit ? sorted.slice(0, limit) : sorted);
       })
       .catch(err => console.error('Failed to fetch events:', err));
-  }, [limit, onlyUpcoming]);
+  }, [limit, onlyUpcoming, refreshFlag]);
 
   return (
-    <div className="event-list">
+    <div>
       {events.length === 0 && <p>No events found</p>}
       {events.map(event => (
-        <EventItem key={event._id} event={event} compact={compact} />
+        <div key={event._id}>
+          <EventItem event={event} compact={compact} />
+          {renderActions && renderActions(event)}
+        </div>
       ))}
     </div>
   );
 }
-
