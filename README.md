@@ -58,4 +58,4 @@ VITE_API_BASE_URL=http://localhost:5000
 npm run dev
 ```
 **Note:** 
-For backend setup and database seeding, see the [backend repository](https://github.com/blog-backend-testing).
+For backend setup and database seeding, see the [backend repository](https://github.com/val-ntn/blog-backend-testing).
