@@ -26,3 +26,11 @@ dist-ssr
 # Environment variables
 .env
 .env.*
+
+# Playwright test output
+test-results/
+playwright-report/
+
+
+*.png
+*.webm
