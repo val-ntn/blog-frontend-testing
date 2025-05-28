@@ -4,8 +4,8 @@ import { useState } from 'react';
 import PostRecycleList from '../Posts/PostRecycleList';
 import EventRecycleList from '../Events/EventRecycleList';
 
-export default function RecycleBin() {
-  const [filter, setFilter] = useState('all'); // 'all', 'post', or 'event'
+export default function RecycleBin({ onPostRestore, onEventRestore }) {
+  const [filter, setFilter] = useState('all');
 
   return (
     <div>
@@ -16,14 +16,15 @@ export default function RecycleBin() {
         <button onClick={() => setFilter('event')}>Events</button>
       </div>
 
-      {filter === 'post' && <PostRecycleList />}
-      {filter === 'event' && <EventRecycleList />}
+      {filter === 'post' && <PostRecycleList onRestore={onPostRestore} />}
+      {filter === 'event' && <EventRecycleList onRestore={onEventRestore} />}
       {filter === 'all' && (
         <>
-          <PostRecycleList />
-          <EventRecycleList />
+          <PostRecycleList onRestore={onPostRestore} />
+          <EventRecycleList onRestore={onEventRestore} />
         </>
       )}
     </div>
   );
 }
+

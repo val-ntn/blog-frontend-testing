@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import EventForm from './EventForm';
 
-export default function EventManager() {
+export default function EventManager({ onCreateSuccess }) {
   const [showForm, setShowForm] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ export default function EventManager() {
         {showForm ? 'Hide Event Form' : 'Create New Event'}
       </button>
 
-      {showForm && <EventForm />}
+      {showForm && <EventForm onCreateSuccess={onCreateSuccess} />}
     </div>
   );
 }

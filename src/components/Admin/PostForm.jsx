@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../utils/api';
 
-export default function PostForm() {
+export default function PostForm({ onCreateSuccess }) {
   const [users, setUsers] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -20,74 +20,113 @@ export default function PostForm() {
   }, []);
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  axios.post(`${API_BASE_URL}/posts`, {
-    title,
-    content,
-    author,
-    category,
-    tags: tags.split(','),
-    thumbnailURL,
-    externalLinks: externalLinks.split(',')
-  }, {
-    withCredentials: true  // ✅ crucial for sending the token cookie
-  })
-    .then(res => {
-      console.log('Post created:', res.data);
-      // Optional: reset form fields here
-      // Clear form
-  setTitle('');
-  setContent('');
-  setAuthor('');
-  setCategory('');
-  setTags('');
-  setThumbnailURL('');
-  setExternalLinks('');
+    axios.post(`${API_BASE_URL}/posts`, {
+      title,
+      content,
+      author,
+      category,
+      tags: tags.split(',').map(t => t.trim()),
+      thumbnailURL,
+      externalLinks: externalLinks.split(',').map(l => l.trim()),
+    }, {
+      withCredentials: true
     })
-    .catch(err => {
-      console.error('Error creating post:', err.response?.data || err.message);
-    });
-};
+      .then(res => {
+        console.log('Post created:', res.data);
+
+        // Clear form
+        setTitle('');
+        setContent('');
+        setAuthor('');
+        setCategory('');
+        setTags('');
+        setThumbnailURL('');
+        setExternalLinks('');
+
+        if (onCreateSuccess) onCreateSuccess();
+      })
+      .catch(err => {
+        console.error('Error creating post:', err.response?.data || err.message);
+      });
+  };
 
   return (
     <>
       <h3>Create Blog Post</h3>
       <form onSubmit={handleSubmit}>
-        {/* your input fields here like before */}
-        <div>
-          <label>Title:</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        </div>
-        <div>
-          <label>Content:</label>
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} required />
-        </div>
-        <div>
-          <label>Category:</label>
-          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
-        </div>
-        <div>
-          <label>Tags (comma separated):</label>
-          <input type="text" value={tags} onChange={(e) => setTags(e.target.value)} />
-        </div>
-        <div>
-          <label>Thumbnail URL:</label>
-          <input type="text" value={thumbnailURL} onChange={(e) => setThumbnailURL(e.target.value)} />
-        </div>
-        <div>
-          <label>External Links (comma separated):</label>
-          <input type="text" value={externalLinks} onChange={(e) => setExternalLinks(e.target.value)} />
-        </div>
-        <div>
-          <label>Author:</label>
-          <select value={author} onChange={(e) => setAuthor(e.target.value)} required>
-            <option value="">Select Author</option>
+        <label>
+          Title:
+          <input
+            type="text"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            required
+          />
+        </label>
+
+        <label>
+          Content:
+          <textarea
+            value={content}
+            onChange={e => setContent(e.target.value)}
+            required
+          />
+        </label>
+
+        <label>
+          Author:
+          <select
+            value={author}
+            onChange={e => setAuthor(e.target.value)}
+            required
+          >
+            <option value="">Select author</option>
             {users.map(user => (
-              <option key={user._id} value={user._id}>{user.name}</option>
+              <option key={user._id} value={user._id}>
+                {user.name || user.username}
+              </option>
             ))}
           </select>
-        </div>
+        </label>
+
+        <label>
+          Category:
+          <input
+            type="text"
+            value={category}
+            onChange={e => setCategory(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Tags (comma separated):
+          <input
+            type="text"
+            value={tags}
+            onChange={e => setTags(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Thumbnail URL:
+          <input
+            type="url"
+            value={thumbnailURL}
+            onChange={e => setThumbnailURL(e.target.value)}
+          />
+        </label>
+
+        <label>
+          External Links (comma separated):
+          <input
+            type="text"
+            value={externalLinks}
+            onChange={e => setExternalLinks(e.target.value)}
+          />
+        </label>
+
         <button type="submit">Create Post</button>
       </form>
     </>

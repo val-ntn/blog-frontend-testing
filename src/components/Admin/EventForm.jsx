@@ -3,8 +3,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../utils/api';
 
-
-export default function EventForm() {
+export default function EventForm({ onCreateSuccess }) {
+  // Declare all state variables here:
   const [eventTitle, setEventTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -29,74 +29,63 @@ export default function EventForm() {
       source,
       iconURL,
       imageURL
-    },
-  {
-  withCredentials: true  // sends token cookie
-})
+    }, {
+      withCredentials: true
+    })
       .then(res => {
         console.log('Event created:', res.data);
-        // Optionally reset form here
-        // Clear form fields after successful submission
-  setEventTitle('');
-  setStartDate('');
-  setEndDate('');
-  setLocation('');
-  setContact('');
-  setSchedule('');
-  setCosts('');
-  setSource('');
-  setIconURL('');
-  setImageURL('');
+        // Clear form inputs after success
+        setEventTitle('');
+        setStartDate('');
+        setEndDate('');
+        setLocation('');
+        setContact('');
+        setSchedule('');
+        setCosts('');
+        setSource('');
+        setIconURL('');
+        setImageURL('');
+
+        // Notify parent to refresh list
+        if (onCreateSuccess) onCreateSuccess();
       })
       .catch(console.error);
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <h3>Create Event</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Event Title:</label>
-          <input type="text" value={eventTitle} onChange={(e) => setEventTitle(e.target.value)} required />
-        </div>
-        <div>
-          <label>Start Date:</label>
-          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} required />
-        </div>
-        <div>
-          <label>End Date:</label>
-          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-        </div>
-        <div>
-          <label>Location:</label>
-          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required />
-        </div>
-        <div>
-          <label>Contact:</label>
-          <input type="text" value={contact} onChange={(e) => setContact(e.target.value)} />
-        </div>
-        <div>
-          <label>Schedule:</label>
-          <input type="text" value={schedule} onChange={(e) => setSchedule(e.target.value)} />
-        </div>
-        <div>
-          <label>Costs:</label>
-          <input type="text" value={costs} onChange={(e) => setCosts(e.target.value)} />
-        </div>
-        <div>
-          <label>Source (URL):</label>
-          <input type="text" value={source} onChange={(e) => setSource(e.target.value)} />
-        </div>
-        <div>
-          <label>Icon URL:</label>
-          <input type="text" value={iconURL} onChange={(e) => setIconURL(e.target.value)} />
-        </div>
-        <div>
-          <label>Image URL:</label>
-          <input type="text" value={imageURL} onChange={(e) => setImageURL(e.target.value)} />
-        </div>
-        <button type="submit">Create Event</button>
-      </form>
-    </>
+      <label>Title
+        <input value={eventTitle} onChange={e => setEventTitle(e.target.value)} required />
+      </label>
+      <label>Start Date
+        <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} required />
+      </label>
+      <label>End Date
+        <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} required />
+      </label>
+      <label>Location
+        <input value={location} onChange={e => setLocation(e.target.value)} />
+      </label>
+      <label>Contact
+        <input value={contact} onChange={e => setContact(e.target.value)} />
+      </label>
+      <label>Schedule
+        <input value={schedule} onChange={e => setSchedule(e.target.value)} />
+      </label>
+      <label>Costs
+        <input value={costs} onChange={e => setCosts(e.target.value)} />
+      </label>
+      <label>Source
+        <input value={source} onChange={e => setSource(e.target.value)} />
+      </label>
+      <label>Icon URL
+        <input value={iconURL} onChange={e => setIconURL(e.target.value)} />
+      </label>
+      <label>Image URL
+        <input value={imageURL} onChange={e => setImageURL(e.target.value)} />
+      </label>
+      <button type="submit">Create Event</button>
+    </form>
   );
 }

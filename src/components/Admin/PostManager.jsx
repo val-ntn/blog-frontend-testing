@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import PostForm from './PostForm';
 
-export default function PostManager() {
+export default function PostManager({ onCreateSuccess }) {
   const [showForm, setShowForm] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ export default function PostManager() {
         {showForm ? 'Hide Post Form' : 'Create New Post'}
       </button>
 
-      {showForm && <PostForm />}
+      {showForm && <PostForm onCreateSuccess={onCreateSuccess} />}
     </div>
   );
 }

@@ -1,8 +1,8 @@
 // src/components/Admin/RecycleManager.jsx
 import { useState } from 'react';
-import RecycleBin from './RecycleBin'; // ← This actually shows deleted items
+import RecycleBin from './RecycleBin';
 
-export default function RecycleManager() {
+export default function RecycleManager({ onPostRestore, onEventRestore }) {
   const [showBin, setShowBin] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ export default function RecycleManager() {
         {showBin ? '← Hide Recycle Bin' : '🗑 Show Recycle Bin'}
       </button>
 
-      {showBin && <RecycleBin />}
+      {showBin && <RecycleBin onPostRestore={onPostRestore} onEventRestore={onEventRestore} />}
     </div>
   );
 }
