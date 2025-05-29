@@ -1,14 +1,14 @@
 // src/components/Events/EventItem.jsx
 import React from 'react';
+import { formatDate, getExcerpt } from '../../utils/format';
 
 export default function EventItem({ event, compact }) {
-  const eventDate = new Date(event.startDate).toLocaleDateString();
-
   return (
     <div className={`event-item ${compact ? 'compact' : ''}`}>
       <h4>{event.title}</h4>
       {!compact && <p>{event.description}</p>}
-      <small>Date: {eventDate}</small>
+      {compact && <p>{getExcerpt(event.description, 60)}</p>}
+      <small>Date: {formatDate(event.startDate)}</small>
     </div>
   );
 }

@@ -14,10 +14,14 @@ export default function Dashboard() {
   // Lift refresh flags for posts and events here
   const [postRefreshFlag, setPostRefreshFlag] = useState(false);
   const [eventRefreshFlag, setEventRefreshFlag] = useState(false);
+  const [postRecycleRefreshFlag, setPostRecycleRefreshFlag] = useState(false);
+  const [eventRecycleRefreshFlag, setEventRecycleRefreshFlag] = useState(false);
 
   // Callback to trigger refresh for both lists
   const triggerPostRefresh = () => setPostRefreshFlag(prev => !prev);
   const triggerEventRefresh = () => setEventRefreshFlag(prev => !prev);
+  const triggerPostRecycleRefresh = () => setPostRecycleRefreshFlag(prev => !prev);
+  const triggerEventRecycleRefresh = () => setEventRecycleRefreshFlag(prev => !prev);
 
   return (
     <div>
@@ -29,15 +33,19 @@ export default function Dashboard() {
       <PostListControl
         refreshFlag={postRefreshFlag}
         onRefresh={triggerPostRefresh}
+        onRecycleRefresh={triggerPostRecycleRefresh}
       />
       <EventListControl
         refreshFlag={eventRefreshFlag}
         onRefresh={triggerEventRefresh}
+        onRecycleRefresh={triggerEventRecycleRefresh}
       />
 
       <RecycleManager
         onPostRestore={triggerPostRefresh}
         onEventRestore={triggerEventRefresh}
+        postRecycleRefreshFlag={postRecycleRefreshFlag}
+        eventRecycleRefreshFlag={eventRecycleRefreshFlag}
       />
     </div>
   );

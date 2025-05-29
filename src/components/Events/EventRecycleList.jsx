@@ -1,17 +1,19 @@
 // src/components/Events/EventRecycleList.jsx
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import EventRecycleItem from './EventRecycleItem';
 import { API_BASE_URL } from '../../utils/api';
 
-export default function EventRecycleList({ onRestore }) {
+export default function EventRecycleList({ onRestore, refreshFlag }) {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     axios.get(`${API_BASE_URL}/events/bin`, { withCredentials: true })
       .then(res => setEvents(res.data))
       .catch(console.error);
-  }, []);
+  }, [refreshFlag]); 
+
 
   const handleRestore = async (id) => {
     await axios.patch(`${API_BASE_URL}/events/restore/${id}`, {}, { withCredentials: true });
@@ -21,6 +23,9 @@ export default function EventRecycleList({ onRestore }) {
   };
 
   const handlePermanentDelete = async (id) => {
+    const confirm = window.confirm("Are you sure you want to permanently delete this event? This cannot be undone.");
+    if (!confirm) return;
+
     await axios.delete(`${API_BASE_URL}/events/hard/${id}`, { withCredentials: true });
     setEvents(events.filter(e => e._id !== id));
 
@@ -35,8 +40,8 @@ export default function EventRecycleList({ onRestore }) {
         <EventRecycleItem
           key={event._id}
           event={event}
-          onRestore={() => handleRestore(event._id)}
-          onDelete={() => handlePermanentDelete(event._id)}
+          onRestore={handleRestore}
+          onDelete={handlePermanentDelete}
         />
       ))}
     </div>

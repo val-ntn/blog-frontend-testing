@@ -1,24 +1,26 @@
 // src/components/Admin/PostListControl.jsx
+
 import PostList from '../../components/Posts/PostList';
 import { API_BASE_URL } from '../../utils/api';
 
-export default function PostListControl({ refreshFlag, onRefresh }) {
+export default function PostListControl({ refreshFlag, onRefresh, onRecycleRefresh }) {
   const handleEdit = (post) => {
-    alert(`Editing post: ${post.title}`);
+    // Edit logic placeholder (e.g., navigate to edit page or open modal)
+    console.log(`Editing post: ${post.title}`);
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this post?')) return;
-    try {
-      await fetch(`${API_BASE_URL}/posts/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
-      if (onRefresh) onRefresh();
-    } catch (err) {
-      console.error('Delete failed', err);
-    }
-  };
+  try {
+    await fetch(`${API_BASE_URL}/posts/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    if (onRefresh) onRefresh();
+    if (onRecycleRefresh) onRecycleRefresh(); // 🔁 this is the key!
+  } catch (err) {
+    console.error('Delete failed', err);
+  }
+};
 
   return (
     <div>

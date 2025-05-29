@@ -2,7 +2,12 @@
 import { useState } from 'react';
 import RecycleBin from './RecycleBin';
 
-export default function RecycleManager({ onPostRestore, onEventRestore }) {
+export default function RecycleManager({ 
+  onPostRestore, 
+  onEventRestore, 
+  postRecycleRefreshFlag, 
+  eventRecycleRefreshFlag 
+}) {
   const [showBin, setShowBin] = useState(false);
 
   return (
@@ -11,7 +16,14 @@ export default function RecycleManager({ onPostRestore, onEventRestore }) {
         {showBin ? '← Hide Recycle Bin' : '🗑 Show Recycle Bin'}
       </button>
 
-      {showBin && <RecycleBin onPostRestore={onPostRestore} onEventRestore={onEventRestore} />}
+      {showBin && (
+        <RecycleBin
+          onPostRestore={onPostRestore}
+          onEventRestore={onEventRestore}
+          postRecycleRefreshFlag={postRecycleRefreshFlag}     
+          eventRecycleRefreshFlag={eventRecycleRefreshFlag}    
+        />
+      )}
     </div>
   );
 }
