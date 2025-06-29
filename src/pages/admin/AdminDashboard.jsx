@@ -43,7 +43,7 @@ export default function AdminDashboard() {
       <h1>Admin Dashboard</h1>
       <p>Welcome, admin! You have access to this page.</p>
       <Dashboard /> {/* Render the dashboard UI component here */}
-      <LogoutButton />
+      {/* <LogoutButton /> */}
     </div>
   );
 }
