@@ -2,7 +2,7 @@
 
 
 import { useState } from 'react';
-import RecycleManager from './RecycleManager';
+import RecycleBin from './RecycleBin';
 import PostListControl from './PostListControl';
 import EventListControl from './EventListControl';
 import Sidebar from './Sidebar';
@@ -98,13 +98,14 @@ export default function Dashboard() {
 
         {/* Bin / Recycle Section */}
         {selectedSection === 'bin' && (
-          <RecycleManager
-            onPostRestore={triggerPostRefresh}
-            onEventRestore={triggerEventRefresh}
-            postRecycleRefreshFlag={postRecycleRefreshFlag}
-            eventRecycleRefreshFlag={eventRecycleRefreshFlag}
-          />
-        )}
+  <RecycleBin
+    onPostRestore={triggerPostRefresh}
+    onEventRestore={triggerEventRefresh}
+    postRecycleRefreshFlag={postRecycleRefreshFlag}
+    eventRecycleRefreshFlag={eventRecycleRefreshFlag}
+  />
+)}
+
 
         {/* Users Section */}
         {selectedSection === 'users' && (
