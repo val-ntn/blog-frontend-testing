@@ -2,6 +2,33 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../utils/api';
+import { Editor } from '@tinymce/tinymce-react';
+
+// TinyMCE core
+import 'tinymce/tinymce';
+
+// TinyMCE theme and icons
+import 'tinymce/themes/silver';
+import 'tinymce/icons/default';
+
+// Plugins (ES modules, no .min.js)
+import 'tinymce/plugins/advlist';
+import 'tinymce/plugins/autolink';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/image';
+import 'tinymce/plugins/charmap';
+import 'tinymce/plugins/preview';
+import 'tinymce/plugins/anchor';
+import 'tinymce/plugins/searchreplace';
+import 'tinymce/plugins/visualblocks';
+import 'tinymce/plugins/code';
+import 'tinymce/plugins/fullscreen';
+import 'tinymce/plugins/insertdatetime';
+import 'tinymce/plugins/media';
+import 'tinymce/plugins/table';
+import 'tinymce/plugins/help';
+import 'tinymce/plugins/wordcount';
 
 export default function PostForm({ onCreateSuccess }) {
   const [users, setUsers] = useState([]);
@@ -66,13 +93,22 @@ export default function PostForm({ onCreateSuccess }) {
           />
         </label>
 
-        <label>
+         <label>
           Content:
-          <textarea
-            value={content}
-            onChange={e => setContent(e.target.value)}
-            required
-          />
+        <Editor
+  value={content}                 // set the editor content from state
+  onEditorChange={(newValue) => setContent(newValue)}  // update state on change
+  init={{
+    base_url: '/tinymce',  // base path for all assets
+    suffix: '.min',
+    skin_url: '/tinymce/skins/ui/oxide',
+    content_css: '/tinymce/skins/content/default/content.css',
+    icons_url: '/tinymce/icons/default/icons.js',
+    plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
+    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help',
+    height: 500,
+  }}
+/>
         </label>
 
         <label>
