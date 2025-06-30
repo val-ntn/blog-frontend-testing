@@ -10,6 +10,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import Footer from './components/Shared/Footer';
 import AdminRoute from './routes/AdminRoute';
 import Unauthorized from './pages/user/Unauthorized';
+import PostDetail from './pages/user/PostDetail';
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/news" element={<News />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/posts/:id" element={<PostDetail />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
 
             {/* Protected admin dashboard route */}

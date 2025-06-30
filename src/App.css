@@ -41,3 +41,19 @@ General page-level spacing and containers */
   padding: 0 1rem;
 }
 
+.post-item {
+  word-wrap: break-word;     /* Force breaking long words */
+  overflow-wrap: break-word;
+  white-space: normal;       /* Allow normal line breaking */
+}
+
+.post-item p {
+  margin-bottom: 1em;        /* Add spacing between paragraphs */
+  line-height: 1.6;
+}
+.safe-html {
+  white-space: normal;             /* allows normal text wrapping */
+  word-wrap: break-word;           /* legacy fallback */
+  overflow-wrap: anywhere;         /* modern + strong wrapping */
+  hyphens: auto;                   /* optional: nice hyphenation */
+}

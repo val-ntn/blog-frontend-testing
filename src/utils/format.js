@@ -1,8 +1,10 @@
 // src/utils/format.js
 
-export function getExcerpt(text, length = 100) {
-  if (!text) return '';
-  return text.length > length ? text.slice(0, length) + '...' : text;
+import htmlTruncate from 'html-truncate';
+
+export function getExcerpt(htmlString, length = 200) {
+  if (!htmlString) return '';
+  return htmlTruncate(htmlString, length);
 }
 
 export function formatDate(dateString, locale = 'en-US', options = {}) {

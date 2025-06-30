@@ -37,3 +37,7 @@ html, body {
 .hidden {
   display: none !important;
 }
+/* Hide Promo-Link TinyMCE */
+.tox-promotion-link {
+  display: none !important;
+}

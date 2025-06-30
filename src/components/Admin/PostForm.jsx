@@ -96,17 +96,23 @@ export default function PostForm({ onCreateSuccess }) {
          <label>
           Content:
         <Editor
-  value={content}                 // set the editor content from state
-  onEditorChange={(newValue) => setContent(newValue)}  // update state on change
+  value={content}
+  onEditorChange={(newValue) => setContent(newValue)}
   init={{
-    base_url: '/tinymce',  // base path for all assets
+    base_url: '/tinymce',
     suffix: '.min',
-    skin_url: '/tinymce/skins/ui/oxide',
-    content_css: '/tinymce/skins/content/default/content.css',
-    icons_url: '/tinymce/icons/default/icons.js',
     plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
-    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help',
+    toolbar: 'undo redo | formatselect fontsizeselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | help',
+    fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+    branding: false,
     height: 500,
+
+    init_instance_callback: (editor) => {
+      const promo = editor.getContainer().querySelector('.tox-promotion-link');
+      if (promo) {
+        promo.remove();
+      }
+    },
   }}
 />
         </label>
