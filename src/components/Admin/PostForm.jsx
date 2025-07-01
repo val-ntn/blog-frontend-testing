@@ -37,7 +37,6 @@ export default function PostForm({ onCreateSuccess }) {
   const [author, setAuthor] = useState('');
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState('');
-  const [thumbnailURL, setThumbnailURL] = useState('');
   const [externalLinks, setExternalLinks] = useState('');
 
   useEffect(() => {
@@ -55,7 +54,6 @@ export default function PostForm({ onCreateSuccess }) {
       author,
       category,
       tags: tags.split(',').map(t => t.trim()),
-      thumbnailURL,
       externalLinks: externalLinks.split(',').map(l => l.trim()),
     }, {
       withCredentials: true
@@ -69,7 +67,6 @@ export default function PostForm({ onCreateSuccess }) {
         setAuthor('');
         setCategory('');
         setTags('');
-        setThumbnailURL('');
         setExternalLinks('');
 
         if (onCreateSuccess) onCreateSuccess();
@@ -78,6 +75,7 @@ export default function PostForm({ onCreateSuccess }) {
         console.error('Error creating post:', err.response?.data || err.message);
       });
   };
+
 
   return (
     <>
@@ -151,14 +149,7 @@ export default function PostForm({ onCreateSuccess }) {
           />
         </label>
 
-        <label>
-          Thumbnail URL:
-          <input
-            type="url"
-            value={thumbnailURL}
-            onChange={e => setThumbnailURL(e.target.value)}
-          />
-        </label>
+       
 
         <label>
           External Links (comma separated):

@@ -7,6 +7,7 @@ export default function Sidebar({ selected, onSelect }) {
     { id: 'posts', label: 'Posts' },
     { id: 'events', label: 'Events' },
     { id: 'users', label: 'Users' },
+    { id: 'pictures', label: 'Pictures' },
     { id: 'bin', label: 'Recycle Bin' },
   ];
 

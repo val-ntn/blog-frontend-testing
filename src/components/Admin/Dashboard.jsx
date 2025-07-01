@@ -8,6 +8,7 @@ import EventListControl from './EventListControl';
 import Sidebar from './Sidebar';
 import PostForm from './PostForm';
 import EventForm from './EventForm';
+import PicturesManager from './PicturesManager';
 
 export default function Dashboard() {
   // Lift refresh flags for posts and events here
@@ -95,6 +96,10 @@ export default function Dashboard() {
             )}
           </>
         )}
+        {/* Pictures */}
+{selectedSection === 'pictures' && (
+  <PicturesManager />
+)}
 
         {/* Bin / Recycle Section */}
         {selectedSection === 'bin' && (
