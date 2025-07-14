@@ -6,7 +6,7 @@ import { API_BASE_URL } from '../../utils/api';
 export default function PostList({ limit, compact, refreshFlag, renderActions }) {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+/*   useEffect(() => {
     fetch(`${API_BASE_URL}/posts`)
       .then(res => res.json())
       .then(data => {
@@ -16,7 +16,19 @@ export default function PostList({ limit, compact, refreshFlag, renderActions })
         setPosts(limit ? sorted.slice(0, limit) : sorted);
       })
       .catch(err => console.error('Failed to fetch posts:', err));
-  }, [limit, refreshFlag]);
+  }, [limit, refreshFlag]); */
+
+useEffect(() => {
+  fetch(`${API_BASE_URL}/posts`)
+    .then(res => res.json())
+    .then(data => {
+      // Simply limit the posts, no need to sort them here
+      setPosts(limit ? data.slice(0, limit) : data);
+    })
+    .catch(err => console.error('Failed to fetch posts:', err));
+}, [limit, refreshFlag]);
+
+
 
   return (
     <div>
