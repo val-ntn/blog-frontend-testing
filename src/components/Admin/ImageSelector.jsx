@@ -9,7 +9,7 @@ export default function ImageSelector({ onSelect }) {
 
   useEffect(() => {
     if (open) {
-      axios.get(`${API_BASE_URL}/pictures`, { withCredentials: true })
+      axios.get(`${API_BASE_URL}/upload`, { withCredentials: true })
         .then(res => setImages(res.data))
         .catch(console.error);
     }

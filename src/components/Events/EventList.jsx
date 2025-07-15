@@ -7,9 +7,12 @@ export default function EventList({ limit, onlyUpcoming, compact, renderActions,
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
+     const start = performance.now(); // Start timing
     fetch(`${API_BASE_URL}/events`)
       .then(res => res.json())
       .then(data => {
+        const end = performance.now(); // End timing
+      console.log(`EventList fetch took ${end - start} ms`);// console log timer
         let filtered = data;
 
         if (onlyUpcoming) {

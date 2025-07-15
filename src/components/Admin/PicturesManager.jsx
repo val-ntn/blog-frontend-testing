@@ -12,7 +12,7 @@ export default function PicturesManager() {
 
   // Fetch images list from backend
   const fetchImages = () => {
-    axios.get(`${API_BASE_URL}/pictures`, { withCredentials: true }) // corrected endpoint
+    axios.get(`${API_BASE_URL}/upload`, { withCredentials: true }) // corrected endpoint
       .then(res => setImages(res.data))
       .catch(console.error);
   };
@@ -28,10 +28,10 @@ export default function PicturesManager() {
     setUploading(true);
 
     const formData = new FormData();
-    formData.append('picture', file);  // key must be 'picture' for multer
+    formData.append('image', file);  // key must be 'image' for multer
 
     try {
-      await axios.post(`${API_BASE_URL}/pictures/upload`, formData, { // corrected endpoint
+      await axios.post(`${API_BASE_URL}/upload`, formData, { // corrected endpoint
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       });
@@ -44,7 +44,7 @@ export default function PicturesManager() {
   };
 
   const handleDelete = (imageName) => {
-    axios.delete(`${API_BASE_URL}/pictures/${imageName}`, { withCredentials: true }) // corrected endpoint
+    axios.delete(`${API_BASE_URL}/upload/${imageName}`, { withCredentials: true }) // corrected endpoint
       .then(() => fetchImages())
       .catch(console.error);
   };

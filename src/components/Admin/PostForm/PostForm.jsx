@@ -52,10 +52,11 @@ export default function PostForm({ onCreateSuccess }) {
 
   // Fetch users on mount
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/users`)
-      .then(res => setUsers(res.data))
-      .catch(console.error);
-  }, []);
+  axios.get(`${API_BASE_URL}/users`, { withCredentials: true })
+    .then(res => setUsers(res.data))
+    .catch(console.error);
+}, []);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
