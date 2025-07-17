@@ -1,10 +1,9 @@
 //src/components/Admin/EventForm.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../utils/api';
 
-export default function EventForm({ onCreateSuccess }) {
-  // Declare all state variables here:
+export default function EventForm({ initialData = null, onCreateSuccess }) {
   const [eventTitle, setEventTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -17,39 +16,68 @@ export default function EventForm({ onCreateSuccess }) {
   const [imageURL, setImageURL] = useState('');
   const [description, setDescription] = useState('');
 
+  useEffect(() => {
+    if (initialData) {
+      setEventTitle(initialData.title || '');
+      setStartDate(initialData.startDate ? initialData.startDate.slice(0, 10) : '');
+      setEndDate(initialData.endDate ? initialData.endDate.slice(0, 10) : '');
+      setLocation(initialData.location || '');
+      setContact(initialData.contact || '');
+      setSchedule(initialData.schedule || '');
+      setCosts(initialData.costs || '');
+      setSource(initialData.source || '');
+      setIconURL(initialData.iconURL || '');
+      setImageURL(initialData.imageURL || '');
+      setDescription(initialData.description || '');
+    } else {
+      setEventTitle('');
+      setStartDate('');
+      setEndDate('');
+      setLocation('');
+      setContact('');
+      setSchedule('');
+      setCosts('');
+      setSource('');
+      setIconURL('');
+      setImageURL('');
+      setDescription('');
+    }
+  }, [initialData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${API_BASE_URL}/events`, {
-      title: eventTitle,
-      startDate,
-      endDate,
-      location,
-      contact,
-      schedule,
-      costs,
-      source,
-      iconURL,
-      imageURL,
-      description
-    }, {
-      withCredentials: true
-    })
-      .then(res => {
-        console.log('Event created:', res.data);
-        // Clear form inputs after success
-        setEventTitle('');
-        setStartDate('');
-        setEndDate('');
-        setLocation('');
-        setContact('');
-        setSchedule('');
-        setCosts('');
-        setSource('');
-        setIconURL('');
-        setImageURL('');
-        setDescription('');
 
-        // Notify parent to refresh list
+    const apiCall = initialData
+      ? axios.put(`${API_BASE_URL}/events/${initialData._id}`, {
+          title: eventTitle,
+          startDate,
+          endDate,
+          location,
+          contact,
+          schedule,
+          costs,
+          source,
+          iconURL,
+          imageURL,
+          description,
+        }, { withCredentials: true })
+      : axios.post(`${API_BASE_URL}/events`, {
+          title: eventTitle,
+          startDate,
+          endDate,
+          location,
+          contact,
+          schedule,
+          costs,
+          source,
+          iconURL,
+          imageURL,
+          description,
+        }, { withCredentials: true });
+
+    apiCall
+      .then(res => {
+        console.log(initialData ? 'Event updated:' : 'Event created:', res.data);
         if (onCreateSuccess) onCreateSuccess();
       })
       .catch(console.error);
@@ -57,7 +85,7 @@ export default function EventForm({ onCreateSuccess }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Create Event</h3>
+      <h3>{initialData ? 'Edit Event' : 'Create Event'}</h3>
       <label>Title
         <input value={eventTitle} onChange={e => setEventTitle(e.target.value)} required />
       </label>
@@ -74,14 +102,13 @@ export default function EventForm({ onCreateSuccess }) {
         <input value={contact} onChange={e => setContact(e.target.value)} />
       </label>
       <label>Description
-  <textarea
-    value={description}
-    onChange={(e) => setDescription(e.target.value)}
-    rows={4}
-    placeholder="Enter a short description of the event"
-  />
-</label>
-
+        <textarea
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          rows={4}
+          placeholder="Enter a short description of the event"
+        />
+      </label>
       <label>Schedule
         <input value={schedule} onChange={e => setSchedule(e.target.value)} />
       </label>
@@ -97,7 +124,7 @@ export default function EventForm({ onCreateSuccess }) {
       <label>Image URL
         <input value={imageURL} onChange={e => setImageURL(e.target.value)} />
       </label>
-      <button type="submit">Create Event</button>
+      <button type="submit">{initialData ? 'Update Event' : 'Create Event'}</button>
     </form>
   );
 }

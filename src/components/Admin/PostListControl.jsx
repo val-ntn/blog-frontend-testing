@@ -3,24 +3,19 @@
 import PostList from '../../components/Posts/PostList';
 import { API_BASE_URL } from '../../utils/api';
 
-export default function PostListControl({ refreshFlag, onRefresh, onRecycleRefresh }) {
-  const handleEdit = (post) => {
-    // Edit logic placeholder (e.g., navigate to edit page or open modal)
-    console.log(`Editing post: ${post.title}`);
-  };
-
+export default function PostListControl({ refreshFlag, onRefresh, onRecycleRefresh, onEdit }) {
   const handleDelete = async (id) => {
-  try {
-    await fetch(`${API_BASE_URL}/posts/${id}`, {
-      method: 'DELETE',
-      credentials: 'include',
-    });
-    if (onRefresh) onRefresh();
-    if (onRecycleRefresh) onRecycleRefresh(); // 🔁 this is the key!
-  } catch (err) {
-    console.error('Delete failed', err);
-  }
-};
+    try {
+      await fetch(`${API_BASE_URL}/posts/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (onRefresh) onRefresh();
+      if (onRecycleRefresh) onRecycleRefresh();
+    } catch (err) {
+      console.error('Delete failed', err);
+    }
+  };
 
   return (
     <div>
@@ -29,7 +24,7 @@ export default function PostListControl({ refreshFlag, onRefresh, onRecycleRefre
         refreshFlag={refreshFlag}
         renderActions={(post) => (
           <>
-            <button onClick={() => handleEdit(post)}>✏ Edit</button>
+            <button onClick={() => onEdit?.(post)}>✏ Edit</button>
             <button onClick={() => handleDelete(post._id)}>🗑 Delete</button>
           </>
         )}

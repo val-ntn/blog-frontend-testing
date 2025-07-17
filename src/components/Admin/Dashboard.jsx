@@ -17,6 +17,9 @@ export default function Dashboard() {
   const [postRecycleRefreshFlag, setPostRecycleRefreshFlag] = useState(false);
   const [eventRecycleRefreshFlag, setEventRecycleRefreshFlag] = useState(false);
   const [selectedSection, setSelectedSection] = useState('posts');
+  const [editingPost, setEditingPost] = useState(null); // null means creating new
+  const [editingEvent, setEditingEvent] = useState(null);
+
 
   // Local UI state to control whether to show the form fullscreen
   const [showPostForm, setShowPostForm] = useState(false);
@@ -41,61 +44,89 @@ export default function Dashboard() {
         {selectedSection === 'posts' && (
           <>
             {!showPostForm ? (
-              <>
-                {/* Button to show post creation form */}
-                <button onClick={() => setShowPostForm(true)}>Create New Post</button>
-                {/* Post listing controls */}
-                <PostListControl
-                  refreshFlag={postRefreshFlag}
-                  onRefresh={triggerPostRefresh}
-                  onRecycleRefresh={triggerPostRecycleRefresh}
-                />
-              </>
-            ) : (
-              <>
-                {/* Fullscreen Post form */}
-                <PostForm
-                  onCreateSuccess={() => {
-                    setShowPostForm(false);
-                    triggerPostRefresh();
-                  }}
-                />
-                {/* Optional Cancel button */}
-                <button onClick={() => setShowPostForm(false)}>Cancel</button>
-              </>
-            )}
+  <>
+    <button onClick={() => {
+      setEditingPost(null);     // reset edit mode
+      setShowPostForm(true);    // show empty form
+    }}>
+      Create New Post
+    </button>
+
+    <PostListControl
+      refreshFlag={postRefreshFlag}
+      onRefresh={triggerPostRefresh}
+      onRecycleRefresh={triggerPostRecycleRefresh}
+      onEdit={(post) => {
+        setEditingPost(post);     // set post for editing
+        setShowPostForm(true);    // open form
+      }}
+    />
+  </>
+) : (
+  <>
+    <PostForm
+      initialData={editingPost}
+      onCreateSuccess={() => {
+        setShowPostForm(false);
+        setEditingPost(null);
+        triggerPostRefresh();
+      }}
+    />
+    <button onClick={() => {
+      setShowPostForm(false);
+      setEditingPost(null);
+    }}>
+      Cancel
+    </button>
+  </>
+)}
+
           </>
         )}
 
         {/* Events Section */}
         {selectedSection === 'events' && (
-          <>
-            {!showEventForm ? (
-              <>
-                {/* Button to show event creation form */}
-                <button onClick={() => setShowEventForm(true)}>Create New Event</button>
-                {/* Event listing controls */}
-                <EventListControl
-                  refreshFlag={eventRefreshFlag}
-                  onRefresh={triggerEventRefresh}
-                  onRecycleRefresh={triggerEventRecycleRefresh}
-                />
-              </>
-            ) : (
-              <>
-                {/* Fullscreen Event form */}
-                <EventForm
-                  onCreateSuccess={() => {
-                    setShowEventForm(false);
-                    triggerEventRefresh();
-                  }}
-                />
-                {/* Optional Cancel button */}
-                <button onClick={() => setShowEventForm(false)}>Cancel</button>
-              </>
-            )}
-          </>
-        )}
+  <>
+    {!showEventForm ? (
+      <>
+        <button onClick={() => {
+          setEditingEvent(null);    // reset edit mode (new event)
+          setShowEventForm(true);   // show empty form
+        }}>
+          Create New Event
+        </button>
+
+        <EventListControl
+          refreshFlag={eventRefreshFlag}
+          onRefresh={triggerEventRefresh}
+          onRecycleRefresh={triggerEventRecycleRefresh}
+          onEdit={(event) => {
+            setEditingEvent(event);  // set event to edit
+            setShowEventForm(true);  // open the form
+          }}
+        />
+      </>
+    ) : (
+      <>
+        <EventForm
+          initialData={editingEvent}  // pass event data for editing or null for new
+          onCreateSuccess={() => {
+            setShowEventForm(false);
+            setEditingEvent(null);
+            triggerEventRefresh();
+          }}
+        />
+        <button onClick={() => {
+          setShowEventForm(false);
+          setEditingEvent(null);
+        }}>
+          Cancel
+        </button>
+      </>
+    )}
+  </>
+)}
+
         {/* Pictures */}
 {selectedSection === 'pictures' && (
   <PicturesManager />

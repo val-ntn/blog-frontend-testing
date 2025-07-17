@@ -31,7 +31,7 @@ import 'tinymce/plugins/table';
 import 'tinymce/plugins/help';
 import 'tinymce/plugins/wordcount';
 
-export default function PostForm({ onCreateSuccess }) {
+export default function PostForm({ onCreateSuccess, initialData }) {
   const [users, setUsers] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -57,34 +57,65 @@ export default function PostForm({ onCreateSuccess }) {
     .then(res => setUsers(res.data))
     .catch(console.error);
 }, []);
+// Populate form if editing
+useEffect(() => {
+  if (initialData) {
+    setTitle(initialData.title || '');
+    setContent(initialData.content || '');
+    setAuthor(initialData.author || '');
+    setCategory(initialData.category || '');
+    setTags((initialData.tags || []).join(', '));
+    setExternalLinks((initialData.externalLinks || []).join(', '));
+    setExcerpt(initialData.excerpt || '');
+  }
+}, [initialData]);
+
+
+const clearForm = () => {
+  setTitle('');
+  setContent('');
+  setAuthor('');
+  setCategory('');
+  setTags('');
+  setExternalLinks('');
+  setExcerpt('');
+};
+
+
+// Clear form if no initialData
+useEffect(() => {
+  if (!initialData) clearForm();
+}, [initialData]);
 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post(`${API_BASE_URL}/posts`, {
-      title,
-      content,
-      author,
-      category,
-      tags: tags.split(',').map(t => t.trim()),
-      externalLinks: externalLinks.split(',').map(l => l.trim()),
-      excerpt,
-    }, { withCredentials: true })
-      .then(res => {
-        console.log('Post created:', res.data);
-        setTitle('');
-        setContent('');
-        setAuthor('');
-        setCategory('');
-        setTags('');
-        setExternalLinks('');
-        setExcerpt('');
-        if (onCreateSuccess) onCreateSuccess();
-      })
-      .catch(err => {
-        console.error('Error creating post:', err.response?.data || err.message);
-      });
+  e.preventDefault();
+
+  const payload = {
+    title,
+    content,
+    author,
+    category,
+    tags: tags.split(',').map(t => t.trim()).filter(Boolean),
+    externalLinks: externalLinks.split(',').map(l => l.trim()).filter(Boolean),
+    excerpt,
   };
+
+  const request = initialData
+    ? axios.put(`${API_BASE_URL}/posts/${initialData._id}`, payload, { withCredentials: true })
+    : axios.post(`${API_BASE_URL}/posts`, payload, { withCredentials: true });
+
+  request
+    .then(res => {
+      console.log(`Post ${initialData ? 'updated' : 'created'}:`, res.data);
+      clearForm();
+      if (onCreateSuccess) onCreateSuccess();
+    })
+    .catch(err => {
+      console.error(`Error ${initialData ? 'updating' : 'creating'} post:`, err.response?.data || err.message);
+    });
+};
+
 useEffect(() => {
   return () => {
     if (editorRef.current && nodeChangeHandler.current) {
@@ -215,7 +246,7 @@ useEffect(() => {
 
   return (
     <>
-      <h3>Create Blog Post</h3>
+      <h3>{initialData ? 'Edit Blog Post' : 'Create Blog Post'}</h3>
 
       <div ref={toolbarRef} className={styles.toolbar}>
         <button onClick={() => toggleSide('all')} style={getButtonStyle('all')} title="All sides">■</button>
@@ -243,7 +274,7 @@ useEffect(() => {
             value={content}
             onEditorChange={newValue => setContent(newValue)}
             init={{
-              base_url: '/tinymce', // 👈 add this line
+              base_url: '/tinymce', 
               suffix: '.min', // optional, for production builds
               plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
               toolbar: 'undo redo | formatselect fontsizeselect | bold italic | alignleft aligncenter alignright image | styleselect | bullist numlist outdent indent | removeformat | help',
@@ -333,7 +364,10 @@ useEffect(() => {
           <input type="text" value={externalLinks} onChange={e => setExternalLinks(e.target.value)} />
         </label>
 
-        <button type="submit" className={styles.submitButton}>Create Post</button>
+        <button type="submit" className={styles.submitButton}>
+  {initialData ? 'Update Post' : 'Create Post'}
+</button>
+
       </form>
     </>
   );
