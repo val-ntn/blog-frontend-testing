@@ -1,3 +1,5 @@
+//frontend/src/pages/user/PostDetail.jsx
+
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SafeHTMLRenderer from '../../components/Common/SafeHTMLRenderer';

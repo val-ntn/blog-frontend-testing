@@ -3,6 +3,7 @@
 import PostList from '../../components/Posts/PostList';
 import EventList from '../../components/Events/EventList';
 import LatestPost from '../../components/Posts/LatestPost';
+import UpcomingEvents from '../../components/Events/UpcomingEvents';
 import '../../styles/Layout.css';  // layout and container styles
 import './Home.css';              // page-specific styles
 
@@ -18,7 +19,7 @@ export default function Home() {
 </div>
         <div className="events">
           <h2>Upcoming Events</h2>
-          <EventList limit={3} onlyUpcoming={true} compact={true} />
+          <UpcomingEvents limit={3} />
         </div>
         <div className="mapsearch">Map Search</div>
         <div className="widgets">Widgets</div>

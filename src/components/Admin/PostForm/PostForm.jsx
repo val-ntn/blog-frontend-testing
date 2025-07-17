@@ -42,6 +42,7 @@ export default function PostForm({ onCreateSuccess }) {
   const editorRef = useRef(null);
   const toolbarRef = useRef(null);
   const selectedImgRef = useRef(null);
+  const [excerpt, setExcerpt] = useState('');
 
   const nodeChangeHandler = useRef(null);
 
@@ -67,6 +68,7 @@ export default function PostForm({ onCreateSuccess }) {
       category,
       tags: tags.split(',').map(t => t.trim()),
       externalLinks: externalLinks.split(',').map(l => l.trim()),
+      excerpt,
     }, { withCredentials: true })
       .then(res => {
         console.log('Post created:', res.data);
@@ -76,6 +78,7 @@ export default function PostForm({ onCreateSuccess }) {
         setCategory('');
         setTags('');
         setExternalLinks('');
+        setExcerpt('');
         if (onCreateSuccess) onCreateSuccess();
       })
       .catch(err => {
@@ -282,6 +285,16 @@ useEffect(() => {
             }}
           />
         </label>
+<label className={styles.label}>
+  Excerpt (optional):
+  <textarea
+    value={excerpt}
+    onChange={e => setExcerpt(e.target.value)}
+    rows={3}
+    placeholder="Write a short summary or leave blank to auto-generate."
+    className={styles.textarea}
+  />
+</label>
 
         <div style={{ margin: '1rem 0' }}>
           <ImageSelector

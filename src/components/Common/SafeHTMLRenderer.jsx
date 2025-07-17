@@ -1,5 +1,6 @@
 import DOMPurify from 'dompurify';
 
+
 // Configure DOMPurify to allow style and class attributes but forbid event handlers
 const sanitizeConfig = {
   ALLOWED_TAGS: [
