@@ -15,6 +15,7 @@ export default function EventForm({ onCreateSuccess }) {
   const [source, setSource] = useState('');
   const [iconURL, setIconURL] = useState('');
   const [imageURL, setImageURL] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +29,8 @@ export default function EventForm({ onCreateSuccess }) {
       costs,
       source,
       iconURL,
-      imageURL
+      imageURL,
+      description
     }, {
       withCredentials: true
     })
@@ -45,6 +47,7 @@ export default function EventForm({ onCreateSuccess }) {
         setSource('');
         setIconURL('');
         setImageURL('');
+        setDescription('');
 
         // Notify parent to refresh list
         if (onCreateSuccess) onCreateSuccess();
@@ -70,6 +73,15 @@ export default function EventForm({ onCreateSuccess }) {
       <label>Contact
         <input value={contact} onChange={e => setContact(e.target.value)} />
       </label>
+      <label>Description
+  <textarea
+    value={description}
+    onChange={(e) => setDescription(e.target.value)}
+    rows={4}
+    placeholder="Enter a short description of the event"
+  />
+</label>
+
       <label>Schedule
         <input value={schedule} onChange={e => setSchedule(e.target.value)} />
       </label>
