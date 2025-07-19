@@ -6,8 +6,8 @@ import RecycleBin from './RecycleBin';
 import PostListControl from './PostListControl';
 import EventListControl from './EventListControl';
 import Sidebar from './Sidebar';
-import PostForm from './PostForm/PostForm';
-import EventForm from './EventForm';
+import PostForm from '../PostForm/PostForm';
+import EventForm from '../EventForm/EventForm';
 import PicturesManager from './PicturesManager';
 
 export default function Dashboard() {

@@ -1,8 +1,8 @@
 // src/pages/admin/AdminDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Dashboard from '../../components/Admin/Dashboard'; // import the child dashboard component
-import LogoutButton from '../../components/Admin/LogoutButton';
+import Dashboard from '../../components/Admin/Dashboard/Dashboard'; // import the child dashboard component
+import LogoutButton from '../../components/Admin/Dashboard/LogoutButton';
 import { API_BASE_URL } from '../../utils/api';
 
 

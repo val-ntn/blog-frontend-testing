@@ -1,35 +1,13 @@
-// frontend/src/components/Admin/PostForm.jsx
+// frontend/src/components/Admin/PostForm/PostForm.jsx
 
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../../utils/api';
-import { Editor } from '@tinymce/tinymce-react';
 import ImageSelector from '../ImageSelector';
 import styles from './PostForm.module.css';
+import ImageToolbar from './ImageToolbar';
+import RichTextEditor from './RichTextEditor';
 
-// TinyMCE core
-import 'tinymce/tinymce';
-import 'tinymce/themes/silver';
-import 'tinymce/icons/default';
-
-// Plugins
-import 'tinymce/plugins/advlist';
-import 'tinymce/plugins/autolink';
-import 'tinymce/plugins/lists';
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/image';
-import 'tinymce/plugins/charmap';
-import 'tinymce/plugins/preview';
-import 'tinymce/plugins/anchor';
-import 'tinymce/plugins/searchreplace';
-import 'tinymce/plugins/visualblocks';
-import 'tinymce/plugins/code';
-import 'tinymce/plugins/fullscreen';
-import 'tinymce/plugins/insertdatetime';
-import 'tinymce/plugins/media';
-import 'tinymce/plugins/table';
-import 'tinymce/plugins/help';
-import 'tinymce/plugins/wordcount';
 
 export default function PostForm({ onCreateSuccess, initialData }) {
   const [users, setUsers] = useState([]);
@@ -248,18 +226,14 @@ useEffect(() => {
     <>
       <h3>{initialData ? 'Edit Blog Post' : 'Create Blog Post'}</h3>
 
-      <div ref={toolbarRef} className={styles.toolbar}>
-        <button onClick={() => toggleSide('all')} style={getButtonStyle('all')} title="All sides">■</button>
-        <button onClick={() => toggleSide('top')} style={getButtonStyle('top')} title="Top margin">▀</button>
-        <button onClick={() => toggleSide('right')} style={getButtonStyle('right')} title="Right margin">▐</button>
-        <button onClick={() => toggleSide('bottom')} style={getButtonStyle('bottom')} title="Bottom margin">▄</button>
-        <button onClick={() => toggleSide('left')} style={getButtonStyle('left')} title="Left margin">▌</button>
-        <button onClick={() => handleToolbarAction('increase-margin')} title="Increase margin">➕</button>
-        <button onClick={() => handleToolbarAction('decrease-margin')} title="Decrease margin">➖</button>
-        <button onClick={() => handleToolbarAction('align-left')} title="Align Left">▌</button>
-        <button onClick={() => handleToolbarAction('align-right')} title="Align Right">▐</button>
-        <button onClick={() => handleToolbarAction('reset-styles')} title="Reset styles">⟲</button>
-      </div>
+      <ImageToolbar
+  selectedImgRef={selectedImgRef}
+  toolbarRef={toolbarRef}
+  selectedSides={selectedSides}
+  setSelectedSides={setSelectedSides}
+  onAction={handleToolbarAction}
+/>
+
 
       <form onSubmit={handleSubmit} className={styles.formWrapper}>
         <label className={styles.label}>
@@ -269,52 +243,20 @@ useEffect(() => {
 
         <label className={styles.label}>
           Content:
-          <Editor
-            onInit={(evt, editor) => (editorRef.current = editor)}
-            value={content}
-            onEditorChange={newValue => setContent(newValue)}
-            init={{
-              base_url: '/tinymce', 
-              suffix: '.min', // optional, for production builds
-              plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
-              toolbar: 'undo redo | formatselect fontsizeselect | bold italic | alignleft aligncenter alignright image | styleselect | bullist numlist outdent indent | removeformat | help',
-              height: 500,
-              branding: false,
-              image_advtab: true,
-              style_formats: [
-                {
-                  title: 'Image Left',
-                  selector: 'img',
-                  styles: { float: 'left', margin: '0 1em 1em 0' },
-                },
-                {
-                  title: 'Image Right',
-                  selector: 'img',
-                  styles: { float: 'right', margin: '0 0 1em 1em' },
-                },
-                {
-                  title: 'Centered Image',
-                  selector: 'img',
-                  styles: { display: 'block', margin: '0 auto' },
-                },
-              ],
-              init_instance_callback: (editor) => {
-  const promo = editor.getContainer().querySelector('.tox-promotion-link');
-  if (promo) promo.remove();
-
-  nodeChangeHandler.current = (e) => {
+          <RichTextEditor
+  value={content}
+  onChange={setContent}
+  editorRef={editorRef}
+  onNodeChange={(e) => {
+    const editor = editorRef.current;
     if (e.element.nodeName === 'IMG') {
       showToolbarForImage(e.element, editor);
     } else {
       hideToolbar();
     }
-  };
+  }}
+/>
 
-  editor.on('NodeChange', nodeChangeHandler.current);
-}
-
-            }}
-          />
         </label>
 <label className={styles.label}>
   Excerpt (optional):

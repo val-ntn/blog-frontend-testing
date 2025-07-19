@@ -1,4 +1,4 @@
-// frontend/src/components/Admin/Sidebar.jsx
+// frontend/src/components/Dashboard/Admin/Sidebar.jsx
 import React from 'react';
 import LogoutButton from './LogoutButton';
 

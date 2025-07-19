@@ -1,7 +1,7 @@
 //src/components/Admin/EventForm.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../utils/api';
+import { API_BASE_URL } from '../../../utils/api';
 
 export default function EventForm({ initialData = null, onCreateSuccess }) {
   const [eventTitle, setEventTitle] = useState('');

@@ -1,7 +1,7 @@
-//frontend/src/components/Admin/PicturesManager.jsx
+//frontend/src/components/Admin/Dashboard/PicturesManager.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../utils/api';
+import { API_BASE_URL } from '../../../utils/api';
 
 export default function PicturesManager() {
   const [images, setImages] = useState([]);

@@ -1,9 +1,9 @@
-//src/components/Admin/EventListControl.jsx
+//src/components/Admin/Dashboard/EventListControl.jsx
 
 
 
-import EventList from '../../components/Events/EventList';
-import { API_BASE_URL } from '../../utils/api';
+import EventList from '../../Events/EventList';
+import { API_BASE_URL } from '../../../utils/api';
 
 export default function EventListControl({ refreshFlag, onRefresh, onRecycleRefresh, onEdit }) {
   const handleDelete = async (id) => {

@@ -1,8 +1,8 @@
-// src/components/Admin/RecycleBin.jsx
+// src/components/Admin/Dashboard/RecycleBin.jsx
 
 import { useState } from 'react';
-import PostRecycleList from '../Posts/PostRecycleList';
-import EventRecycleList from '../Events/EventRecycleList';
+import PostRecycleList from '../../Posts/PostRecycleList';
+import EventRecycleList from '../../Events/EventRecycleList';
 
 export default function RecycleBin({ 
   onPostRestore, 
