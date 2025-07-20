@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../../utils/api';
+import styles from './EventForm.module.css';
 
 export default function EventForm({ initialData = null, onCreateSuccess }) {
   const [eventTitle, setEventTitle] = useState('');
