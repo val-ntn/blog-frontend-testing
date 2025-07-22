@@ -9,9 +9,12 @@ import Sidebar from './Sidebar';
 import PostForm from '../PostForm/PostForm';
 import EventForm from '../EventForm/EventForm';
 import PicturesManager from './PicturesManager';
+import ReportListControl from './ReportListControl';
+import ReportForm from '../ReportForm/ReportForm';
+
 
 export default function Dashboard() {
-  // Lift refresh flags for posts and events here
+  // Lift refresh flags for posts, events and reports here
   const [postRefreshFlag, setPostRefreshFlag] = useState(false);
   const [eventRefreshFlag, setEventRefreshFlag] = useState(false);
   const [postRecycleRefreshFlag, setPostRecycleRefreshFlag] = useState(false);
@@ -20,6 +23,10 @@ export default function Dashboard() {
   const [editingPost, setEditingPost] = useState(null); // null means creating new
   const [editingEvent, setEditingEvent] = useState(null);
 
+const [reportRefreshFlag, setReportRefreshFlag] = useState(false);
+const [reportRecycleRefreshFlag, setReportRecycleRefreshFlag] = useState(false);
+const [editingReport, setEditingReport] = useState(null);
+const [showReportForm, setShowReportForm] = useState(false);
 
   // Local UI state to control whether to show the form fullscreen
   const [showPostForm, setShowPostForm] = useState(false);
@@ -30,6 +37,8 @@ export default function Dashboard() {
   const triggerEventRefresh = () => setEventRefreshFlag(prev => !prev);
   const triggerPostRecycleRefresh = () => setPostRecycleRefreshFlag(prev => !prev);
   const triggerEventRecycleRefresh = () => setEventRecycleRefreshFlag(prev => !prev);
+const triggerReportRefresh = () => setReportRefreshFlag(prev => !prev);
+const triggerReportRecycleRefresh = () => setReportRecycleRefreshFlag(prev => !prev);
 
   return (
     <div className="dashboard-container" style={{ display: 'flex' }}>
@@ -119,6 +128,48 @@ export default function Dashboard() {
         <button onClick={() => {
           setShowEventForm(false);
           setEditingEvent(null);
+        }}>
+          Cancel
+        </button>
+      </>
+    )}
+  </>
+)}
+{/* Report Section */}
+{selectedSection === 'reports' && (
+  <>
+    {!showReportForm ? (
+      <>
+        <button onClick={() => {
+          setEditingReport(null);
+          setShowReportForm(true);
+        }}>
+          Create New Report
+        </button>
+
+        <ReportListControl
+          refreshFlag={reportRefreshFlag}
+          onRefresh={triggerReportRefresh}
+          onRecycleRefresh={triggerReportRecycleRefresh}
+          onEdit={(report) => {
+            setEditingReport(report);
+            setShowReportForm(true);
+          }}
+        />
+      </>
+    ) : (
+      <>
+        <ReportForm
+          initialData={editingReport}
+          onCreateSuccess={() => {
+            setShowReportForm(false);
+            setEditingReport(null);
+            triggerReportRefresh();
+          }}
+        />
+        <button onClick={() => {
+          setShowReportForm(false);
+          setEditingReport(null);
         }}>
           Cancel
         </button>

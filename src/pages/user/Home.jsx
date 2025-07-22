@@ -4,6 +4,8 @@ import PostList from '../../components/Posts/PostList';
 import EventList from '../../components/Events/EventList';
 import LatestPost from '../../components/Posts/LatestPost';
 import UpcomingEvents from '../../components/Events/UpcomingEvents';
+import LatestReport from '../../components/Reports/LatestReport';
+
 import '../../styles/Layout.css';  // layout and container styles
 import './Home.css';              // page-specific styles
 
@@ -23,7 +25,10 @@ export default function Home() {
         </div>
         <div className="mapsearch">Map Search</div>
         <div className="widgets">Widgets</div>
-        <div className="newsletter">Newsletter</div>
+        <div className="latest-report">
+  <h2>Latest Report</h2>
+  <LatestReport />
+</div>
       </div>
   
   );

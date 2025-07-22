@@ -6,6 +6,7 @@ export default function Sidebar({ selected, onSelect }) {
   const items = [
     { id: 'posts', label: 'Posts' },
     { id: 'events', label: 'Events' },
+    { id: 'reports', label: 'Reports' },
     { id: 'users', label: 'Users' },
     { id: 'pictures', label: 'Pictures' },
     { id: 'bin', label: 'Recycle Bin' },

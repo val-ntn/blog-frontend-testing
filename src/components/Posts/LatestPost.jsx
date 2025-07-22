@@ -1,3 +1,5 @@
+//frontend/src/components/Posts/LatestPost.jsx
+
 import React, { useEffect, useState } from 'react';
 import PostItem from './PostItem';
 import { API_BASE_URL } from '../../utils/api';

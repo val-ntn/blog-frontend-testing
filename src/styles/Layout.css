@@ -64,7 +64,7 @@
   border: 2px dashed #888;
 }
 /* Bottom row - newsletter */
-.newsletter {
+.latest-report {
   grid-column: 5 / 9;
   grid-row: 7 / 9;
   background: rgba(255, 255, 255, 0.1);
