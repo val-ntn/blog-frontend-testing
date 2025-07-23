@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SafeHTMLRenderer from '../../components/Common/SafeHTMLRenderer';
 import { API_BASE_URL } from '../../utils/api';
+import { Link } from 'react-router-dom';
 
 export default function ReportDetail() {
   const { id } = useParams();
@@ -25,7 +26,16 @@ export default function ReportDetail() {
       <h1>{report.title}</h1>
       <SafeHTMLRenderer content={report.content} />
       <p><em>By {report.author?.name || 'Unknown'}</em></p>
-      <p><strong>Event:</strong> {report.event?.title || 'N/A'}</p>
+      <p>
+  <strong>Event:</strong>{' '}
+  {report.event ? (
+    <Link to={`/events/${report.event._id}`}>
+      {report.event.title || report.event.name}
+    </Link>
+  ) : (
+    'N/A'
+  )}
+</p>
     </article>
   );
 }
