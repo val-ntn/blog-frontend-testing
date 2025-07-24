@@ -1,0 +1,75 @@
+/* Calendar container styling */
+.react-calendar {
+  width: 100%;
+  font-size: 0.8rem;
+  border: none;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Individual day cell */
+.react-calendar__tile {
+  padding: 0.5em 0;
+}
+
+/* Event indicator dot below date */
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #007bff;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 2px;
+}
+
+/* Container for selected day’s events */
+.event-details {
+  margin-top: 1em;
+  font-size: 0.85rem;
+}
+
+/* Calendar heading container */
+.calendar-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Big weekday heading */
+
+.weekday {
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+
+/* Navigation buttons and labels */
+.nav-controls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+
+/* Month and year controls are grouped */
+.month-nav,
+.year-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.month-year {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 0.6rem;
+}
+
+/* Generic button style for nav */
+button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}

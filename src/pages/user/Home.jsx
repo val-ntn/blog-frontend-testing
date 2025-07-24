@@ -5,6 +5,7 @@ import EventList from '../../components/Events/EventList';
 import LatestPost from '../../components/Posts/LatestPost';
 import UpcomingEvents from '../../components/Events/UpcomingEvents';
 import LatestReport from '../../components/Reports/LatestReport';
+import SmallCalendar from '../../components/Events/SmallCalendar';
 
 import '../../styles/Layout.css';  // layout and container styles
 import './Home.css';              // page-specific styles
@@ -22,6 +23,7 @@ export default function Home() {
         <div className="events">
           <h2>Upcoming Events</h2>
           <UpcomingEvents limit={3} />
+          <SmallCalendar />
         </div>
         <div className="mapsearch">Map Search</div>
         <div className="widgets">Widgets</div>
