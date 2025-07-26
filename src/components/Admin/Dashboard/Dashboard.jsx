@@ -28,6 +28,10 @@ const [reportRecycleRefreshFlag, setReportRecycleRefreshFlag] = useState(false);
 const [editingReport, setEditingReport] = useState(null);
 const [showReportForm, setShowReportForm] = useState(false);
 
+const [caruselRecycleRefreshFlag, setCaruselRecycleRefreshFlag] = useState(false);
+const triggerCaruselRecycleRefresh = () => setCaruselRecycleRefreshFlag(prev => !prev);
+
+
   // Local UI state to control whether to show the form fullscreen
   const [showPostForm, setShowPostForm] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
@@ -186,11 +190,14 @@ const triggerReportRecycleRefresh = () => setReportRecycleRefreshFlag(prev => !p
         {/* Bin / Recycle Section */}
         {selectedSection === 'bin' && (
   <RecycleBin
-    onPostRestore={triggerPostRefresh}
-    onEventRestore={triggerEventRefresh}
-    postRecycleRefreshFlag={postRecycleRefreshFlag}
-    eventRecycleRefreshFlag={eventRecycleRefreshFlag}
-  />
+  onPostRestore={triggerPostRefresh}
+  onEventRestore={triggerEventRefresh}
+  onCaruselRestore={triggerCaruselRecycleRefresh}
+  postRecycleRefreshFlag={postRecycleRefreshFlag}
+  eventRecycleRefreshFlag={eventRecycleRefreshFlag}
+  caruselRecycleRefreshFlag={caruselRecycleRefreshFlag}
+/>
+
 )}
 
 
