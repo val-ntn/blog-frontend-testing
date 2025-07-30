@@ -1,69 +1,23 @@
 // src/components/Admin/Dashboard/RecycleBin.jsx
 
-/* import { useState } from 'react';
-import PostRecycleList from '../../Posts/PostRecycleList';
-import EventRecycleList from '../../Events/EventRecycleList';
 
-export default function RecycleBin({ 
-  onPostRestore, 
-  onEventRestore, 
-  postRecycleRefreshFlag,        // accept this flag
-  eventRecycleRefreshFlag        // accept this flag
-}) {
-  const [filter, setFilter] = useState('all');
-
-  return (
-    <div>
-      <h2>Recycle Bin</h2>
-      <div style={{ marginBottom: '1rem' }}>
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('post')}>Posts</button>
-        <button onClick={() => setFilter('event')}>Events</button>
-      </div>
-
-      {filter === 'post' && (
-        <PostRecycleList 
-          onRestore={onPostRestore} 
-          refreshFlag={postRecycleRefreshFlag}    // pass flag here
-        />
-      )}
-      {filter === 'event' && (
-        <EventRecycleList 
-          onRestore={onEventRestore} 
-          refreshFlag={eventRecycleRefreshFlag}  // pass flag here
-        />
-      )}
-      {filter === 'all' && (
-        <>
-          <PostRecycleList 
-            onRestore={onPostRestore} 
-            refreshFlag={postRecycleRefreshFlag}  // pass flag here
-          />
-          <EventRecycleList 
-            onRestore={onEventRestore} 
-            refreshFlag={eventRecycleRefreshFlag} // pass flag here
-          />
-        </>
-      )}
-    </div>
-  );
-}
- */
-
-// src/components/Admin/Dashboard/RecycleBin.jsx
 
 import { useState } from 'react';
 import CarouselRecycleList from '../../Carousel/CarouselRecycleList';
 import PostRecycleList from '../../Posts/PostRecycleList';
 import EventRecycleList from '../../Events/EventRecycleList';
+import ReportRecycleList from '../../Reports/ReportRecycleList';
+
 
 export default function RecycleBin({ 
   onPostRestore, 
   onEventRestore,
   onCarouselRestore,
+  onReportRestore,
   postRecycleRefreshFlag,
   eventRecycleRefreshFlag,
-  carouselRecycleRefreshFlag
+  carouselRecycleRefreshFlag,
+  reportRecycleRefreshFlag
 }) {
   const [filter, setFilter] = useState('all');
 
@@ -74,6 +28,7 @@ export default function RecycleBin({
         <button onClick={() => setFilter('all')}>All</button>
         <button onClick={() => setFilter('post')}>Posts</button>
         <button onClick={() => setFilter('event')}>Events</button>
+        <button onClick={() => setFilter('report')}>Reports</button>
         <button onClick={() => setFilter('carousel')}>Carousels</button>
       </div>
 
@@ -89,6 +44,12 @@ export default function RecycleBin({
           refreshFlag={eventRecycleRefreshFlag}
         />
       )}
+      {filter === 'report' && (
+  <ReportRecycleList
+    onRestore={onReportRestore}
+    refreshFlag={reportRecycleRefreshFlag}
+  />
+)}
       {filter === 'carousel' && (
         <CarouselRecycleList 
           onRestore={onCarouselRestore}
@@ -105,6 +66,10 @@ export default function RecycleBin({
             onRestore={onEventRestore}
             refreshFlag={eventRecycleRefreshFlag}
           />
+          <ReportRecycleList
+      onRestore={onReportRestore}
+      refreshFlag={reportRecycleRefreshFlag}
+    />
           <CarouselRecycleList 
             onRestore={onCarouselRestore}
             refreshFlag={carouselRecycleRefreshFlag}

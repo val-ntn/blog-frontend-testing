@@ -9,13 +9,13 @@ export default function ReportRecycleList({ onRestore, refreshFlag }) {
   const [reports, setReports] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/reports/bin`, { withCredentials: true })
+    axios.get(`${API_BASE_URL}/event-reports/bin`, { withCredentials: true })
       .then(res => setReports(res.data))
       .catch(err => console.error(err));
   }, [refreshFlag]);
 
   const handleRestore = async (id) => {
-    await axios.patch(`${API_BASE_URL}/reports/restore/${id}`, {}, { withCredentials: true });
+    await axios.patch(`${API_BASE_URL}/event-reports/restore/${id}`, {}, { withCredentials: true });  //route changed from /reports/ 30.7
     setReports(reports.filter(r => r._id !== id));
 
     if (onRestore) onRestore();
@@ -25,7 +25,7 @@ export default function ReportRecycleList({ onRestore, refreshFlag }) {
     const confirm = window.confirm("Are you sure you want to permanently delete this report? This cannot be undone.");
     if (!confirm) return;
 
-    await axios.delete(`${API_BASE_URL}/reports/hard/${id}`, { withCredentials: true });
+    await axios.delete(`${API_BASE_URL}/event-reports/hard/${id}`, { withCredentials: true }); //route changed from /reports/ 30.7
     setReports(reports.filter(r => r._id !== id));
 
     if (onRestore) onRestore();

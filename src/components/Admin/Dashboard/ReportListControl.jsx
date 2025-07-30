@@ -6,7 +6,7 @@ import { API_BASE_URL } from '../../../utils/api';
 export default function ReportListControl({ refreshFlag, onRefresh, onRecycleRefresh, onEdit }) {
   const handleDelete = async (id) => {
     try {
-      await fetch(`${API_BASE_URL}/reports/${id}`, {
+      await fetch(`${API_BASE_URL}/event-reports/${id}`, {
         method: 'DELETE',
         credentials: 'include',
       });

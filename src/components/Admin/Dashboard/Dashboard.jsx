@@ -193,9 +193,11 @@ const triggerReportRecycleRefresh = () => setReportRecycleRefreshFlag(prev => !p
   onPostRestore={triggerPostRefresh}
   onEventRestore={triggerEventRefresh}
   onCaruselRestore={triggerCaruselRecycleRefresh}
+  onReportRestore={triggerReportRefresh}      
   postRecycleRefreshFlag={postRecycleRefreshFlag}
   eventRecycleRefreshFlag={eventRecycleRefreshFlag}
   caruselRecycleRefreshFlag={caruselRecycleRefreshFlag}
+  reportRecycleRefreshFlag={reportRecycleRefreshFlag}
 />
 
 )}
