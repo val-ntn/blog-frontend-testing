@@ -1,4 +1,4 @@
-// frontend/src/components/Carousel/CarouselRecycleList.jsx
+// frontend/src/components/Images-Carousels/CarouselRecycleList.jsx
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';

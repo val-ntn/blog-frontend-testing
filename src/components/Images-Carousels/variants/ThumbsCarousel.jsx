@@ -1,4 +1,4 @@
-// frontend/src/components/Carousel/variants/ThumbsCarousel.jsx
+// frontend/src/components/Images-Carousels/variants/ThumbsCarousel.jsx
 
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';

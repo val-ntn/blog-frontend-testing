@@ -1,7 +1,7 @@
-// src/components/Admin/Dashboard/PostListControl.jsx
+// src/components/Admin/Dashboard/Controls/PostListControl.jsx
 
-import PostList from '../../Posts/PostList';
-import { API_BASE_URL } from '../../../utils/api';
+import PostList from '../../../Posts/PostList';
+import { API_BASE_URL } from '../../../../utils/api';
 
 export default function PostListControl({ refreshFlag, onRefresh, onRecycleRefresh, onEdit }) {
   const handleDelete = async (id) => {

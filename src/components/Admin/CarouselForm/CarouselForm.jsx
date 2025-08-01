@@ -148,7 +148,7 @@ import { useState } from 'react';
 import ImageSelector from '../ImageSelector';
 import axios from 'axios';
 import { API_BASE_URL } from '../../../utils/api';
-import CarouselLivePreview from '../../Carousel/CarouselLivePreview';
+import CarouselLivePreview from '../../Images-Carousels/CarouselLivePreview';
 
 export default function CarouselForm({ onCreateSuccess, onClose }) {
   const [title, setTitle] = useState('');

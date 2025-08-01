@@ -1,30 +1,31 @@
-// frontend/src/components/Carousel/variants/BasicCarousel.jsx
+// frontend/src/components/Images-Carousels/variants/MultiRowCarousel.jsx
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
-export default function BasicCarousel({ images, title }) {
+export default function MultiRowCarousel({ images, title }) {
   if (!images || images.length === 0) {
     return <p>No images for {title}</p>;
   }
 
   return (
-    <div style={{ maxWidth: '800px', margin: '2rem auto' }}>
+    <div style={{ maxWidth: '1000px', margin: '2rem auto' }}>
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
+        modules={[Navigation]}
         navigation
-        pagination={{ clickable: true }}
-        loop
-        style={{
-          height: '400px',
-          borderRadius: '8px',
-          overflow: 'hidden',
+        spaceBetween={10}
+        breakpoints={{
+          320: { slidesPerView: 1 },
+          480: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 },
         }}
+        loop={true}
+        style={{ height: '300px' }}
       >
         {images.map((url, index) => (
           <SwiperSlide key={index}>
@@ -35,6 +36,7 @@ export default function BasicCarousel({ images, title }) {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                borderRadius: '8px',
               }}
             />
           </SwiperSlide>

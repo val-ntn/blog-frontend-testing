@@ -3,7 +3,7 @@
 
 
 import { useState } from 'react';
-import CarouselRecycleList from '../../Carousel/CarouselRecycleList';
+import CarouselRecycleList from '../../Images-Carousels/CarouselRecycleList';
 import PostRecycleList from '../../Posts/PostRecycleList';
 import EventRecycleList from '../../Events/EventRecycleList';
 import ReportRecycleList from '../../Reports/ReportRecycleList';

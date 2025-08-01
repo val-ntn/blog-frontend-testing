@@ -93,7 +93,7 @@ export default function CarouselItem({ carousel }) {
 }
  */
 
-// frontend/src/components/Carousel/CarouselItem.jsx
+// frontend/src/components/Images-Carousels/CarouselItem.jsx
 
 import React from 'react';
 import BasicCarousel from './variants/BasicCarousel';

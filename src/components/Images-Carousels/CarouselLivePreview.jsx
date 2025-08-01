@@ -1,4 +1,4 @@
-//frontend/src/components/Carousel/CarouselLivePreview.jsx
+//frontend/src/components/Images-Carousels/CarouselLivePreview.jsx
 
 import React from 'react';
 import BasicCarousel from './variants/BasicCarousel';

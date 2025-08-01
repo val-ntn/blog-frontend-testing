@@ -1,9 +1,9 @@
-//src/components/Admin/Dashboard/EventListControl.jsx
+//src/components/Admin/Dashboard/Controls/EventListControl.jsx
 
 
 
-import EventList from '../../Events/EventList';
-import { API_BASE_URL } from '../../../utils/api';
+import EventList from '../../../Events/EventList';
+import { API_BASE_URL } from '../../../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 

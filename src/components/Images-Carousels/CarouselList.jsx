@@ -2,7 +2,7 @@
 
 
 // CarouselList.jsx
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CarouselItem from './CarouselItem';
 import { API_BASE_URL } from '../../utils/api';
@@ -72,3 +72,46 @@ export default function CarouselList() {
   );
 }
 
+ */
+
+// frontend/src/components/Images-Carousels/CarouselList.jsx
+
+import CarouselItem from './CarouselItem';
+
+export default function CarouselList({ carousels, onDelete }) {
+  return (
+    <div>
+      {carousels.map((carousel) => (
+        <div key={carousel._id} style={{ marginBottom: '2rem' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              maxWidth: '800px',
+              margin: '0 auto',
+            }}
+          >
+            <h3>{carousel.title}</h3>
+            <button
+              onClick={() => onDelete?.(carousel._id)}
+              style={{
+                background: 'red',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                padding: '0.3rem 0.6rem',
+                fontWeight: 'bold',
+              }}
+              title="Delete Carousel"
+            >
+              X
+            </button>
+          </div>
+          <CarouselItem carousel={carousel} />
+        </div>
+      ))}
+    </div>
+  );
+}

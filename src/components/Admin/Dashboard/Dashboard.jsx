@@ -1,209 +1,233 @@
 // src/components/Admin/Dashboard.jsx
 
-
 import { useState } from 'react';
 import RecycleBin from './RecycleBin';
-import PostListControl from './PostListControl';
-import EventListControl from './EventListControl';
+import PostListControl from './Controls/PostListControl';
+import EventListControl from './Controls/EventListControl';
+import CarouselListControl from './Controls/CarouselListControl';
 import Sidebar from './Sidebar';
 import PostForm from '../PostForm/PostForm';
 import EventForm from '../EventForm/EventForm';
-import PicturesManager from './PicturesManager';
+import CarouselForm from '../CarouselForm/CarouselForm';
+import PicturesListControl from './Controls/PicturesListControl';
 import ReportListControl from './ReportListControl';
 import ReportForm from '../ReportForm/ReportForm';
 
-
 export default function Dashboard() {
-  // Lift refresh flags for posts, events and reports here
-  const [postRefreshFlag, setPostRefreshFlag] = useState(false);
-  const [eventRefreshFlag, setEventRefreshFlag] = useState(false);
-  const [postRecycleRefreshFlag, setPostRecycleRefreshFlag] = useState(false);
-  const [eventRecycleRefreshFlag, setEventRecycleRefreshFlag] = useState(false);
+  // === SECTION CONTROL ===
   const [selectedSection, setSelectedSection] = useState('posts');
-  const [editingPost, setEditingPost] = useState(null); // null means creating new
-  const [editingEvent, setEditingEvent] = useState(null);
 
-const [reportRefreshFlag, setReportRefreshFlag] = useState(false);
-const [reportRecycleRefreshFlag, setReportRecycleRefreshFlag] = useState(false);
-const [editingReport, setEditingReport] = useState(null);
-const [showReportForm, setShowReportForm] = useState(false);
-
-const [caruselRecycleRefreshFlag, setCaruselRecycleRefreshFlag] = useState(false);
-const triggerCaruselRecycleRefresh = () => setCaruselRecycleRefreshFlag(prev => !prev);
-
-
-  // Local UI state to control whether to show the form fullscreen
+  // === POSTS ===
+  const [postRefreshFlag, setPostRefreshFlag] = useState(false);
+  const [postRecycleRefreshFlag, setPostRecycleRefreshFlag] = useState(false);
+  const [editingPost, setEditingPost] = useState(null);
   const [showPostForm, setShowPostForm] = useState(false);
+
+  // === EVENTS ===
+  const [eventRefreshFlag, setEventRefreshFlag] = useState(false);
+  const [eventRecycleRefreshFlag, setEventRecycleRefreshFlag] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(null);
   const [showEventForm, setShowEventForm] = useState(false);
 
-  // Callback to trigger refresh for both lists
+  // === REPORTS ===
+  const [reportRefreshFlag, setReportRefreshFlag] = useState(false);
+  const [reportRecycleRefreshFlag, setReportRecycleRefreshFlag] = useState(false);
+  const [editingReport, setEditingReport] = useState(null);
+  const [showReportForm, setShowReportForm] = useState(false);
+
+  // === CAROUSELS ===
+  const [carouselRefreshFlag, setCarouselRefreshFlag] = useState(0);
+  const [carouselRecycleRefreshFlag, setCarouselRecycleRefreshFlag] = useState(false);
+  const [showCarouselForm, setShowCarouselForm] = useState(false);
+
+  // === REFRESH TRIGGERS ===
   const triggerPostRefresh = () => setPostRefreshFlag(prev => !prev);
-  const triggerEventRefresh = () => setEventRefreshFlag(prev => !prev);
   const triggerPostRecycleRefresh = () => setPostRecycleRefreshFlag(prev => !prev);
+
+  const triggerEventRefresh = () => setEventRefreshFlag(prev => !prev);
   const triggerEventRecycleRefresh = () => setEventRecycleRefreshFlag(prev => !prev);
-const triggerReportRefresh = () => setReportRefreshFlag(prev => !prev);
-const triggerReportRecycleRefresh = () => setReportRecycleRefreshFlag(prev => !prev);
+
+  const triggerReportRefresh = () => setReportRefreshFlag(prev => !prev);
+  const triggerReportRecycleRefresh = () => setReportRecycleRefreshFlag(prev => !prev);
+
+  const triggerCarouselRecycleRefresh = () => setCarouselRecycleRefreshFlag(prev => !prev);
 
   return (
     <div className="dashboard-container" style={{ display: 'flex' }}>
-      {/* Sidebar with props */}
       <Sidebar selected={selectedSection} onSelect={setSelectedSection} />
 
-      {/* Main content area */}
       <div className="dashboard-content" style={{ flexGrow: 1, padding: '1rem' }}>
         <h2>Dashboard</h2>
 
-        {/* Posts Section */}
+        {/* === Posts Section === */}
         {selectedSection === 'posts' && (
           <>
             {!showPostForm ? (
-  <>
-    <button onClick={() => {
-      setEditingPost(null);     // reset edit mode
-      setShowPostForm(true);    // show empty form
-    }}>
-      Create New Post
-    </button>
+              <>
+                <button onClick={() => {
+                  setEditingPost(null);
+                  setShowPostForm(true);
+                }}>
+                  Create New Post
+                </button>
 
-    <PostListControl
-      refreshFlag={postRefreshFlag}
-      onRefresh={triggerPostRefresh}
-      onRecycleRefresh={triggerPostRecycleRefresh}
-      onEdit={(post) => {
-        setEditingPost(post);     // set post for editing
-        setShowPostForm(true);    // open form
-      }}
-    />
-  </>
-) : (
-  <>
-    <PostForm
-      initialData={editingPost}
-      onCreateSuccess={() => {
-        setShowPostForm(false);
-        setEditingPost(null);
-        triggerPostRefresh();
-      }}
-    />
-    <button onClick={() => {
-      setShowPostForm(false);
-      setEditingPost(null);
-    }}>
-      Cancel
-    </button>
-  </>
-)}
-
+                <PostListControl
+                  refreshFlag={postRefreshFlag}
+                  onRefresh={triggerPostRefresh}
+                  onRecycleRefresh={triggerPostRecycleRefresh}
+                  onEdit={(post) => {
+                    setEditingPost(post);
+                    setShowPostForm(true);
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <PostForm
+                  initialData={editingPost}
+                  onCreateSuccess={() => {
+                    setShowPostForm(false);
+                    setEditingPost(null);
+                    triggerPostRefresh();
+                  }}
+                />
+                <button onClick={() => {
+                  setShowPostForm(false);
+                  setEditingPost(null);
+                }}>
+                  Cancel
+                </button>
+              </>
+            )}
           </>
         )}
 
-        {/* Events Section */}
+        {/* === Events Section === */}
         {selectedSection === 'events' && (
-  <>
-    {!showEventForm ? (
-      <>
-        <button onClick={() => {
-          setEditingEvent(null);    // reset edit mode (new event)
-          setShowEventForm(true);   // show empty form
-        }}>
-          Create New Event
-        </button>
+          <>
+            {!showEventForm ? (
+              <>
+                <button onClick={() => {
+                  setEditingEvent(null);
+                  setShowEventForm(true);
+                }}>
+                  Create New Event
+                </button>
 
-        <EventListControl
-          refreshFlag={eventRefreshFlag}
-          onRefresh={triggerEventRefresh}
-          onRecycleRefresh={triggerEventRecycleRefresh}
-          onEdit={(event) => {
-            setEditingEvent(event);  // set event to edit
-            setShowEventForm(true);  // open the form
-          }}
-        />
-      </>
-    ) : (
-      <>
-        <EventForm
-          initialData={editingEvent}  // pass event data for editing or null for new
-          onCreateSuccess={() => {
-            setShowEventForm(false);
-            setEditingEvent(null);
-            triggerEventRefresh();
-          }}
-        />
-        <button onClick={() => {
-          setShowEventForm(false);
-          setEditingEvent(null);
-        }}>
-          Cancel
-        </button>
-      </>
-    )}
-  </>
-)}
-{/* Report Section */}
-{selectedSection === 'reports' && (
-  <>
-    {!showReportForm ? (
-      <>
-        <button onClick={() => {
-          setEditingReport(null);
-          setShowReportForm(true);
-        }}>
-          Create New Report
-        </button>
+                <EventListControl
+                  refreshFlag={eventRefreshFlag}
+                  onRefresh={triggerEventRefresh}
+                  onRecycleRefresh={triggerEventRecycleRefresh}
+                  onEdit={(event) => {
+                    setEditingEvent(event);
+                    setShowEventForm(true);
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <EventForm
+                  initialData={editingEvent}
+                  onCreateSuccess={() => {
+                    setShowEventForm(false);
+                    setEditingEvent(null);
+                    triggerEventRefresh();
+                  }}
+                />
+                <button onClick={() => {
+                  setShowEventForm(false);
+                  setEditingEvent(null);
+                }}>
+                  Cancel
+                </button>
+              </>
+            )}
+          </>
+        )}
 
-        <ReportListControl
-          refreshFlag={reportRefreshFlag}
-          onRefresh={triggerReportRefresh}
-          onRecycleRefresh={triggerReportRecycleRefresh}
-          onEdit={(report) => {
-            setEditingReport(report);
-            setShowReportForm(true);
-          }}
-        />
-      </>
-    ) : (
-      <>
-        <ReportForm
-          initialData={editingReport}
-          onCreateSuccess={() => {
-            setShowReportForm(false);
-            setEditingReport(null);
-            triggerReportRefresh();
-          }}
-        />
-        <button onClick={() => {
-          setShowReportForm(false);
-          setEditingReport(null);
-        }}>
-          Cancel
-        </button>
-      </>
-    )}
-  </>
-)}
+        {/* === Reports Section === */}
+        {selectedSection === 'reports' && (
+          <>
+            {!showReportForm ? (
+              <>
+                <button onClick={() => {
+                  setEditingReport(null);
+                  setShowReportForm(true);
+                }}>
+                  Create New Report
+                </button>
 
-        {/* Pictures */}
-{selectedSection === 'pictures' && (
-  <PicturesManager />
-)}
+                <ReportListControl
+                  refreshFlag={reportRefreshFlag}
+                  onRefresh={triggerReportRefresh}
+                  onRecycleRefresh={triggerReportRecycleRefresh}
+                  onEdit={(report) => {
+                    setEditingReport(report);
+                    setShowReportForm(true);
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <ReportForm
+                  initialData={editingReport}
+                  onCreateSuccess={() => {
+                    setShowReportForm(false);
+                    setEditingReport(null);
+                    triggerReportRefresh();
+                  }}
+                />
+                <button onClick={() => {
+                  setShowReportForm(false);
+                  setEditingReport(null);
+                }}>
+                  Cancel
+                </button>
+              </>
+            )}
+          </>
+        )}
 
-        {/* Bin / Recycle Section */}
+        {/* === Pictures & Carousels Section === */}
+        {selectedSection === 'pictures' && (
+          <>
+            <PicturesListControl />
+
+            <hr style={{ margin: '2rem 0' }} />
+
+            <CarouselListControl
+              refreshFlag={carouselRefreshFlag}
+              onRecycleRefresh={triggerCarouselRecycleRefresh}
+            />
+
+            <button onClick={() => setShowCarouselForm(!showCarouselForm)}>
+              {showCarouselForm ? 'Close Carousel Form' : 'Add New Carousel'}
+            </button>
+
+            {showCarouselForm && (
+              <CarouselForm
+                onClose={() => setShowCarouselForm(false)}
+                onCreateSuccess={() => setCarouselRefreshFlag(prev => prev + 1)}
+              />
+            )}
+          </>
+        )}
+
+        {/* === Recycle Bin Section === */}
         {selectedSection === 'bin' && (
-  <RecycleBin
-  onPostRestore={triggerPostRefresh}
-  onEventRestore={triggerEventRefresh}
-  onCaruselRestore={triggerCaruselRecycleRefresh}
-  onReportRestore={triggerReportRefresh}      
-  postRecycleRefreshFlag={postRecycleRefreshFlag}
-  eventRecycleRefreshFlag={eventRecycleRefreshFlag}
-  caruselRecycleRefreshFlag={caruselRecycleRefreshFlag}
-  reportRecycleRefreshFlag={reportRecycleRefreshFlag}
-/>
+          <RecycleBin
+            onPostRestore={triggerPostRefresh}
+            onEventRestore={triggerEventRefresh}
+            onCarouselRestore={triggerCarouselRecycleRefresh}
+            onReportRestore={triggerReportRefresh}
+            postRecycleRefreshFlag={postRecycleRefreshFlag}
+            eventRecycleRefreshFlag={eventRecycleRefreshFlag}
+            carouselRecycleRefreshFlag={carouselRecycleRefreshFlag}
+            reportRecycleRefreshFlag={reportRecycleRefreshFlag}
+          />
+        )}
 
-)}
-
-
-        {/* Users Section */}
+        {/* === Users Section Placeholder === */}
         {selectedSection === 'users' && (
           <div>User management coming soon...</div>
         )}

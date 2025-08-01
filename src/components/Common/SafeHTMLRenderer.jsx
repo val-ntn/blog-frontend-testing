@@ -60,7 +60,7 @@ export default function SafeHTMLRenderer({ content }) {
 //frontend/src/components/Common/SafeHTMLRenderer.jsx
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
-import CarouselItem from '../Carousel/CarouselItem';
+import CarouselItem from '../Images-Carousels/CarouselItem';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../utils/api';

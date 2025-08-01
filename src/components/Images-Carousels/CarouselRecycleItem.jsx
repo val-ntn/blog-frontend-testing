@@ -1,4 +1,4 @@
-// frontend/src/components/Carousel/CarouselRecycleItem.jsx
+// frontend/src/components/Images-Carousels/CarouselRecycleItem.jsx
 
 
 export default function CarouselRecycleItem({ carousel, onRestore, onDelete }) {
