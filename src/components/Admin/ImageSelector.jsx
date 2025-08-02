@@ -2,10 +2,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../utils/api';
+import PicturesList from '../Images-Carousels/PicturesList';
 
 export default function ImageSelector({ onSelect }) {
   const [images, setImages] = useState([]);
   const [open, setOpen] = useState(false);
+  const [viewMode, setViewMode] = useState('grid'); // NEW
 
   useEffect(() => {
     if (open) {
@@ -17,7 +19,7 @@ export default function ImageSelector({ onSelect }) {
 
   const handleImageClick = (url) => {
     onSelect(url);
-    setOpen(false); // close after selection
+    setOpen(false);
   };
 
   return (
@@ -40,32 +42,20 @@ export default function ImageSelector({ onSelect }) {
         >
           {images.length === 0 && <p>No images available</p>}
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-            {images.map(image => {
-              const imageUrl = `${API_BASE_URL}/uploads/${image.name}`;
-              return (
-                <div key={image.name} style={{ cursor: 'pointer', textAlign: 'center' }}>
-                  <img
-                    src={imageUrl}
-                    alt={image.name}
-                    draggable
-                    onDragStart={(e) => {
-                      e.dataTransfer.setData('text/plain', imageUrl);
-                    }}
-                    onClick={() => handleImageClick(imageUrl)}
-                    style={{ width: '100px', borderRadius: '6px' }}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => navigator.clipboard.writeText(imageUrl)}
-                    style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}
-                  >
-                    Copy URL
-                  </button>
-                </div>
-              );
-            })}
+          {/* 👇 Toggle View Mode */}
+          <div style={{ marginBottom: '1rem' }}>
+            <button type="button" onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}>
+  Switch to {viewMode === 'grid' ? 'List View' : 'Thumbnail View'}
+</button>
+
           </div>
+
+          <PicturesList
+            images={images}
+            onSelect={handleImageClick}
+            viewMode={viewMode}
+            showCopyButton
+          />
         </div>
       )}
     </div>
