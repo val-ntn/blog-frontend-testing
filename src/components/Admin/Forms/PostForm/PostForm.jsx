@@ -1,9 +1,9 @@
-// frontend/src/components/Admin/PostForm/PostForm.jsx
+// frontend/src/components/Admin/Forms/PostForm/PostForm.jsx
 
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../../utils/api';
-import ImageSelector from '../ImageSelector';
+import { API_BASE_URL } from '../../../../utils/api';
+import ImageSelector from '../../ImageSelector';
 import styles from './PostForm.module.css';
 import ImageToolbar from './ImageToolbar';
 import RichTextEditor from './RichTextEditor';

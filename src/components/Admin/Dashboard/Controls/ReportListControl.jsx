@@ -1,7 +1,7 @@
-// src/components/Admin/Dashboard/ReportListControl.jsx
+// src/components/Admin/Dashboard/Controls/ReportListControl.jsx
 
-import ReportList from '../../Reports/ReportList';
-import { API_BASE_URL } from '../../../utils/api';
+import ReportList from '../../../Reports/ReportList';
+import { API_BASE_URL } from '../../../../utils/api';
 
 export default function ReportListControl({ refreshFlag, onRefresh, onRecycleRefresh, onEdit }) {
   const handleDelete = async (id) => {

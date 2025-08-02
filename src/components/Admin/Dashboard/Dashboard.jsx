@@ -6,12 +6,12 @@ import PostListControl from './Controls/PostListControl';
 import EventListControl from './Controls/EventListControl';
 import CarouselListControl from './Controls/CarouselListControl';
 import Sidebar from './Sidebar';
-import PostForm from '../PostForm/PostForm';
-import EventForm from '../EventForm/EventForm';
-import CarouselForm from '../CarouselForm/CarouselForm';
+import PostForm from '../Forms/PostForm/PostForm';
+import EventForm from '../Forms/EventForm/EventForm';
+import CarouselForm from '../Forms/CarouselForm/CarouselForm';
 import PicturesListControl from './Controls/PicturesListControl';
-import ReportListControl from './ReportListControl';
-import ReportForm from '../ReportForm/ReportForm';
+import ReportListControl from './Controls/ReportListControl';
+import ReportForm from '../Forms/ReportForm/ReportForm';
 
 export default function Dashboard() {
   // === SECTION CONTROL ===
