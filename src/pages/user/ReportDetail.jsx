@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import SafeHTMLRenderer from "../../components/Common/SafeHTMLRenderer";
 import { API_BASE_URL } from "../../utils/api";
 import { Link } from "react-router-dom";
+import CarouselItem from "../../components/Images-Carousels/CarouselItem";
 
 export default function ReportDetail() {
   const { id } = useParams();
@@ -15,7 +16,10 @@ export default function ReportDetail() {
         if (!res.ok) throw new Error("Failed to fetch report");
         return res.json();
       })
-      .then((data) => setReport(data))
+      .then((data) => {
+        console.log("Fetched report:", data); // 👈 Add this
+        setReport(data);
+      })
       .catch(console.error);
   }, [id]);
 
@@ -25,6 +29,9 @@ export default function ReportDetail() {
     <article>
       <h1>{report.title}</h1>
       <SafeHTMLRenderer content={report.content} />
+
+      {report.carousel && <CarouselItem carousel={report.carousel} />}
+
       <p>
         <em>By {report.author?.name || "Unknown"}</em>
       </p>

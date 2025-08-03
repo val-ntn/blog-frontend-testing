@@ -2,6 +2,7 @@
 
 import { Link } from "react-router-dom";
 import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
+import CarouselItem from "../../components/Images-Carousels/CarouselItem";
 
 export default function ReportItem({ report, compact }) {
   const contentToRender = compact ? report.excerpt : report.content;

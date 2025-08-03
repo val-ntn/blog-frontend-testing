@@ -46,6 +46,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       setContent(initialData.content || "");
       setAuthor(initialData.author?._id || initialData.author || "");
       setExcerpt(initialData.excerpt || "");
+      setSelectedCarousel(initialData.carousel || null);
     }
   }, [initialData]);
 
@@ -55,6 +56,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
     setContent("");
     setAuthor("");
     setExcerpt("");
+    setSelectedCarousel(null);
   };
 
   useEffect(() => {
@@ -70,6 +72,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       content,
       author,
       excerpt,
+      ...(selectedCarousel && { carousel: selectedCarousel._id }),
     };
 
     const request = initialData

@@ -7,6 +7,7 @@ import ImageSelector from "../../ImageSelector";
 import styles from "./PostForm.module.css";
 import ImageToolbar from "./ImageToolbar";
 import RichTextEditor from "./RichTextEditor";
+import CarouselSelector from "../../CarouselSelector";
 
 export default function PostForm({ onCreateSuccess, initialData }) {
   const [users, setUsers] = useState([]);
@@ -20,6 +21,7 @@ export default function PostForm({ onCreateSuccess, initialData }) {
   const toolbarRef = useRef(null);
   const selectedImgRef = useRef(null);
   const [excerpt, setExcerpt] = useState("");
+  const [selectedCarousel, setSelectedCarousel] = useState(null);
 
   const nodeChangeHandler = useRef(null);
 
@@ -43,6 +45,7 @@ export default function PostForm({ onCreateSuccess, initialData }) {
       setTags((initialData.tags || []).join(", "));
       setExternalLinks((initialData.externalLinks || []).join(", "));
       setExcerpt(initialData.excerpt || "");
+      setSelectedCarousel(initialData.carousel || null);
     }
   }, [initialData]);
 
@@ -54,6 +57,7 @@ export default function PostForm({ onCreateSuccess, initialData }) {
     setTags("");
     setExternalLinks("");
     setExcerpt("");
+    setSelectedCarousel(null);
   };
 
   // Clear form if no initialData
@@ -78,6 +82,7 @@ export default function PostForm({ onCreateSuccess, initialData }) {
         .map((l) => l.trim())
         .filter(Boolean),
       excerpt,
+      ...(selectedCarousel && { carousel: selectedCarousel._id }),
     };
 
     const request = initialData
@@ -292,6 +297,18 @@ export default function PostForm({ onCreateSuccess, initialData }) {
               }
             }}
           />
+        </div>
+        <div className={styles.label}>
+          <CarouselSelector
+            selected={selectedCarousel}
+            onSelect={setSelectedCarousel}
+          />
+          {selectedCarousel && (
+            <div style={{ marginTop: "0.5rem", fontStyle: "italic" }}>
+              Selected Carousel: <strong>{selectedCarousel.title}</strong>{" "}
+              (Type: {selectedCarousel.type})
+            </div>
+          )}
         </div>
 
         <label className={styles.label}>
