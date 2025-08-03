@@ -1,19 +1,24 @@
 // src/components/Admin/Dashboard/Controls/PostListControl.jsx
 
-import PostList from '../../../Posts/PostList';
-import { API_BASE_URL } from '../../../../utils/api';
+import PostList from "../../../Posts/PostList";
+import { API_BASE_URL } from "../../../../utils/api";
 
-export default function PostListControl({ refreshFlag, onRefresh, onRecycleRefresh, onEdit }) {
+export default function PostListControl({
+  refreshFlag,
+  onRefresh,
+  onRecycleRefresh,
+  onEdit,
+}) {
   const handleDelete = async (id) => {
     try {
       await fetch(`${API_BASE_URL}/posts/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
+        method: "DELETE",
+        credentials: "include",
       });
       if (onRefresh) onRefresh();
       if (onRecycleRefresh) onRecycleRefresh();
     } catch (err) {
-      console.error('Delete failed', err);
+      console.error("Delete failed", err);
     }
   };
 

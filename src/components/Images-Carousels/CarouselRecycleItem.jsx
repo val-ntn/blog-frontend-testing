@@ -1,6 +1,5 @@
 // frontend/src/components/Images-Carousels/CarouselRecycleItem.jsx
 
-
 export default function CarouselRecycleItem({ carousel, onRestore, onDelete }) {
   return (
     <div className="carousel-recycle-item">

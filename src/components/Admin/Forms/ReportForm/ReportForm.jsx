@@ -1,55 +1,60 @@
 // frontend/src/components/Admin/Forms/ReportForm/ReportForm.jsx
 
-import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-import { API_BASE_URL } from '../../../../utils/api';
-import ImageSelector from '../../ImageSelector';
-import styles from './ReportForm.module.css';
-import ImageToolbar from './ImageToolbar';
-import RichTextEditor from './RichTextEditor';
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { API_BASE_URL } from "../../../../utils/api";
+import ImageSelector from "../../ImageSelector";
+import CarouselSelector from "../../CarouselSelector";
+import styles from "./ReportForm.module.css";
+import ImageToolbar from "./ImageToolbar";
+import RichTextEditor from "./RichTextEditor";
 
 export default function ReportForm({ onCreateSuccess, initialData }) {
   const [events, setEvents] = useState([]);
   const [users, setUsers] = useState([]);
 
-  const [eventId, setEventId] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('');
-  const [excerpt, setExcerpt] = useState('');
+  const [eventId, setEventId] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [author, setAuthor] = useState("");
+  const [excerpt, setExcerpt] = useState("");
 
   const editorRef = useRef(null);
   const toolbarRef = useRef(null);
   const selectedImgRef = useRef(null);
 
-  const [selectedSides, setSelectedSides] = useState(new Set(['all']));
+  const [selectedSides, setSelectedSides] = useState(new Set(["all"]));
+
+  const [selectedCarousel, setSelectedCarousel] = useState(null);
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/events`, { withCredentials: true })
-      .then(res => setEvents(res.data))
+    axios
+      .get(`${API_BASE_URL}/events`, { withCredentials: true })
+      .then((res) => setEvents(res.data))
       .catch(console.error);
 
-    axios.get(`${API_BASE_URL}/users`, { withCredentials: true })
-      .then(res => setUsers(res.data))
+    axios
+      .get(`${API_BASE_URL}/users`, { withCredentials: true })
+      .then((res) => setUsers(res.data))
       .catch(console.error);
   }, []);
 
   useEffect(() => {
     if (initialData) {
-      setEventId(initialData.event?._id || initialData.event || '');
-      setTitle(initialData.title || '');
-      setContent(initialData.content || '');
-      setAuthor(initialData.author?._id || initialData.author || '');
-      setExcerpt(initialData.excerpt || '');
+      setEventId(initialData.event?._id || initialData.event || "");
+      setTitle(initialData.title || "");
+      setContent(initialData.content || "");
+      setAuthor(initialData.author?._id || initialData.author || "");
+      setExcerpt(initialData.excerpt || "");
     }
   }, [initialData]);
 
   const clearForm = () => {
-    setEventId('');
-    setTitle('');
-    setContent('');
-    setAuthor('');
-    setExcerpt('');
+    setEventId("");
+    setTitle("");
+    setContent("");
+    setAuthor("");
+    setExcerpt("");
   };
 
   useEffect(() => {
@@ -64,21 +69,28 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       title,
       content,
       author,
-      excerpt
+      excerpt,
     };
 
     const request = initialData
-      ? axios.put(`${API_BASE_URL}/event-reports/${initialData._id}`, payload, { withCredentials: true })
-      : axios.post(`${API_BASE_URL}/event-reports`, payload, { withCredentials: true });
+      ? axios.put(`${API_BASE_URL}/event-reports/${initialData._id}`, payload, {
+          withCredentials: true,
+        })
+      : axios.post(`${API_BASE_URL}/event-reports`, payload, {
+          withCredentials: true,
+        });
 
     request
-      .then(res => {
-        console.log(`Report ${initialData ? 'updated' : 'created'}:`, res.data);
+      .then((res) => {
+        console.log(`Report ${initialData ? "updated" : "created"}:`, res.data);
         clearForm();
         if (onCreateSuccess) onCreateSuccess();
       })
-      .catch(err => {
-        console.error(`Error ${initialData ? 'updating' : 'creating'} report:`, err.response?.data || err.message);
+      .catch((err) => {
+        console.error(
+          `Error ${initialData ? "updating" : "creating"} report:`,
+          err.response?.data || err.message
+        );
       });
   };
 
@@ -99,10 +111,10 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
 
     const updateMargin = (side, delta) => {
       const propMap = {
-        top: 'marginTop',
-        right: 'marginRight',
-        bottom: 'marginBottom',
-        left: 'marginLeft'
+        top: "marginTop",
+        right: "marginRight",
+        bottom: "marginBottom",
+        left: "marginLeft",
       };
       const cssProp = propMap[side];
       if (!cssProp) return;
@@ -112,46 +124,49 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
     };
 
     switch (action) {
-      case 'increase-margin':
-        sides.forEach(side => {
-          if (side !== 'all') updateMargin(side, 10);
+      case "increase-margin":
+        sides.forEach((side) => {
+          if (side !== "all") updateMargin(side, 10);
         });
         break;
-      case 'decrease-margin':
-        sides.forEach(side => {
-          if (side !== 'all') updateMargin(side, -10);
+      case "decrease-margin":
+        sides.forEach((side) => {
+          if (side !== "all") updateMargin(side, -10);
         });
         break;
-      case 'align-left':
-        img.style.float = 'left';
-        img.style.marginRight = '1em';
-        img.style.marginBottom = '1em';
+      case "align-left":
+        img.style.float = "left";
+        img.style.marginRight = "1em";
+        img.style.marginBottom = "1em";
         break;
-      case 'align-right':
-        img.style.float = 'right';
-        img.style.marginLeft = '1em';
-        img.style.marginBottom = '1em';
+      case "align-right":
+        img.style.float = "right";
+        img.style.marginLeft = "1em";
+        img.style.marginBottom = "1em";
         break;
-      case 'reset-styles':
-        img.removeAttribute('style');
+      case "reset-styles":
+        img.removeAttribute("style");
         break;
     }
   };
 
   const hideToolbar = () => {
     if (toolbarRef.current) {
-      toolbarRef.current.style.display = 'none';
+      toolbarRef.current.style.display = "none";
     }
     const editor = editorRef.current;
     if (editor && selectedImgRef.current) {
-      editor.dom.removeClass(selectedImgRef.current, 'margin-highlighted');
+      editor.dom.removeClass(selectedImgRef.current, "margin-highlighted");
     }
     selectedImgRef.current = null;
   };
 
   const showToolbarForImage = (img, editor) => {
     // Remove highlight from all images
-    editor.dom.removeClass(editor.getBody().querySelectorAll('img'), 'margin-highlighted');
+    editor.dom.removeClass(
+      editor.getBody().querySelectorAll("img"),
+      "margin-highlighted"
+    );
     editor.dom.addClass(img, styles.imageHighlighted);
 
     selectedImgRef.current = img;
@@ -164,14 +179,14 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
     if (toolbar) {
       toolbar.style.top = `${top + rect.height + 10}px`;
       toolbar.style.left = `${left}px`;
-      toolbar.style.display = 'flex';
-      toolbar.style.flexWrap = 'wrap';
+      toolbar.style.display = "flex";
+      toolbar.style.flexWrap = "wrap";
     }
   };
 
   return (
     <>
-      <h3>{initialData ? 'Edit Report' : 'Create Report'}</h3>
+      <h3>{initialData ? "Edit Report" : "Create Report"}</h3>
 
       <ImageToolbar
         selectedImgRef={selectedImgRef}
@@ -184,17 +199,30 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       <form onSubmit={handleSubmit} className={styles.formWrapper}>
         <label className={styles.label}>
           Event:
-          <select value={eventId} onChange={e => setEventId(e.target.value)} required className={styles.select}>
+          <select
+            value={eventId}
+            onChange={(e) => setEventId(e.target.value)}
+            required
+            className={styles.select}
+          >
             <option value="">Select event</option>
-            {events.map(ev => (
-              <option key={ev._id} value={ev._id}>{ev.title}</option>
+            {events.map((ev) => (
+              <option key={ev._id} value={ev._id}>
+                {ev.title}
+              </option>
             ))}
           </select>
         </label>
 
         <label className={styles.label}>
           Title:
-          <input type="text" value={title} onChange={e => setTitle(e.target.value)} required className={styles.input} />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className={styles.input}
+          />
         </label>
 
         <label className={styles.label}>
@@ -205,7 +233,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             editorRef={editorRef}
             onNodeChange={(e) => {
               const editor = editorRef.current;
-              if (e.element.nodeName === 'IMG') {
+              if (e.element.nodeName === "IMG") {
                 showToolbarForImage(e.element, editor);
               } else {
                 hideToolbar();
@@ -218,28 +246,47 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
           Excerpt:
           <textarea
             value={excerpt}
-            onChange={e => setExcerpt(e.target.value)}
+            onChange={(e) => setExcerpt(e.target.value)}
             rows={3}
             placeholder="Short summary of report"
             className={styles.textarea}
           />
         </label>
 
-        <div style={{ margin: '1rem 0' }}>
+        <div style={{ margin: "1rem 0" }}>
           <ImageSelector
             onSelect={(url) => {
               if (editorRef.current) {
-                editorRef.current.insertContent(`<img src="${url}" alt="Image" />`);
+                editorRef.current.insertContent(
+                  `<img src="${url}" alt="Image" />`
+                );
               }
             }}
           />
         </div>
+        <CarouselSelector
+          onSelect={(carousel) => {
+            setSelectedCarousel(carousel);
+          }}
+        />
+
+        {selectedCarousel && (
+          <div>
+            Selected Carousel: <strong>{selectedCarousel.title}</strong> (Type:{" "}
+            {selectedCarousel.type})
+          </div>
+        )}
 
         <label className={styles.label}>
           Author:
-          <select value={author} onChange={e => setAuthor(e.target.value)} required className={styles.select}>
+          <select
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            required
+            className={styles.select}
+          >
             <option value="">Select author</option>
-            {users.map(user => (
+            {users.map((user) => (
               <option key={user._id} value={user._id}>
                 {user.name || user.username}
               </option>
@@ -248,7 +295,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
         </label>
 
         <button type="submit" className={styles.submitButton}>
-          {initialData ? 'Update Report' : 'Create Report'}
+          {initialData ? "Update Report" : "Create Report"}
         </button>
       </form>
     </>

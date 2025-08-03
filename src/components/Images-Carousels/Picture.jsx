@@ -1,15 +1,22 @@
 // frontend/src/components/Images-Carousels/Picture.jsx
 
+import { API_BASE_URL } from "../../utils/api";
 
-import { API_BASE_URL } from '../../utils/api';
-
-export default function Picture({ image, onSelect, onDelete, mode, showCopyButton }) {
+export default function Picture({
+  image,
+  onSelect,
+  onDelete,
+  mode,
+  showCopyButton,
+}) {
   const imageUrl = `${API_BASE_URL}/uploads/${image.name}`;
 
-  if (mode === 'list') {
+  if (mode === "list") {
     return (
       <tr>
-        <td><img src={imageUrl} style={{ width: 32 }} /></td>
+        <td>
+          <img src={imageUrl} style={{ width: 32 }} />
+        </td>
         <td>{image.name}</td>
         <td>{imageUrl}</td>
         <td>
@@ -21,7 +28,7 @@ export default function Picture({ image, onSelect, onDelete, mode, showCopyButto
   }
 
   return (
-    <div style={{ position: 'relative', textAlign: 'center' }}>
+    <div style={{ position: "relative", textAlign: "center" }}>
       <img
         src={imageUrl}
         style={{ width: 100 }}
@@ -31,11 +38,11 @@ export default function Picture({ image, onSelect, onDelete, mode, showCopyButto
         <button
           onClick={() => onDelete(image.name)}
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             right: 0,
-            background: 'red',
-            color: 'white'
+            background: "red",
+            color: "white",
           }}
         >
           X
@@ -45,7 +52,7 @@ export default function Picture({ image, onSelect, onDelete, mode, showCopyButto
         <button
           type="button"
           onClick={() => navigator.clipboard.writeText(imageUrl)}
-          style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}
+          style={{ marginTop: "0.5rem", fontSize: "0.8rem" }}
         >
           Copy URL
         </button>
@@ -53,4 +60,3 @@ export default function Picture({ image, onSelect, onDelete, mode, showCopyButto
     </div>
   );
 }
-

@@ -1,12 +1,12 @@
 // frontend/src/components/Images-Carousels/variants/ThumbsCarousel.jsx
 
-import React, { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Thumbs, Navigation } from 'swiper/modules';
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Thumbs, Navigation } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/thumbs';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/thumbs";
+import "swiper/css/navigation";
 
 export default function ThumbsCarousel({ images, title }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -16,7 +16,7 @@ export default function ThumbsCarousel({ images, title }) {
   }
 
   return (
-    <div style={{ maxWidth: '800px', margin: '2rem auto' }}>
+    <div style={{ maxWidth: "800px", margin: "2rem auto" }}>
       {/* Main Image */}
       <Swiper
         modules={[Thumbs, Navigation]}
@@ -24,14 +24,14 @@ export default function ThumbsCarousel({ images, title }) {
         navigation
         loop
         spaceBetween={10}
-        style={{ height: '400px', borderRadius: '8px', overflow: 'hidden' }}
+        style={{ height: "400px", borderRadius: "8px", overflow: "hidden" }}
       >
         {images.map((url, index) => (
           <SwiperSlide key={`main-${index}`}>
             <img
               src={url}
               alt={`Main Slide ${index + 1}`}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </SwiperSlide>
         ))}
@@ -49,18 +49,18 @@ export default function ThumbsCarousel({ images, title }) {
           768: { slidesPerView: 6 },
           1024: { slidesPerView: 8 },
         }}
-        style={{ marginTop: '1rem', height: '100px' }}
+        style={{ marginTop: "1rem", height: "100px" }}
       >
         {images.map((url, index) => (
-          <SwiperSlide key={`thumb-${index}`} style={{ cursor: 'pointer' }}>
+          <SwiperSlide key={`thumb-${index}`} style={{ cursor: "pointer" }}>
             <img
               src={url}
               alt={`Thumb ${index + 1}`}
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: '4px',
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "4px",
               }}
             />
           </SwiperSlide>

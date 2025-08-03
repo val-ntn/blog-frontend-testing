@@ -1,11 +1,11 @@
 // playwright.config.js
-const { defineConfig } = require('@playwright/test');
+import { defineConfig } from "@playwright/test";
 
-module.exports = defineConfig({
-  testDir: './playwright',
+export default defineConfig({
+  testDir: "./playwright",
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: "http://localhost:5173",
     headless: true,
-    browserName: 'chromium',
+    browserName: "chromium",
   },
 });

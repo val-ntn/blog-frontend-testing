@@ -1,5 +1,5 @@
 // src/pages/Calendar.jsx
-import EventList from '../../components/Events/EventList';
+import EventList from "../../components/Events/EventList";
 
 export default function Calendar() {
   return (
@@ -9,4 +9,3 @@ export default function Calendar() {
     </>
   );
 }
-

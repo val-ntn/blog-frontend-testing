@@ -1,25 +1,25 @@
 // src/pages/admin/AdminLogin.jsx
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { API_BASE_URL } from '../../utils/api';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { API_BASE_URL } from "../../utils/api";
 
 function AdminLogin() {
-  const { user, setUser, loading } = useAuth();  // <-- include setUser here
+  const { user, setUser, loading } = useAuth(); // <-- include setUser here
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
 
   // Redirect if already logged in as admin
   useEffect(() => {
     if (!loading && user) {
-      if (user.role === 'admin') {
-        navigate('/admin'); // Redirect to admin dashboard
+      if (user.role === "admin") {
+        navigate("/admin"); // Redirect to admin dashboard
       } else {
         // Optional: Redirect unauthorized roles elsewhere
-        navigate('/unauthorized');
+        navigate("/unauthorized");
       }
     }
   }, [user, loading, navigate]);
@@ -28,16 +28,20 @@ function AdminLogin() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     try {
-      await axios.post(`${API_BASE_URL}/auth/login`, form, { withCredentials: true });
-      const userRes = await axios.get(`${API_BASE_URL}/auth/me`, { withCredentials: true });
+      await axios.post(`${API_BASE_URL}/auth/login`, form, {
+        withCredentials: true,
+      });
+      const userRes = await axios.get(`${API_BASE_URL}/auth/me`, {
+        withCredentials: true,
+      });
       setUser(userRes.data.user); // update context with user data
-      navigate('/admin'); // redirect to admin dashboard
+      navigate("/admin"); // redirect to admin dashboard
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      setError(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -46,7 +50,7 @@ function AdminLogin() {
   return (
     <div>
       <h2>Admin Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>

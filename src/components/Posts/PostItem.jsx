@@ -1,12 +1,12 @@
 // src/components/Posts/PostItem.jsx
 
-import { Link } from 'react-router-dom';
-import SafeHTMLRenderer from '../Common/SafeHTMLRenderer';
+import { Link } from "react-router-dom";
+import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
 export default function PostItem({ post, compact }) {
   const contentToRender = compact ? post.excerpt : post.content;
 
   return (
-    <div className={`post-item ${compact ? 'compact' : ''}`}>
+    <div className={`post-item ${compact ? "compact" : ""}`}>
       <h3>{post.title}</h3>
       <SafeHTMLRenderer content={contentToRender} />
 

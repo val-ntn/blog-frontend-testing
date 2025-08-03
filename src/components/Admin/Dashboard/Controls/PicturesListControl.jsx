@@ -68,15 +68,15 @@ export default function PicturesListControl() {
  */
 // src/components/Admin/Dashboard/Controls/PicturesListControl.jsx
 
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import PicturesList from '../../../Images-Carousels/PicturesList';
-import { API_BASE_URL } from '../../../../utils/api';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import PicturesList from "../../../Images-Carousels/PicturesList";
+import { API_BASE_URL } from "../../../../utils/api";
 
 export default function PicturesListControl() {
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
-  const [viewMode, setViewMode] = useState('grid'); // NEW
+  const [viewMode, setViewMode] = useState("grid"); // NEW
 
   const fetchImages = () => {
     axios
@@ -96,16 +96,16 @@ export default function PicturesListControl() {
     setUploading(true);
 
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append("image", file);
 
     try {
       await axios.post(`${API_BASE_URL}/upload`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       });
       fetchImages();
     } catch (err) {
-      console.error('Upload failed', err);
+      console.error("Upload failed", err);
     } finally {
       setUploading(false);
     }
@@ -118,7 +118,7 @@ export default function PicturesListControl() {
       });
       fetchImages();
     } catch (err) {
-      console.error('Delete failed', err);
+      console.error("Delete failed", err);
     }
   };
 
@@ -127,14 +127,13 @@ export default function PicturesListControl() {
       <h3>Manage Pictures</h3>
 
       {/* 👇 Toggle Button */}
-      <div style={{ marginBottom: '1rem' }}>
+      <div style={{ marginBottom: "1rem" }}>
         <button
-  type="button"
-  onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
->
-  Switch to {viewMode === 'grid' ? 'List View' : 'Thumbnail View'}
-</button>
-
+          type="button"
+          onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
+        >
+          Switch to {viewMode === "grid" ? "List View" : "Thumbnail View"}
+        </button>
       </div>
 
       <PicturesList

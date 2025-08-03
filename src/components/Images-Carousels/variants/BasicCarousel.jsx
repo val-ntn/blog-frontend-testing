@@ -1,12 +1,12 @@
 // frontend/src/components/Images-Carousels/variants/BasicCarousel.jsx
 
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function BasicCarousel({ images, title }) {
   if (!images || images.length === 0) {
@@ -14,16 +14,16 @@ export default function BasicCarousel({ images, title }) {
   }
 
   return (
-    <div style={{ maxWidth: '800px', margin: '2rem auto' }}>
+    <div style={{ maxWidth: "800px", margin: "2rem auto" }}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
         pagination={{ clickable: true }}
         loop
         style={{
-          height: '400px',
-          borderRadius: '8px',
-          overflow: 'hidden',
+          height: "400px",
+          borderRadius: "8px",
+          overflow: "hidden",
         }}
       >
         {images.map((url, index) => (
@@ -32,9 +32,9 @@ export default function BasicCarousel({ images, title }) {
               src={url}
               alt={`Slide ${index + 1}`}
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
               }}
             />
           </SwiperSlide>

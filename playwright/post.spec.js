@@ -1,4 +1,5 @@
-const { test, expect } = require('@playwright/test');
+//playwright/post.spec.js
+import { test, expect } from '@playwright/test';
 
 test('user can view the posts list', async ({ page }) => {
   await page.goto('http://localhost:5173');

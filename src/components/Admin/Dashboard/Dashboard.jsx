@@ -1,21 +1,21 @@
 // src/components/Admin/Dashboard.jsx
 
-import { useState } from 'react';
-import RecycleBin from './RecycleBin';
-import PostListControl from './Controls/PostListControl';
-import EventListControl from './Controls/EventListControl';
-import CarouselListControl from './Controls/CarouselListControl';
-import Sidebar from './Sidebar';
-import PostForm from '../Forms/PostForm/PostForm';
-import EventForm from '../Forms/EventForm/EventForm';
-import CarouselForm from '../Forms/CarouselForm/CarouselForm';
-import PicturesListControl from './Controls/PicturesListControl';
-import ReportListControl from './Controls/ReportListControl';
-import ReportForm from '../Forms/ReportForm/ReportForm';
+import { useState } from "react";
+import RecycleBin from "./RecycleBin";
+import PostListControl from "./Controls/PostListControl";
+import EventListControl from "./Controls/EventListControl";
+import CarouselListControl from "./Controls/CarouselListControl";
+import Sidebar from "./Sidebar";
+import PostForm from "../Forms/PostForm/PostForm";
+import EventForm from "../Forms/EventForm/EventForm";
+import CarouselForm from "../Forms/CarouselForm/CarouselForm";
+import PicturesListControl from "./Controls/PicturesListControl";
+import ReportListControl from "./Controls/ReportListControl";
+import ReportForm from "../Forms/ReportForm/ReportForm";
 
 export default function Dashboard() {
   // === SECTION CONTROL ===
-  const [selectedSection, setSelectedSection] = useState('posts');
+  const [selectedSection, setSelectedSection] = useState("posts");
 
   // === POSTS ===
   const [postRefreshFlag, setPostRefreshFlag] = useState(false);
@@ -31,43 +31,54 @@ export default function Dashboard() {
 
   // === REPORTS ===
   const [reportRefreshFlag, setReportRefreshFlag] = useState(false);
-  const [reportRecycleRefreshFlag, setReportRecycleRefreshFlag] = useState(false);
+  const [reportRecycleRefreshFlag, setReportRecycleRefreshFlag] =
+    useState(false);
   const [editingReport, setEditingReport] = useState(null);
   const [showReportForm, setShowReportForm] = useState(false);
 
   // === CAROUSELS ===
   const [carouselRefreshFlag, setCarouselRefreshFlag] = useState(0);
-  const [carouselRecycleRefreshFlag, setCarouselRecycleRefreshFlag] = useState(false);
+  const [carouselRecycleRefreshFlag, setCarouselRecycleRefreshFlag] =
+    useState(false);
   const [showCarouselForm, setShowCarouselForm] = useState(false);
 
   // === REFRESH TRIGGERS ===
-  const triggerPostRefresh = () => setPostRefreshFlag(prev => !prev);
-  const triggerPostRecycleRefresh = () => setPostRecycleRefreshFlag(prev => !prev);
+  const triggerPostRefresh = () => setPostRefreshFlag((prev) => !prev);
+  const triggerPostRecycleRefresh = () =>
+    setPostRecycleRefreshFlag((prev) => !prev);
 
-  const triggerEventRefresh = () => setEventRefreshFlag(prev => !prev);
-  const triggerEventRecycleRefresh = () => setEventRecycleRefreshFlag(prev => !prev);
+  const triggerEventRefresh = () => setEventRefreshFlag((prev) => !prev);
+  const triggerEventRecycleRefresh = () =>
+    setEventRecycleRefreshFlag((prev) => !prev);
 
-  const triggerReportRefresh = () => setReportRefreshFlag(prev => !prev);
-  const triggerReportRecycleRefresh = () => setReportRecycleRefreshFlag(prev => !prev);
+  const triggerReportRefresh = () => setReportRefreshFlag((prev) => !prev);
+  const triggerReportRecycleRefresh = () =>
+    setReportRecycleRefreshFlag((prev) => !prev);
 
-  const triggerCarouselRecycleRefresh = () => setCarouselRecycleRefreshFlag(prev => !prev);
+  const triggerCarouselRecycleRefresh = () =>
+    setCarouselRecycleRefreshFlag((prev) => !prev);
 
   return (
-    <div className="dashboard-container" style={{ display: 'flex' }}>
+    <div className="dashboard-container" style={{ display: "flex" }}>
       <Sidebar selected={selectedSection} onSelect={setSelectedSection} />
 
-      <div className="dashboard-content" style={{ flexGrow: 1, padding: '1rem' }}>
+      <div
+        className="dashboard-content"
+        style={{ flexGrow: 1, padding: "1rem" }}
+      >
         <h2>Dashboard</h2>
 
         {/* === Posts Section === */}
-        {selectedSection === 'posts' && (
+        {selectedSection === "posts" && (
           <>
             {!showPostForm ? (
               <>
-                <button onClick={() => {
-                  setEditingPost(null);
-                  setShowPostForm(true);
-                }}>
+                <button
+                  onClick={() => {
+                    setEditingPost(null);
+                    setShowPostForm(true);
+                  }}
+                >
                   Create New Post
                 </button>
 
@@ -91,10 +102,12 @@ export default function Dashboard() {
                     triggerPostRefresh();
                   }}
                 />
-                <button onClick={() => {
-                  setShowPostForm(false);
-                  setEditingPost(null);
-                }}>
+                <button
+                  onClick={() => {
+                    setShowPostForm(false);
+                    setEditingPost(null);
+                  }}
+                >
                   Cancel
                 </button>
               </>
@@ -103,14 +116,16 @@ export default function Dashboard() {
         )}
 
         {/* === Events Section === */}
-        {selectedSection === 'events' && (
+        {selectedSection === "events" && (
           <>
             {!showEventForm ? (
               <>
-                <button onClick={() => {
-                  setEditingEvent(null);
-                  setShowEventForm(true);
-                }}>
+                <button
+                  onClick={() => {
+                    setEditingEvent(null);
+                    setShowEventForm(true);
+                  }}
+                >
                   Create New Event
                 </button>
 
@@ -134,10 +149,12 @@ export default function Dashboard() {
                     triggerEventRefresh();
                   }}
                 />
-                <button onClick={() => {
-                  setShowEventForm(false);
-                  setEditingEvent(null);
-                }}>
+                <button
+                  onClick={() => {
+                    setShowEventForm(false);
+                    setEditingEvent(null);
+                  }}
+                >
                   Cancel
                 </button>
               </>
@@ -146,14 +163,16 @@ export default function Dashboard() {
         )}
 
         {/* === Reports Section === */}
-        {selectedSection === 'reports' && (
+        {selectedSection === "reports" && (
           <>
             {!showReportForm ? (
               <>
-                <button onClick={() => {
-                  setEditingReport(null);
-                  setShowReportForm(true);
-                }}>
+                <button
+                  onClick={() => {
+                    setEditingReport(null);
+                    setShowReportForm(true);
+                  }}
+                >
                   Create New Report
                 </button>
 
@@ -177,10 +196,12 @@ export default function Dashboard() {
                     triggerReportRefresh();
                   }}
                 />
-                <button onClick={() => {
-                  setShowReportForm(false);
-                  setEditingReport(null);
-                }}>
+                <button
+                  onClick={() => {
+                    setShowReportForm(false);
+                    setEditingReport(null);
+                  }}
+                >
                   Cancel
                 </button>
               </>
@@ -189,11 +210,11 @@ export default function Dashboard() {
         )}
 
         {/* === Pictures & Carousels Section === */}
-        {selectedSection === 'pictures' && (
+        {selectedSection === "pictures" && (
           <>
             <PicturesListControl />
 
-            <hr style={{ margin: '2rem 0' }} />
+            <hr style={{ margin: "2rem 0" }} />
 
             <CarouselListControl
               refreshFlag={carouselRefreshFlag}
@@ -201,20 +222,22 @@ export default function Dashboard() {
             />
 
             <button onClick={() => setShowCarouselForm(!showCarouselForm)}>
-              {showCarouselForm ? 'Close Carousel Form' : 'Add New Carousel'}
+              {showCarouselForm ? "Close Carousel Form" : "Add New Carousel"}
             </button>
 
             {showCarouselForm && (
               <CarouselForm
                 onClose={() => setShowCarouselForm(false)}
-                onCreateSuccess={() => setCarouselRefreshFlag(prev => prev + 1)}
+                onCreateSuccess={() =>
+                  setCarouselRefreshFlag((prev) => prev + 1)
+                }
               />
             )}
           </>
         )}
 
         {/* === Recycle Bin Section === */}
-        {selectedSection === 'bin' && (
+        {selectedSection === "bin" && (
           <RecycleBin
             onPostRestore={triggerPostRefresh}
             onEventRestore={triggerEventRefresh}
@@ -228,7 +251,7 @@ export default function Dashboard() {
         )}
 
         {/* === Users Section Placeholder === */}
-        {selectedSection === 'users' && (
+        {selectedSection === "users" && (
           <div>User management coming soon...</div>
         )}
       </div>

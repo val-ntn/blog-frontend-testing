@@ -1,10 +1,9 @@
 // src/pages/admin/AdminDashboard.jsx
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Dashboard from '../../components/Admin/Dashboard/Dashboard'; // import the child dashboard component
-import LogoutButton from '../../components/Admin/Dashboard/LogoutButton';
-import { API_BASE_URL } from '../../utils/api';
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Dashboard from "../../components/Admin/Dashboard/Dashboard"; // import the child dashboard component
+import LogoutButton from "../../components/Admin/Dashboard/LogoutButton";
+import { API_BASE_URL } from "../../utils/api";
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
@@ -13,15 +12,15 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/admin/dashboard`, {
-      method: 'GET',
-      credentials: 'include',
+      method: "GET",
+      credentials: "include",
     })
-      .then(res => {
+      .then((res) => {
         if (res.status === 403) {
-          throw new Error('Access denied: Admins only');
+          throw new Error("Access denied: Admins only");
         }
         if (!res.ok) {
-          throw new Error('Failed to authenticate');
+          throw new Error("Failed to authenticate");
         }
         return res.json();
       })
@@ -31,7 +30,7 @@ export default function AdminDashboard() {
       })
       .catch(() => {
         setLoading(false);
-        navigate('/admin/login'); // Redirect to login if not authorized
+        navigate("/admin/login"); // Redirect to login if not authorized
       });
   }, [navigate]);
 

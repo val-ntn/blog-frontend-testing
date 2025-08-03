@@ -1,5 +1,5 @@
 // src/pages/user/News.jsx
-import PostList from '../../components/Posts/PostList';
+import PostList from "../../components/Posts/PostList";
 
 export default function News() {
   return (
@@ -9,4 +9,3 @@ export default function News() {
     </>
   );
 }
-

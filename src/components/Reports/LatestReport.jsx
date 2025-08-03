@@ -1,15 +1,15 @@
 // src/components/Reports/LatestReport.jsx
 
-import React, { useEffect, useState } from 'react';
-import ReportItem from './ReportItem';
-import { API_BASE_URL } from '../../utils/api';
+import React, { useEffect, useState } from "react";
+import ReportItem from "./ReportItem";
+import { API_BASE_URL } from "../../utils/api";
 
 function LatestReport() {
   const [report, setReport] = useState(null);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/event-reports/latest`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(setReport)
       .catch(console.error);
   }, []);
@@ -20,4 +20,3 @@ function LatestReport() {
 }
 
 export default LatestReport;
-

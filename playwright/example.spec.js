@@ -1,7 +1,6 @@
 //playwright/example.spec.js
 
-// playwright/example.spec.js
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 test('basic test', async ({ page }) => {
   await page.goto('/');
