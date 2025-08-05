@@ -16,3 +16,15 @@ export function formatDate(dateString, locale = "en-US", options = {}) {
     ...options,
   });
 }
+
+export function formatDateRange(startDate, endDate, locale = "en-US") {
+  if (!startDate) return "";
+  const formattedStart = formatDate(startDate, locale);
+
+  if (!endDate || startDate === endDate) {
+    return formattedStart;
+  }
+
+  const formattedEnd = formatDate(endDate, locale);
+  return `${formattedStart} - ${formattedEnd}`;
+}

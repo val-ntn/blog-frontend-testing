@@ -1,11 +1,12 @@
-// frontend/src/components/Events/SmallCalendar
+// frontend/src/components/Shared/Calendar/SmallCalendar.jsx
 
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { API_BASE_URL } from "../../utils/api";
+import { API_BASE_URL } from "../../../utils/api";
 import axios from "axios";
 import "./SmallCalendar.css";
+import EventItem from "../../Events/EventItem";
 
 export default function SmallCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -100,7 +101,7 @@ export default function SmallCalendar() {
         showNavigation={false}
       />
 
-      {todayEvents.length > 0 && (
+      {/* {todayEvents.length > 0 && (
         <div className="event-details">
           <h4>Events on {formatted}:</h4>
           {todayEvents.map((event, idx) => (
@@ -108,6 +109,20 @@ export default function SmallCalendar() {
               <strong>{event.title}</strong>
               <p>{event.description || "No description"}</p>
             </div>
+          ))}
+        </div>
+      )} */}
+
+      {todayEvents.length > 0 && (
+        <div className="event-details">
+          <h4>Events on {formatted}:</h4>
+          {todayEvents.map((event) => (
+            <EventItem
+              key={event._id || event.id} // use whichever is applicable in your API
+              event={event}
+              compact
+              linkToDetail
+            />
           ))}
         </div>
       )}
