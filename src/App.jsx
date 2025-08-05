@@ -14,7 +14,7 @@ import PostDetail from "./pages/user/PostDetail";
 import EventDetail from "./pages/user/EventDetail";
 import Reports from "./pages/user/Reports";
 import ReportDetail from "./pages/user/ReportDetail";
-import "./App.css";
+//import "./App.css";
 
 function App() {
   return (

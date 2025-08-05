@@ -1,0 +1,9 @@
+/* src/styles/variables.css */
+
+:root {
+  --max-content-width: 1280px;
+  --grid-gap: 1rem;
+  --primary-color: #ff6347;
+  --secondary-color: #646cff;
+  --background-dark: #222;
+}
