@@ -24,5 +24,5 @@ export default function PostDetail() {
 
   if (!post) return <p>Loading...</p>;
 
-  return <PostItem post={post} compact={false} />;
+  return <PostItem post={post} size="large" />;
 }

@@ -23,7 +23,7 @@ export default function UpcomingEvents({ limit = 3 }) {
   return (
     <div>
       {events.map((event) => (
-        <EventItem key={event._id} event={event} compact={true} />
+        <EventItem key={event._id} event={event} size="small" />
       ))}
     </div>
   );

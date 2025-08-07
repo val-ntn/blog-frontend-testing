@@ -21,7 +21,7 @@ function LatestPost() {
 
   if (!post) return <p>Loading...</p>;
 
-  return <PostItem post={post} compact={true} />;
+  return <PostItem post={post} size="small" />;
 }
 
 export default LatestPost;

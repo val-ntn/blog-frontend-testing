@@ -23,5 +23,5 @@ export default function ReportDetail() {
 
   if (!report) return <p>Loading...</p>;
 
-  return <ReportItem report={report} compact={false} />;
+  return <ReportItem report={report} size="large" />;
 }

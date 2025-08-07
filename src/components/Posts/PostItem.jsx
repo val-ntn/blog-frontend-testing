@@ -1,6 +1,6 @@
 // src/components/Posts/PostItem.jsx
 
-import { Link } from "react-router-dom";
+/* import { Link } from "react-router-dom";
 import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
 import CarouselItem from "../../components/Images-Carousels/CarouselItem";
 
@@ -20,8 +20,73 @@ export default function PostItem({ post, compact }) {
 
       {post.author?.name && <small>By: {post.author.name}</small>}
 
-      {/* Render carousel if not compact (optional, just like ReportItem doesn’t show it in compact mode) */}
+     
       {!compact && post.carousel && <CarouselItem carousel={post.carousel} />}
+    </div>
+  );
+}
+ */
+
+// src/components/Posts/PostItem.jsx
+
+import { Link } from "react-router-dom";
+import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
+import CarouselItem from "../../components/Images-Carousels/CarouselItem";
+
+/**
+ * PostItem displays a blog post in one of three sizes:
+ * "small" (excerpt), "medium" (full content, no carousel), "large" (full content + carousel)
+ *
+ * @param {Object} post - The post object.
+ * @param {string} size - "small", "medium", or "large" (defaults to "medium").
+ * @param {boolean} compact - DEPRECATED: maps to size = "small" if true.
+ */
+export default function PostItem({ post, size = "medium", compact }) {
+  // Legacy support: if compact is true, override size to 'small'
+  if (compact === true) size = "small";
+
+  let contentToRender;
+  let showReadMore = false;
+  let showCarousel = false;
+  let sizeClass = "";
+
+  switch (size) {
+    case "small":
+      contentToRender = post.excerpt;
+      showReadMore = true;
+      sizeClass = "post--small";
+      break;
+    case "medium":
+      contentToRender = post.content;
+      sizeClass = "post--medium";
+      break;
+    case "large":
+      contentToRender = post.content;
+      showCarousel = true;
+      sizeClass = "post--large";
+      break;
+    default:
+      contentToRender = post.content;
+      sizeClass = "post--medium";
+  }
+
+  return (
+    <div className={`post-item ${sizeClass}`}>
+      <h3>{post.title}</h3>
+
+      <SafeHTMLRenderer content={contentToRender} />
+
+      {showReadMore && (
+        <div className="post-read-more">
+          <Link to={`/posts/${post._id}`}>Read more →</Link>
+        </div>
+      )}
+
+      {post.author?.name && <small>By: {post.author.name}</small>}
+
+      {showCarousel && post.carousel && (
+        <CarouselItem carousel={post.carousel} />
+      )}
     </div>
   );
 }
