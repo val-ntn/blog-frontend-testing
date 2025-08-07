@@ -1,14 +1,12 @@
 // src/pages/user/Home.jsx
 
-import PostList from "../../components/Posts/PostList";
-import EventList from "../../components/Events/EventList";
 import LatestPost from "../../components/Posts/LatestPost";
 import UpcomingEvents from "../../components/Events/UpcomingEvents";
 import LatestReport from "../../components/Reports/LatestReport";
 import SmallCalendar from "../../components/Shared/Calendar/SmallCalendar";
 
 import "../../styles/layout.css"; // layout and container styles
-import "./Home.css"; // page-specific styles
+import "../../styles/pages.css"; // page-specific styles
 
 export default function Home() {
   return (

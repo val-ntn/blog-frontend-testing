@@ -11,26 +11,31 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="nav-left">
-        <Link to="/" className="nav-home">
+      <div className="navbar__left">
+        <Link to="/" className="navbar__home">
           Home
         </Link>
       </div>
 
-      <div className="nav-right">
-        <button className="hamburger" onClick={toggleMenu}>
+      <div className="navbar__right">
+        <button className="navbar__hamburger" onClick={toggleMenu}>
           ☰
         </button>
-
-        <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          <li>
-            <Link to="/news">News</Link>
+        <ul className={`navbar__links ${isOpen ? "navbar__links--open" : ""}`}>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/news">
+              News
+            </Link>
           </li>
-          <li>
-            <Link to="/calendar">Calendar</Link>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/calendar">
+              Calendar
+            </Link>
           </li>
-          <li>
-            <Link to="/event-reports">Reports</Link>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/event-reports">
+              Reports
+            </Link>
           </li>
         </ul>
       </div>

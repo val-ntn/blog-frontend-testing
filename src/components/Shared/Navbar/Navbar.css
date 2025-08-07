@@ -9,35 +9,35 @@
   color: white;
 }
 
-.nav-left {
+.navbar__left {
   flex: 1;
 }
 
-.nav-home {
+.navbar__home {
   font-size: 1.2rem;
   font-weight: bold;
   text-decoration: none;
   color: white;
 }
 
-.nav-right {
+.navbar__right {
   display: flex;
   align-items: center;
 }
 
-.nav-links {
+.navbar__links {
   display: flex;
   gap: 1.5rem;
   list-style: none;
 }
 
-.nav-links a {
+.navbar__link {
   color: white;
   text-decoration: none;
 }
 
 /* Hamburger is hidden on desktop */
-.hamburger {
+.navbar__hamburger {
   display: none;
   font-size: 1.8rem;
   background: none;
@@ -48,7 +48,7 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .nav-links {
+  .navbar__links {
     display: none;
     position: absolute;
     top: 4.5rem;
@@ -61,11 +61,11 @@
     z-index: 1000;
   }
 
-  .nav-links.open {
+  .navbar__links--open {
     display: flex;
   }
 
-  .hamburger {
+  .navbar__hamburger {
     display: block;
   }
 }

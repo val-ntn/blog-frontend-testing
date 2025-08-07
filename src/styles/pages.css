@@ -1,5 +1,5 @@
-/* src/pages/user/Home.css */
-/*Page-specific styling for Home page */
+/* frontend/src/styles/pages.css */
+/*Page-specific styling for pages */
 
 h1 {
   color: var(--primary-color);
@@ -12,5 +12,3 @@ section {
   margin-bottom: 1rem;
   color: white;
 }
-
-/* If you want to add any home-only tweaks, put here */
