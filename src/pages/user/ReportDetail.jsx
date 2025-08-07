@@ -1,10 +1,8 @@
 // src/pages/user/ReportDetail.jsx
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SafeHTMLRenderer from "../../components/Common/SafeHTMLRenderer";
 import { API_BASE_URL } from "../../utils/api";
-import { Link } from "react-router-dom";
-import CarouselItem from "../../components/Images-Carousels/CarouselItem";
+import ReportItem from "../../components/Reports/ReportItem";
 
 export default function ReportDetail() {
   const { id } = useParams();
@@ -17,7 +15,7 @@ export default function ReportDetail() {
         return res.json();
       })
       .then((data) => {
-        console.log("Fetched report:", data); // 👈 Add this
+        console.log("Fetched report:", data);
         setReport(data);
       })
       .catch(console.error);
@@ -25,26 +23,5 @@ export default function ReportDetail() {
 
   if (!report) return <p>Loading...</p>;
 
-  return (
-    <article>
-      <h1>{report.title}</h1>
-      <SafeHTMLRenderer content={report.content} />
-
-      {report.carousel && <CarouselItem carousel={report.carousel} />}
-
-      <p>
-        <em>By {report.author?.name || "Unknown"}</em>
-      </p>
-      <p>
-        <strong>Event:</strong>{" "}
-        {report.event ? (
-          <Link to={`/events/${report.event._id}`}>
-            {report.event.title || report.event.name}
-          </Link>
-        ) : (
-          "N/A"
-        )}
-      </p>
-    </article>
-  );
+  return <ReportItem report={report} compact={false} />;
 }
