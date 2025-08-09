@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/api";
 import PicturesList from "../Images-Carousels/PicturesList";
+import Button from "../UI/Button";
 
 export default function ImageSelector({ onSelect }) {
   const [images, setImages] = useState([]);
   const [open, setOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("grid"); // NEW
+  const [viewMode, setViewMode] = useState("grid");
 
   useEffect(() => {
     if (open) {
@@ -18,16 +19,16 @@ export default function ImageSelector({ onSelect }) {
     }
   }, [open]);
 
-  const handleImageClick = (url) => {
+  const handleSelect = (url) => {
     onSelect(url);
     setOpen(false);
   };
 
   return (
     <div>
-      <button type="button" onClick={() => setOpen(!open)}>
-        📷 Insert Image
-      </button>
+      <Button type="button" onClick={() => setOpen(!open)} variant="primary">
+        Insert Image
+      </Button>
 
       {open && (
         <div
@@ -55,7 +56,7 @@ export default function ImageSelector({ onSelect }) {
 
           <PicturesList
             images={images}
-            onSelect={handleImageClick}
+            onSelect={handleSelect}
             viewMode={viewMode}
             showCopyButton
           />

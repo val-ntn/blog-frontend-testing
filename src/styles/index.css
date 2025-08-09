@@ -5,26 +5,3 @@
 @import "./layout.css";
 @import "./forms.css";
 @import "./utils.css";
-
-/* Global resets and base styles */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #111; /* dark background */
-  color: #eee;
-  line-height: 1.6;
-}
-
-/* Hide Promo-Link TinyMCE */
-.tox-promotion-link {
-  display: none !important;
-}

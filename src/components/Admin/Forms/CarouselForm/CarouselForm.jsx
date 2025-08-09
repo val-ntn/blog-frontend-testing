@@ -5,6 +5,7 @@ import ImageSelector from "../../ImageSelector";
 import axios from "axios";
 import { API_BASE_URL } from "../../../../utils/api";
 import CarouselLivePreview from "../../../Images-Carousels/CarouselLivePreview";
+import Button from "../../../UI/Button";
 
 export default function CarouselForm({ onCreateSuccess, onClose }) {
   const [title, setTitle] = useState("");
@@ -118,28 +119,15 @@ export default function CarouselForm({ onCreateSuccess, onClose }) {
                   alt={`Selected ${index}`}
                   style={{ width: "100px", borderRadius: "6px" }}
                 />
-                <button
+                <Button
                   type="button"
+                  variant="delete-image"
                   onClick={() =>
                     setImageURLs((prev) => prev.filter((_, i) => i !== index))
                   }
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    background: "red",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "50%",
-                    width: "20px",
-                    height: "20px",
-                    textAlign: "center",
-                    lineHeight: "18px",
-                    cursor: "pointer",
-                  }}
                 >
                   ✖
-                </button>
+                </Button>
               </div>
             ))}
           </div>
@@ -162,7 +150,9 @@ export default function CarouselForm({ onCreateSuccess, onClose }) {
         Active
       </label>
 
-      <button type="submit">Save</button>
+      <Button type="submit" variant="primary">
+        Save
+      </Button>
     </form>
   );
 }
