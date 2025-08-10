@@ -41,6 +41,8 @@ export default function Dashboard() {
   const [carouselRecycleRefreshFlag, setCarouselRecycleRefreshFlag] =
     useState(false);
   const [showCarouselForm, setShowCarouselForm] = useState(false);
+  const [editingCarousel, setEditingCarousel] = useState(null);
+
   // === IMAGES ===
   const [imageRecycleRefreshFlag, setImageRecycleRefreshFlag] = useState(false);
 
@@ -224,18 +226,33 @@ export default function Dashboard() {
             <CarouselListControl
               refreshFlag={carouselRefreshFlag}
               onRecycleRefresh={triggerCarouselRecycleRefresh}
+              onEdit={(carousel) => {
+                setEditingCarousel(carousel);
+                setShowCarouselForm(true);
+              }}
             />
 
-            <button onClick={() => setShowCarouselForm(!showCarouselForm)}>
+            <button
+              onClick={() => {
+                setEditingCarousel(null);
+                setShowCarouselForm(!showCarouselForm);
+              }}
+            >
               {showCarouselForm ? "Close Carousel Form" : "Add New Carousel"}
             </button>
 
             {showCarouselForm && (
               <CarouselForm
-                onClose={() => setShowCarouselForm(false)}
-                onCreateSuccess={() =>
-                  setCarouselRefreshFlag((prev) => prev + 1)
-                }
+                initialData={editingCarousel}
+                onClose={() => {
+                  setShowCarouselForm(false);
+                  setEditingCarousel(null);
+                }}
+                onCreateSuccess={() => {
+                  setShowCarouselForm(false);
+                  setEditingCarousel(null);
+                  setCarouselRefreshFlag((prev) => prev + 1);
+                }}
               />
             )}
           </>

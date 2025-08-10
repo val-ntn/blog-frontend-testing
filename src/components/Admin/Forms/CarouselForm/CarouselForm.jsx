@@ -1,33 +1,55 @@
 // frontend/src/components/Admin/Forms/CarouselForm/CarouselForm.jsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageSelector from "../../ImageSelector";
 import axios from "axios";
 import { API_BASE_URL } from "../../../../utils/api";
 import CarouselLivePreview from "../../../Images-Carousels/CarouselLivePreview";
 import Button from "../../../UI/Button";
 
-export default function CarouselForm({ onCreateSuccess, onClose }) {
+export default function CarouselForm({
+  initialData = null,
+  onCreateSuccess,
+  onClose,
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [externalLink, setExternalLink] = useState("");
   const [isActive, setIsActive] = useState(true);
-  const [imageURLs, setImageURLs] = useState([]);
-  const [carouselType, setCarouselType] = useState("basic");
+  const [images, setImages] = useState([]);
+  const [type, setType] = useState("basic");
+
+  useEffect(() => {
+    if (initialData) {
+      setTitle(initialData.title || "");
+      setImages(initialData.images || []);
+      setType(initialData.type || "basic");
+      setDescription(initialData.description || "");
+      setExternalLink(initialData.externalLink || "");
+      setIsActive(initialData.isActive ?? true);
+    } else {
+      setTitle("");
+      setImages([]);
+      setType("basic");
+      setDescription("");
+      setExternalLink("");
+      setIsActive(true);
+    }
+  }, [initialData]);
 
   const clearForm = () => {
     setTitle("");
     setDescription("");
     setExternalLink("");
     setIsActive(true);
-    setImageURLs([]);
-    setCarouselType("basic");
+    setImages([]);
+    setType("basic");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!imageURLs.length) {
+    if (!images.length) {
       alert("Please select at least one image.");
       return;
     }
@@ -35,20 +57,32 @@ export default function CarouselForm({ onCreateSuccess, onClose }) {
     const newCarouselItem = {
       title,
       description,
-      images: imageURLs,
+      images,
       externalLink,
       isActive,
-      type: carouselType,
+      type,
     };
 
     try {
-      await axios.post(`${API_BASE_URL}/carousels`, newCarouselItem, {
-        withCredentials: true,
-      });
-      alert("Carousel item created!");
-      clearForm(); // Clear inputs
-      if (onCreateSuccess) onCreateSuccess(); // Trigger parent form closure
-      if (onClose) onClose();
+      if (initialData?._id) {
+        await axios.put(
+          `${API_BASE_URL}/carousels/${initialData._id}`,
+          newCarouselItem,
+          {
+            withCredentials: true,
+          }
+        );
+        alert("Carousel updated!");
+      } else {
+        await axios.post(`${API_BASE_URL}/carousels`, newCarouselItem, {
+          withCredentials: true,
+        });
+        alert("Carousel created!");
+      }
+
+      clearForm();
+      onCreateSuccess?.();
+      onClose?.();
     } catch (err) {
       console.error(err);
       alert("Error saving carousel item.");
@@ -57,7 +91,7 @@ export default function CarouselForm({ onCreateSuccess, onClose }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Create Carousel Item</h3>
+      <h3>{initialData ? "Edit Carousel Item" : "Create Carousel Item"}</h3>
 
       <input
         type="text"
@@ -76,8 +110,8 @@ export default function CarouselForm({ onCreateSuccess, onClose }) {
       <label>
         Carousel Type:
         <select
-          value={carouselType}
-          onChange={(e) => setCarouselType(e.target.value)}
+          value={type}
+          onChange={(e) => setType(e.target.value)}
           style={{ marginLeft: "0.5rem" }}
           required
         >
@@ -95,15 +129,15 @@ export default function CarouselForm({ onCreateSuccess, onClose }) {
           marginBottom: "1rem",
         }}
       >
-        <CarouselLivePreview type={carouselType} images={imageURLs} />
+        <CarouselLivePreview type={type} images={images} />
       </div>
 
       <div style={{ margin: "1rem 0" }}>
         <ImageSelector
-          onSelect={(url) => setImageURLs((prev) => [...prev, url])}
+          onSelect={(url) => setImages((prev) => [...prev, url])}
         />
 
-        {imageURLs.length > 0 && (
+        {images.length > 0 && (
           <div
             style={{
               display: "flex",
@@ -112,18 +146,18 @@ export default function CarouselForm({ onCreateSuccess, onClose }) {
               marginTop: "1rem",
             }}
           >
-            {imageURLs.map((url, index) => (
+            {images.map((url, index) => (
               <div key={index} style={{ position: "relative" }}>
                 <img
                   src={url}
-                  alt={`Selected ${index}`}
+                  alt={`Selected ${index + 1}`}
                   style={{ width: "100px", borderRadius: "6px" }}
                 />
                 <Button
                   type="button"
                   variant="delete-image"
                   onClick={() =>
-                    setImageURLs((prev) => prev.filter((_, i) => i !== index))
+                    setImages((prev) => prev.filter((_, i) => i !== index))
                   }
                 >
                   ✖

@@ -12,10 +12,16 @@ export default function CarouselList({
   return (
     <div className={`carousel-list ${viewMode}`}>
       {carousels.map((carousel) => (
-        <div key={carousel._id} onClick={() => onSelect?.(carousel)}>
-          <CarouselItem carousel={carousel} />
+        <div key={carousel._id} className="carousel-list-item">
+          <div onClick={() => onSelect?.(carousel)}>
+            <CarouselItem carousel={carousel} />
+          </div>
           {!disableDelete && onDelete && (
-            <button onClick={() => onDelete(carousel._id)}>Delete</button>
+            <>
+              <button onClick={() => onDelete(carousel._id)}>Delete</button>
+              <button onClick={() => onSelect?.(carousel)}>Edit</button>{" "}
+              {/* Add Edit */}
+            </>
           )}
         </div>
       ))}

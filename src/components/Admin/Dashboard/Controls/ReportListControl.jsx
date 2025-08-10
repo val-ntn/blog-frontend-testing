@@ -2,6 +2,7 @@
 
 import ReportList from "../../../Reports/ReportList";
 import { API_BASE_URL } from "../../../../utils/api";
+import axios from "axios";
 
 export default function ReportListControl({
   refreshFlag,
@@ -11,9 +12,8 @@ export default function ReportListControl({
 }) {
   const handleDelete = async (id) => {
     try {
-      await fetch(`${API_BASE_URL}/event-reports/${id}`, {
-        method: "DELETE",
-        credentials: "include",
+      await axios.delete(`${API_BASE_URL}/event-reports/${id}`, {
+        withCredentials: true,
       });
       if (onRefresh) onRefresh();
       if (onRecycleRefresh) onRecycleRefresh();

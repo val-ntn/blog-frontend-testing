@@ -3,6 +3,7 @@
 import EventList from "../../../Events/EventList";
 import { API_BASE_URL } from "../../../../utils/api";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function EventListControl({
   refreshFlag,
@@ -14,9 +15,8 @@ export default function EventListControl({
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${API_BASE_URL}/events/${id}`, {
-        method: "DELETE",
-        credentials: "include",
+      await axios.delete(`${API_BASE_URL}/events/${id}`, {
+        withCredentials: true,
       });
       if (onRefresh) onRefresh();
       if (onRecycleRefresh) onRecycleRefresh();

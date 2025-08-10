@@ -18,15 +18,16 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [excerpt, setExcerpt] = useState("");
+  const [selectedCarousel, setSelectedCarousel] = useState(null);
+
+  const [selectedSides, setSelectedSides] = useState(new Set(["all"]));
+  const [loading, setLoading] = useState(false);
 
   const editorRef = useRef(null);
   const toolbarRef = useRef(null);
   const selectedImgRef = useRef(null);
 
-  const [selectedSides, setSelectedSides] = useState(new Set(["all"]));
-
-  const [selectedCarousel, setSelectedCarousel] = useState(null);
-
+  // Fetch events and users on mount
   useEffect(() => {
     axios
       .get(`${API_BASE_URL}/events`, { withCredentials: true })
@@ -39,17 +40,19 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       .catch(console.error);
   }, []);
 
+  // Populate form if editing existing report
   useEffect(() => {
     if (initialData) {
-      setEventId(initialData.event?._id || initialData.event || "");
-      setTitle(initialData.title || "");
-      setContent(initialData.content || "");
-      setAuthor(initialData.author?._id || initialData.author || "");
-      setExcerpt(initialData.excerpt || "");
-      setSelectedCarousel(initialData.carousel || null);
+      setEventId(initialData.event?._id ?? initialData.event ?? "");
+      setTitle(initialData.title ?? "");
+      setContent(initialData.content ?? "");
+      setAuthor(initialData.author?._id ?? initialData.author ?? "");
+      setExcerpt(initialData.excerpt ?? "");
+      setSelectedCarousel(initialData.carousel ?? null);
     }
   }, [initialData]);
 
+  // Clear form helper
   const clearForm = () => {
     setEventId("");
     setTitle("");
@@ -59,12 +62,10 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
     setSelectedCarousel(null);
   };
 
-  useEffect(() => {
-    if (!initialData) clearForm();
-  }, [initialData]);
-
-  const handleSubmit = (e) => {
+  // Submit handler
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const payload = {
       event: eventId,
@@ -72,32 +73,39 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       content,
       author,
       excerpt,
-      ...(selectedCarousel && { carousel: selectedCarousel._id }),
+      ...(selectedCarousel ? { carousel: selectedCarousel._id } : {}),
     };
 
-    const request = initialData
-      ? axios.put(`${API_BASE_URL}/event-reports/${initialData._id}`, payload, {
-          withCredentials: true,
-        })
-      : axios.post(`${API_BASE_URL}/event-reports`, payload, {
+    try {
+      if (initialData?._id) {
+        await axios.put(
+          `${API_BASE_URL}/event-reports/${initialData._id}`,
+          payload,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Report updated");
+      } else {
+        await axios.post(`${API_BASE_URL}/event-reports`, payload, {
           withCredentials: true,
         });
-
-    request
-      .then((res) => {
-        console.log(`Report ${initialData ? "updated" : "created"}:`, res.data);
+        console.log("Report created");
         clearForm();
-        if (onCreateSuccess) onCreateSuccess();
-      })
-      .catch((err) => {
-        console.error(
-          `Error ${initialData ? "updating" : "creating"} report:`,
-          err.response?.data || err.message
-        );
-      });
+      }
+
+      onCreateSuccess?.();
+    } catch (err) {
+      console.error(
+        `Error ${initialData ? "updating" : "creating"} report:`,
+        err.response?.data || err.message
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Helpers to get int style
+  // Helpers to get int style for margin adjustments
   const getIntStyle = (el, prop) => {
     if (el.style[prop]) {
       return parseInt(el.style[prop]) || 0;
@@ -106,7 +114,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
     return parseInt(computed) || 0;
   };
 
-  // Toolbar action handler (matches PostForm)
+  // Toolbar image margin and alignment handler
   const handleToolbarAction = (action) => {
     const img = selectedImgRef.current;
     if (!img) return;
@@ -150,22 +158,25 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       case "reset-styles":
         img.removeAttribute("style");
         break;
+      default:
+        break;
     }
   };
 
+  // Hide image toolbar & remove highlights
   const hideToolbar = () => {
-    if (toolbarRef.current) {
-      toolbarRef.current.style.display = "none";
-    }
+    if (toolbarRef.current) toolbarRef.current.style.display = "none";
+
     const editor = editorRef.current;
     if (editor && selectedImgRef.current) {
       editor.dom.removeClass(selectedImgRef.current, "margin-highlighted");
     }
+
     selectedImgRef.current = null;
   };
 
+  // Show image toolbar & highlight image
   const showToolbarForImage = (img, editor) => {
-    // Remove highlight from all images
     editor.dom.removeClass(
       editor.getBody().querySelectorAll("img"),
       "margin-highlighted"
@@ -207,6 +218,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             onChange={(e) => setEventId(e.target.value)}
             required
             className={styles.select}
+            disabled={loading}
           >
             <option value="">Select event</option>
             {events.map((ev) => (
@@ -225,6 +237,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             onChange={(e) => setTitle(e.target.value)}
             required
             className={styles.input}
+            disabled={loading}
           />
         </label>
 
@@ -236,7 +249,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             editorRef={editorRef}
             onNodeChange={(e) => {
               const editor = editorRef.current;
-              if (e.element.nodeName === "IMG") {
+              if (e.element?.nodeName === "IMG") {
                 showToolbarForImage(e.element, editor);
               } else {
                 hideToolbar();
@@ -253,6 +266,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             rows={3}
             placeholder="Short summary of report"
             className={styles.textarea}
+            disabled={loading}
           />
         </label>
 
@@ -267,10 +281,10 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             }}
           />
         </div>
+
         <CarouselSelector
-          onSelect={(carousel) => {
-            setSelectedCarousel(carousel);
-          }}
+          onSelect={(carousel) => setSelectedCarousel(carousel)}
+          disabled={loading}
         />
 
         {selectedCarousel && (
@@ -287,6 +301,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             onChange={(e) => setAuthor(e.target.value)}
             required
             className={styles.select}
+            disabled={loading}
           >
             <option value="">Select author</option>
             {users.map((user) => (
@@ -297,8 +312,18 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
           </select>
         </label>
 
-        <button type="submit" className={styles.submitButton}>
-          {initialData ? "Update Report" : "Create Report"}
+        <button
+          type="submit"
+          className={styles.submitButton}
+          disabled={loading}
+        >
+          {loading
+            ? initialData
+              ? "Updating..."
+              : "Creating..."
+            : initialData
+            ? "Update Report"
+            : "Create Report"}
         </button>
       </form>
     </>

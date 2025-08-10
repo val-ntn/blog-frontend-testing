@@ -2,6 +2,7 @@
 
 import PostList from "../../../Posts/PostList";
 import { API_BASE_URL } from "../../../../utils/api";
+import axios from "axios";
 
 export default function PostListControl({
   refreshFlag,
@@ -11,9 +12,8 @@ export default function PostListControl({
 }) {
   const handleDelete = async (id) => {
     try {
-      await fetch(`${API_BASE_URL}/posts/${id}`, {
-        method: "DELETE",
-        credentials: "include",
+      await axios.delete(`${API_BASE_URL}/posts/${id}`, {
+        withCredentials: true,
       });
       if (onRefresh) onRefresh();
       if (onRecycleRefresh) onRecycleRefresh();

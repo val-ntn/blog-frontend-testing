@@ -5,7 +5,11 @@ import axios from "axios";
 import CarouselList from "../../../Images-Carousels/CarouselList";
 import { API_BASE_URL } from "../../../../utils/api";
 
-export default function CarouselListControl({ refreshFlag, onRecycleRefresh }) {
+export default function CarouselListControl({
+  refreshFlag,
+  onRecycleRefresh,
+  onEdit,
+}) {
   const [carousels, setCarousels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState("grid"); // ✅ Add this
@@ -70,6 +74,7 @@ export default function CarouselListControl({ refreshFlag, onRecycleRefresh }) {
         <CarouselList
           carousels={carousels}
           onDelete={handleDelete}
+          onSelect={onEdit}
           viewMode={viewMode}
         />
       )}
