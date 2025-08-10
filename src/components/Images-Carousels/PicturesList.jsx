@@ -29,7 +29,8 @@ export default function PicturesList({
           <tbody>
             {images.map((image) => (
               <Picture
-                key={image.name}
+                //key={image.name}
+                key={image.filename}
                 image={image}
                 onSelect={onSelect}
                 onDelete={onDelete}
@@ -42,7 +43,8 @@ export default function PicturesList({
         <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
           {images.map((image) => (
             <Picture
-              key={image.name}
+              //key={image.name}
+              key={image.filename}
               image={image}
               onSelect={onSelect}
               onDelete={onDelete}

@@ -9,7 +9,7 @@ export default function Picture({
   mode,
   showCopyButton,
 }) {
-  const imageUrl = `${API_BASE_URL}/uploads/${image.name}`;
+  const imageUrl = `${API_BASE_URL}/uploads/${image.filename}`;
 
   if (mode === "list") {
     return (
@@ -17,11 +17,13 @@ export default function Picture({
         <td>
           <img src={imageUrl} style={{ width: 32 }} />
         </td>
-        <td>{image.name}</td>
+        <td>{image.originalName || image.filename}</td>
         <td>{imageUrl}</td>
         <td>
           {onSelect && <button onClick={() => onSelect(imageUrl)}>👁</button>}
-          {onDelete && <button onClick={() => onDelete(image.name)}>❌</button>}
+          {onDelete && (
+            <button onClick={() => onDelete(image.filename)}>❌</button>
+          )}
         </td>
       </tr>
     );
@@ -36,7 +38,7 @@ export default function Picture({
       />
       {onDelete && (
         <button
-          onClick={() => onDelete(image.name)}
+          onClick={() => onDelete(image.filename)}
           style={{
             position: "absolute",
             top: 0,

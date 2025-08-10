@@ -12,7 +12,7 @@ export default function PicturesListControl() {
 
   const fetchImages = () => {
     axios
-      .get(`${API_BASE_URL}/upload`, { withCredentials: true })
+      .get(`${API_BASE_URL}/upload/images`, { withCredentials: true })
       .then((res) => setImages(res.data))
       .catch(console.error);
   };
@@ -31,7 +31,7 @@ export default function PicturesListControl() {
     formData.append("image", file);
 
     try {
-      await axios.post(`${API_BASE_URL}/upload`, formData, {
+      await axios.post(`${API_BASE_URL}/upload/images`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       });
@@ -45,7 +45,7 @@ export default function PicturesListControl() {
 
   const handleDelete = async (imageName) => {
     try {
-      await axios.delete(`${API_BASE_URL}/upload/${imageName}`, {
+      await axios.delete(`${API_BASE_URL}/upload/images/${imageName}`, {
         withCredentials: true,
       });
       fetchImages();

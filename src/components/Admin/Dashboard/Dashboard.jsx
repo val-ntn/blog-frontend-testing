@@ -41,6 +41,8 @@ export default function Dashboard() {
   const [carouselRecycleRefreshFlag, setCarouselRecycleRefreshFlag] =
     useState(false);
   const [showCarouselForm, setShowCarouselForm] = useState(false);
+  // === IMAGES ===
+  const [imageRecycleRefreshFlag, setImageRecycleRefreshFlag] = useState(false);
 
   // === REFRESH TRIGGERS ===
   const triggerPostRefresh = () => setPostRefreshFlag((prev) => !prev);
@@ -57,6 +59,9 @@ export default function Dashboard() {
 
   const triggerCarouselRecycleRefresh = () =>
     setCarouselRecycleRefreshFlag((prev) => !prev);
+
+  const triggerImageRecycleRefresh = () =>
+    setImageRecycleRefreshFlag((prev) => !prev);
 
   return (
     <div className="dashboard-container" style={{ display: "flex" }}>
@@ -243,10 +248,12 @@ export default function Dashboard() {
             onEventRestore={triggerEventRefresh}
             onCarouselRestore={triggerCarouselRecycleRefresh}
             onReportRestore={triggerReportRefresh}
+            onImageRestore={triggerImageRecycleRefresh}
             postRecycleRefreshFlag={postRecycleRefreshFlag}
             eventRecycleRefreshFlag={eventRecycleRefreshFlag}
             carouselRecycleRefreshFlag={carouselRecycleRefreshFlag}
             reportRecycleRefreshFlag={reportRecycleRefreshFlag}
+            imageRecycleRefreshFlag={imageRecycleRefreshFlag}
           />
         )}
 
