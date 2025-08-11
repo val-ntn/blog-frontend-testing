@@ -6,7 +6,7 @@ import { API_BASE_URL } from "../../utils/api";
 
 export default function ReportList({
   limit,
-  compact,
+  size = "medium",
   refreshFlag,
   renderActions,
 }) {
@@ -27,7 +27,7 @@ export default function ReportList({
       {reports.length === 0 && <p>No reports found</p>}
       {reports.map((report) => (
         <div key={report._id}>
-          <ReportItem report={report} compact={compact} />
+          <ReportItem report={report} size={size} />
           {renderActions && renderActions(report)}
         </div>
       ))}

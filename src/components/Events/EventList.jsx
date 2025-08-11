@@ -6,7 +6,7 @@ import { API_BASE_URL } from "../../utils/api";
 export default function EventList({
   limit,
   onlyUpcoming,
-  compact,
+  size = "medium",
   renderActions,
   refreshFlag,
 }) {
@@ -40,7 +40,7 @@ export default function EventList({
       {events.length === 0 && <p>No events found</p>}
       {events.map((event) => (
         <div key={event._id}>
-          <EventItem event={event} compact={compact} />
+          <EventItem event={event} size={size} />
           {renderActions && renderActions(event)}
         </div>
       ))}

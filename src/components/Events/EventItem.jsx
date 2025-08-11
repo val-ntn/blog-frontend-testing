@@ -1,29 +1,5 @@
-/* // src/components/Events/EventItem.jsx
-import React from "react";
-import { formatDateRange, getExcerpt } from "../../utils/format";
-import { Link } from "react-router-dom";
-
-export default function EventItem({ event, compact, linkToDetail = false }) {
-  const content = (
-    <div className={`event-item ${compact ? "compact" : ""}`}>
-      <h4>{event.title}</h4>
-      {!compact && <p>{event.description}</p>}
-      {compact && <p>{getExcerpt(event.description, 60)}</p>}
-      <small>Date: {formatDateRange(event.startDate, event.endDate)}</small>
-    </div>
-  );
-
-  return linkToDetail ? (
-    <Link to={`/events/${event.id}`} className="event-item-link">
-      {content}
-    </Link>
-  ) : (
-    content
-  );
-}
- */
-
 // src/components/Events/EventItem.jsx
+
 import React from "react";
 import { formatDateRange, getExcerpt } from "../../utils/format";
 import { Link } from "react-router-dom";
@@ -34,18 +10,13 @@ import { Link } from "react-router-dom";
  *
  * @param {Object} event - The event object
  * @param {string} size - "small", "medium", or "large"
- * @param {boolean} compact - DEPRECATED
  * @param {boolean} linkToDetail - Wrap in link or not
  */
 export default function EventItem({
   event,
-  compact,
   size = "medium",
   linkToDetail = false,
 }) {
-  // Legacy support for compact
-  if (compact === true) size = "small";
-
   let description = "";
   let sizeClass = "";
 
@@ -69,8 +40,14 @@ export default function EventItem({
     </div>
   );
 
+  function getId(id) {
+    if (!id) return "";
+    if (typeof id === "object" && "$oid" in id) return id.$oid;
+    return id;
+  }
+
   return linkToDetail ? (
-    <Link to={`/events/${event.id}`} className="event-item-link">
+    <Link to={`/events/${getId(event._id)}`} className="detail-link">
       {content}
     </Link>
   ) : (

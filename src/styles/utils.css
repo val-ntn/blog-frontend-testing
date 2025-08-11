@@ -3,3 +3,16 @@
 .hidden {
   display: none !important;
 }
+
+.detail-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.detail-link:hover,
+.detail-link:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}

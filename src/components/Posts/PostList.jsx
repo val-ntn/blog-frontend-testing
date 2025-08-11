@@ -5,7 +5,7 @@ import { API_BASE_URL } from "../../utils/api";
 
 export default function PostList({
   limit,
-  compact,
+  size = "medium",
   refreshFlag,
   renderActions,
 }) {
@@ -29,7 +29,7 @@ export default function PostList({
       {posts.length === 0 && <p>No posts found</p>}
       {posts.map((post) => (
         <div key={post._id}>
-          <PostItem post={post} compact={compact} />
+          <PostItem post={post} size={size} />
           {renderActions && renderActions(post)}
         </div>
       ))}

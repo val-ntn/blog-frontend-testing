@@ -10,12 +10,8 @@ import CarouselItem from "../../components/Images-Carousels/CarouselItem";
  *
  * @param {Object} post - The post object.
  * @param {string} size - "small", "medium", or "large" (defaults to "medium").
- * @param {boolean} compact - DEPRECATED: maps to size = "small" if true.
  */
-export default function PostItem({ post, size = "medium", compact }) {
-  // Legacy support: if compact is true, override size to 'small'
-  if (compact === true) size = "small";
-
+export default function PostItem({ post, size = "medium" }) {
   let contentToRender;
   let showReadMore = false;
   let showCarousel = false;
@@ -41,6 +37,12 @@ export default function PostItem({ post, size = "medium", compact }) {
       sizeClass = "post--medium";
   }
 
+  function getId(id) {
+    if (!id) return "";
+    if (typeof id === "object" && "$oid" in id) return id.$oid;
+    return id;
+  }
+
   return (
     <div className={`post-item ${sizeClass}`}>
       <h3>{post.title}</h3>
@@ -49,7 +51,9 @@ export default function PostItem({ post, size = "medium", compact }) {
 
       {showReadMore && (
         <div className="post-read-more">
-          <Link to={`/posts/${post._id}`}>Read more →</Link>
+          <Link to={`/posts/${getId(post._id)}`} className="detail-link">
+            Read more →
+          </Link>
         </div>
       )}
 

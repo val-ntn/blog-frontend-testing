@@ -12,12 +12,8 @@ import CarouselItem from "../../components/Images-Carousels/CarouselItem";
  *
  * @param {Object} report - The report object
  * @param {string} size - "small", "medium", or "large"
- * @param {boolean} compact - DEPRECATED
  */
-export default function ReportItem({ report, size = "medium", compact }) {
-  // Legacy compact support
-  if (compact === true) size = "small";
-
+export default function ReportItem({ report, size = "medium" }) {
   let contentToRender;
   let showReadMore = false;
   let showCarousel = false;
@@ -40,6 +36,12 @@ export default function ReportItem({ report, size = "medium", compact }) {
       sizeClass = "report--medium";
   }
 
+  function getId(id) {
+    if (!id) return "";
+    if (typeof id === "object" && "$oid" in id) return id.$oid;
+    return id;
+  }
+
   return (
     <div className={`report-item ${sizeClass}`}>
       <h3>{report.title}</h3>
@@ -47,7 +49,12 @@ export default function ReportItem({ report, size = "medium", compact }) {
 
       {showReadMore && (
         <div className="report-read-more">
-          <Link to={`/event-reports/${report._id}`}>Read more →</Link>
+          <Link
+            to={`/event-reports/${getId(report._id)}`}
+            className="detail-link"
+          >
+            Read more →
+          </Link>
         </div>
       )}
 
@@ -61,7 +68,7 @@ export default function ReportItem({ report, size = "medium", compact }) {
         <small>
           {" "}
           | Related Event:{" "}
-          <Link to={`/events/${report.event._id}`}>
+          <Link to={`/events/${getId(report.event._id)}`}>
             {report.event.title || report.event.name}
           </Link>
         </small>
