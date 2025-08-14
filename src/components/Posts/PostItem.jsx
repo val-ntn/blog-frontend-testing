@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
 import CarouselItem from "../../components/Images-Carousels/CarouselItem";
-
+import "./Posts.css";
 /**
  * PostItem displays a blog post in one of three sizes:
  * "small" (excerpt), "medium" (full content, no carousel), "large" (full content + carousel)
@@ -60,7 +60,9 @@ export default function PostItem({ post, size = "medium" }) {
       {post.author?.name && <small>By: {post.author.name}</small>}
 
       {showCarousel && post.carousel && (
-        <CarouselItem carousel={post.carousel} />
+        <div className="post-carousel">
+          <CarouselItem carousel={post.carousel} />
+        </div>
       )}
     </div>
   );

@@ -17,11 +17,14 @@ export default function PostForm({ onCreateSuccess, initialData }) {
   const [category, setCategory] = useState("");
   const [tags, setTags] = useState("");
   const [externalLinks, setExternalLinks] = useState("");
+  const [excerpt, setExcerpt] = useState("");
+  const [selectedCarousel, setSelectedCarousel] = useState(null);
+  const [teaser, setTeaser] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+
   const editorRef = useRef(null);
   const toolbarRef = useRef(null);
   const selectedImgRef = useRef(null);
-  const [excerpt, setExcerpt] = useState("");
-  const [selectedCarousel, setSelectedCarousel] = useState(null);
 
   const nodeChangeHandler = useRef(null);
 
@@ -38,14 +41,16 @@ export default function PostForm({ onCreateSuccess, initialData }) {
   // Populate form if editing
   useEffect(() => {
     if (initialData) {
-      setTitle(initialData.title || "");
-      setContent(initialData.content || "");
-      setAuthor(initialData.author || "");
-      setCategory(initialData.category || "");
-      setTags((initialData.tags || []).join(", "));
-      setExternalLinks((initialData.externalLinks || []).join(", "));
-      setExcerpt(initialData.excerpt || "");
-      setSelectedCarousel(initialData.carousel || null);
+      setTitle(initialData.title ?? "");
+      setContent(initialData.content ?? "");
+      setAuthor(initialData.author ?? "");
+      setCategory(initialData.category ?? "");
+      setTags((initialData.tags ?? []).join(", "));
+      setExternalLinks((initialData.externalLinks ?? []).join(", "));
+      setExcerpt(initialData.excerpt ?? "");
+      setTeaser(initialData.teaser ?? "");
+      setThumbnail(initialData.thumbnail ?? "");
+      setSelectedCarousel(initialData.carousel ?? null);
     }
   }, [initialData]);
 
@@ -58,6 +63,9 @@ export default function PostForm({ onCreateSuccess, initialData }) {
     setExternalLinks("");
     setExcerpt("");
     setSelectedCarousel(null);
+    setTeaser("");
+    setThumbnail("");
+    setSelectedSides(new Set(["all"]));
   };
 
   // Clear form if no initialData
@@ -82,6 +90,8 @@ export default function PostForm({ onCreateSuccess, initialData }) {
         .map((l) => l.trim())
         .filter(Boolean),
       excerpt,
+      teaser,
+      thumbnail,
       ...(selectedCarousel && { carousel: selectedCarousel._id }),
     };
 
@@ -288,6 +298,38 @@ export default function PostForm({ onCreateSuccess, initialData }) {
             placeholder="Write a short summary or leave blank to auto-generate."
             className={styles.textarea}
           />
+        </label>
+        <label className={styles.label}>
+          Teaser (optional):
+          <textarea
+            value={teaser}
+            onChange={(e) => setTeaser(e.target.value)}
+            rows={2}
+            placeholder="Short promotional teaser text"
+            className={styles.textarea}
+          />
+        </label>
+        <label className={styles.label}>
+          Thumbnail:
+          <div style={{ marginTop: "0.5rem" }}>
+            <ImageSelector onSelect={(url) => setThumbnail(url)} />
+            {thumbnail && (
+              <div style={{ marginTop: "0.5rem" }}>
+                <img
+                  src={thumbnail}
+                  alt="Thumbnail preview"
+                  style={{ maxWidth: "150px", borderRadius: "4px" }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setThumbnail("")}
+                  style={{ marginLeft: "0.5rem" }}
+                >
+                  Remove
+                </button>
+              </div>
+            )}
+          </div>
         </label>
 
         <div style={{ margin: "1rem 0" }}>

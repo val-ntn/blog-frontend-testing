@@ -14,7 +14,7 @@ export default function Home() {
       <div className="hero">Hero Content</div>
       <div className="sidebar">Sidebar</div>
       <div className="blog-news">
-        <h2>Latest Post</h2>
+        Latest News
         <LatestPost />
       </div>
       <div className="events">
@@ -25,7 +25,7 @@ export default function Home() {
       <div className="mapsearch">Map Search</div>
       <div className="widgets">Widgets</div>
       <div className="latest-report">
-        <h2>Latest Report</h2>
+        Latest Report
         <LatestReport />
       </div>
     </div>

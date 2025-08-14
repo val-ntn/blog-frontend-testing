@@ -1,7 +1,7 @@
-/* frontend/src/components/Reports/Reports.css */
+/* frontend/src/components/Posts/Posts.css */
 
 /* Base styles for all posts */
-.report-item {
+.post-item {
   margin-bottom: var(--spacing-lg); /* 2rem */
   padding: var(--spacing-md); /* 1rem */
   border: 1px solid var(--border-color); /* #ccc */
@@ -9,42 +9,42 @@
 }
 
 /* Large post specific styles */
-.report--large {
+.post--large {
   max-width: var(--max-content-width);
   margin: 0 auto;
 }
 
-.report--large h3 {
+.post--large h3 {
   font-size: var(--font-size-lg); /* 20px */
   line-height: 1.2;
   margin-bottom: var(--spacing-md); /* 1rem */
 }
 
-.report--large .safe-html img {
+.post--large .safe-html img {
   max-width: 100%;
   height: auto;
 }
 
 /* Carousel styles for large posts */
-.report--large .report-carousel {
+.post--large .post-carousel {
   margin-top: var(--spacing-lg); /* 2rem */
 }
 
 /* Medium post styles */
-.report--medium h3 {
+.post--medium h3 {
   font-size: var(--font-size-base); /* 16px */
   line-height: 1.3;
   margin-bottom: calc(var(--spacing-md) * 0.75); /* 0.75rem approx */
 }
 
 /* Small post styles */
-.report--small h3 {
+.post--small h3 {
   font-size: var(--font-size-sm); /* 14px */
   line-height: 1.3;
   margin-bottom: var(--spacing-sm); /* 0.5rem */
 }
 
-.report-read-more {
+.post-read-more {
   margin-top: var(--spacing-md); /* 1rem */
 }
 
@@ -56,23 +56,4 @@
 
 .safe-html p {
   margin-bottom: calc(var(--spacing-lg) + var(--spacing-md)); /* 3rem total */
-}
-
-/* Add report-specific styles */
-.report-item small {
-  display: block;
-  margin-top: var(--spacing-md);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-dark);
-}
-
-.report-item small a {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: var(--font-weight-bold);
-}
-
-.report-item small a:hover,
-.report-item small a:focus {
-  text-decoration: underline;
 }

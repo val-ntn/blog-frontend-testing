@@ -19,6 +19,8 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
   const [author, setAuthor] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [selectedCarousel, setSelectedCarousel] = useState(null);
+  const [teaser, setTeaser] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
 
   const [selectedSides, setSelectedSides] = useState(new Set(["all"]));
   const [loading, setLoading] = useState(false);
@@ -48,6 +50,8 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       setContent(initialData.content ?? "");
       setAuthor(initialData.author?._id ?? initialData.author ?? "");
       setExcerpt(initialData.excerpt ?? "");
+      setTeaser(initialData.teaser ?? "");
+      setThumbnail(initialData.thumbnail ?? "");
       setSelectedCarousel(initialData.carousel ?? null);
     }
   }, [initialData]);
@@ -59,7 +63,10 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
     setContent("");
     setAuthor("");
     setExcerpt("");
+    setTeaser("");
+    setThumbnail("");
     setSelectedCarousel(null);
+    setSelectedSides(new Set(["all"]));
   };
 
   // Submit handler
@@ -73,6 +80,8 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       content,
       author,
       excerpt,
+      teaser,
+      thumbnail,
       ...(selectedCarousel ? { carousel: selectedCarousel._id } : {}),
     };
 
@@ -268,6 +277,38 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
             className={styles.textarea}
             disabled={loading}
           />
+        </label>
+        <label className={styles.label}>
+          Teaser (optional):
+          <textarea
+            value={teaser}
+            onChange={(e) => setTeaser(e.target.value)}
+            rows={2}
+            placeholder="Short promotional teaser text"
+            className={styles.textarea}
+          />
+        </label>
+        <label className={styles.label}>
+          Thumbnail:
+          <div style={{ marginTop: "0.5rem" }}>
+            <ImageSelector onSelect={(url) => setThumbnail(url)} />
+            {thumbnail && (
+              <div style={{ marginTop: "0.5rem" }}>
+                <img
+                  src={thumbnail}
+                  alt="Thumbnail preview"
+                  style={{ maxWidth: "150px", borderRadius: "4px" }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setThumbnail("")}
+                  style={{ marginLeft: "0.5rem" }}
+                >
+                  Remove
+                </button>
+              </div>
+            )}
+          </div>
         </label>
 
         <div style={{ margin: "1rem 0" }}>

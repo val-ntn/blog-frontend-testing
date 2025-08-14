@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
 import CarouselItem from "../../components/Images-Carousels/CarouselItem";
-
+import "./Reports.css";
 /**
  * ReportItem displays a report in "small", "medium", or "large" size.
  * - "small" shows excerpt + "read more"
@@ -59,7 +59,9 @@ export default function ReportItem({ report, size = "medium" }) {
       )}
 
       {showCarousel && report.carousel && (
-        <CarouselItem carousel={report.carousel} />
+        <div className="report-carousel">
+          <CarouselItem carousel={report.carousel} />
+        </div>
       )}
 
       {report.author?.name && <small>By: {report.author.name}</small>}
