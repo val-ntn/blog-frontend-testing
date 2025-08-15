@@ -4,6 +4,7 @@ import LatestPost from "../../components/Posts/LatestPost";
 import UpcomingEvents from "../../components/Events/UpcomingEvents";
 import LatestReport from "../../components/Reports/LatestReport";
 import SmallCalendar from "../../components/Shared/Calendar/SmallCalendar";
+import GetTeaserCard from "../../components/Shared/TeaserCard/GetTeaserCard";
 
 import "../../styles/layout.css"; // layout and container styles
 import "../../styles/pages.css"; // page-specific styles
@@ -22,7 +23,11 @@ export default function Home() {
         <UpcomingEvents limit={3} />
         <SmallCalendar />
       </div>
-      <div className="mapsearch">Map Search</div>
+      <div className="mapsearch">
+        Map Search
+        <h2>Teaser Test</h2>
+        <GetTeaserCard type="post" size="small" />
+      </div>
       <div className="widgets">Widgets</div>
       <div className="latest-report">
         Latest Report
