@@ -5,6 +5,7 @@ import UpcomingEvents from "../../components/Events/UpcomingEvents";
 import LatestReport from "../../components/Reports/LatestReport";
 import SmallCalendar from "../../components/Shared/Calendar/SmallCalendar";
 import GetTeaserCard from "../../components/Shared/TeaserCard/GetTeaserCard";
+//import Sidebar from "../../components/Shared/Sidebar/Sidebar";
 
 import "../../styles/layout.css"; // layout and container styles
 import "../../styles/pages.css"; // page-specific styles
@@ -13,7 +14,9 @@ export default function Home() {
   return (
     <div className="grid-layout">
       <div className="hero">Hero Content</div>
-      <div className="sidebar">Sidebar</div>
+      <div className="sidebar">
+        <p>Sidebar</p>
+      </div>
       <div className="blog-news">
         Latest News
         <LatestPost />
@@ -28,7 +31,11 @@ export default function Home() {
         <h2>Teaser Test</h2>
         <GetTeaserCard type="post" size="small" />
       </div>
-      <div className="widgets">Widgets</div>
+      <div className="widgets">
+        Widgets
+        <h2>Teaser Test</h2>
+        <GetTeaserCard type="post" size="large" />
+      </div>
       <div className="latest-report">
         Latest Report
         <LatestReport />
