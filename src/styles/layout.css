@@ -124,6 +124,15 @@
   border: 2px dashed #888;
 }
 
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* space between list and calendar */
+  padding: 1rem;
+  background-color: white;
+}
+
+
 /* Headings inside grid items */
 .blog-news h2,
 .events h2 {
@@ -133,30 +142,30 @@
 }
 
 /* App layout */
-.app-container {
+.app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--color-background-dark);
 }
 
-.main-content {
+/* Main content wrapper */
+.main {
+  flex: 1; /* grow to fill space between navbar and footer */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-dark); /* optional, fallback if .content has transparent areas */
+  padding: var(--spacing-md) 0; /* optional vertical spacing */
+
+}
+
+/* Inner content container */
+.content {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 0;
+  padding: 0 var(--spacing-md) /* horizontal spacing for responsiveness */;
   width: 100%;
   background-color: #383535; /* could be a variable if reused */
   box-sizing: border-box;
 }
 
-.navbar {
-  background-color: white;
-  width: 100%;
-  padding: var(--spacing-md) 0;
-}
-.footer {
-  width: 100%;
-  background-color: var(--color-background-dark);
-  color: white;
-  padding: var(--spacing-md) 0;
-}

@@ -1,59 +1,41 @@
 /* frontend/src/components/Posts/Posts.css */
 
-/* Base styles for all posts */
+/* Base wrapper */
 .post-item {
-  margin-bottom: var(--spacing-lg); /* 2rem */
-  padding: var(--spacing-md); /* 1rem */
-  border: 1px solid var(--border-color); /* #ccc */
-  border-radius: var(--border-radius-sm); /* 4px */
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
 }
 
-/* Large post specific styles */
-.post--large {
+/* ---- Size variations ---- */
+.post-item--large {
   max-width: var(--max-content-width);
   margin: 0 auto;
 }
 
-.post--large h3 {
-  font-size: var(--font-size-lg); /* 20px */
-  line-height: 1.2;
-  margin-bottom: var(--spacing-md); /* 1rem */
+/* ---- Carousel ---- */
+.post-item__carousel {
+  margin-top: var(--spacing-lg);
 }
 
-.post--large .safe-html img {
-  max-width: 100%;
-  height: auto;
+/* ---- Read More ---- */
+.post-item__read-more {
+  margin-top: var(--spacing-md);
 }
 
-/* Carousel styles for large posts */
-.post--large .post-carousel {
-  margin-top: var(--spacing-lg); /* 2rem */
+/* ---- Safe HTML content ---- */
+.safe-html p {
+  margin-bottom: calc(var(--spacing-lg) + var(--spacing-md));
 }
-
-/* Medium post styles */
-.post--medium h3 {
-  font-size: var(--font-size-base); /* 16px */
-  line-height: 1.3;
-  margin-bottom: calc(var(--spacing-md) * 0.75); /* 0.75rem approx */
-}
-
-/* Small post styles */
-.post--small h3 {
-  font-size: var(--font-size-sm); /* 14px */
-  line-height: 1.3;
-  margin-bottom: var(--spacing-sm); /* 0.5rem */
-}
-
-.post-read-more {
-  margin-top: var(--spacing-md); /* 1rem */
-}
-
 .safe-html::after {
   content: "";
   display: block;
-  clear: both; /* This forces .safe-html to contain floated children */
+  clear: both;
 }
 
-.safe-html p {
-  margin-bottom: calc(var(--spacing-lg) + var(--spacing-md)); /* 3rem total */
+/* Meta link hover */
+.card__meta a:hover,
+.card__meta a:focus {
+  text-decoration: underline;
 }

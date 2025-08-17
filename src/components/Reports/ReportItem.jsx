@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
 import CarouselItem from "../../components/Images-Carousels/CarouselItem";
 import "./Reports.css";
+
 /**
  * ReportItem displays a report in "small", "medium", or "large" size.
  * - "small" shows excerpt + "read more"
  * - "medium" shows full content
  * - "large" shows content + optional carousel
- *
- * @param {Object} report - The report object
- * @param {string} size - "small", "medium", or "large"
  */
 export default function ReportItem({ report, size = "medium" }) {
   let contentToRender;
@@ -23,17 +21,17 @@ export default function ReportItem({ report, size = "medium" }) {
     case "small":
       contentToRender = report.excerpt;
       showReadMore = true;
-      sizeClass = "report--small";
+      sizeClass = "report-item--small";
       break;
     case "large":
       contentToRender = report.content;
       showCarousel = true;
-      sizeClass = "report--large";
+      sizeClass = "report-item--large";
       break;
     case "medium":
     default:
       contentToRender = report.content;
-      sizeClass = "report--medium";
+      sizeClass = "report-item--medium";
   }
 
   function getId(id) {
@@ -44,33 +42,40 @@ export default function ReportItem({ report, size = "medium" }) {
 
   return (
     <div className={`report-item ${sizeClass}`}>
-      <h3>{report.title}</h3>
+      {/* Shared card title utility */}
+      <h3 className="card__title">{report.title}</h3>
+
+      {/* Safe HTML body */}
       <SafeHTMLRenderer content={contentToRender} />
 
+      {/* "Read more" link for small variant */}
       {showReadMore && (
-        <div className="report-read-more">
+        <div className="report-item__read-more">
           <Link
             to={`/event-reports/${getId(report._id)}`}
-            className="detail-link"
+            className="card__read-more"
           >
             Read more →
           </Link>
         </div>
       )}
 
+      {/* Carousel for large variant */}
       {showCarousel && report.carousel && (
-        <div className="report-carousel">
+        <div className="report-item__carousel">
           <CarouselItem carousel={report.carousel} />
         </div>
       )}
 
-      {report.author?.name && <small>By: {report.author.name}</small>}
+      {/* Meta info */}
+      {report.author?.name && (
+        <small className="card__meta">By: {report.author.name}</small>
+      )}
 
       {report.event && (
-        <small>
-          {" "}
+        <small className="card__meta">
           | Related Event:{" "}
-          <Link to={`/events/${getId(report.event._id)}`}>
+          <Link to={`/events/${getId(report.event._id)}`} className="detail-link">
             {report.event.title || report.event.name}
           </Link>
         </small>

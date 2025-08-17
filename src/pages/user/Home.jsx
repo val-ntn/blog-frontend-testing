@@ -29,12 +29,12 @@ export default function Home() {
       <div className="mapsearch">
         Map Search
         <h2>Teaser Test</h2>
-        <GetTeaserCard type="post" size="small" />
+        <GetTeaserCard type="post"/>
       </div>
       <div className="widgets">
         Widgets
         <h2>Teaser Test</h2>
-        <GetTeaserCard type="post" size="large" />
+        <GetTeaserCard type="event-report" />
       </div>
       <div className="latest-report">
         Latest Report

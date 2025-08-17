@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
 import CarouselItem from "../../components/Images-Carousels/CarouselItem";
 import "./Posts.css";
+
 /**
- * PostItem displays a blog post in one of three sizes:
- * "small" (excerpt), "medium" (full content, no carousel), "large" (full content + carousel)
- *
- * @param {Object} post - The post object.
- * @param {string} size - "small", "medium", or "large" (defaults to "medium").
+ * PostItem displays a post in "small", "medium", or "large" size.
+ * - "small": shows excerpt + "read more"
+ * - "medium": full content
+ * - "large": full content + optional carousel
  */
 export default function PostItem({ post, size = "medium" }) {
   let contentToRender;
@@ -21,20 +21,17 @@ export default function PostItem({ post, size = "medium" }) {
     case "small":
       contentToRender = post.excerpt;
       showReadMore = true;
-      sizeClass = "post--small";
-      break;
-    case "medium":
-      contentToRender = post.content;
-      sizeClass = "post--medium";
+      sizeClass = "post-item--small";
       break;
     case "large":
       contentToRender = post.content;
       showCarousel = true;
-      sizeClass = "post--large";
+      sizeClass = "post-item--large";
       break;
+    case "medium":
     default:
       contentToRender = post.content;
-      sizeClass = "post--medium";
+      sizeClass = "post-item--medium";
   }
 
   function getId(id) {
@@ -45,24 +42,31 @@ export default function PostItem({ post, size = "medium" }) {
 
   return (
     <div className={`post-item ${sizeClass}`}>
-      <h3>{post.title}</h3>
+      {/* Shared card title */}
+      <h3 className="card__title">{post.title}</h3>
 
+      {/* Safe HTML content */}
       <SafeHTMLRenderer content={contentToRender} />
 
+      {/* "Read more" link for small posts */}
       {showReadMore && (
-        <div className="post-read-more">
-          <Link to={`/posts/${getId(post._id)}`} className="detail-link">
+        <div className="post-item__read-more">
+          <Link to={`/posts/${getId(post._id)}`} className="card__read-more">
             Read more →
           </Link>
         </div>
       )}
 
-      {post.author?.name && <small>By: {post.author.name}</small>}
-
+      {/* Carousel for large posts */}
       {showCarousel && post.carousel && (
-        <div className="post-carousel">
+        <div className="post-item__carousel">
           <CarouselItem carousel={post.carousel} />
         </div>
+      )}
+
+      {/* Meta info */}
+      {post.author?.name && (
+        <small className="card__meta">By: {post.author.name}</small>
       )}
     </div>
   );

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import EventItem from "./EventItem";
 import { API_BASE_URL } from "../../utils/api";
+import './Events.css'
 
 export default function UpcomingEvents({ limit = 3 }) {
   const [events, setEvents] = useState([]);
@@ -21,9 +22,11 @@ export default function UpcomingEvents({ limit = 3 }) {
   if (events.length === 0) return <p>No upcoming events.</p>;
 
   return (
-    <div>
+    <div className="events-list">
       {events.map((event) => (
+        <React.Fragment key={event._id}>
         <EventItem key={event._id} event={event} size="small" />
+        <div className="teaser-card__divider" /></React.Fragment>
       ))}
     </div>
   );

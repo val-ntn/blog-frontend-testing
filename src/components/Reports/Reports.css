@@ -1,78 +1,35 @@
-/* frontend/src/components/Reports/Reports.css */
+/* src/components/Reports/Reports.css */
 
-/* Base styles for all posts */
+/* Base wrapper */
 .report-item {
-  margin-bottom: var(--spacing-lg); /* 2rem */
-  padding: var(--spacing-md); /* 1rem */
-  border: 1px solid var(--border-color); /* #ccc */
-  border-radius: var(--border-radius-sm); /* 4px */
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
 }
 
-/* Large post specific styles */
-.report--large {
+/* ---- Size variations ---- */
+.report-item--large {
   max-width: var(--max-content-width);
   margin: 0 auto;
 }
 
-.report--large h3 {
-  font-size: var(--font-size-lg); /* 20px */
-  line-height: 1.2;
-  margin-bottom: var(--spacing-md); /* 1rem */
+/* ---- Carousel ---- */
+.report-item__carousel {
+  margin-top: var(--spacing-lg);
 }
 
-.report--large .safe-html img {
-  max-width: 100%;
-  height: auto;
+/* ---- Read More ---- */
+.report-item__read-more {
+  margin-top: var(--spacing-md);
 }
 
-/* Carousel styles for large posts */
-.report--large .report-carousel {
-  margin-top: var(--spacing-lg); /* 2rem */
+/* ---- Safe HTML content ---- */
+.safe-html p {
+  margin-bottom: calc(var(--spacing-lg) + var(--spacing-md));
 }
-
-/* Medium post styles */
-.report--medium h3 {
-  font-size: var(--font-size-base); /* 16px */
-  line-height: 1.3;
-  margin-bottom: calc(var(--spacing-md) * 0.75); /* 0.75rem approx */
-}
-
-/* Small post styles */
-.report--small h3 {
-  font-size: var(--font-size-sm); /* 14px */
-  line-height: 1.3;
-  margin-bottom: var(--spacing-sm); /* 0.5rem */
-}
-
-.report-read-more {
-  margin-top: var(--spacing-md); /* 1rem */
-}
-
 .safe-html::after {
   content: "";
   display: block;
-  clear: both; /* This forces .safe-html to contain floated children */
-}
-
-.safe-html p {
-  margin-bottom: calc(var(--spacing-lg) + var(--spacing-md)); /* 3rem total */
-}
-
-/* Add report-specific styles */
-.report-item small {
-  display: block;
-  margin-top: var(--spacing-md);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-dark);
-}
-
-.report-item small a {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: var(--font-weight-bold);
-}
-
-.report-item small a:hover,
-.report-item small a:focus {
-  text-decoration: underline;
+  clear: both;
 }

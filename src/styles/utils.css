@@ -1,6 +1,6 @@
 /* src/styles/utils.css */
 
-.hidden {
+/*.hidden {
   display: none !important;
 }
 
@@ -15,4 +15,185 @@
 .detail-link:focus {
   color: var(--color-primary-dark);
   text-decoration: underline;
+}
+
+.card__title {
+  font-family: var(--font-family-heading);
+  color: var(--color-body);
+  line-height: 1.2;
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+}
+
+.card__title--small {
+  font-size: var(--font-size-lg);
+}
+.card__title--large {
+  font-size: var(--font-size-xl);
+}
+
+
+.card__tagline {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  color: var(--color-button);
+  margin-bottom: var(--spacing-xs);
+}
+
+
+.card__date {
+  font-size: var(--font-size-xs);
+  color: #c8c8c8;
+  margin-bottom: var(--spacing-sm);
+}
+
+
+.card__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-grey);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+}
+
+
+.card__divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-divider);
+  margin: var(--spacing-md) auto;
+}
+
+
+.card__read-more {
+  display: block;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-grey);
+  text-decoration: none;
+  margin-top: auto;
+  transition: color 0.2s ease;
+}
+.card__read-more:hover {
+  color: var(--color-body);
+  text-decoration: underline;
+}
+*/
+
+/* src/styles/utils.css */
+
+/* -------------------- */
+/* Utility helpers      */
+/* -------------------- */
+.hidden {
+  display: none !important;
+}
+
+/* Detail links (inline, used in meta sections etc.) */
+.detail-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.detail-link:hover,
+.detail-link:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* -------------------- */
+/* Titles               */
+/* -------------------- */
+.card__title {
+  font-family: var(--font-family-heading);
+  color: var(--color-body);
+  line-height: 1.2;
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+}
+
+.card__title--sm {
+  font-size: var(--font-size-sm);
+}
+
+.card__title--md {
+  font-size: var(--font-size-base);
+}
+
+.card__title--lg {
+  font-size: var(--font-size-lg);
+}
+
+.card__title--xl {
+  font-size: var(--font-size-xl);
+}
+
+/* -------------------- */
+/* Tagline / Subtitle   */
+/* -------------------- */
+.card__tagline {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  color: var(--color-button);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* -------------------- */
+/* Date                 */
+/* -------------------- */
+.card__date {
+  font-size: var(--font-size-xs);
+  color: #c8c8c8;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* -------------------- */
+/* Text / Body          */
+/* -------------------- */
+.card__text {
+  font-size: var(--font-size-sm);
+  color: var(--color-grey);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+}
+
+/* -------------------- */
+/* Divider              */
+/* -------------------- */
+.card__divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-divider);
+  margin: var(--spacing-md) auto;
+}
+
+/* -------------------- */
+/* "Read more" links    */
+/* -------------------- */
+.card__read-more {
+  display: block;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-grey);
+  text-decoration: none;
+  margin-top: auto;
+  transition: color 0.2s ease;
+}
+.card__read-more:hover {
+  color: var(--color-body);
+  text-decoration: underline;
+}
+
+/* -------------------- */
+/* Meta info (author, related, etc.) */
+/* -------------------- */
+.card__meta {
+  display: block;
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-dark);
+}
+
+
+.safe-html img {
+  max-width: 100%;
+  height: auto;
 }

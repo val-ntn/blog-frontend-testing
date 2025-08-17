@@ -11,6 +11,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      <div className="navbar__container">
       <div className="navbar__left">
         <Link to="/" className="navbar__home">
           Home
@@ -18,7 +19,7 @@ function Navbar() {
       </div>
 
       <div className="navbar__right">
-        <button className="navbar__hamburger" onClick={toggleMenu}>
+        <button type="button" className="navbar__hamburger" onClick={toggleMenu}>
           ☰
         </button>
         <ul className={`navbar__links ${isOpen ? "navbar__links--open" : ""}`}>
@@ -38,6 +39,7 @@ function Navbar() {
             </Link>
           </li>
         </ul>
+      </div>
       </div>
     </nav>
   );

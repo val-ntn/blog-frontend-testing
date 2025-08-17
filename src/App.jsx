@@ -19,9 +19,10 @@ import ReportDetail from "./pages/user/ReportDetail";
 function App() {
   return (
     <Router>
-      <div className="app-container">
+      <div className="app">
         <Navbar />
-        <div className="main-content">
+        <main className="main">
+        <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/news" element={<News />} />
@@ -46,6 +47,7 @@ function App() {
             <Route path="/admin/login" element={<AdminLogin />} />
           </Routes>
         </div>
+        </main>
         <Footer />
       </div>
     </Router>

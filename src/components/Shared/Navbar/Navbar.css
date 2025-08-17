@@ -3,9 +3,6 @@
 /* --- Base Navbar --- */
 .navbar {
   font-family: "Lato", sans-serif;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 1rem 2rem;
   background-color: white;
   color: #252830;
@@ -14,8 +11,19 @@
   z-index: 10;
 }
 
+/* Inner container constrained to max-content-width */
+.navbar__container {
+  max-width: var(--max-content-width, 1280px);
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 .navbar__left {
-  flex: 1;
+  display: flex;
 }
 
 .navbar__home {
