@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import EventItem from "./EventItem";
 import { API_BASE_URL } from "../../utils/api";
+import PropTypes from "prop-types";
 
 export default function EventList({
   limit,
@@ -47,3 +48,11 @@ export default function EventList({
     </div>
   );
 }
+
+EventList.propTypes = {
+  limit: PropTypes.number,
+  onlyUpcoming: PropTypes.bool,
+  size: PropTypes.oneOf(["small", "medium", "large"]), 
+  renderActions: PropTypes.func, // (event) => ReactNode
+  refreshFlag: PropTypes.any,    // used only as dependency
+};

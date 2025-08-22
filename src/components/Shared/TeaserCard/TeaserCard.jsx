@@ -2,7 +2,10 @@
 
 import { Link } from "react-router-dom";
 import { formatDate } from "../../../utils/format";
+import PropTypes from "prop-types";
 import "./TeaserCard.css";
+
+
 export default function TeaserCard({ data, size = "small", type }) {
   if (!data) return null;
 
@@ -36,3 +39,15 @@ export default function TeaserCard({ data, size = "small", type }) {
     </div>
   );
 }
+
+TeaserCard.propTypes = {
+  data: PropTypes.shape({
+    thumbnail: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    teaser: PropTypes.string,
+    createdAt: PropTypes.string,
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  }).isRequired,
+  size: PropTypes.oneOf(["small", "large"]),
+  type: PropTypes.string,
+};

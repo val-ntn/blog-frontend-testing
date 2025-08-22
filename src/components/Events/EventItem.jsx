@@ -2,6 +2,7 @@
 
 import React from "react";
 import { formatDateRange, getExcerpt } from "../../utils/format";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 /**
@@ -54,3 +55,24 @@ export default function EventItem({
     content
   );
 }
+
+EventItem.propTypes = {
+  event: PropTypes.shape({
+    _id: PropTypes.oneOfType([
+      PropTypes.string, 
+      PropTypes.shape({ $oid: PropTypes.string })
+    ]).isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    startDate: PropTypes.oneOfType([
+      PropTypes.string, // when fetched as JSON
+      PropTypes.instanceOf(Date)
+    ]).isRequired,
+    endDate: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date)
+    ]),
+  }).isRequired,
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  linkToDetail: PropTypes.bool,
+};

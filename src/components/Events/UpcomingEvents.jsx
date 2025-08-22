@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import EventItem from "./EventItem";
 import { API_BASE_URL } from "../../utils/api";
+import PropTypes from "prop-types";
 import './Events.css'
 
 export default function UpcomingEvents({ limit = 3 }) {
@@ -31,3 +32,7 @@ export default function UpcomingEvents({ limit = 3 }) {
     </div>
   );
 }
+
+UpcomingEvents.propTypes = {
+  limit: PropTypes.number,
+};

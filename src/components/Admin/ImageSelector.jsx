@@ -1,7 +1,9 @@
 // frontend/src/components/admin/ImageSelector.jsx
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/api";
+import PropTypes from "prop-types";
 import PicturesList from "../Images-Carousels/PicturesList";
 import Button from "../UI/Button";
 
@@ -65,3 +67,7 @@ export default function ImageSelector({ onSelect }) {
     </div>
   );
 }
+
+ImageSelector.propTypes = {
+  onSelect: PropTypes.func.isRequired,
+};

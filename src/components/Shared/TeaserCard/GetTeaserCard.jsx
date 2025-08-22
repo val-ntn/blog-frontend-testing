@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import TeaserCard from "./TeaserCard";
+import PropTypes from "prop-types";
 import { API_BASE_URL } from "../../../utils/api";
 
 export default function GetTeaserCard({ type = "post", title, size: propSize }) {
@@ -36,3 +37,9 @@ export default function GetTeaserCard({ type = "post", title, size: propSize }) 
 
   return <TeaserCard data={item} size={size} type={type} />;
 }
+
+GetTeaserCard.propTypes = {
+  type: PropTypes.string,           // optional, default "post"
+  title: PropTypes.string,          // optional
+  size: PropTypes.string,           // optional, default handled internally
+};

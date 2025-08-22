@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/api";
+import PropTypes from "prop-types";
 import CarouselList from "../Images-Carousels/CarouselList";
 import Button from "../UI/Button";
 
@@ -65,3 +66,7 @@ export default function CarouselSelector({ onSelect }) {
     </div>
   );
 }
+
+CarouselSelector.propTypes = {
+  onSelect: PropTypes.func.isRequired, // must be a function
+};

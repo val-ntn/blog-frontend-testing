@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import EventRecycleItem from "./EventRecycleItem";
 import { API_BASE_URL } from "../../utils/api";
+import PropTypes from "prop-types";
 
 export default function EventRecycleList({ onRestore, refreshFlag }) {
   const [events, setEvents] = useState([]);
@@ -55,3 +56,13 @@ export default function EventRecycleList({ onRestore, refreshFlag }) {
     </div>
   );
 }
+
+
+EventRecycleList.propTypes = {
+  onRestore: PropTypes.func, // optional
+  refreshFlag: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+};
