@@ -23,6 +23,7 @@
   /* Typography */
   --font-family-base: "Lato", sans-serif;
   --font-family-heading: "Playfair Display SC", serif;
+  --font-family-event-title: "Montserrat", sans-serif; 
 
   --font-size-xs: 0.625rem; /* 10 / 16 */
   --font-size-sm: 0.75rem; /* 12 / 16 */

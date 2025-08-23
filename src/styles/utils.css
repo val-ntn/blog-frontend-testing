@@ -27,13 +27,14 @@
   font-family: var(--font-family-heading);
   color: var(--color-body);
   line-height: 1.2;
-  margin: var(--spacing-md) 0 var(--spacing-sm);
+  margin: var(--spacing-md) 0 var(--spacing-md);
   font-weight: var(--font-weight-normal); /* default bold for normal cards */
   text-align: left; /* default alignment */
 }
 
 .card__title--sm {
   font-size: var(--font-size-sm);
+  margin: var(--spacing-sm) 0 var(--spacing-sm);
 }
 
 .card__title--md {

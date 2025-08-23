@@ -27,3 +27,40 @@
 .event--large .card__title {
   font-size: var(--font-size-xl);
 }
+
+.events-title.toggleable {
+  cursor: pointer;
+  background: var(--color-lightgray);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+.events-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes text + icon apart */
+  gap: var(--spacing-sm);
+  font-family: var(--font-family-event-title);
+}
+
+.chevron-icon {
+  transition: transform 0.3s ease;
+}
+
+.chevron-icon.rotated {
+  transform: rotate(180deg); /* rotate when expanded */
+}
+
+.upcoming-events .card__title {
+  font-family: var(--font-family-event-title);
+  font-weight: 600; /* adjust for emphasis */
+}
+
+
+@media (min-width: 601px) {
+  .events-title.toggleable {
+    cursor: default;
+    background: transparent;
+    padding: 0;
+  }
+}

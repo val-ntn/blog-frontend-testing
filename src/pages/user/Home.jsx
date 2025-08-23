@@ -23,16 +23,13 @@ export default function Home() {
       </div>
       <div className="events">
         <UpcomingEvents limit={3} />
-        <SmallCalendar />
       </div>
       <div className="mapsearch">
         Map Search
-        <h2>Teaser Test</h2>
         <GetTeaserCard type="post"/>
       </div>
       <div className="widgets">
         Widgets
-        <h2>Teaser Test</h2>
         <GetTeaserCard type="event-report" />
       </div>
       <div className="latest-report">

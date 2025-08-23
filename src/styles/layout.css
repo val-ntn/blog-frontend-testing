@@ -111,7 +111,7 @@
     grid-row: 7 / 9;
   }
   .latest-report {
-    grid-column: 17 / 32;
+    grid-column: 17 / 33;
     grid-row: 7 / 9;
   }
 }
@@ -161,7 +161,7 @@
 .events h2 {
   margin-top: 0;
   color: var(--color-primary);
-  padding-left: var(--spacing-sm);
+  /*padding-left: var(--spacing-sm);*/
 }
 
 /* App layout */
