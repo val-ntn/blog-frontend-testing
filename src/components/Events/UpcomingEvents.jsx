@@ -7,6 +7,7 @@ import "./Events.css";
 
 export default function UpcomingEvents({ limit = 3 }) {
   const [events, setEvents] = useState([]);
+  const [collapsed, setCollapsed] = useState(false); // for mobile toggle
 
   useEffect(() => {
     const start = performance.now();
@@ -22,7 +23,7 @@ export default function UpcomingEvents({ limit = 3 }) {
 
   if (events.length === 0) return <p>No upcoming events.</p>;
 
-  return (
+  /*return (
     <div className="events-list">
       {events.map((event) => (
         <React.Fragment key={event._id}>
@@ -30,6 +31,27 @@ export default function UpcomingEvents({ limit = 3 }) {
           <div className="card__divider" />
         </React.Fragment>
       ))}
+    </div>
+  );
+}*/
+return (
+    <div className="upcoming-events">
+      <h2
+        className="events-title"
+        onClick={() => setCollapsed((prev) => !prev)}
+      >
+        Upcoming Events
+      </h2>
+      {!collapsed && (
+        <div className="events-list">
+          {events.map((event) => (
+            <React.Fragment key={event._id}>
+              <EventItem key={event._id} event={event} size="small" />
+              <div className="card__divider" />
+            </React.Fragment>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

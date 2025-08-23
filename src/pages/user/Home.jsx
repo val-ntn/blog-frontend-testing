@@ -22,7 +22,6 @@ export default function Home() {
         <LatestPost />
       </div>
       <div className="events">
-        <h2>Upcoming Events</h2>
         <UpcomingEvents limit={3} />
         <SmallCalendar />
       </div>
