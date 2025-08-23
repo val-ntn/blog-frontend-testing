@@ -80,7 +80,7 @@
 }
 
 /* --- Responsive --- */
-@media (max-width: 580px) {
+/*@media (max-width: 580px) {
   .teaser-card.large {
     flex-direction: column;
   }
@@ -94,4 +94,4 @@
   .teaser-card .teaser-card__body {
     padding: 15px;
   }
-}
+}*/
