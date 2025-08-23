@@ -92,27 +92,27 @@
   }
   /* Blog-news and mapsearch expand into collapsed sidebar space */
   .blog-news {
-    grid-column: 2 / 25; /* spans space next to collapsed sidebar */
+    grid-column: 2 / 33; /* spans space next to collapsed sidebar */
     grid-row: 2 / 5; /* same as desktop */
   }
   .mapsearch {
-    grid-column: 2 / 25;
+    grid-column: 2 / 33;
     grid-row: 5 / 7;
   }
 
   /* Events stay in same place until mobile */
   .events {
-    grid-column: 25 / 33; /* same as desktop */
-    grid-row: 2 / 7; /* same as desktop */
+    grid-column: 1 / 33; /* same as desktop */
+    grid-row: 7 / 8; /* same as desktop */
   }
 
   .widgets {
     grid-column: 1 / 17;
-    grid-row: 7 / 9;
+    grid-row: 8 / 9;
   }
   .latest-report {
     grid-column: 17 / 33;
-    grid-row: 7 / 9;
+    grid-row: 8 / 9;
   }
 }
 

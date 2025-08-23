@@ -56,7 +56,30 @@
   font-weight: 600; /* adjust for emphasis */
 }
 
+/* Mobile-first: stacked column */
+.upcoming-events .events-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+/* Tablet: row layout with calendar on the side */
+@media (min-width: 601px) and (max-width: 899px) {
+  .upcoming-events .events-list-wrapper {
+    flex-direction: row;
+    gap: var(--spacing-lg);
+  }
 
+  .upcoming-events .events-list {
+    flex: 1; /* take remaining width */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .upcoming-events .small-calendar-wrapper {
+    flex: 0 0 200px; /* fixed width for calendar */
+  }
+}
 @media (min-width: 601px) {
   .events-title.toggleable {
     cursor: default;

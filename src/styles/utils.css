@@ -34,7 +34,6 @@
 
 .card__title--sm {
   font-size: var(--font-size-sm);
-  margin: var(--spacing-sm) 0 var(--spacing-sm);
 }
 
 .card__title--md {

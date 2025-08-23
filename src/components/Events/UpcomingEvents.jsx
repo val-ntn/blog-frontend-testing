@@ -78,7 +78,7 @@ export default function UpcomingEvents({ limit = 3 }) {
   // Track screen size changes
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth <= 600;
+      const mobile = window.innerWidth <= 899;
       setIsMobile(mobile);
       setCollapsed(mobile); // collapse by default if small
     };
@@ -106,6 +106,7 @@ export default function UpcomingEvents({ limit = 3 }) {
 
       {/* Only show list if not collapsed */}
       {(!isMobile || !collapsed) && (
+        <div className="events-list-wrapper">
         <div className="events-list">
           {events.map((event) => (
             <React.Fragment key={event._id}>
@@ -113,8 +114,9 @@ export default function UpcomingEvents({ limit = 3 }) {
               <div className="card__divider" />
             </React.Fragment>
           ))}
+          </div>
           <SmallCalendar />
-        </div>
+        </div>   
       )}
     </div>
   );
