@@ -3,8 +3,7 @@
 import { Link } from "react-router-dom";
 import { formatDate } from "../../../utils/format";
 import PropTypes from "prop-types";
-import "./TeaserCard.css";
-
+import "./TeaserCard.css"; // only TeaserCard-specific overrides
 
 export default function TeaserCard({ data, size = "small", type }) {
   if (!data) return null;
@@ -20,18 +19,17 @@ export default function TeaserCard({ data, size = "small", type }) {
           style={{ backgroundImage: `url(${thumbnail})` }}
         />
       )}
-
       <div className="teaser-card__body">
-        <h3 className="teaser-card__title">{title}</h3>
-        {/* Divider only for large cards */}
-        {!isSmall && <div className="teaser-card__divider" />}
+        <h3 className="card__title card__title--xl card__title--center">
+          {title}
+        </h3>
+        {!isSmall && <div className="card__divider" />}
         {createdAt && (
-          <small className="teaser-card__date">{formatDate(createdAt)}</small>
+          <small className="card__date">{formatDate(createdAt)}</small>
         )}
-        {teaser && <p className="teaser-card__text">{teaser}</p>}
-
+        {teaser && <p className="card__text">{teaser}</p>}
         {type && _id && (
-          <a href={`/${type}s/${_id}`} className="teaser-card__button">
+          <a href={`/${type}s/${_id}`} className="card__read-more">
             Read More
           </a>
         )}

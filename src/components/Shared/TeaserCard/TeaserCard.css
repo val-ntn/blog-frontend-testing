@@ -1,199 +1,88 @@
 /* TeaserCard.css */
 @import url("https://fonts.googleapis.com/css?family=Lato|Playfair+Display+SC");
 
-/* Colors */
-:root {
-  --body-color: #252830;
-  --grey: #999;
-  --white: #fff;
-  --button-color: #3edd84;
-}
+/* TeaserCard-specific overrides using utils/variables */
 
 /* --- Base card --- */
 .teaser-card {
-  background-color: var(--white);
-  border-radius: 4px;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-sm);
   overflow: hidden;
-  font-family: "Lato", sans-serif;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
   display: flex;
-  flex-direction: row;
-  margin: 10px 0;
   transition: all 0.3s ease;
+  margin: 10px 0;
   position: relative;
   box-sizing: border-box;
 }
 
-/* --- Media section --- */
-
+/* --- Media Section --- */
 .teaser-card__media {
-  width: 100%;
-  aspect-ratio: 16 / 9;
   background-position: center;
   background-size: cover;
 }
 
-/*.teaser-card__media {
-  background-position: center;
-  background-size: cover;
-  flex: 1 1 50%;
-  min-height: 200px;
-}*/
-
-/* --- Body / content --- */
+/* --- Body Section --- */
 .teaser-card__body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
-  color: var(--grey);
 }
 
-/* --- Tagline --- */
-.teaser-card__tagline {
-  font-size: 10px;
-  text-transform: uppercase;
-  color: var(--button-color);
-  margin-bottom: 5px;
-}
-
-/* --- Title --- */
+/* --- Title / Tagline / Date / Text --- */
 .teaser-card__title {
-  color: #252830;
-  font-family: "Playfair Display SC", serif;
-  font-size: 30px; /* main size from CodePen */
-  font-weight: 400; /* lighter than bold, matches your preferred design */
-  line-height: 1.1; /* compact spacing between lines */
-  text-align: center; /* center title text */
-  margin-top: 20px; /* top margin */
-  margin-bottom: 10px; /* bottom margin */
-}
-/*.teaser-card__title {
-  font-size: 24px;
-  margin: 0 0 8px;
-  color: var(--body-color);
-  font-weight: 600;
-  font-family: "Playfair Display SC", serif;
-}*/
-
-/* --- Divider --- */
-.teaser-card__divider {
-  width: 40px;
-  height: 2px;
-  background-color: var(--grey);
-  margin: 20px auto;
-  /* margin: 10px 0 15px 0; */
-}
-
-/* --- Date --- */
-.teaser-card__date {
-  font-size: 10px;
-  color: #c8c8c8;
-  margin-bottom: 10px;
-}
-
-/* --- Text / teaser --- */
-.teaser-card__text {
-  font-size: 12px;
-  color: #666;
-  line-height: 18px;
-  margin-bottom: 15px;
-  text-align: justify;
-}
-
-/* --- Button / read more --- */
-
-.teaser-card__read-more {
-  display: block;
+  font-family: var(--font-family-heading);
+  color: var(--color-body);
+  line-height: 1.1;
   text-align: center;
-  font-size: 12px;
-  color: var(--grey);
-  margin-top: auto;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
 }
 
-.teaser-card__read-more:hover {
-  color: var(--body-color);
-  text-decoration: underline;
+.teaser-card__tagline {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  color: var(--color-button);
+  margin-bottom: var(--spacing-xs);
 }
-
-/* .teaser-card__button {
-  display: inline-block;
-  background-color: var(--button-color);
-  color: var(--white);
-  padding: 8px 16px;
-  border-radius: 3px;
-  font-size: 12px;
-  text-decoration: none;
-  font-family: "Lato", sans-serif;
-  align-self: flex-start;
-  margin-top: auto;
-} */
 
 /* --- Large variant --- */
-teaser-card.large {
-  display: flex; /* row by default */
+.teaser-card.large {
   flex-direction: row;
-  height: auto; /* don't fix height */
-}
-.teaser-card__media {
-  flex: 1;
-}
-.teaser-card__body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .teaser-card.large .teaser-card__media {
   flex: 1 1 50%;
+  aspect-ratio: 16 / 9;
 }
 
 .teaser-card.large .teaser-card__body {
   flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
   padding: 30px 25px 50px;
 }
 
 /* --- Small variant --- */
 .teaser-card.small {
-  display: flex;
   flex-direction: column;
 }
 
 .teaser-card.small .teaser-card__media {
   width: 100%;
-  height: 150px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  height: 300px;
+  border-top-left-radius: var(--border-radius-sm);
+  border-top-right-radius: var(--border-radius-sm);
 }
 
 .teaser-card.small .teaser-card__body {
   padding: 15px 20px 20px;
 }
 
-.teaser-card.small .teaser-card__title {
-  font-size: 20px;
-}
-
-.teaser-card.small .teaser-card__tagline {
-  font-size: 9px;
-}
-
-.teaser-card.small .teaser-card__date {
-  font-size: 9px;
-}
-
-.teaser-card.small .teaser-card__text {
-  font-size: 12px;
-  line-height: 18px;
-}
-
 /* --- Responsive --- */
 @media (max-width: 580px) {
   .teaser-card.large {
     flex-direction: column;
-    height: auto;
   }
 
   .teaser-card.large .teaser-card__media,
@@ -202,7 +91,7 @@ teaser-card.large {
     flex: 1 1 auto;
   }
 
-  .teaser-card__body {
+  .teaser-card .teaser-card__body {
     padding: 15px;
   }
 }

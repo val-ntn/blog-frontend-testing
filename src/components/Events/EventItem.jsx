@@ -35,9 +35,11 @@ export default function EventItem({
 
   const content = (
     <div className={`event-item ${sizeClass}`}>
-      <h4>{event.title}</h4>
-      {description && <p>{description}</p>}
-      <small>Date: {formatDateRange(event.startDate, event.endDate)}</small>
+      <h4 className="card__title">{event.title}</h4>
+      {description && <p className="card__text">{description}</p>}
+      <small className="card__date card__date--center">
+        Date: {formatDateRange(event.startDate, event.endDate)}
+      </small>
     </div>
   );
 
@@ -59,18 +61,18 @@ export default function EventItem({
 EventItem.propTypes = {
   event: PropTypes.shape({
     _id: PropTypes.oneOfType([
-      PropTypes.string, 
-      PropTypes.shape({ $oid: PropTypes.string })
+      PropTypes.string,
+      PropTypes.shape({ $oid: PropTypes.string }),
     ]).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
     startDate: PropTypes.oneOfType([
       PropTypes.string, // when fetched as JSON
-      PropTypes.instanceOf(Date)
+      PropTypes.instanceOf(Date),
     ]).isRequired,
     endDate: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.instanceOf(Date)
+      PropTypes.instanceOf(Date),
     ]),
   }).isRequired,
   size: PropTypes.oneOf(["small", "medium", "large"]),

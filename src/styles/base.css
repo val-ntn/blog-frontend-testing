@@ -11,6 +11,7 @@
 
 html,
 body {
+  font-size: 16px; /* default */
   height: 100%;
   font-family: var(--font-family-base);
   background-color: var(--color-background-dark);
@@ -35,4 +36,54 @@ a {
 /* Hide TinyMCE promo link */
 .tox-promotion-link {
   display: none !important;
+} /* src/styles/base.css */
+
+/* Global headings */
+h1 {
+  font-size: var(--font-size-h1);
+  font-family: var(--font-family-heading);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+h2 {
+  font-size: var(--font-size-h2);
+  font-family: var(--font-family-heading);
+  line-height: 1.25;
+  margin-bottom: var(--spacing-md);
+}
+h3 {
+  font-size: var(--font-size-h3);
+  font-family: var(--font-family-heading);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-sm);
+}
+h4 {
+  font-size: var(--font-size-h4);
+  font-family: var(--font-family-heading);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-sm);
+}
+h5 {
+  font-size: var(--font-size-h5);
+  font-family: var(--font-family-heading);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+}
+h6 {
+  font-size: var(--font-size-h6);
+  font-family: var(--font-family-heading);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px; /* smaller on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px; /* smaller on phones */
+  }
 }

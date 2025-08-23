@@ -3,38 +3,27 @@
 .events-list {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem; /* space between event items */
+  gap: var(--spacing-md);
+  text-align: left;
+  background-color: var(--color-white);
 }
-
 .event-item {
-    font-family: "Lato", sans-serif;
-    color: #252830;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* since titles were centered in your CodePen */
+  text-align: left;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-sm);
+}
+/* Size variants */
+.event--small .card__title {
+  font-size: var(--font-size-md);
 }
 
-/* --- Date --- */
-.event-item.event-small {
-  font-size: 10px;
-  color: #c8c8c8;
-  margin-bottom: 10px;
+.event--medium .card__title {
+  font-size: var(--font-size-lg);
 }
 
-/* --- Text / teaser --- */
-.card__text {
-  font-size: 12px;
-  color: #666;
-  line-height: 18px;
-  margin-bottom: 15px;
-  text-align: justify;
-}
-
-/* --- Title --- */
-.event-item .event-small h4 {
-  color: #252830;
-  font-family: "Playfair Display SC", serif;
-  font-size: 30px; /* main size from CodePen */
-  font-weight: 400; /* lighter than bold, matches your preferred design */
-  line-height: 1.1; /* compact spacing between lines */
-  text-align: center; /* center title text */
-  margin-top: 20px; /* top margin */
-  margin-bottom: 10px; /* bottom margin */
+.event--large .card__title {
+  font-size: var(--font-size-xl);
 }
