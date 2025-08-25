@@ -1,89 +1,121 @@
-/*Events.css*/
+/* Events.css */
 
-.events-list {
+/* Upcoming Events container */
+.upcoming-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Event list wrapper */
+.upcoming-events__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Event list itself */
+.upcoming-events__list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
   text-align: left;
-  background-color: var(--color-white);
 }
-.event-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* since titles were centered in your CodePen */
-  text-align: left;
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-sm);
-}
-/* Size variants */
-.event--small .card__title {
+
+/* Event item sizes */
+.event-item--small .event-item__title {
   font-size: var(--font-size-md);
 }
-
-.event--medium .card__title {
+.event-item--medium .event-item__title {
   font-size: var(--font-size-lg);
 }
-
-.event--large .card__title {
+.event-item--large .event-item__title {
   font-size: var(--font-size-xl);
 }
 
-.events-title.toggleable {
+/* Upcoming Events title */
+.upcoming-events__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  font-family: var(--font-family-event-title);
+}
+.upcoming-events__title--toggleable {
   cursor: pointer;
   background: var(--color-lightgray);
   padding: var(--spacing-sm);
   border-radius: var(--border-radius-sm);
 }
 
-.events-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* pushes text + icon apart */
-  gap: var(--spacing-sm);
-  font-family: var(--font-family-event-title);
+.card__title--event {
+  font-family: var(--font-family-event-title); /* Montserrat */
+  color: var(--color-body);
+  line-height: 1.2;
+  margin: var(--spacing-md) 0 var(--spacing-md);
+  font-weight: var(--font-weight-normal); /* default bold for normal cards */
+  text-align: left; /* default alignment */
 }
 
-.chevron-icon {
+.card__title-event--small {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.card__title-event--medium {
+  font-size: var(--font-size-base);
+   font-weight: var(--font-weight-bold);
+}
+
+.card__title-event--large {
+  font-size: var(--font-size-lg);
+   font-weight: var(--font-weight-bold);
+}
+
+.card__title-event--center {
+  text-align: center;
+}
+
+.card__title-event--right {
+  text-align: right;
+}
+
+.card__title-event--left {
+  text-align: left;
+}
+
+/* Chevron icon */
+.upcoming-events__chevron {
   transition: transform 0.3s ease;
 }
-
-.chevron-icon.rotated {
-  transform: rotate(180deg); /* rotate when expanded */
+.upcoming-events__chevron--rotated {
+  transform: rotate(180deg);
 }
 
-.upcoming-events .card__title {
-  font-family: var(--font-family-event-title);
-  font-weight: 600; /* adjust for emphasis */
+/* Calendar wrapper */
+.upcoming-events__calendar-wrapper {
+  flex: 1;
 }
 
-/* Mobile-first: stacked column */
-.upcoming-events .events-list-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-/* Tablet: row layout with calendar on the side */
+
+/* Responsive: tablet layout */
 @media (min-width: 601px) and (max-width: 899px) {
-  .upcoming-events .events-list-wrapper {
+  .upcoming-events__content-wrapper {
     flex-direction: row;
     gap: var(--spacing-lg);
   }
 
-  .upcoming-events .events-list {
-    flex: 1; /* take remaining width */
+  .upcoming-events__list {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
   }
-
-  .upcoming-events .small-calendar-wrapper {
-    /*flex: 0 0 200px;  fixed width for calendar */
-    flex: 1;
-
-  }
 }
+
+/* Desktop: remove toggle styles */
 @media (min-width: 601px) {
-  .events-title.toggleable {
+  .upcoming-events__title--toggleable {
     cursor: default;
     background: transparent;
     padding: 0;

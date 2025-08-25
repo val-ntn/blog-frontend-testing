@@ -74,7 +74,7 @@
 /* -------------------- */
 .card__date {
   font-size: var(--font-size-xs);
-  color: #c8c8c8;
+  color: var(--color-text-light);
   margin-bottom: var(--spacing-sm);
 }
 .card__date--center {
@@ -108,13 +108,13 @@
   display: block;
   text-align: center;
   font-size: var(--font-size-sm);
-  color: var(--color-grey);
+  color: var(--color-text);
   text-decoration: none;
   margin-top: auto;
   transition: color 0.2s ease;
 }
 .card__read-more:hover {
-  color: var(--color-body);
+  color: var(--color-teal-900);
   text-decoration: underline;
 }
 

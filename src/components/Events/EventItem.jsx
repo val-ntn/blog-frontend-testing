@@ -35,7 +35,7 @@ export default function EventItem({
 
   const content = (
     <div className={`event-item ${sizeClass}`}>
-      <h4 className="card__title">{event.title}</h4>
+      <h4 className={`card__title--event card__title-event--${size}`}>{event.title}</h4>
       {description && <p className="card__text">{description}</p>}
       <small className="card__date card__date--center">
         Date: {formatDateRange(event.startDate, event.endDate)}

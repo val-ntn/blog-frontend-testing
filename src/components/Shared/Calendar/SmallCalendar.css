@@ -119,6 +119,11 @@
   color: #1a73e8;
 }
 
+/* Remove red text color from weekend day numbers */
+.react-calendar__month-view__days__day--weekend {
+  color: inherit; /* use same as weekday numbers */
+}
+
 /* Selected day */
 .react-calendar__tile--active {
   background: #1a73e8 !important;
@@ -132,14 +137,21 @@
   border-radius: 8px;
 }
 
-/* Event dots */
-.dot {
-  width: 5px;
-  height: 5px;
-  margin: 2px auto 0;
-  border-radius: 50%;
-  background: #e91e63; /* accent color for events */
+/* === Event tiles (instead of dots) === */
+.event-tile {
+  background: #e8f0fe !important; /* light blue background */
+  border-radius: 8px;
+  color: #1a73e8;
+  font-weight: 500;
 }
+
+/* Make sure active (selected) event tiles stay distinct */
+.react-calendar__tile--active.event-tile {
+  background: #1a73e8 !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
 
 /* Event details below calendar */
 .event-details {

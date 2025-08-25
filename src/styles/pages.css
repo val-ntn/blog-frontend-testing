@@ -2,13 +2,13 @@
 /*Page-specific styling for pages */
 
 h1 {
-  color: var(--primary-color);
+  color: var(--color-primary);
   /*margin-bottom: 1rem;*/
 }
 
-section {
-  border: 2px dashed var(--secondary-color);
+/*section {
+  border: 2px dashed var(--color-secondary);
   padding: 1rem;
   margin-bottom: 1rem;
   color: white;
-}
+}*/

@@ -1,3 +1,6 @@
+
+
+
 // frontend/src/components/Shared/Calendar/SmallCalendar.jsx
 
 import React, { useState, useEffect } from "react";
@@ -15,17 +18,25 @@ export default function SmallCalendar() {
   const [eventMap, setEventMap] = useState({});
   const [viewDate, setViewDate] = useState(new Date()); // controls month/year
 
+  // Fetch events and map all dates for multi-day events
   useEffect(() => {
     axios
       .get(`${API_BASE_URL}/events`)
       .then((res) => {
         const events = res.data;
         const mapped = {};
+
         events.forEach((event) => {
-          const dateKey = new Date(event.startDate).toISOString().split("T")[0];
-          if (!mapped[dateKey]) mapped[dateKey] = [];
-          mapped[dateKey].push(event);
+          const start = new Date(event.startDate);
+          const end = event.endDate ? new Date(event.endDate) : start;
+
+          for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+            const dateKey = d.toISOString().split("T")[0];
+            if (!mapped[dateKey]) mapped[dateKey] = [];
+            mapped[dateKey].push(event);
+          }
         });
+
         setEventMap(mapped);
       })
       .catch((err) => console.error("Failed to fetch events:", err));
@@ -33,13 +44,6 @@ export default function SmallCalendar() {
 
   const formatted = selectedDate.toISOString().split("T")[0];
   const todayEvents = eventMap[formatted] || [];
-
-  const fullDate = selectedDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   const currentMonth = viewDate.toLocaleDateString("en-US", { month: "long" });
   const currentYear = viewDate.getFullYear();
@@ -57,16 +61,13 @@ export default function SmallCalendar() {
     setViewDate(newDate);
   };
 
-  const weekday = selectedDate.toLocaleDateString("en-US", { weekday: "long" });
-  const monthYear = selectedDate.toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
-
   return (
     <div className="calendar-container">
+      {/* Header */}
       <div className="calendar-header">
-        <div className="weekday">{weekday}</div>
+        <div className="weekday">
+          {selectedDate.toLocaleDateString("en-US", { weekday: "long" })}
+        </div>
         <div className="month-year">
           {selectedDate.toLocaleDateString("en-US", {
             month: "long",
@@ -77,49 +78,49 @@ export default function SmallCalendar() {
 
         <div className="nav-controls">
           <div className="month-nav">
-  <button type="button" onClick={() => incrementMonth(-1)}>
-    <FaChevronLeft />
-  </button>
-  <span>{currentMonth}</span>
-  <button type="button" onClick={() => incrementMonth(1)}>
-    <FaChevronRight />
-  </button>
-</div>
-<div className="year-nav">
-  <button type="button" onClick={() => incrementYear(-1)}>
-    <FaChevronLeft />
-  </button>
-  <span>{currentYear}</span>
-  <button type="button" onClick={() => incrementYear(1)}>
-    <FaChevronRight />
-  </button>
-</div>
-
+            <button type="button" onClick={() => incrementMonth(-1)}>
+              <FaChevronLeft />
+            </button>
+            <span>{currentMonth}</span>
+            <button type="button" onClick={() => incrementMonth(1)}>
+              <FaChevronRight />
+            </button>
+          </div>
+          <div className="year-nav">
+            <button type="button" onClick={() => incrementYear(-1)}>
+              <FaChevronLeft />
+            </button>
+            <span>{currentYear}</span>
+            <button type="button" onClick={() => incrementYear(1)}>
+              <FaChevronRight />
+            </button>
+          </div>
         </div>
       </div>
 
-  <Calendar
-    onChange={setSelectedDate}
-    value={selectedDate}
-    activeStartDate={viewDate}
-    onActiveStartDateChange={({ activeStartDate }) =>
-      setViewDate(activeStartDate)
-    }
-    tileContent={({ date }) => {
-      const key = date.toISOString().split("T")[0];
-      return eventMap[key] ? <div className="dot" /> : null;
-    }}
-    showNavigation={false}
-  />
+      {/* Calendar */}
+      <Calendar
+        onChange={setSelectedDate}
+        value={selectedDate}
+        activeStartDate={viewDate}
+        onActiveStartDateChange={({ activeStartDate }) =>
+          setViewDate(activeStartDate)
+        }
+        showNavigation={false}
+        // Highlight tiles with events
+        tileClassName={({ date }) => {
+          const key = date.toISOString().split("T")[0];
+          return eventMap[key] ? "event-tile" : "";
+        }}
+      />
 
-
-
+      {/* Event details below calendar */}
       {todayEvents.length > 0 && (
         <div className="event-details">
           <h4>Events on {formatted}:</h4>
           {todayEvents.map((event) => (
             <EventItem
-              key={event._id || event.id} // use whichever is applicable in your API
+              key={event._id || event.id}
               event={event}
               compact
               linkToDetail
@@ -130,3 +131,4 @@ export default function SmallCalendar() {
     </div>
   );
 }
+
