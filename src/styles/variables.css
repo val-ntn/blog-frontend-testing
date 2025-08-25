@@ -88,7 +88,8 @@
   --font-family-base: "Lato", sans-serif;
   --font-family-heading: "Playfair Display SC", serif;
   --font-family-event-title: "Montserrat", sans-serif; 
-
+  
+--font-size-xxs: 0.625rem; /* 10px */
 --font-size-xs: 0.75rem;   /* 12px → fine for meta/text */
 --font-size-sm: 0.875rem;  /* 14px → body text */
 --font-size-md: 1rem;      /* 16px → default text */

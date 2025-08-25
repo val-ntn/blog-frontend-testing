@@ -4,6 +4,7 @@
 // frontend/src/components/Shared/Calendar/SmallCalendar.jsx
 
 import React, { useState, useEffect } from "react";
+import { useRef } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { API_BASE_URL } from "../../../utils/api";
@@ -17,6 +18,7 @@ export default function SmallCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [eventMap, setEventMap] = useState({});
   const [viewDate, setViewDate] = useState(new Date()); // controls month/year
+  const monthYearRef = useRef(null);  
 
   // Fetch events and map all dates for multi-day events
   useEffect(() => {
@@ -64,39 +66,34 @@ export default function SmallCalendar() {
   return (
     <div className="calendar-container">
       {/* Header */}
-      <div className="calendar-header">
-        <div className="weekday">
-          {selectedDate.toLocaleDateString("en-US", { weekday: "long" })}
-        </div>
-        <div className="month-year">
-          {selectedDate.toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })}
-        </div>
 
-        <div className="nav-controls">
-          <div className="month-nav">
-            <button type="button" onClick={() => incrementMonth(-1)}>
-              <FaChevronLeft />
-            </button>
-            <span>{currentMonth}</span>
-            <button type="button" onClick={() => incrementMonth(1)}>
-              <FaChevronRight />
-            </button>
-          </div>
-          <div className="year-nav">
-            <button type="button" onClick={() => incrementYear(-1)}>
-              <FaChevronLeft />
-            </button>
-            <span>{currentYear}</span>
-            <button type="button" onClick={() => incrementYear(1)}>
-              <FaChevronRight />
-            </button>
-          </div>
-        </div>
-      </div>
+      <div className="calendar-header">
+  <div className="weekday">
+    {selectedDate.toLocaleDateString("en-US", { weekday: "long" })}
+  </div>
+
+  <div className="month-year">
+    <span className="day">{selectedDate.getDate()}</span>
+    <span className="month"> {selectedDate.toLocaleDateString("en-US", { month: "long" })}</span>
+    <span className="year"> {selectedDate.getFullYear()}</span>
+  </div>
+
+  <div className="nav-controls">
+    <div className="month-nav">
+      <button type="button" onClick={() => incrementMonth(-1)}><FaChevronLeft /></button>
+      <span>{currentMonth}</span>
+      <button type="button" onClick={() => incrementMonth(1)}><FaChevronRight /></button>
+    </div>
+
+    <div className="year-nav">
+      <button type="button" onClick={() => incrementYear(-1)}><FaChevronLeft /></button>
+      <span>{currentYear}</span>
+      <button type="button" onClick={() => incrementYear(1)}><FaChevronRight /></button>
+    </div>
+  </div>
+</div>
+
+
 
       {/* Calendar */}
       <Calendar
