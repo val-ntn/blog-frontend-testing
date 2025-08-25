@@ -5,6 +5,8 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { API_BASE_URL } from "../../../utils/api";
 import axios from "axios";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 import "./SmallCalendar.css";
 import EventItem from "../../Events/EventItem";
 
@@ -62,7 +64,7 @@ export default function SmallCalendar() {
   });
 
   return (
-    <div>
+    <div className="calendar-container">
       <div className="calendar-header">
         <div className="weekday">{weekday}</div>
         <div className="month-year">
@@ -75,43 +77,42 @@ export default function SmallCalendar() {
 
         <div className="nav-controls">
           <div className="month-nav">
-            <button onClick={() => incrementMonth(-1)}>{"<"}</button>
-            <span>{currentMonth}</span>
-            <button onClick={() => incrementMonth(1)}>{">"}</button>
-          </div>
-          <div className="year-nav">
-            <button onClick={() => incrementYear(-1)}>{"<"}</button>
-            <span>{currentYear}</span>
-            <button onClick={() => incrementYear(1)}>{">"}</button>
-          </div>
+  <button type="button" onClick={() => incrementMonth(-1)}>
+    <FaChevronLeft />
+  </button>
+  <span>{currentMonth}</span>
+  <button type="button" onClick={() => incrementMonth(1)}>
+    <FaChevronRight />
+  </button>
+</div>
+<div className="year-nav">
+  <button type="button" onClick={() => incrementYear(-1)}>
+    <FaChevronLeft />
+  </button>
+  <span>{currentYear}</span>
+  <button type="button" onClick={() => incrementYear(1)}>
+    <FaChevronRight />
+  </button>
+</div>
+
         </div>
       </div>
 
-      <Calendar
-        onChange={setSelectedDate}
-        value={selectedDate}
-        activeStartDate={viewDate}
-        onActiveStartDateChange={({ activeStartDate }) =>
-          setViewDate(activeStartDate)
-        }
-        tileContent={({ date }) => {
-          const key = date.toISOString().split("T")[0];
-          return eventMap[key] ? <div className="dot" /> : null;
-        }}
-        showNavigation={false}
-      />
+  <Calendar
+    onChange={setSelectedDate}
+    value={selectedDate}
+    activeStartDate={viewDate}
+    onActiveStartDateChange={({ activeStartDate }) =>
+      setViewDate(activeStartDate)
+    }
+    tileContent={({ date }) => {
+      const key = date.toISOString().split("T")[0];
+      return eventMap[key] ? <div className="dot" /> : null;
+    }}
+    showNavigation={false}
+  />
 
-      {/* {todayEvents.length > 0 && (
-        <div className="event-details">
-          <h4>Events on {formatted}:</h4>
-          {todayEvents.map((event, idx) => (
-            <div key={idx}>
-              <strong>{event.title}</strong>
-              <p>{event.description || "No description"}</p>
-            </div>
-          ))}
-        </div>
-      )} */}
+
 
       {todayEvents.length > 0 && (
         <div className="event-details">

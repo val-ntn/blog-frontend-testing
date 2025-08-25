@@ -1,55 +1,6 @@
 // src/components/Events/UpcomingEvents.jsx
-/*import React, { useEffect, useState } from "react";
-import EventItem from "./EventItem";
-import { API_BASE_URL } from "../../utils/api";
-import PropTypes from "prop-types";
-import "./Events.css";
 
-export default function UpcomingEvents({ limit = 3 }) {
-  const [events, setEvents] = useState([]);
-  const [collapsed, setCollapsed] = useState(false); // for mobile toggle
 
-  useEffect(() => {
-    const start = performance.now();
-    fetch(`${API_BASE_URL}/events/upcoming?limit=${limit}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const end = performance.now();
-        console.log(`UpcomingEvents fetch took ${end - start} ms`);
-        setEvents(data);
-      })
-      .catch((err) => console.error("Error loading upcoming events:", err));
-  }, [limit]);
-
-  if (events.length === 0) return <p>No upcoming events.</p>;
-
-return (
-    <div className="upcoming-events">
-      <h2
-        className="events-title"
-        onClick={() => setCollapsed((prev) => !prev)}
-      >
-        Upcoming Events
-      </h2>
-      {!collapsed && (
-        <div className="events-list">
-          {events.map((event) => (
-            <React.Fragment key={event._id}>
-              <EventItem key={event._id} event={event} size="small" />
-              <div className="card__divider" />
-            </React.Fragment>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-UpcomingEvents.propTypes = {
-  limit: PropTypes.number,
-};*/
-
-// src/components/Events/UpcomingEvents.jsx
 import React, { useEffect, useState } from "react";
 import EventItem from "./EventItem";
 import { API_BASE_URL } from "../../utils/api";
@@ -107,15 +58,17 @@ export default function UpcomingEvents({ limit = 3 }) {
       {/* Only show list if not collapsed */}
       {(!isMobile || !collapsed) && (
         <div className="events-list-wrapper">
-        <div className="events-list">
-          {events.map((event) => (
-            <React.Fragment key={event._id}>
-              <EventItem event={event} size="small" />
-              <div className="card__divider" />
-            </React.Fragment>
-          ))}
+          <div className="events-list">
+            {events.map((event) => (
+              <React.Fragment key={event._id}>
+                <EventItem event={event} size="small" />
+                <div className="card__divider" />
+              </React.Fragment>
+            ))}
           </div>
+          <div className="small-calendar-wrapper">
           <SmallCalendar />
+          </div>
         </div>   
       )}
     </div>
