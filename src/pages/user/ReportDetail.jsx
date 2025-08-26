@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../utils/api";
 import ReportItem from "../../components/Reports/ReportItem";
+import "../../styles/layout.css"; // layout and container styles
+import "../../styles/pages.css"; // page-specific styles
 
 export default function ReportDetail() {
   const { id } = useParams();

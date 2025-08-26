@@ -1,20 +1,20 @@
 /* Events.css */
 
-/* Upcoming Events container */
+/*
 .upcoming-events {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
 }
 
-/* Event list wrapper */
+
 .upcoming-events__content-wrapper {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
 }
 
-/* Event list itself */
+
 .upcoming-events__list {
   display: flex;
   flex-direction: column;
@@ -22,18 +22,30 @@
   text-align: left;
 }
 
-/* Event item sizes */
-.event-item--small .event-item__title {
-  font-size: var(--font-size-md);
+
+.event--small .card__title--event {
+  font-size: var(--font-size-base);
+  font-weight: 600;
 }
-.event-item--medium .event-item__title {
-  font-size: var(--font-size-lg);
-}
-.event-item--large .event-item__title {
-  font-size: var(--font-size-xl);
+.event--small .card__text {
+  display: none; 
 }
 
-/* Upcoming Events title */
+
+.event--medium .card__title--event { 
+  font-size: var(--font-size-lg); 
+  font-weight: 600; 
+}
+.event--medium .card__text { display: block; }
+
+.event--large .card__title--event { 
+  font-size: var(--font-size-xl); 
+  font-weight: 600; 
+}
+.event--large .card__text { display: block; }
+
+
+
 .upcoming-events__title {
   display: flex;
   align-items: center;
@@ -49,12 +61,12 @@
 }
 
 .card__title--event {
-  font-family: var(--font-family-event-title); /* Montserrat */
+  font-family: var(--font-family-event-title); 
   color: var(--color-body);
   line-height: 1.2;
   margin: var(--spacing-md) 0 var(--spacing-md);
-  font-weight: var(--font-weight-normal); /* default bold for normal cards */
-  text-align: left; /* default alignment */
+  font-weight: var(--font-weight-normal); 
+  text-align: left; 
 }
 
 .card__title-event--small {
@@ -84,7 +96,7 @@
   text-align: left;
 }
 
-/* Chevron icon */
+
 .upcoming-events__chevron {
   transition: transform 0.3s ease;
 }
@@ -92,13 +104,13 @@
   transform: rotate(180deg);
 }
 
-/* Calendar wrapper */
+
 .upcoming-events__calendar-wrapper {
   flex: 1;
 }
 
 
-/* Responsive: tablet layout */
+
 @media (min-width: 601px) and (max-width: 899px) {
   .upcoming-events__content-wrapper {
     flex-direction: row;
@@ -113,11 +125,144 @@
   }
 }
 
-/* Desktop: remove toggle styles */
+
 @media (min-width: 601px) {
   .upcoming-events__title--toggleable {
     cursor: default;
     background: transparent;
     padding: 0;
+  }
+}
+*/
+
+/* ---------------------------------------- */
+/* Events.css - organized for clarity       */
+/* ---------------------------------------- */
+
+/* -------------------- */
+/* 1. Upcoming Events Container */
+/* -------------------- */
+.upcoming-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Wrapper for list + calendar */
+.upcoming-events__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Event list inside upcoming events */
+.upcoming-events__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  text-align: left;
+}
+
+/* Calendar wrapper */
+.upcoming-events__calendar-wrapper {
+  flex: 1;
+}
+
+/* -------------------- */
+/* 2. Upcoming Events Title & Toggleable */
+/* -------------------- */
+.upcoming-events__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  font-family: var(--font-family-event-title);
+}
+
+.upcoming-events__title--toggleable {
+  cursor: pointer;
+  background: var(--color-lightgray);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+/* Remove toggle styles on desktop */
+@media (min-width: 601px) {
+  .upcoming-events__title--toggleable {
+    cursor: default;
+    background: transparent;
+    padding: 0;
+  }
+}
+
+/* Chevron icon rotation */
+.upcoming-events__chevron {
+  transition: transform 0.3s ease;
+}
+.upcoming-events__chevron--rotated {
+  transform: rotate(180deg);
+}
+
+/* -------------------- */
+/* 3. EventItem Card Styling */
+/* -------------------- */
+.card__title--event {
+  font-family: var(--font-family-event-title); /* Montserrat */
+  color: var(--color-body);
+  line-height: 1.2;
+  margin: var(--spacing-md) 0 var(--spacing-md);
+  font-weight: var(--font-weight-normal); /* default weight for normal cards */
+  text-align: left; /* default alignment */
+}
+
+/* Text alignment modifiers */
+.card__title-event--center { text-align: center; }
+.card__title-event--right  { text-align: right; }
+.card__title-event--left   { text-align: left; }
+
+/* -------------------- */
+/* 4. EventItem Sizes */
+/* -------------------- */
+/* Small - only title + date */
+.event--small .card__title--event { 
+  font-size: var(--font-size-base); 
+  font-weight: 600; 
+}
+.event--small .card__text { 
+  display: none; 
+}
+
+/* Medium - title + description + date */
+.event--medium .card__title--event { 
+  font-size: var(--font-size-lg); 
+  font-weight: 600; 
+}
+.event--medium .card__text { 
+  display: block; 
+}
+
+/* Large - almost everything */
+.event--large .card__title--event { 
+  font-size: var(--font-size-xl); 
+  font-weight: 600; 
+}
+.event--large .card__text { 
+  display: block; 
+}
+
+/* -------------------- */
+/* 5. Responsive Layouts */
+/* -------------------- */
+@media (min-width: 601px) and (max-width: 899px) {
+  .upcoming-events__content-wrapper {
+    flex-direction: row;
+    gap: var(--spacing-lg);
+  }
+
+  .upcoming-events__list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
   }
 }

@@ -4,6 +4,8 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostItem from "../../components/Posts/PostItem";
 import { API_BASE_URL } from "../../utils/api";
+import "../../styles/layout.css"; // layout and container styles
+import "../../styles/pages.css"; // page-specific styles
 
 export default function PostDetail() {
   const { id } = useParams();

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../utils/api";
 import EventItem from "../../components/Events/EventItem";
+import "../../styles/layout.css"; // layout and container styles
+import "../../styles/pages.css"; // page-specific styles
 
 export default function EventDetail() {
   const { id } = useParams();

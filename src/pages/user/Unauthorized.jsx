@@ -1,4 +1,6 @@
 // frontend/src/pages/user/Unauthorized.jsx
+import "../../styles/layout.css"; // layout and container styles
+import "../../styles/pages.css"; // page-specific styles
 const Unauthorized = () => (
   <div>
     <h1>Unauthorized</h1>

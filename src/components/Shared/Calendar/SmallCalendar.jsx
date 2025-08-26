@@ -119,7 +119,7 @@ export default function SmallCalendar() {
             <EventItem
               key={event._id || event.id}
               event={event}
-              compact
+               size="small"
               linkToDetail
             />
           ))}
