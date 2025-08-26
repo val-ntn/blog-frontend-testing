@@ -25,7 +25,7 @@
 .blog-news,
 .events,
 .latest-report,
-.mapsearch {
+.teaser {
   background-color: var(--color-background-alt); /* white / highlighted */
   border: none;
   padding: 1rem; /* optional for spacing inside */
@@ -34,6 +34,7 @@
 /* Grayed-out mockup sections */
 .hero,
 .sidebar,
+.mapsearch,
 .widgets {
   background-color: var(--color-neutral-700); /* gray / mockup */
   border: 2px dashed var(--color-divider);
@@ -53,9 +54,10 @@
 .sidebar { grid-column: 1 / 9; grid-row: 3 / 7; }
 .blog-news { grid-column: 9 / 25; grid-row: 3 / 5; }
 .events { grid-column: 25 / 33; grid-row: 3 / 7; }
-.mapsearch { grid-column: 9 / 25; grid-row: 5 / 7; }
-.widgets { grid-column: 1 / 17; grid-row: 7 / 9; }
-.latest-report { grid-column: 17 / 33; grid-row: 7 / 9; }
+.teaser { grid-column: 9 / 25; grid-row: 5 / 7; }
+.widgets { grid-column: 1 / 9; grid-row: 7 / 9; }
+.latest-report { grid-column: 9 / 25; grid-row: 7 / 9; }
+.mapsearch { grid-column: 25 / 33; grid-row: 7 / 9; }
 
 
 
@@ -101,8 +103,12 @@
 @media (max-width: 1023px) {
   .sidebar { grid-column: 1 / 2; grid-row: 3 / 7; }
   .sidebar > p { display: none; }
+  .widgets { grid-column: 1 / 2; grid-row: 7 / 9; }
+  .widgets > p { display: none; }
   .blog-news { grid-column: 2 / 25; grid-row: 3 / 5; }
-  .mapsearch { grid-column: 2 / 25; grid-row: 5 / 7; }
+  .teaser { grid-column: 2 / 25; grid-row: 5 / 7; }
+  .latest-report { grid-column: 2 / 25; grid-row: 7 / 9; }
+  
 }
 
 @media (max-width: 899px) {
@@ -111,15 +117,17 @@
   .sidebar { grid-column: 1 / 2; grid-row: 2 / 7; }
   .sidebar > p { display: none; }
   .blog-news { grid-column: 2 / 33; grid-row: 2 / 5; }
-  .mapsearch { grid-column: 2 / 33; grid-row: 5 / 7; }
+  .teaser { grid-column: 2 / 33; grid-row: 5 / 7; }
   .events { grid-column: 1 / 33; grid-row: 7 / 8; }
-  .widgets { grid-column: 1 / 17; grid-row: 8 / 9; }
-  .latest-report { grid-column: 17 / 33; grid-row: 8 / 9; }
+  .latest-report { grid-column: 1 / 33; grid-row: 8 / 9; }
+  .widgets { grid-column: 1 / 17; grid-row: 9 / 10; }
+  .widgets > p { display: block; }
+  .mapsearch { grid-column: 17 / 33; grid-row: 9 / 10; }
 }
 
 @media (max-width: 599px) {
   .grid-layout { grid-template-columns: 1fr; }
-  .hero, .blog-news, .events, .mapsearch, .widgets, .latest-report {
+  .hero, .blog-news, .events, .teaser, .widgets, .latest-report, .mapsearch {
     grid-column: 1 / 2;
     grid-row: auto;
   }

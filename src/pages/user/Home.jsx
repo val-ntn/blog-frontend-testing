@@ -24,17 +24,20 @@ export default function Home() {
       <div className="events">
         <UpcomingEvents limit={3} />
       </div>
-      <div className="mapsearch">
-        Map Search
+      <div className="teaser">
+        Teaser
         <GetTeaserCard type="post"/>
       </div>
-      <div className="widgets">
-        Widgets
-        <GetTeaserCard type="event-report" />
-      </div>
+    
       <div className="latest-report">
         Latest Report
         <LatestReport />
+      </div>
+      <div className="mapsearch">
+        Mapsearch
+      </div>
+        <div className="widgets">
+        <p>Widgets</p>
       </div>
     </div>
   );
