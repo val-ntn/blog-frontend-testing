@@ -26,5 +26,9 @@ export default function PostDetail() {
 
   if (!post) return <p>Loading...</p>;
 
-  return <PostItem post={post} size="large" />;
+ return (
+    <div className="page-content post-detail-page">
+      <PostItem post={post} size="large" />
+    </div>
+  );
 }

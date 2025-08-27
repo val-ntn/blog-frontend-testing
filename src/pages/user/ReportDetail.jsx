@@ -25,5 +25,10 @@ export default function ReportDetail() {
 
   if (!report) return <p>Loading...</p>;
 
-  return <ReportItem report={report} size="large" />;
+  
+   return (
+      <div className="page-content report-detail-page">
+        <ReportItem report={report} size="large" />
+      </div>
+    );
 }

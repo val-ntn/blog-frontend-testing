@@ -1,14 +1,45 @@
 /* frontend/src/styles/pages.css */
 /*Page-specific styling for pages */
 
-h1 {
-  color: var(--color-primary);
-  /*margin-bottom: 1rem;*/
+/* Generic page content wrapper */
+.page-content {
+  padding: 1rem;        /* inner spacing */
+  background-color: white; /* default page background */
+  max-width: 100%;       /* optional if .content already handles max-width */
+  margin: 0 auto;        /* center if needed */
+  box-sizing: border-box;
 }
 
-/*section {
-  border: 2px dashed var(--color-secondary);
-  padding: 1rem;
-  margin-bottom: 1rem;
-  color: white;
-}*/
+/* Page-specific overrides */
+.home-page {
+  background-color: blue; /* for your mockup home components */
+}
+
+.calendar-page {
+  background-color: teal; /* calendar content */
+}
+
+.news-page {
+  background-color: crimson; /* news content */
+}
+
+.reports-page {
+  background-color: beige; /* news content */
+}
+
+.event-detail-page {
+  background-color: rgb(224, 224, 173);
+}
+
+.post-detail-page {
+  background-color: rgb(47, 159, 47)
+  ;
+}
+
+.report-detail-page {
+  background-color: rgb(144, 84, 144);
+}
+
+.unauthorized-page {
+  background-color: rgb(213, 77, 77);
+}

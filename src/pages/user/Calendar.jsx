@@ -5,9 +5,11 @@ import "../../styles/pages.css"; // page-specific styles
 
 export default function Calendar() {
   return (
-    <>
+
+    <div className="page-content calendar-page">
       <h1>Calendar</h1>
       <EventList size="large" linkToDetail/>
-    </>
+      </div>
+
   );
 }
