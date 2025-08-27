@@ -7,6 +7,7 @@
   max-width: var(--max-content-width);
   margin: 0 auto;
   padding: 0 var(--spacing-md);
+  background-color: aqua;
 }
 
 .grid-layout {
@@ -91,9 +92,9 @@
 .content {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  /*padding: 0 var(--spacing-md);*/
   width: 100%;
-  background-color: var(--color-neutral-800); /* neutral gray container */
+  background-color: white; /* neutral gray container */
   box-sizing: border-box;
 }
 

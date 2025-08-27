@@ -63,7 +63,7 @@ export default function UpcomingEvents({ limit = 3 }) {
           <div className="upcoming-events__list">
             {events.map((event) => (
               <React.Fragment key={event._id}>
-                <EventItem event={event} size="medium" />
+                <EventItem event={event} size="medium" linkToDetail/>
                 <div className="card__divider" />
               </React.Fragment>
             ))}

@@ -52,7 +52,7 @@ export default function PostItem({ post, size = "medium" }) {
       {showReadMore && (
         <div className="post-item__read-more">
           <Link to={`/posts/${getId(post._id)}`} className="card__read-more">
-            Read more →
+            Read More 
           </Link>
         </div>
       )}

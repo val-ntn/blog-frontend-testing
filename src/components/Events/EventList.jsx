@@ -10,6 +10,7 @@ export default function EventList({
   size = "medium",
   renderActions,
   refreshFlag,
+  linkToDetail = false,
 }) {
   const [events, setEvents] = useState([]);
 
@@ -41,7 +42,7 @@ export default function EventList({
       {events.length === 0 && <p>No events found</p>}
       {events.map((event) => (
         <div key={event._id}>
-          <EventItem event={event} size={size} />
+          <EventItem event={event} size={size} linkToDetail={linkToDetail}/>
           {renderActions && renderActions(event)}
         </div>
       ))}

@@ -1,139 +1,4 @@
-/* Events.css */
 
-/*
-.upcoming-events {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
-
-.upcoming-events__content-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
-
-.upcoming-events__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  text-align: left;
-}
-
-
-.event--small .card__title--event {
-  font-size: var(--font-size-base);
-  font-weight: 600;
-}
-.event--small .card__text {
-  display: none; 
-}
-
-
-.event--medium .card__title--event { 
-  font-size: var(--font-size-lg); 
-  font-weight: 600; 
-}
-.event--medium .card__text { display: block; }
-
-.event--large .card__title--event { 
-  font-size: var(--font-size-xl); 
-  font-weight: 600; 
-}
-.event--large .card__text { display: block; }
-
-
-
-.upcoming-events__title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-sm);
-  font-family: var(--font-family-event-title);
-}
-.upcoming-events__title--toggleable {
-  cursor: pointer;
-  background: var(--color-lightgray);
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius-sm);
-}
-
-.card__title--event {
-  font-family: var(--font-family-event-title); 
-  color: var(--color-body);
-  line-height: 1.2;
-  margin: var(--spacing-md) 0 var(--spacing-md);
-  font-weight: var(--font-weight-normal); 
-  text-align: left; 
-}
-
-.card__title-event--small {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-}
-
-.card__title-event--medium {
-  font-size: var(--font-size-base);
-   font-weight: var(--font-weight-bold);
-}
-
-.card__title-event--large {
-  font-size: var(--font-size-lg);
-   font-weight: var(--font-weight-bold);
-}
-
-.card__title-event--center {
-  text-align: center;
-}
-
-.card__title-event--right {
-  text-align: right;
-}
-
-.card__title-event--left {
-  text-align: left;
-}
-
-
-.upcoming-events__chevron {
-  transition: transform 0.3s ease;
-}
-.upcoming-events__chevron--rotated {
-  transform: rotate(180deg);
-}
-
-
-.upcoming-events__calendar-wrapper {
-  flex: 1;
-}
-
-
-
-@media (min-width: 601px) and (max-width: 899px) {
-  .upcoming-events__content-wrapper {
-    flex-direction: row;
-    gap: var(--spacing-lg);
-  }
-
-  .upcoming-events__list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-}
-
-
-@media (min-width: 601px) {
-  .upcoming-events__title--toggleable {
-    cursor: default;
-    background: transparent;
-    padding: 0;
-  }
-}
-*/
 
 /* ---------------------------------------- */
 /* Events.css - organized for clarity       */
@@ -249,6 +114,20 @@
 .event--large .card__text { 
   display: block; 
 }
+
+.event-item__link {
+  display: block;         /* makes it behave like a div */
+  color: inherit;         /* inherit text color from card */
+  text-decoration: none;  /* remove underline */
+}
+
+.event-item__link:hover {
+  cursor: pointer;
+  background-color: var(--color-background-alt); /* already defined */
+  border-radius: 0.1rem; /* or define your own --border-radius-sm if you want */
+}
+
+
 
 /* -------------------- */
 /* 5. Responsive Layouts */

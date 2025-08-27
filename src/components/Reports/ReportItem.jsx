@@ -55,7 +55,7 @@ export default function ReportItem({ report, size = "medium" }) {
             to={`/event-reports/${getId(report._id)}`}
             className="card__read-more"
           >
-            Read more →
+            Read More
           </Link>
         </div>
       )}

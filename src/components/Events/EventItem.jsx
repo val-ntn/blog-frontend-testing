@@ -1,3 +1,5 @@
+
+
 // src/components/Events/EventItem.jsx
 
 import React from "react";
@@ -7,41 +9,44 @@ import { Link } from "react-router-dom";
 
 /**
  * EventItem renders an event in one of three sizes:
- * "small" (excerpt), "medium" (full desc), "large" (same as medium for now)
+ * - "small": excerpt + read more
+ * - "medium": full description
+ * - "large": full description + extra meta (location, contact, etc.)
  *
- * @param {Object} event - The event object
- * @param {string} size - "small", "medium", or "large"
- * @param {boolean} linkToDetail - Wrap in link or not
+ * Consistent with PostItem & ReportItem structure.
  */
 export default function EventItem({
   event,
   size = "medium",
   linkToDetail = false,
 }) {
-  let description = "";
+  let contentToRender;
+  //let showReadMore = false;
+  let shouldLink = linkToDetail;
+  let showExtraMeta = false;
   let sizeClass = "";
 
-  switch (size) {
-    case "small":
-      description = getExcerpt(event.description, 60);
-      sizeClass = "event--small";
-      break;
-    case "medium":
-    case "large":
-    default:
-      description = event.description;
-      sizeClass = size === "large" ? "event--large" : "event--medium";
-  }
 
-  const content = (
-    <div className={`event-item ${sizeClass}`}>
-      <h4 className={`card__title--event card__title-event--${size}`}>{event.title}</h4>
-      {description && <p className="card__text">{description}</p>}
-      <small className="card__date card__date--center">
-        Date: {formatDateRange(event.startDate, event.endDate)}
-      </small>
-    </div>
-  );
+switch (size) {
+  case "small":
+    contentToRender = event.excerpt || getExcerpt(event.description, 60);
+    sizeClass = "event--small";
+    break;
+  case "medium":
+    contentToRender = event.description;
+    sizeClass = "event--medium";
+    break;
+  case "large":
+    contentToRender = event.description;
+    showExtraMeta = true;
+    sizeClass = "event--large";
+    shouldLink = false; // override for large
+    break;
+  default:
+    contentToRender = event.description;
+    sizeClass = "event--medium";
+}
+  
 
   function getId(id) {
     if (!id) return "";
@@ -49,12 +54,66 @@ export default function EventItem({
     return id;
   }
 
-  return linkToDetail ? (
-    <Link to={`/events/${getId(event._id)}`} className="detail-link">
-      {content}
+  const body = (
+    <div className={`event-item ${sizeClass}`}>
+      {/* Event title */}
+      <h4 className={`card__title--event card__title-event--${size}`}>
+        {event.title}
+      </h4>
+
+      {/* Main description/excerpt */}
+      {contentToRender && <p className="card__text">{contentToRender}</p>}
+
+      {/* Date (always shown) */}
+      <small className="card__date card__date--center">
+       {formatDateRange(event.startDate, event.endDate)}
+      </small>
+
+      {/* Extra details for large cards */}
+      {showExtraMeta && (
+        <div className="event-item__meta">
+          {event.location && (
+            <p>
+              <strong>📍 Location:</strong> {event.location}
+            </p>
+          )}
+          {event.schedule && (
+            <p>
+              <strong>🕒 Schedule:</strong> {event.schedule}
+            </p>
+          )}
+          {event.costs && (
+            <p>
+              <strong>💲 Costs:</strong> {event.costs}
+            </p>
+          )}
+          {event.contact && (
+            <p>
+              <strong>☎ Contact:</strong> {event.contact}
+            </p>
+          )}
+          {event.source && (
+            <p>
+              <a
+                href={event.source}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit website
+              </a>
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+
+  return shouldLink ? (
+    <Link to={`/events/${getId(event._id)}`} className="event-item__link">
+      {body}
     </Link>
   ) : (
-    content
+    body
   );
 }
 
@@ -66,14 +125,20 @@ EventItem.propTypes = {
     ]).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
+    excerpt: PropTypes.string, // allow backend-provided excerpt
     startDate: PropTypes.oneOfType([
-      PropTypes.string, // when fetched as JSON
+      PropTypes.string,
       PropTypes.instanceOf(Date),
     ]).isRequired,
     endDate: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(Date),
     ]),
+    location: PropTypes.string,
+    schedule: PropTypes.string,
+    costs: PropTypes.string,
+    contact: PropTypes.string,
+    source: PropTypes.string,
   }).isRequired,
   size: PropTypes.oneOf(["small", "medium", "large"]),
   linkToDetail: PropTypes.bool,
