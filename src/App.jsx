@@ -14,7 +14,7 @@ import PostDetail from "./pages/user/PostDetail";
 import EventDetail from "./pages/user/EventDetail";
 import Reports from "./pages/user/Reports";
 import ReportDetail from "./pages/user/ReportDetail";
-//import "./App.css";
+
 
 function App() {
   return (
@@ -22,18 +22,7 @@ function App() {
       <div className="app">
         <Navbar />
 
-                <Routes>
-          {/* Full-width dashboard outside of .content */}
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            }
-          />
-          <Route path="/admin/login" element={<AdminLogin />} />
-        </Routes>
+
         <main className="main">
         <div className="content">
           <Routes>
@@ -47,7 +36,7 @@ function App() {
             <Route path="/event-reports/:id" element={<ReportDetail />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
 
-            {/* Protected admin dashboard route 
+            {/* Protected admin dashboard route */}
             <Route
               path="/admin"
               element={
@@ -57,7 +46,7 @@ function App() {
               }
             />
 
-            <Route path="/admin/login" element={<AdminLogin />} />*/}
+            <Route path="/admin/login" element={<AdminLogin />} />
           </Routes>
         </div>
         </main>

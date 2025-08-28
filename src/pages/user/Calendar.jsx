@@ -6,7 +6,7 @@ import "../../styles/pages.css"; // page-specific styles
 export default function Calendar() {
   return (
 
-    <div className="page-content calendar-page">
+    <div className="page-content page-content--calendar">
       <h1>Calendar</h1>
       <EventList size="large" linkToDetail/>
       </div>

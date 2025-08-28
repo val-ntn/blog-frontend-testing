@@ -27,7 +27,7 @@ export default function ReportDetail() {
 
   
    return (
-      <div className="page-content report-detail-page">
+      <div className="page-content page-content--report-detail">
         <ReportItem report={report} size="large" />
       </div>
     );

@@ -12,7 +12,7 @@ import "../../styles/pages.css"; // page-specific styles
 
 export default function Home() {
   return (
-    <div className="page-content news-page">
+    <div className="page-content page-content--home">
     <div className="grid-layout">
       <div className="hero">Hero Content</div>
       <div className="sidebar">

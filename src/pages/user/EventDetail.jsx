@@ -27,7 +27,7 @@ export default function EventDetail() {
   if (!event) return <p>Loading...</p>;
 
   return (
-    <div className="page-content event-detail-page">
+    <div className="page-content page-content--event-detail">
   <EventItem event={event} size="large" />
   </div>
 );

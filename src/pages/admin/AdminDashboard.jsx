@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Dashboard from "../../components/Admin/Dashboard/Dashboard"; // import the child dashboard component
 import LogoutButton from "../../components/Admin/Dashboard/LogoutButton";
 import { API_BASE_URL } from "../../utils/api";
+import "../../styles/layout.css";
+import "../../styles/pages.css";
 
 export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
@@ -38,7 +40,7 @@ export default function AdminDashboard() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
+    <div className="admin-content page-content--dashboard">
       <h1>Admin Dashboard</h1>
       <p>Welcome, admin! You have access to this page.</p>
       <Dashboard /> {/* Render the dashboard UI component here */}

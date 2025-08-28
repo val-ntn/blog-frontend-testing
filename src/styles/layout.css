@@ -90,13 +90,21 @@
 }
 
 .content {
-  max-width: var(--max-content-width);
+  max-width: 1600px;
   margin: 0 auto;
   /*padding: 0 var(--spacing-md);*/
   width: 100%;
   /*background-color: white;  neutral gray container */
   box-sizing: border-box;
 }
+
+.admin-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
 /* -------------------- */
 /* Grid Layout - Responsive */

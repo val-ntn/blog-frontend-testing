@@ -1,45 +1,52 @@
 /* frontend/src/styles/pages.css */
-/*Page-specific styling for pages */
+/* Page-specific styling for pages */
 
 /* Generic page content wrapper */
 .page-content {
-  padding: 1rem;        /* inner spacing */
-  background-color: white; /* default page background */
-  max-width: 100%;       /* optional if .content already handles max-width */
-  margin: 0 auto;        /* center if needed */
+  padding: 1rem;             /* inner spacing */
+  background-color: white;    /* default page background */
+  max-width: var(--max-content-width);
+  margin: 0 auto;             /* center if needed */
   box-sizing: border-box;
 }
 
-/* Page-specific overrides */
-.home-page {
-  background-color: blue; /* for your mockup home components */
+/* Page-specific modifiers */
+.page-content--home {
+  background-color: var(--color-neutral-800);
 }
 
-.calendar-page {
-  background-color: teal; /* calendar content */
+.page-content--calendar {
+  background-color: teal;
 }
 
-.news-page {
-  background-color: crimson; /* news content */
+.page-content--news {
+  background-color: crimson;
 }
 
-.reports-page {
-  background-color: beige; /* news content */
+.page-content--reports {
+  background-color: beige;
 }
 
-.event-detail-page {
+.page-content--event-detail {
   background-color: rgb(224, 224, 173);
 }
 
-.post-detail-page {
-  background-color: rgb(47, 159, 47)
-  ;
+.page-content--post-detail {
+  background-color: rgb(47, 159, 47);
 }
 
-.report-detail-page {
+.page-content--report-detail {
   background-color: rgb(144, 84, 144);
 }
 
-.unauthorized-page {
+.page-content--unauthorized {
   background-color: rgb(213, 77, 77);
+}
+
+.page-content--dashboard {
+  background-color: rgb(77, 174, 213);
+}
+
+.page-content--login {
+  background-color: rgb(69, 64, 226);
 }

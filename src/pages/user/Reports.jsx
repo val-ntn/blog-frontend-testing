@@ -5,7 +5,7 @@ import "../../styles/pages.css"; // page-specific styles
 
 export default function Reports() {
   return (
-    <div className="page-content reports-page">
+    <div className="page-content page-content--reports">
       <h1>Event Reports</h1>
       <ReportList />
     </div>

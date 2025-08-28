@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { API_BASE_URL } from "../../utils/api";
+import "../../styles/layout.css";
+import "../../styles/pages.css";
 
 function AdminLogin() {
   const { user, setUser, loading } = useAuth(); // <-- include setUser here
@@ -48,7 +50,7 @@ function AdminLogin() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="admin-content .page-content--login">
       <h2>Admin Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
