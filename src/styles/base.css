@@ -44,6 +44,7 @@ h1 {
   font-family: var(--font-family-heading);
   line-height: 1.2;
   margin: var(--spacing-md) 0 var(--spacing-md);
+  color: var(--color-primary)
 }
 h2 {
   font-size: var(--font-size-h2);

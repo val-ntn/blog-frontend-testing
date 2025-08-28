@@ -1,7 +1,6 @@
 
-
 /* ---------------------------------------- */
-/* Events.css - organized for clarity       */
+/* Events.css - BEM-compliant for EventItem */
 /* ---------------------------------------- */
 
 /* -------------------- */
@@ -69,79 +68,89 @@
 }
 
 /* -------------------- */
-/* 3. EventItem Card Styling */
+/* 3. EventItem Card Styling - BEM */
 /* -------------------- */
-.card__title--event {
-  font-family: var(--font-family-event-title); /* Montserrat */
+
+/* Outer wrapper based on size */
+.event-item--large--wrapper {
+  display: flex;
+  flex-direction: column; /* two-column layout for large events */
+  gap: var(--spacing-md);
+}
+.event-item__body {
+  display: flex;
+  flex-direction: row; /* two-column layout for large events */
+  gap: var(--spacing-md);
+}
+
+.event-item--medium--wrapper,
+.event-item--small--wrapper {
+  display: flex;
+  flex-direction: column; /* stacked layout for medium & small */
+  gap: var(--spacing-md);
+}
+
+/* Columns inside wrapper */
+.event-item__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.event-item__col--main {
+  flex: 2; /* main content wider */
+}
+
+.event-item__col--meta {
+  flex: 1; /* extra meta column smaller */
+  gap: 0.5rem;
+}
+
+/* Title, text, date */
+.event-item__title {
+  font-family: var(--font-family-event-title);
   color: var(--color-body);
   line-height: 1.2;
   margin: var(--spacing-md) 0 var(--spacing-md);
-  font-weight: var(--font-weight-normal); /* default weight for normal cards */
-  text-align: left; /* default alignment */
+  font-weight: var(--font-weight-normal);
+  text-align: left;
 }
 
-/* Text alignment modifiers */
-.card__title-event--center { text-align: center; }
-.card__title-event--right  { text-align: right; }
-.card__title-event--left   { text-align: left; }
+.event-item__title--small { font-size: var(--font-size-base); font-weight: 600; }
+.event-item__title--medium { font-size: var(--font-size-lg); font-weight: 600; }
+.event-item__title--large { font-size: var(--font-size-xl); font-weight: 600; }
+
+.event-item__text {
+  margin-bottom: var(--spacing-sm);
+}
+
+.event-item__date {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Hide text for small events */
+.event-item--small .event-item__text { display: none; }
 
 /* -------------------- */
-/* 4. EventItem Sizes */
-/* -------------------- */
-/* Small - only title + date */
-.event--small .card__title--event { 
-  font-size: var(--font-size-base); 
-  font-weight: 600; 
-}
-.event--small .card__text { 
-  display: none; 
-}
-
-/* Medium - title + description + date */
-.event--medium .card__title--event { 
-  font-size: var(--font-size-lg); 
-  font-weight: 600; 
-}
-.event--medium .card__text { 
-  display: block; 
-}
-
-/* Large - almost everything */
-.event--large .card__title--event { 
-  font-size: var(--font-size-xl); 
-  font-weight: 600; 
-}
-.event--large .card__text { 
-  display: block; 
-}
-
+/* 4. EventItem Link */
 .event-item__link {
-  display: block;         /* makes it behave like a div */
-  color: inherit;         /* inherit text color from card */
+  display: block;         /* behaves like a div */
+  color: inherit;         /* inherit text color */
   text-decoration: none;  /* remove underline */
 }
 
 .event-item__link:hover {
   cursor: pointer;
-  background-color: var(--color-background-alt); /* already defined */
-  border-radius: 0.1rem; /* or define your own --border-radius-sm if you want */
+  background-color: var(--color-background-alt);
+  border-radius: 0.1rem;
 }
-
-
 
 /* -------------------- */
 /* 5. Responsive Layouts */
 /* -------------------- */
-@media (min-width: 601px) and (max-width: 899px) {
-  .upcoming-events__content-wrapper {
-    flex-direction: row;
-    gap: var(--spacing-lg);
-  }
-
-  .upcoming-events__list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+@media (max-width: 899px) {
+  .event-item--large--wrapper {
+    flex-direction: column; /* stack columns on smaller screens */
   }
 }
