@@ -20,11 +20,11 @@
 }
 
 .page-content--news {
-  background-color: crimson;
+  background-color: white;
 }
 
 .page-content--reports {
-  background-color: beige;
+  background-color: white;
 }
 
 .page-content--event-detail {
@@ -49,4 +49,18 @@
 
 .page-content--login {
   background-color: rgb(69, 64, 226);
+}
+
+
+/* -------------------- */
+/* Page headers (BEM modifier) */
+/* -------------------- */
+.header--page {
+  background-color: var(--color-teal-700);
+  color: white;
+  padding: 1rem 2rem;        /* inner spacing */
+  text-align: right;         /* align text to the right */
+  border-radius: 0.25rem;    /* optional rounded corners */
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-family-event-title);
 }

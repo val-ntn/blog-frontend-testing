@@ -7,7 +7,7 @@ export default function Calendar() {
   return (
 
     <div className="page-content page-content--calendar">
-      <h1>Calendar</h1>
+      <h1 className="header--page">Calendar</h1>
       <EventList size="large" linkToDetail/>
       </div>
 

@@ -25,7 +25,7 @@ export default function PostList({
   }, [limit, refreshFlag]);
 
   return (
-    <div>
+    <div className="list-wrapper">
       {posts.length === 0 && <p>No posts found</p>}
       {posts.map((post) => (
         <div key={post._id}>

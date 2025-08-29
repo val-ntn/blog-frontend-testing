@@ -23,7 +23,7 @@ export default function ReportList({
   }, [limit, refreshFlag]);
 
   return (
-    <div>
+    <div className="list-wrapper">
       {reports.length === 0 && <p>No reports found</p>}
       {reports.map((report) => (
         <div key={report._id}>

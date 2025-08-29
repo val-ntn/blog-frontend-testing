@@ -132,3 +132,18 @@
   max-width: 100%;
   height: auto;
 }
+
+
+.list-wrapper {
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: var(--spacing-xl)           /* spacing between items */
+}
+/* Remove horizontal padding on small screens */
+@media (max-width: 600px) {
+  .list-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

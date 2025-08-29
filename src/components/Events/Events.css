@@ -51,7 +51,7 @@
 }
 
 /* Remove toggle styles on desktop */
-@media (min-width: 601px) {
+@media (min-width: 600px) {
   .upcoming-events__title--toggleable {
     cursor: default;
     background: transparent;
@@ -80,7 +80,7 @@
 .event-item__body {
   display: flex;
   flex-direction: row; /* two-column layout for large events */
-  gap: var(--spacing-md);
+  gap: var(--spacing-xl);
 }
 
 .event-item--medium--wrapper,
@@ -149,8 +149,13 @@
 /* -------------------- */
 /* 5. Responsive Layouts */
 /* -------------------- */
-@media (max-width: 899px) {
-  .event-item--large--wrapper {
-    flex-direction: column; /* stack columns on smaller screens */
+@media (max-width: 900px) {
+
+  .event-item__body {
+    flex-direction: column; /* stack main + meta vertically */
+  /* .event-item--large--wrapper {
+    flex-direction: column; stack columns on smaller screens */
   }
 }
+
+
