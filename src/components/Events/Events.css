@@ -70,6 +70,11 @@
 /* -------------------- */
 /* 3. EventItem Card Styling - BEM */
 /* -------------------- */
+.event-item--large {
+  /*box-shadow: 0 -2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);*/
+   border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
 
 /* Outer wrapper based on size */
 .event-item--large--wrapper {
@@ -80,7 +85,7 @@
 .event-item__body {
   display: flex;
   flex-direction: row; /* two-column layout for large events */
-  gap: var(--spacing-xl);
+  gap: calc(var(--spacing-xl) * 2);
 }
 
 .event-item--medium--wrapper,
@@ -153,6 +158,7 @@
 
   .event-item__body {
     flex-direction: column; /* stack main + meta vertically */
+    gap: var(--spacing-md);
   /* .event-item--large--wrapper {
     flex-direction: column; stack columns on smaller screens */
   }

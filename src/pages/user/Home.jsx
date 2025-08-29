@@ -3,9 +3,8 @@
 import LatestPost from "../../components/Posts/LatestPost";
 import UpcomingEvents from "../../components/Events/UpcomingEvents";
 import LatestReport from "../../components/Reports/LatestReport";
-import SmallCalendar from "../../components/Shared/Calendar/SmallCalendar";
 import GetTeaserCard from "../../components/Shared/TeaserCard/GetTeaserCard";
-//import Sidebar from "../../components/Shared/Sidebar/Sidebar";
+
 
 import "../../styles/layout.css"; // layout and container styles
 import "../../styles/pages.css"; // page-specific styles

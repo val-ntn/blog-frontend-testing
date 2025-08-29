@@ -44,7 +44,7 @@ export default function EventList({
   <React.Fragment key={event._id}>
     <EventItem event={event} size={size} linkToDetail={linkToDetail} />
     {renderActions && renderActions(event)}
-    {index < events.length - 1 && <div className="card__divider" />}
+    {/*{index < events.length - 1 && <div className="card__divider" />}*/}
   </React.Fragment>
 ))}
     </div>

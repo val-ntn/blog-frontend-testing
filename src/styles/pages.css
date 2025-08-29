@@ -55,12 +55,13 @@
 /* -------------------- */
 /* Page headers (BEM modifier) */
 /* -------------------- */
-.header--page {
+/*.header--page {
   background-color: var(--color-teal-700);
   color: white;
-  padding: 1rem 2rem;        /* inner spacing */
-  text-align: right;         /* align text to the right */
-  border-radius: 0.25rem;    /* optional rounded corners */
+  padding: 1rem 2rem;        
+  text-align: right;         
+  border-radius: 0.25rem;    
   margin-bottom: var(--spacing-lg);
   font-family: var(--font-family-event-title);
-}
+  padding-right: var(--spacing-xl);
+}*/
