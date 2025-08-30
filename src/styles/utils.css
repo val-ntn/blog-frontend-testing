@@ -66,6 +66,22 @@
   text-align: left;
 }
 
+/* Wrapper for PostItem and ReportItem to control layout */
+.card-item--wrapper {
+  display: flex;
+  flex-direction: column; /* always stacked */
+  gap: var(--spacing-md); /* same as event-item large */
+}
+
+.card-item--small--wrapper,
+.card-item--medium--wrapper,
+.card-item--large--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md); /* or var(--spacing-xs) for small if you want */
+}
+
+
 /* -------------------- */
 /* Tagline / Subtitle   */
 /* -------------------- */
@@ -97,6 +113,11 @@
   line-height: 1.5;
   margin-bottom: var(--spacing-md);
 }
+
+.no-shadow {
+  box-shadow: none !important; /* removes any card or item shadow */
+}
+
 
 /* -------------------- */
 /* Divider              */

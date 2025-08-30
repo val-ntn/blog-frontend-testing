@@ -28,7 +28,7 @@
 }
 
 .page-content--event-detail {
-  background-color: rgb(224, 224, 173);
+  background-color: white;
 }
 
 .page-content--post-detail {
@@ -36,7 +36,7 @@
 }
 
 .page-content--report-detail {
-  background-color: rgb(144, 84, 144);
+  background-color: white;
 }
 
 .page-content--unauthorized {

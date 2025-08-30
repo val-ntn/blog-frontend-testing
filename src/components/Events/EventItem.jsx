@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
  * - "medium": description
  * - "large": description + extra meta
  */
-export default function EventItem({ event, size = "medium", linkToDetail = false }) {
+export default function EventItem({ event, size = "medium", linkToDetail = false, noShadow = false }) {
   let contentToRender;
   let shouldLink = linkToDetail;
   let showExtraMeta = false;
@@ -45,7 +45,7 @@ export default function EventItem({ event, size = "medium", linkToDetail = false
   }
 
   const body = (
-    <div className={`event-item event-item--${size} event-item--${size}--wrapper`}>
+    <div className={`event-item event-item--${size} event-item--${size}--wrapper ${noShadow ? "no-shadow" : ""}`}>
     {/*<div className={`event-item ${sizeClass} ${sizeClass}--wrapper`}>*/}
           {/* Title (always full width, on top) */}
     <h4 className={`event-item__title event-item__title--${size}`}>

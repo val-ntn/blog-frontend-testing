@@ -41,7 +41,7 @@ export default function PostItem({ post, size = "medium" }) {
   }
 
   return (
-    <div className={`post-item post-item--${size}`}>
+    <div className={`post-item post-item--${size} card-item--${size}--wrapper`}>
   <h3 className={`card__title card__title--${size}`}>{post.title}</h3>
      {/*<div className={`post-item ${sizeClass}`}>
       <h3 className="card__title">{post.title}</h3>*/}

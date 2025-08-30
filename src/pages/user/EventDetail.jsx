@@ -28,7 +28,7 @@ export default function EventDetail() {
 
   return (
     <div className="page-content page-content--event-detail">
-  <EventItem event={event} size="large" />
+  <EventItem event={event} size="large" noShadow/>
   </div>
 );
 }

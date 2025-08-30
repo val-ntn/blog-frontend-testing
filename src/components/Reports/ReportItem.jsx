@@ -41,7 +41,7 @@ export default function ReportItem({ report, size = "medium" }) {
   }
 
   return (
-  <div className={`report-item post-item--${size}`}>
+  <div className={`report-item post-item--${size} card-item--${size}--wrapper`}>
   <h3 className={`card__title card__title--${size}`}>{report.title}</h3>
     {/*<div className={`report-item ${sizeClass}`}>
       <h3 className="card__title">{report.title}</h3>*/}
