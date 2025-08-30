@@ -32,17 +32,24 @@
   text-align: left; /* default alignment */
 }
 
-.card__title--sm {
-  font-size: var(--font-size-sm);
+.card__title--small {
+  font-size: var(--font-size-lg); /* same as event-item__title--large */
+  font-weight: 300;
+  margin: var(--spacing-md) 0 var(--spacing-md);
 }
 
-.card__title--md {
-  font-size: var(--font-size-base);
+.card__title--medium {
+  font-size: var(--font-size-xl); /* same as event-item__title--large */
+  font-weight: 00;
+  margin: var(--spacing-md) 0 var(--spacing-md);
 }
 
-.card__title--lg {
-  font-size: var(--font-size-lg);
+.card__title--large {
+  font-size: var(--font-size-xl); /* same as event-item__title--large */
+  font-weight: 00;
+  margin: var(--spacing-md) 0 var(--spacing-md);
 }
+
 
 .card__title--xl {
   font-size: var(--font-size-xl);

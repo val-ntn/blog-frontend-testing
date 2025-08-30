@@ -15,23 +15,23 @@ export default function PostItem({ post, size = "medium" }) {
   let contentToRender;
   let showReadMore = false;
   let showCarousel = false;
-  let sizeClass = "";
+  //let sizeClass = "";
 
   switch (size) {
     case "small":
       contentToRender = post.excerpt;
       showReadMore = true;
-      sizeClass = "post-item--small";
+      //sizeClass = "post-item--small";
       break;
     case "large":
       contentToRender = post.content;
       showCarousel = true;
-      sizeClass = "post-item--large";
+      //sizeClass = "post-item--large";
       break;
     case "medium":
     default:
       contentToRender = post.content;
-      sizeClass = "post-item--medium";
+      //sizeClass = "post-item--medium";
   }
 
   function getId(id) {
@@ -41,9 +41,10 @@ export default function PostItem({ post, size = "medium" }) {
   }
 
   return (
-    <div className={`post-item ${sizeClass}`}>
-      {/* Shared card title */}
-      <h3 className="card__title">{post.title}</h3>
+    <div className={`post-item post-item--${size}`}>
+  <h3 className={`card__title card__title--${size}`}>{post.title}</h3>
+     {/*<div className={`post-item ${sizeClass}`}>
+      <h3 className="card__title">{post.title}</h3>*/}
 
       {/* Safe HTML content */}
       <SafeHTMLRenderer content={contentToRender} />

@@ -15,23 +15,23 @@ export default function ReportItem({ report, size = "medium" }) {
   let contentToRender;
   let showReadMore = false;
   let showCarousel = false;
-  let sizeClass = "";
+  //let sizeClass = "";
 
   switch (size) {
     case "small":
       contentToRender = report.excerpt;
       showReadMore = true;
-      sizeClass = "report-item--small";
+      //sizeClass = "report-item--small";
       break;
     case "large":
       contentToRender = report.content;
       showCarousel = true;
-      sizeClass = "report-item--large";
+      //sizeClass = "report-item--large";
       break;
     case "medium":
     default:
       contentToRender = report.content;
-      sizeClass = "report-item--medium";
+      //sizeClass = "report-item--medium";
   }
 
   function getId(id) {
@@ -41,9 +41,10 @@ export default function ReportItem({ report, size = "medium" }) {
   }
 
   return (
-    <div className={`report-item ${sizeClass}`}>
-      {/* Shared card title utility */}
-      <h3 className="card__title">{report.title}</h3>
+  <div className={`report-item post-item--${size}`}>
+  <h3 className={`card__title card__title--${size}`}>{report.title}</h3>
+    {/*<div className={`report-item ${sizeClass}`}>
+      <h3 className="card__title">{report.title}</h3>*/}
 
       {/* Safe HTML body */}
       <SafeHTMLRenderer content={contentToRender} />

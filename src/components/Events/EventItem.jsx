@@ -16,26 +16,26 @@ export default function EventItem({ event, size = "medium", linkToDetail = false
   let contentToRender;
   let shouldLink = linkToDetail;
   let showExtraMeta = false;
-  let sizeClass = "";
+  //let sizeClass = "";
 
   switch (size) {
     case "small":
       contentToRender = event.excerpt || getExcerpt(event.description, 60);
-      sizeClass = "event-item--small";
+      //sizeClass = "event-item--small";
       break;
     case "medium":
       contentToRender = event.description;
-      sizeClass = "event-item--medium";
+      //sizeClass = "event-item--medium";
       break;
     case "large":
       contentToRender = event.description;
       showExtraMeta = true;
-      sizeClass = "event-item--large";
+      //sizeClass = "event-item--large";
       shouldLink = false; // large events do not link
       break;
     default:
       contentToRender = event.description;
-      sizeClass = "event-item--medium";
+      //sizeClass = "event-item--medium";
   }
 
   function getId(id) {
@@ -45,7 +45,8 @@ export default function EventItem({ event, size = "medium", linkToDetail = false
   }
 
   const body = (
-    <div className={`event-item ${sizeClass} ${sizeClass}--wrapper`}>
+    <div className={`event-item event-item--${size} event-item--${size}--wrapper`}>
+    {/*<div className={`event-item ${sizeClass} ${sizeClass}--wrapper`}>*/}
           {/* Title (always full width, on top) */}
     <h4 className={`event-item__title event-item__title--${size}`}>
       {event.title}
