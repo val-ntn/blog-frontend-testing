@@ -66,20 +66,6 @@
   text-align: left;
 }
 
-/* Wrapper for PostItem and ReportItem to control layout */
-.card-item--wrapper {
-  display: flex;
-  flex-direction: column; /* always stacked */
-  gap: var(--spacing-md); /* same as event-item large */
-}
-
-.card-item--small--wrapper,
-.card-item--medium--wrapper,
-.card-item--large--wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md); /* or var(--spacing-xs) for small if you want */
-}
 
 
 /* -------------------- */
@@ -156,21 +142,91 @@
   color: var(--color-text-dark);
 }
 
+/* Meta link hover */
+.card__meta a:hover,
+.card__meta a:focus {
+  text-decoration: underline;
+}
+
+
 .safe-html img {
   max-width: 100%;
   height: auto;
 }
 
 
-.list-wrapper {
+/* -------------------- */
+/* Wrapper */
+/* -------------------- */
+
+/* Wrapper for PostItem and ReportItem to control layout */
+.card-item--wrapper {
+  display: flex;
+  flex-direction: column; /* always stacked */
+  gap: var(--spacing-md); /* same as event-item large */
+}
+
+.card-item--small--wrapper,
+.card-item--medium--wrapper,
+.card-item--large--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md); /* or var(--spacing-xs) for small if you want */
+}
+.card-item--large--wrapper {
+  padding: 0 calc(var(--spacing-md) * 4);
+  gap: var(--spacing-xl); /* spacing between items */
+  max-width: 1024px;
+  margin: 0 auto; /* center content */
+}
+
+/* .list-wrapper {
+  padding: 0 calc(var(--spacing-md) * 4);
+  display: flex;
+  flex-direction: column; 
+  gap: var(--spacing-xl)          
+} */
+
+.event-list--wrapper,
+.post-list--wrapper,
+.report-list--wrapper {
   padding: 0 calc(var(--spacing-md) * 4);
   display: flex;
   flex-direction: column; /* stack vertically */
-  gap: var(--spacing-xl)           /* spacing between items */
+  gap: var(--spacing-xl); /* spacing between items */
 }
+
+.post-list--wrapper,
+.report-list--wrapper {
+  max-width: 1024px;
+  margin: 0 auto; /* center content */
+}
+
+
 /* Remove horizontal padding on small screens */
+
 @media (max-width: 600px) {
+  .event-list--wrapper,
+.post-list--wrapper,
+.report-list--wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* @media (max-width: 600px) {
   .list-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+} */
+
+/* Remove horizontal padding on small screens */
+
+@media (max-width: 600px) {
+.card-item--small--wrapper,
+.card-item--medium--wrapper,
+.card-item--large--wrapper  {
     padding-left: 0;
     padding-right: 0;
   }

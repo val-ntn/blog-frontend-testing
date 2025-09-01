@@ -41,7 +41,8 @@ export default function PostItem({ post, size = "medium" }) {
   }
 
   return (
-    <div className={`post-item post-item--${size} card-item--${size}--wrapper`}>
+    <div className={`card-item--${size}--wrapper`}>
+    <div className={`post-item post-item--${size}`}>
   <h3 className={`card__title card__title--${size}`}>{post.title}</h3>
      {/*<div className={`post-item ${sizeClass}`}>
       <h3 className="card__title">{post.title}</h3>*/}
@@ -69,6 +70,7 @@ export default function PostItem({ post, size = "medium" }) {
       {post.author?.name && (
         <small className="card__meta">By: {post.author.name}</small>
       )}
+    </div>
     </div>
   );
 }

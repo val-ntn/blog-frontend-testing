@@ -38,7 +38,7 @@ export default function EventList({
   }, [limit, onlyUpcoming, refreshFlag]);
 
   return (
-    <div className="list-wrapper">
+    <div className="event-list--wrapper">
       {events.length === 0 && <p>No events found</p>}
       {events.map((event, index) => (
   <React.Fragment key={event._id}>
