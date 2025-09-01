@@ -13,19 +13,19 @@ export default function MultiRowCarousel({ images, title }) {
   }
 
   return (
-    <div style={{ maxWidth: "1000px", margin: "2rem auto" }}>
+    <div style={{width: "100%", maxWidth: "1000px", margin: "2rem auto" }}>
       <Swiper
         modules={[Navigation]}
         navigation
         spaceBetween={10}
         breakpoints={{
-          320: { slidesPerView: 1 },
-          480: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
+          300: { slidesPerView: 1 },
+          700: { slidesPerView: 2 },
+          900: { slidesPerView: 3 },
+          1024:{ slidesPerView: 4 },
         }}
         loop={true}
-        style={{ height: "300px" }}
+        style={{ height: "240px" }}
       >
         {images.map((url, index) => (
           <SwiperSlide key={index}>
@@ -36,7 +36,7 @@ export default function MultiRowCarousel({ images, title }) {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                borderRadius: "8px",
+                /* borderRadius: "8px", */
               }}
             />
           </SwiperSlide>

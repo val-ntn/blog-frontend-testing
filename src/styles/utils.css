@@ -9,7 +9,7 @@
 
 /* Detail links (inline, used in meta sections etc.) */
 .detail-link {
-  color: var(--color-primary);
+  color: var(--color-primary-darker);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
@@ -45,7 +45,7 @@
 }
 
 .card__title--large {
-  font-size: var(--font-size-xl); /* same as event-item__title--large */
+  font-size: var(--font-size-xxl); /* larger than event-item__title--large */
   font-weight: 00;
   margin: var(--spacing-md) 0 var(--spacing-md);
 }
@@ -95,7 +95,7 @@
 /* -------------------- */
 .card__text {
   font-size: var(--font-size-md);
-  color: var(--color-grey);
+  color: var(--color-text);
   line-height: 1.5;
   margin-bottom: var(--spacing-md);
 }
@@ -128,7 +128,7 @@
   transition: color 0.2s ease;
 }
 .card__read-more:hover {
-  color: var(--color-teal-900);
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
@@ -139,7 +139,7 @@
   display: block;
   margin-top: var(--spacing-md);
   font-size: var(--font-size-sm);
-  color: var(--color-text-dark);
+  color: var(--color-text);
 }
 
 /* Meta link hover */
@@ -201,7 +201,10 @@
   max-width: 1024px;
   margin: 0 auto; /* center content */
 }
-
+.event-list--wrapper {
+  max-width: 1024px;
+  margin: 0 auto; /* center content */
+}
 
 /* Remove horizontal padding on small screens */
 

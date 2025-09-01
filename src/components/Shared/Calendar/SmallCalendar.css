@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   padding: 12px;
-  background-color: var(--color-teal-700);
+  background-color: var(--color-primary);
   color: #fff;
 }
 
@@ -157,7 +157,7 @@
 /* Make sure active (selected) event tiles stay distinct */
 .react-calendar__tile--active.event-tile {
   background: #1a73e8 !important;
-  color: #fff !important;
+  color: var(--color-background) !important;
   font-weight: 600;
 }
 

@@ -48,7 +48,7 @@
 
 .upcoming-events__title--toggleable {
   cursor: pointer;
-  background: var(--color-lightgray);
+  background: var(--color-background-alt);
   /*padding: var(--spacing-sm);*/
   border-radius: var(--border-radius-sm);
 }
@@ -74,7 +74,7 @@
 /* 3. EventItem Card Styling - BEM */
 /* -------------------- */
 .event-item--large {
-  background-color: white; /* ensure shadow looks clean */
+  background-color: var(--color-background); /* ensure shadow looks clean */
 padding: var(--spacing-lg); /* or md if you want tighter */
 box-shadow: 
     0px -30px 16px -30px rgba(0,0,0,0.05),/* top */
@@ -141,7 +141,7 @@ box-shadow:
 
 .event-item__date {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-light);
 }
 
 /* Hide text for small events */

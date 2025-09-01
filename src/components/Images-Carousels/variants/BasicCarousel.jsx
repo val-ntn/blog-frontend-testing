@@ -22,7 +22,7 @@ export default function BasicCarousel({ images, title }) {
         loop
         style={{
           height: "400px",
-          borderRadius: "8px",
+          /* borderRadius: "8px", */
           overflow: "hidden",
         }}
       >

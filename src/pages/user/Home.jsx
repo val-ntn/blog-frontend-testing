@@ -21,14 +21,14 @@ export default function Home() {
         Latest News
         <LatestPost />
       </div>
-      <div className="events">
-        <UpcomingEvents limit={3} />
-      </div>
+   
       <div className="teaser">
         Teaser
         <GetTeaserCard type="post"/>
       </div>
-    
+       <div className="events">
+        <UpcomingEvents limit={3} />
+      </div>
       <div className="latest-report">
         Latest Report
         <LatestReport />

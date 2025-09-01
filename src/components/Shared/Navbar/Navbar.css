@@ -4,8 +4,8 @@
 .navbar {
   font-family: "Lato", sans-serif;
   padding: 1rem 2rem;
-  background-color: white;
-  color: #252830;
+  background-color: var(--color-background);
+  color: var(--color-text);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* subtle shadow like cards */
   position: relative;
   z-index: 10;
@@ -30,7 +30,7 @@
   font-size: 1.3rem;
   font-weight: 700;
   text-decoration: none;
-  color: #252830;
+  color: var(--color-text);
 }
 
 .navbar__right {
@@ -46,7 +46,7 @@
 }
 
 .navbar__link {
-  color: #252830;
+  color: var(--color-text-light);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
@@ -62,13 +62,13 @@
   font-size: 1.8rem;
   background: none;
   border: none;
-  color: #252830;
+  color: var(--color-text);
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .navbar__hamburger:hover {
-  color: #3edd84;
+  color: var(--color-primary);
 }
 
 /* --- Responsive styles --- */
@@ -78,7 +78,7 @@
     position: absolute;
     top: 100%; /* directly under navbar */
     right: 1rem;
-    background-color: white;
+    background-color: var(--color-background);
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;

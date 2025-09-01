@@ -4,7 +4,7 @@
   flex-direction: row;
   gap: calc(var(--spacing-xl) * 6);
   align-items: center;
-  background-color: var(--color-teal-700);
+  background-color: var(--color-primary);
   border-radius: 0.25rem;
   gap: calc(var(--spacing-xl) * 4); /* space between spacer and text */
   padding: 1rem 2rem;     /* match old header padding */

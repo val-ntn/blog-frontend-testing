@@ -24,7 +24,7 @@ export default function ThumbsCarousel({ images, title }) {
         navigation
         loop
         spaceBetween={10}
-        style={{ height: "400px", borderRadius: "8px", overflow: "hidden" }}
+        style={{ height: "400px", /* borderRadius: "8px", */ overflow: "hidden" }}
       >
         {images.map((url, index) => (
           <SwiperSlide key={`main-${index}`}>

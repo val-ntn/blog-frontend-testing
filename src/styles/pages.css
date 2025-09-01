@@ -4,7 +4,7 @@
 /* Generic page content wrapper */
 .page-content {
   padding: 1rem;             /* inner spacing */
-  background-color: white;    /* default page background */
+  background-color: var(--color-background);    /* default page background */
   max-width: var(--max-content-width);
   margin: 0 auto;             /* center if needed */
   box-sizing: border-box;
@@ -12,31 +12,31 @@
 
 /* Page-specific modifiers */
 .page-content--home {
-  background-color: var(--color-neutral-800);
+  background-color: var(--color-background-dark);
 }
 
 .page-content--calendar {
-  background-color: white;
+  background-color: var(--color-background-alt);
 }
 
 .page-content--news {
-  background-color: white;
+  background-color: var(--color-background-alt);
 }
 
 .page-content--reports {
-  background-color: white;
+  background-color: var(--color-background-alt);
 }
 
 .page-content--event-detail {
-  background-color: white;
+  background-color: var(--color-background-alt);
 }
 
 .page-content--post-detail {
-  background-color: white(47, 159, 47);
+  background-color: var(--color-background-alt);
 }
 
 .page-content--report-detail {
-  background-color: white;
+  background-color: var(--color-background-alt);
 }
 
 .page-content--unauthorized {
@@ -48,7 +48,7 @@
 }
 
 .page-content--login {
-  background-color: rgb(69, 64, 226);
+  background-color: var(--color-background-alt);
 }
 
 
