@@ -41,10 +41,9 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-content page-content--dashboard">
-      <h1>Admin Dashboard</h1>
-      <p>Welcome, admin! You have access to this page.</p>
+
       <Dashboard /> {/* Render the dashboard UI component here */}
-      {/* <LogoutButton /> */}
+
     </div>
   );
 }

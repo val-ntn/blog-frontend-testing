@@ -1,0 +1,36 @@
+// frontend/src/components/Dashboard/Admin/Sidebar.jsx
+import React from "react";
+import LogoutButton from "./LogoutButton";
+
+export default function Sidebar({ selected, onSelect }) {
+  const items = [
+    { id: "posts", label: "Posts" },
+    { id: "events", label: "Events" },
+    { id: "reports", label: "Reports" },
+    { id: "users", label: "Users" },
+    { id: "pictures", label: "Pictures" },
+    { id: "bin", label: "Recycle Bin" },
+  ];
+
+  return (
+    <nav className="dashboard-sidebar">
+      <ul className="dashboard-sidebar__list">
+        {items.map(({ id, label }) => (
+          <li key={id} className="dashboard-sidebar__item">
+            <button
+              className={`dashboard-sidebar__button ${
+                selected === id ? "dashboard-sidebar__button--active" : ""
+              }`}
+              onClick={() => onSelect(id)}
+            >
+              {label}
+            </button>
+          </li>
+        ))}
+        <li className="dashboard-sidebar__item">
+          <LogoutButton className="dashboard-sidebar__button" />
+        </li>
+      </ul>
+    </nav>
+  );
+}

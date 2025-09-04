@@ -19,7 +19,7 @@
 .calendar-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;  
   justify-content: center;
   padding: 12px;
   background-color: var(--color-primary);
@@ -121,7 +121,7 @@
 
 /* Remove red text color from weekend day numbers */
 .react-calendar__month-view__days__day--weekend {
-  color: inherit; /* use same as weekday numbers */
+  color: black; /* use same as weekday numbers */
 }
 
 /* Selected day */
