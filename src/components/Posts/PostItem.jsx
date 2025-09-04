@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 import SafeHTMLRenderer from "../Common/SafeHTMLRenderer";
 import CarouselItem from "../../components/Images-Carousels/CarouselItem";
+import PropTypes from "prop-types";
 import "./Posts.css";
 
 /**
@@ -31,7 +32,7 @@ export default function PostItem({ post, size = "medium" }) {
     case "medium":
     default:
       contentToRender = post.content;
-      //sizeClass = "post-item--medium";
+    //sizeClass = "post-item--medium";
   }
 
   function getId(id) {
@@ -42,35 +43,51 @@ export default function PostItem({ post, size = "medium" }) {
 
   return (
     <div className={`card-item--${size}--wrapper`}>
-    <div className={`post-item post-item--${size}`}>
-  <h3 className={`card__title card__title--${size}`}>{post.title}</h3>
-     {/*<div className={`post-item ${sizeClass}`}>
+      <div className={`post-item post-item--${size}`}>
+        <h3 className={`card__title card__title--${size}`}>{post.title}</h3>
+        {/*<div className={`post-item ${sizeClass}`}>
       <h3 className="card__title">{post.title}</h3>*/}
 
-      {/* Safe HTML content */}
-      <SafeHTMLRenderer content={contentToRender} />
+        {/* Safe HTML content */}
+        <SafeHTMLRenderer content={contentToRender} />
 
-      {/* "Read more" link for small posts */}
-      {showReadMore && (
-        <div className="post-item__read-more">
-          <Link to={`/posts/${getId(post._id)}`} className="card__read-more">
-            Read More 
-          </Link>
-        </div>
-      )}
+        {/* "Read more" link for small posts */}
+        {showReadMore && (
+          <div className="post-item__read-more">
+            <Link to={`/posts/${getId(post._id)}`} className="card__read-more">
+              Read More
+            </Link>
+          </div>
+        )}
 
-      {/* Carousel for large posts */}
-      {showCarousel && post.carousel && (
-        <div className="post-item__carousel">
-          <CarouselItem carousel={post.carousel} />
-        </div>
-      )}
+        {/* Carousel for large posts */}
+        {showCarousel && post.carousel && (
+          <div className="post-item__carousel">
+            <CarouselItem carousel={post.carousel} />
+          </div>
+        )}
 
-      {/* Meta info */}
-      {post.author?.name && (
-        <small className="card__meta">By: {post.author.name}</small>
-      )}
-    </div>
+        {/* Meta info */}
+        {post.author?.name && (
+          <small className="card__meta">By: {post.author.name}</small>
+        )}
+      </div>
     </div>
   );
 }
+PostItem.propTypes = {
+  post: PropTypes.shape({
+    _id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({ $oid: PropTypes.string }),
+    ]).isRequired,
+    title: PropTypes.string.isRequired,
+    excerpt: PropTypes.string,
+    content: PropTypes.string,
+    carousel: PropTypes.object, // adjust shape if you know carousel structure
+    author: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }).isRequired,
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+};

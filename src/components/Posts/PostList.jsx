@@ -1,6 +1,7 @@
 // src/components/Posts/PostList.jsx
 import React, { useEffect, useState } from "react";
 import PostItem from "./PostItem";
+import PropTypes from "prop-types";
 import { API_BASE_URL } from "../../utils/api";
 
 export default function PostList({
@@ -8,6 +9,7 @@ export default function PostList({
   size = "medium",
   refreshFlag,
   renderActions,
+  renderSize,
 }) {
   const [posts, setPosts] = useState([]);
 
@@ -29,10 +31,17 @@ export default function PostList({
       {posts.length === 0 && <p>No posts found</p>}
       {posts.map((post) => (
         <div key={post._id}>
-          <PostItem post={post} size={size} />
+          <PostItem post={post} size={renderSize ? renderSize(post) : size} />
           {renderActions && renderActions(post)}
         </div>
       ))}
     </div>
   );
 }
+PostList.propTypes = {
+  limit: PropTypes.number,
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  refreshFlag: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  renderActions: PropTypes.func,
+  renderSize: PropTypes.func,
+};

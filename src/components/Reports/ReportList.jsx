@@ -9,6 +9,7 @@ export default function ReportList({
   size = "medium",
   refreshFlag,
   renderActions,
+  renderSize,
 }) {
   const [reports, setReports] = useState([]);
 
@@ -27,7 +28,10 @@ export default function ReportList({
       {reports.length === 0 && <p>No reports found</p>}
       {reports.map((report) => (
         <div key={report._id}>
-          <ReportItem report={report} size={size} />
+          <ReportItem
+            report={report}
+            size={renderSize ? renderSize(report) : size}
+          />
           {renderActions && renderActions(report)}
         </div>
       ))}

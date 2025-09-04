@@ -13,6 +13,7 @@ import PicturesListControl from "./Controls/PicturesListControl";
 import ReportListControl from "./Controls/ReportListControl";
 import ReportForm from "../Forms/ReportForm/ReportForm";
 import DashboardHeader from "./DashboardHeader";
+import PropTypes from "prop-types";
 import "./dashboard.css";
 
 export default function Dashboard() {
@@ -83,6 +84,7 @@ export default function Dashboard() {
                 {!showPostForm ? (
                   <>
                     <button
+                      type="button"
                       onClick={() => {
                         setEditingPost(null);
                         setShowPostForm(true);
@@ -112,6 +114,7 @@ export default function Dashboard() {
                       }}
                     />
                     <button
+                      type="button"
                       onClick={() => {
                         setShowPostForm(false);
                         setEditingPost(null);
@@ -129,6 +132,7 @@ export default function Dashboard() {
                 {!showEventForm ? (
                   <>
                     <button
+                      type="button"
                       onClick={() => {
                         setEditingEvent(null);
                         setShowEventForm(true);
@@ -158,6 +162,7 @@ export default function Dashboard() {
                       }}
                     />
                     <button
+                      type="button"
                       onClick={() => {
                         setShowEventForm(false);
                         setEditingEvent(null);
@@ -175,6 +180,7 @@ export default function Dashboard() {
                 {!showReportForm ? (
                   <>
                     <button
+                      type="button"
                       onClick={() => {
                         setEditingReport(null);
                         setShowReportForm(true);
@@ -204,6 +210,7 @@ export default function Dashboard() {
                       }}
                     />
                     <button
+                      type="button"
                       onClick={() => {
                         setShowReportForm(false);
                         setEditingReport(null);
@@ -232,6 +239,7 @@ export default function Dashboard() {
                 />
 
                 <button
+                  type="button"
                   onClick={() => {
                     setEditingCarousel(null);
                     setShowCarouselForm(!showCarouselForm);

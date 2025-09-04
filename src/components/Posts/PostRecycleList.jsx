@@ -1,4 +1,5 @@
 // src/components/Posts/PostRecycleList.jsx
+import PropTypes from "prop-types";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -56,3 +57,7 @@ export default function PostRecycleList({ onRestore, refreshFlag }) {
     </div>
   );
 }
+PostRecycleList.propTypes = {
+  onRestore: PropTypes.func,
+  refreshFlag: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+};

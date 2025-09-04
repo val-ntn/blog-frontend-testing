@@ -1,4 +1,3 @@
-
 /* ---------------------------------------- */
 /* Events.css - BEM-compliant for EventItem */
 /* ---------------------------------------- */
@@ -30,9 +29,9 @@
 /* Calendar wrapper */
 .upcoming-events__calendar-wrapper {
   flex: 1;
-  max-width: 400px;    /* constrain width */
-  margin: 0 auto;      /* center it horizontally */
-  width: 100%;         /* still responsive */
+  max-width: 400px; /* constrain width */
+  margin: 0 auto; /* center it horizontally */
+  width: 100%; /* still responsive */
 }
 
 /* -------------------- */
@@ -73,13 +72,17 @@
 /* -------------------- */
 /* 3. EventItem Card Styling - BEM */
 /* -------------------- */
+
+.event-item {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-sm);
+}
 .event-item--large {
   background-color: var(--color-background); /* ensure shadow looks clean */
-padding: var(--spacing-lg); /* or md if you want tighter */
-box-shadow: 
-    0px -30px 16px -30px rgba(0,0,0,0.05),/* top */
-    0px  30px 16px -30px rgba(0,0,0,0.05); /* bottom */
-   
+  padding: var(--spacing-lg); /* or md if you want tighter */
+  box-shadow: 0px -30px 16px -30px rgba(0, 0, 0, 0.05),
+    /* top */ 0px 30px 16px -30px rgba(0, 0, 0, 0.05); /* bottom */
+
   /*box-shadow: 0 -2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);*/
   /*border-top: 1px solid rgba(0,0,0,0.05);*/
   /*border-bottom: 1px solid rgba(0,0,0,0.05);*/
@@ -131,9 +134,18 @@ box-shadow:
   text-align: left;
 }
 
-.event-item__title--small { font-size: var(--font-size-base); font-weight: 600; }
-.event-item__title--medium { font-size: var(--font-size-lg); font-weight: 600; }
-.event-item__title--large { font-size: var(--font-size-xl); font-weight: 600; }
+.event-item__title--small {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+}
+.event-item__title--medium {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+.event-item__title--large {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
 
 .event-item__text {
   margin-bottom: var(--spacing-sm);
@@ -145,14 +157,16 @@ box-shadow:
 }
 
 /* Hide text for small events */
-.event-item--small .event-item__text { display: none; }
+.event-item--small .event-item__text {
+  display: none;
+}
 
 /* -------------------- */
 /* 4. EventItem Link */
 .event-item__link {
-  display: block;         /* behaves like a div */
-  color: inherit;         /* inherit text color */
-  text-decoration: none;  /* remove underline */
+  display: block; /* behaves like a div */
+  color: inherit; /* inherit text color */
+  text-decoration: none; /* remove underline */
 }
 
 .event-item__link:hover {
@@ -165,13 +179,10 @@ box-shadow:
 /* 5. Responsive Layouts */
 /* -------------------- */
 @media (max-width: 900px) {
-
   .event-item__body {
     flex-direction: column; /* stack main + meta vertically */
     gap: var(--spacing-md);
-  /* .event-item--large--wrapper {
+    /* .event-item--large--wrapper {
     flex-direction: column; stack columns on smaller screens */
   }
 }
-
-

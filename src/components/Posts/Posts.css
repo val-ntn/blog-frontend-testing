@@ -9,29 +9,31 @@
 }
 
 /* ---- Size variations ---- */
+
+.post-item--small {
+  background-color: var(--color-background);
+}
 .post-item--large {
   /* max-width: var(--max-content-width); */
   /* margin: 0 auto; */
+  background-color: var(--color-background);
   padding: var(--spacing-lg);
-    display: flex;
+  display: flex;
   flex-direction: column;
   gap: var(--spacing-xl); /* or var(--spacing-xs) for small if you want */
 }
 
 .post-item--medium {
-      display: flex;
+  display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
   padding: var(--spacing-lg); /* match event medium */
   background-color: var(--color-background);
-box-shadow: 
-    0px -30px 16px -30px rgba(0,0,0,0.05),/* top */
-    0px  30px 16px -30px rgba(0,0,0,0.05); /* bottom */
+  box-shadow: 0px -30px 16px -30px rgba(0, 0, 0, 0.05),
+    /* top */ 0px 30px 16px -30px rgba(0, 0, 0, 0.05); /* bottom */
   border-radius: var(--border-radius-sm);
   margin: 0 auto;
 }
-
-
 
 /* ---- Carousel ---- */
 .post-item__carousel {
@@ -52,4 +54,3 @@ box-shadow:
   display: block;
   clear: both;
 }
-

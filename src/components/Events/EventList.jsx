@@ -11,6 +11,7 @@ export default function EventList({
   renderActions,
   refreshFlag,
   linkToDetail = false,
+  renderSize,
 }) {
   const [events, setEvents] = useState([]);
 
@@ -41,12 +42,16 @@ export default function EventList({
     <div className="event-list--wrapper">
       {events.length === 0 && <p>No events found</p>}
       {events.map((event, index) => (
-  <React.Fragment key={event._id}>
-    <EventItem event={event} size={size} linkToDetail={linkToDetail} />
-    {renderActions && renderActions(event)}
-    {/*{index < events.length - 1 && <div className="card__divider" />}*/}
-  </React.Fragment>
-))}
+        <React.Fragment key={event._id}>
+          <EventItem
+            event={event}
+            /*size={size}*/ size={renderSize ? renderSize(event) : size}
+            linkToDetail={linkToDetail}
+          />
+          {renderActions && renderActions(event)}
+          {/*{index < events.length - 1 && <div className="card__divider" />}*/}
+        </React.Fragment>
+      ))}
     </div>
   );
 }
@@ -54,8 +59,9 @@ export default function EventList({
 EventList.propTypes = {
   limit: PropTypes.number,
   onlyUpcoming: PropTypes.bool,
-  size: PropTypes.oneOf(["small", "medium", "large"]), 
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   renderActions: PropTypes.func, // (event) => ReactNode
-  refreshFlag: PropTypes.any,    // used only as dependency
+  refreshFlag: PropTypes.any, // used only as dependency
   linkToDetail: PropTypes.bool,
+  renderSize: PropTypes.func,
 };

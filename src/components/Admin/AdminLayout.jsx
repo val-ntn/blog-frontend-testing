@@ -1,4 +1,5 @@
 // src/components/Admin/AdminLayout.jsx
+import PropTypes from "prop-types";
 import React from "react";
 
 export default function AdminLayout({ children }) {
@@ -9,3 +10,7 @@ export default function AdminLayout({ children }) {
     </div>
   );
 }
+
+AdminLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
