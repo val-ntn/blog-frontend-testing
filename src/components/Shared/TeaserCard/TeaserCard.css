@@ -1,5 +1,5 @@
 /* TeaserCard.css */
-@import url("https://fonts.googleapis.com/css?family=Lato|Playfair+Display+SC");
+/*@import url("https://fonts.googleapis.com/css?family=Lato|Playfair+Display+SC");*/
 
 /* TeaserCard-specific overrides using utils/variables */
 
@@ -51,7 +51,6 @@
   margin-top: var(--spacing-md);
 }
 
-
 /* --- Large variant --- */
 .teaser-card.large {
   flex-direction: row;
@@ -84,4 +83,3 @@
 .teaser-card.small .teaser-card__body {
   padding: 15px 20px 20px;
 }
-

@@ -1,5 +1,3 @@
-
-
 // src/components/Events/UpcomingEvents.jsx
 
 import React, { useEffect, useState } from "react";
@@ -7,7 +5,7 @@ import EventItem from "./EventItem";
 import { API_BASE_URL } from "../../utils/api";
 import PropTypes from "prop-types";
 import { FaChevronDown } from "react-icons/fa";
-import SmallCalendar from "../Shared/Calendar/SmallCalendar";
+//import SmallCalendar from "../Shared/Calendar/SmallCalendar";
 import "./Events.css";
 import ResponsiveCalendar from "../Shared/Calendar/RespinsiveCalendar";
 
@@ -46,13 +44,17 @@ export default function UpcomingEvents({ limit = 3 }) {
   return (
     <div className="upcoming-events">
       <h2
-        className={`upcoming-events__title ${isMobile ? "upcoming-events__title--toggleable" : ""}`}
+        className={`upcoming-events__title ${
+          isMobile ? "upcoming-events__title--toggleable" : ""
+        }`}
         onClick={() => isMobile && setCollapsed((prev) => !prev)}
       >
         Upcoming Events
         {isMobile && (
           <FaChevronDown
-            className={`upcoming-events__chevron ${collapsed ? "" : "upcoming-events__chevron--rotated"}`}
+            className={`upcoming-events__chevron ${
+              collapsed ? "" : "upcoming-events__chevron--rotated"
+            }`}
           />
         )}
       </h2>
@@ -63,15 +65,15 @@ export default function UpcomingEvents({ limit = 3 }) {
           <div className="upcoming-events__list">
             {events.map((event) => (
               <React.Fragment key={event._id}>
-                <EventItem event={event} size="medium" linkToDetail/>
+                <EventItem event={event} size="medium" linkToDetail />
                 <div className="card__divider" />
               </React.Fragment>
             ))}
           </div>
           <div className="upcoming-events__calendar-wrapper">
-            <ResponsiveCalendar/>
+            <ResponsiveCalendar />
           </div>
-        </div>   
+        </div>
       )}
     </div>
   );

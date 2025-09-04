@@ -44,13 +44,13 @@ h1 {
   font-family: var(--font-family-heading);
   line-height: 1.2;
   margin: var(--spacing-md) 0 var(--spacing-md);
-  color: var(--color-primary-darker)
+  color: var(--color-primary-darker);
 }
 h2 {
   font-size: var(--font-size-h2);
   font-family: var(--font-family-heading);
   line-height: 1.25;
-  margin: var(--spacing-md) 0 var(--spacing-md); 
+  margin: var(--spacing-md) 0 var(--spacing-md);
 }
 h3 {
   font-size: var(--font-size-h3);
@@ -85,6 +85,6 @@ h6 {
 
 @media (max-width: 480px) {
   html {
-    font-size: 12px; /* smaller on phones */
+    font-size: 14px; /* smaller on phones */
   }
 }
