@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { FaChevronDown } from "react-icons/fa";
 //import SmallCalendar from "../Shared/Calendar/SmallCalendar";
 import "./Events.css";
-import ResponsiveCalendar from "../Shared/Calendar/RespinsiveCalendar";
+import ResponsiveCalendar from "../Shared/Calendar/ResponsiveCalendar";
 
 export default function UpcomingEvents({ limit = 3 }) {
   const [events, setEvents] = useState([]);

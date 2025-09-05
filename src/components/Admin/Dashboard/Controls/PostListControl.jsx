@@ -2,6 +2,7 @@
 import { useState } from "react";
 import PostList from "../../../Posts/PostList";
 import { API_BASE_URL } from "../../../../utils/api";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import axios from "axios";
 
 export default function PostListControl({
@@ -38,28 +39,32 @@ export default function PostListControl({
         refreshFlag={refreshFlag}
         renderActions={(post) => (
           <div className="dashboard-action-buttons">
-            <button
-              type="button"
-              className="dashboard-action-buttons__edit"
-              onClick={() => onEdit?.(post)}
-            >
-              ✏ Edit
-            </button>
-            <button
-              type="button"
-              className="dashboard-action-buttons__delete"
-              onClick={() => handleDelete(post._id)}
-            >
-              🗑 Delete
-            </button>
+            <div className="dashboard-action-buttons__left">
+              <button
+                type="button"
+                className="dashboard-action-buttons__edit"
+                onClick={() => onEdit?.(post)}
+              >
+                ✏ Edit
+              </button>
+              <button
+                type="button"
+                className="dashboard-action-buttons__delete"
+                onClick={() => handleDelete(post._id)}
+              >
+                🗑 Delete
+              </button>
+            </div>
             {/* Toggle size for this post */}
-            <button
-              type="button"
-              className="dashboard-action-buttons__expand"
-              onClick={() => togglePostSize(post._id)}
-            >
-              {expandedPosts[post._id] ? "Collapse" : "Expand"}
-            </button>
+            <div className="dashboard-action-buttons__right">
+              <button
+                type="button"
+                className="dashboard-action-buttons__expand"
+                onClick={() => togglePostSize(post._id)}
+              >
+                {expandedPosts[post._id] ? <FaChevronUp /> : <FaChevronDown />}
+              </button>
+            </div>
           </div>
         )}
         size="small"

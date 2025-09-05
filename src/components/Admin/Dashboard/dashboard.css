@@ -66,11 +66,20 @@
   background-color: #313131;
   border-radius: 0.25rem;
 }
+
+/* Parent flex container for dashboard action buttons */
 .dashboard-action-buttons {
   display: flex;
+  justify-content: space-between; /* pushes left and right divs to edges */
   align-items: center;
-  gap: 8px; /* spacing between buttons */
-  margin-top: 8px; /* optional spacing from card */
+  gap: 8px; /* optional spacing between the left and right groups */
+  margin-top: 8px; /* spacing from card content */
+}
+
+.dashboard-action-buttons__left,
+.dashboard-action-buttons__right {
+  display: flex;
+  gap: 8px; /* spacing between buttons inside each group */
 }
 
 .dashboard-action-buttons__edit,

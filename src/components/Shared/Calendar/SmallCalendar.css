@@ -1,11 +1,11 @@
 /* Import IBM Plex Sans only for this calendar */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 
 /* === Calendar container === */
 .calendar-container {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   max-width: none;
-  width: 100%; 
+  width: 100%;
   margin: 0;
   background: #fff;
   border-radius: 12px;
@@ -19,7 +19,7 @@
 .calendar-header {
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
   padding: 12px;
   background-color: var(--color-primary);
@@ -69,11 +69,10 @@
   color: #fff;
 }
 
-
 /* Reset default react-calendar styling */
 .react-calendar {
   width: 100%;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   border: none;
   background: #fff;
   border-radius: 12px;
@@ -110,7 +109,7 @@
   padding: 0.25rem;
   border-radius: 8px;
   transition: background 0.2s ease, color 0.2s ease;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 /* Hover effect */
@@ -160,7 +159,6 @@
   color: var(--color-background) !important;
   font-weight: 600;
 }
-
 
 /* Event details below calendar */
 .event-details {

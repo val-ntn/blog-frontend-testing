@@ -56,6 +56,7 @@ import { useState } from "react";
 import EventList from "../../../Events/EventList";
 import { API_BASE_URL } from "../../../../utils/api";
 import { useNavigate } from "react-router-dom";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import axios from "axios";
 
 export default function EventListControl({
@@ -97,35 +98,43 @@ export default function EventListControl({
         refreshFlag={refreshFlag}
         renderActions={(event) => (
           <div className="dashboard-action-buttons">
-            <button
-              type="button"
-              className="dashboard-action-buttons__edit"
-              onClick={() => onEdit?.(event)}
-            >
-              ✏ Edit
-            </button>
-            <button
-              type="button"
-              className="dashboard-action-buttons__delete"
-              onClick={() => handleDelete(event._id)}
-            >
-              🗑 Delete
-            </button>
-            <button
-              type="button"
-              className="dashboard-action-buttons__reports"
-              onClick={() => navigate(`/admin/events/${event._id}/reports`)}
-            >
-              📄 Reports
-            </button>
-            {/* Toggle size for this event */}
-            <button
-              type="button"
-              className="dashboard-action-buttons__expand"
-              onClick={() => toggleEventSize(event._id)}
-            >
-              {expandedEvents[event._id] ? "Collapse" : "Expand"}
-            </button>
+            <div className="dashboard-action-buttons__left">
+              <button
+                type="button"
+                className="dashboard-action-buttons__edit"
+                onClick={() => onEdit?.(event)}
+              >
+                ✏ Edit
+              </button>
+              <button
+                type="button"
+                className="dashboard-action-buttons__delete"
+                onClick={() => handleDelete(event._id)}
+              >
+                🗑 Delete
+              </button>
+              <button
+                type="button"
+                className="dashboard-action-buttons__reports"
+                onClick={() => navigate(`/admin/events/${event._id}/reports`)}
+              >
+                📄 Reports
+              </button>
+            </div>
+            <div className="dashboard-action-buttons__right">
+              {/* Toggle size for this event */}
+              <button
+                type="button"
+                className="dashboard-action-buttons__expand"
+                onClick={() => toggleEventSize(event._id)}
+              >
+                {expandedEvents[event._id] ? (
+                  <FaChevronUp />
+                ) : (
+                  <FaChevronDown />
+                )}
+              </button>
+            </div>
           </div>
         )}
         size="small" // default small for all events

@@ -3,7 +3,7 @@
 /* Base wrapper */
 .report-item {
   /* margin: 0 auto; */
-  margin-bottom: var(--spacing-lg);
+  /*margin-bottom: var(--spacing-lg);*/
   padding: var(--spacing-md);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
@@ -11,7 +11,9 @@
 
 /* ---- Size variations ---- */
 .report-item--small {
-  background-color: var(--color-background);
+  background-color: var(--color-background-alt);
+  display: flex;
+  flex-direction: column;
 }
 
 .report-item--medium {

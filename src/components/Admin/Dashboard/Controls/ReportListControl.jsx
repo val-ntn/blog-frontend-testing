@@ -3,6 +3,7 @@
 import ReportList from "../../../Reports/ReportList";
 import { API_BASE_URL } from "../../../../utils/api";
 import { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import axios from "axios";
 
 export default function ReportListControl({
@@ -37,27 +38,35 @@ export default function ReportListControl({
         refreshFlag={refreshFlag}
         renderActions={(report) => (
           <div className="dashboard-action-buttons">
-            <button
-              type="button"
-              className="dashboard-action-buttons__edit"
-              onClick={() => onEdit?.(report)}
-            >
-              ✏ Edit
-            </button>
-            <button
-              type="button"
-              className="dashboard-action-buttons__delete"
-              onClick={() => handleDelete(report._id)}
-            >
-              🗑 Delete
-            </button>
-            <button
-              type="button"
-              className="dashboard-action-buttons__expand"
-              onClick={() => toggleReportSize(report._id)}
-            >
-              {expandedReports[report._id] ? "Collapse" : "Expand"}
-            </button>
+            <div className="dashboard-action-buttons__left">
+              <button
+                type="button"
+                className="dashboard-action-buttons__edit"
+                onClick={() => onEdit?.(report)}
+              >
+                ✏ Edit
+              </button>
+              <button
+                type="button"
+                className="dashboard-action-buttons__delete"
+                onClick={() => handleDelete(report._id)}
+              >
+                🗑 Delete
+              </button>
+            </div>
+            <div className="dashboard-action-buttons__right">
+              <button
+                type="button"
+                className="dashboard-action-buttons__expand"
+                onClick={() => toggleReportSize(report._id)}
+              >
+                {expandedReports[report._id] ? (
+                  <FaChevronUp />
+                ) : (
+                  <FaChevronDown />
+                )}
+              </button>
+            </div>
           </div>
         )}
         size="small"
