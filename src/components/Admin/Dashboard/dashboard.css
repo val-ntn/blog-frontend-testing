@@ -66,6 +66,40 @@
   background-color: #313131;
   border-radius: 0.25rem;
 }
+.dashboard-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* spacing between buttons */
+  margin-top: 8px; /* optional spacing from card */
+}
+
+.dashboard-action-buttons__edit,
+.dashboard-action-buttons__delete,
+.dashboard-action-buttons__expand,
+.dashboard-action-buttons__reports {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.dashboard-action-buttons__edit:hover {
+  background: #f0f0f0;
+}
+
+.dashboard-action-buttons__delete:hover {
+  background: #ffe6e6;
+}
+
+.dashboard-action-buttons__expand:hover {
+  background: #e6f0ff;
+}
+
+.dashboard-action-buttons__reports:hover {
+  background: #e6f0ff;
+}
 
 /* Main dashboard area */
 .dashboard-main {

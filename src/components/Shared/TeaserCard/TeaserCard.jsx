@@ -1,5 +1,3 @@
-
-
 // frontend/src/components/Shared/TeaserCard/TeaserCard.jsx
 import { useEffect, useRef, useState } from "react";
 import { formatDate } from "../../../utils/format";
@@ -7,7 +5,12 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./TeaserCard.css"; // only TeaserCard-specific overrides
 
-export default function TeaserCard({ data, size: propSize, type }) {
+export default function TeaserCard({
+  data,
+  size: propSize,
+  type,
+  linkToDetail = true,
+}) {
   const [size, setSize] = useState(propSize || "small");
   const cardRef = useRef(null);
 
@@ -49,11 +52,12 @@ export default function TeaserCard({ data, size: propSize, type }) {
           <small className="card__date">{formatDate(createdAt)}</small>
         )}
         {teaser && <p className="card__text">{teaser}</p>}
-        {type && _id && (
+        {linkToDetail && type && _id && (
           <div className="teaser-card__read-more">
-          <Link to={`/${type}s/${_id}`} className="card__read-more">
-    Read More
-  </Link></div>
+            <Link to={`/${type}s/${_id}`} className="card__read-more">
+              Read More
+            </Link>
+          </div>
         )}
       </div>
     </div>
@@ -71,4 +75,3 @@ TeaserCard.propTypes = {
   size: PropTypes.oneOf(["small", "large"]), // optional
   type: PropTypes.string,
 };
-

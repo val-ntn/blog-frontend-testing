@@ -11,7 +11,11 @@ import "./Reports.css";
  * - "medium" shows full content
  * - "large" shows content + optional carousel
  */
-export default function ReportItem({ report, size = "medium" }) {
+export default function ReportItem({
+  report,
+  size = "medium",
+  linkToDetail = false,
+}) {
   let contentToRender;
   let showReadMore = false;
   let showCarousel = false;
@@ -31,7 +35,7 @@ export default function ReportItem({ report, size = "medium" }) {
     case "medium":
     default:
       contentToRender = report.content;
-      //sizeClass = "report-item--medium";
+    //sizeClass = "report-item--medium";
   }
 
   function getId(id) {
@@ -42,47 +46,54 @@ export default function ReportItem({ report, size = "medium" }) {
 
   return (
     <div className={`card-item--${size}--wrapper`}>
-  <div className={`report-item report-item--${size}`}>
-  <h3 className={`card__title card__title--${size}`}>{report.title}</h3>
-    {/*<div className={`report-item ${sizeClass}`}>
+      <div className={`report-item report-item--${size}`}>
+        <h3 className={`card__title card__title--${size}`}>{report.title}</h3>
+        {/*<div className={`report-item ${sizeClass}`}>
       <h3 className="card__title">{report.title}</h3>*/}
 
-      {/* Safe HTML body */}
-      <SafeHTMLRenderer content={contentToRender} />
+        {/* Safe HTML body */}
+        <SafeHTMLRenderer content={contentToRender} />
 
-      {/* "Read more" link for small variant */}
-      {showReadMore && (
-        <div className="report-item__read-more">
-          <Link
-            to={`/event-reports/${getId(report._id)}`}
-            className="card__read-more"
-          >
-            Read More
-          </Link>
-        </div>
-      )}
+        {/* "Read more" link for small variant */}
+        {showReadMore && linkToDetail && (
+          <div className="report-item__read-more">
+            <Link
+              to={`/event-reports/${getId(report._id)}`}
+              className="card__read-more"
+            >
+              Read More
+            </Link>
+          </div>
+        )}
 
-      {/* Carousel for large variant */}
-      {showCarousel && report.carousel && (
-        <div className="report-item__carousel">
-          <CarouselItem carousel={report.carousel} />
-        </div>
-      )}
+        {/* Carousel for large variant */}
+        {showCarousel && report.carousel && (
+          <div className="report-item__carousel">
+            <CarouselItem carousel={report.carousel} />
+          </div>
+        )}
 
-      {/* Meta info */}
-      {report.author?.name && (
-        <small className="card__meta">By: {report.author.name}</small>
-      )}
+        {/* Meta info */}
+        {report.author?.name && (
+          <small className="card__meta">By: {report.author.name}</small>
+        )}
 
-      {report.event && (
-        <small className="card__meta">
-          | Related Event:{" "}
-          <Link to={`/events/${getId(report.event._id)}`} className="detail-link">
-            {report.event.title || report.event.name}
-          </Link>
-        </small>
-      )}
-    </div>
+        {report.event && (
+          <small className="card__meta">
+            | Related Event:{" "}
+            {linkToDetail ? (
+              <Link
+                to={`/events/${getId(report.event._id)}`}
+                className="detail-link"
+              >
+                {report.event.title || report.event.name}
+              </Link>
+            ) : (
+              <span>{report.event.title || report.event.name}</span>
+            )}
+          </small>
+        )}
+      </div>
     </div>
   );
 }

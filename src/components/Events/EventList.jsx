@@ -41,8 +41,8 @@ export default function EventList({
   return (
     <div className="event-list--wrapper">
       {events.length === 0 && <p>No events found</p>}
-      {events.map((event, index) => (
-        <React.Fragment key={event._id}>
+      {events.map((event) => (
+        <div key={event._id}>
           <EventItem
             event={event}
             /*size={size}*/ size={renderSize ? renderSize(event) : size}
@@ -50,7 +50,7 @@ export default function EventList({
           />
           {renderActions && renderActions(event)}
           {/*{index < events.length - 1 && <div className="card__divider" />}*/}
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );

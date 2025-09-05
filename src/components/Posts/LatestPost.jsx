@@ -21,7 +21,7 @@ function LatestPost() {
 
   if (!post) return <p>Loading...</p>;
 
-  return <PostItem post={post} size="small" />;
+  return <PostItem post={post} size="small" linkToDetail={true} />;
 }
 
 export default LatestPost;

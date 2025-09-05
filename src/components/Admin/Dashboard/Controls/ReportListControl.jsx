@@ -36,10 +36,26 @@ export default function ReportListControl({
       <ReportList
         refreshFlag={refreshFlag}
         renderActions={(report) => (
-          <div className="flex items-center gap-2">
-            <button onClick={() => onEdit?.(report)}>✏ Edit</button>
-            <button onClick={() => handleDelete(report._id)}>🗑 Delete</button>
-            <button onClick={() => toggleReportSize(report._id)}>
+          <div className="dashboard-action-buttons">
+            <button
+              type="button"
+              className="dashboard-action-buttons__edit"
+              onClick={() => onEdit?.(report)}
+            >
+              ✏ Edit
+            </button>
+            <button
+              type="button"
+              className="dashboard-action-buttons__delete"
+              onClick={() => handleDelete(report._id)}
+            >
+              🗑 Delete
+            </button>
+            <button
+              type="button"
+              className="dashboard-action-buttons__expand"
+              onClick={() => toggleReportSize(report._id)}
+            >
               {expandedReports[report._id] ? "Collapse" : "Expand"}
             </button>
           </div>

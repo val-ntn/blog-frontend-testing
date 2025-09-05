@@ -96,21 +96,34 @@ export default function EventListControl({
       <EventList
         refreshFlag={refreshFlag}
         renderActions={(event) => (
-          <div className="flex items-center gap-2">
-            <button type="button" onClick={() => onEdit?.(event)}>
+          <div className="dashboard-action-buttons">
+            <button
+              type="button"
+              className="dashboard-action-buttons__edit"
+              onClick={() => onEdit?.(event)}
+            >
               ✏ Edit
             </button>
-            <button type="button" onClick={() => handleDelete(event._id)}>
+            <button
+              type="button"
+              className="dashboard-action-buttons__delete"
+              onClick={() => handleDelete(event._id)}
+            >
               🗑 Delete
             </button>
             <button
               type="button"
+              className="dashboard-action-buttons__reports"
               onClick={() => navigate(`/admin/events/${event._id}/reports`)}
             >
               📄 Reports
             </button>
             {/* Toggle size for this event */}
-            <button type="button" onClick={() => toggleEventSize(event._id)}>
+            <button
+              type="button"
+              className="dashboard-action-buttons__expand"
+              onClick={() => toggleEventSize(event._id)}
+            >
               {expandedEvents[event._id] ? "Collapse" : "Expand"}
             </button>
           </div>

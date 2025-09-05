@@ -16,7 +16,7 @@ function LatestReport() {
 
   if (!report) return <p>Loading...</p>;
 
-  return <ReportItem report={report} size="small" />;
+  return <ReportItem report={report} size="small" linkToDetail={true} />;
 }
 
 export default LatestReport;

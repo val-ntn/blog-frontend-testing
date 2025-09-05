@@ -12,7 +12,11 @@ import "./Posts.css";
  * - "medium": full content
  * - "large": full content + optional carousel
  */
-export default function PostItem({ post, size = "medium" }) {
+export default function PostItem({
+  post,
+  size = "medium",
+  linkToDetail = false,
+}) {
   let contentToRender;
   let showReadMore = false;
   let showCarousel = false;
@@ -52,7 +56,7 @@ export default function PostItem({ post, size = "medium" }) {
         <SafeHTMLRenderer content={contentToRender} />
 
         {/* "Read more" link for small posts */}
-        {showReadMore && (
+        {showReadMore && linkToDetail && (
           <div className="post-item__read-more">
             <Link to={`/posts/${getId(post._id)}`} className="card__read-more">
               Read More

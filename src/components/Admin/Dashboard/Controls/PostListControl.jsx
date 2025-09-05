@@ -37,15 +37,27 @@ export default function PostListControl({
       <PostList
         refreshFlag={refreshFlag}
         renderActions={(post) => (
-          <div className="flex items-center gap-2">
-            <button type="button" onClick={() => onEdit?.(post)}>
+          <div className="dashboard-action-buttons">
+            <button
+              type="button"
+              className="dashboard-action-buttons__edit"
+              onClick={() => onEdit?.(post)}
+            >
               ✏ Edit
             </button>
-            <button type="button" onClick={() => handleDelete(post._id)}>
+            <button
+              type="button"
+              className="dashboard-action-buttons__delete"
+              onClick={() => handleDelete(post._id)}
+            >
               🗑 Delete
             </button>
             {/* Toggle size for this post */}
-            <button type="button" onClick={() => togglePostSize(post._id)}>
+            <button
+              type="button"
+              className="dashboard-action-buttons__expand"
+              onClick={() => togglePostSize(post._id)}
+            >
               {expandedPosts[post._id] ? "Collapse" : "Expand"}
             </button>
           </div>
