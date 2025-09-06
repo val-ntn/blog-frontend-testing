@@ -52,7 +52,7 @@ export default function CarouselListControl({
 
   return (
     <div>
-      <h3>All Carousels</h3>
+      <h3 className="dashboard-content--text">All Carousels</h3>
 
       {/* ✅ View Toggle Button */}
       <div style={{ marginBottom: "1rem" }}>

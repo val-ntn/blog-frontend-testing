@@ -140,6 +140,18 @@
   padding: 1rem;
   background-color: #1e1e1e;
 }
+
+.dashboard-content--text {
+  color: var(--color-white); /* or var(--color-text-on-dark, #fff) */
+  font-family: var(--font-family-dashboard);
+}
+
+.dashboard-content label {
+  color: white; /* or use your dark-mode variable */
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 500; /* optional, make them stand out */
+}
+
 .dashboard-sidebar__logout {
   margin-top: auto; /* pushes this button to the bottom */
   padding: 0.75rem 1rem;

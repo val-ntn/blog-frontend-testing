@@ -8,7 +8,7 @@ export default function Reports() {
   return (
     <div className="page-content page-content--reports">
       <PageHeader title="Reports" />
-      <ReportList />
+      <ReportList linkToDetail={true} />
     </div>
   );
 }

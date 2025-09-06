@@ -283,7 +283,9 @@ export default function Dashboard() {
             )}
             {/* === Users Section Placeholder === */}
             {selectedSection === "users" && (
-              <div>User management coming soon...</div>
+              <div className="dashboard-content--text">
+                User management coming soon...
+              </div>
             )}
           </div>
         </div>

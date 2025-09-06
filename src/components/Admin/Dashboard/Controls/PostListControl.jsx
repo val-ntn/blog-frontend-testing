@@ -33,7 +33,7 @@ export default function PostListControl({
 
   return (
     <div>
-      <h3>All Posts</h3>
+      <h3 className="dashboard-content--text">All Posts</h3>
 
       <PostList
         refreshFlag={refreshFlag}

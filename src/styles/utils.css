@@ -50,7 +50,6 @@
   margin: var(--spacing-md) 0 var(--spacing-md);
 }
 
-
 .card__title--xl {
   font-size: var(--font-size-xl);
 }
@@ -65,8 +64,6 @@
 .card__title--left {
   text-align: left;
 }
-
-
 
 /* -------------------- */
 /* Tagline / Subtitle   */
@@ -103,7 +100,6 @@
 .no-shadow {
   box-shadow: none !important; /* removes any card or item shadow */
 }
-
 
 /* -------------------- */
 /* Divider              */
@@ -148,12 +144,10 @@
   text-decoration: underline;
 }
 
-
 .safe-html img {
   max-width: 100%;
   height: auto;
 }
-
 
 /* -------------------- */
 /* Wrapper */
@@ -172,12 +166,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md); /* or var(--spacing-xs) for small if you want */
+  margin: 0 auto;
 }
 .card-item--large--wrapper {
-  padding: 0 calc(var(--spacing-md) * 4);
+  /*padding: 0 calc(var(--spacing-md) * 4);
   gap: var(--spacing-xl); /* spacing between items */
   max-width: 1024px;
-  margin: 0 auto; /* center content */
 }
 
 /* .list-wrapper {
@@ -190,7 +184,7 @@
 .event-list--wrapper,
 .post-list--wrapper,
 .report-list--wrapper {
-  padding: 0 calc(var(--spacing-md) * 4);
+  /*padding: 0 calc(var(--spacing-md) * 4);*/
   display: flex;
   flex-direction: column; /* stack vertically */
   gap: var(--spacing-xl); /* spacing between items */
@@ -210,8 +204,8 @@
 
 @media (max-width: 600px) {
   .event-list--wrapper,
-.post-list--wrapper,
-.report-list--wrapper {
+  .post-list--wrapper,
+  .report-list--wrapper {
     padding-left: 0;
     padding-right: 0;
   }
@@ -227,9 +221,9 @@
 /* Remove horizontal padding on small screens */
 
 @media (max-width: 600px) {
-.card-item--small--wrapper,
-.card-item--medium--wrapper,
-.card-item--large--wrapper  {
+  .card-item--small--wrapper,
+  .card-item--medium--wrapper,
+  .card-item--large--wrapper {
     padding-left: 0;
     padding-right: 0;
   }

@@ -56,7 +56,7 @@ export default function PicturesListControl() {
 
   return (
     <div>
-      <h3>Manage Pictures</h3>
+      <h3 className="dashboard-content--text">Manage Pictures</h3>
 
       {/* 👇 Toggle Button */}
       <div style={{ marginBottom: "1rem" }}>

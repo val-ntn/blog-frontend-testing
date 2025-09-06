@@ -11,6 +11,7 @@ export default function ReportList({
   refreshFlag,
   renderActions,
   renderSize,
+  linkToDetail = false,
 }) {
   const [reports, setReports] = useState([]);
 
@@ -32,6 +33,7 @@ export default function ReportList({
           <ReportItem
             report={report}
             size={renderSize ? renderSize(report) : size}
+            linkToDetail={linkToDetail}
           />
           {renderActions && renderActions(report)}
         </div>
@@ -45,4 +47,5 @@ ReportList.propTypes = {
   refreshFlag: PropTypes.any, // could be number, bool, string – whatever you toggle
   renderActions: PropTypes.func,
   renderSize: PropTypes.func,
+  linkToDetail: PropTypes.bool,
 };
