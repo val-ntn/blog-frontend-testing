@@ -77,7 +77,7 @@
 /* -------------------- */
 
 .event-item {
-  background-color: var(--color-background);
+  background-color: var(--color-background-alt);
   border-radius: var(--border-radius-sm);
 }
 

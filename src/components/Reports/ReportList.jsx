@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import ReportItem from "./ReportItem";
 import { API_BASE_URL } from "../../utils/api";
+import PropTypes from "prop-types";
 
 export default function ReportList({
   limit,
@@ -38,3 +39,10 @@ export default function ReportList({
     </div>
   );
 }
+ReportList.propTypes = {
+  limit: PropTypes.number,
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  refreshFlag: PropTypes.any, // could be number, bool, string – whatever you toggle
+  renderActions: PropTypes.func,
+  renderSize: PropTypes.func,
+};

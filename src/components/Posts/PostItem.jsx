@@ -94,4 +94,5 @@ PostItem.propTypes = {
     }),
   }).isRequired,
   size: PropTypes.oneOf(["small", "medium", "large"]),
+  linkToDetail: PropTypes.bool,
 };

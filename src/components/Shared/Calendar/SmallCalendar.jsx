@@ -1,6 +1,3 @@
-
-
-
 // frontend/src/components/Shared/Calendar/SmallCalendar.jsx
 
 import React, { useState, useEffect } from "react";
@@ -18,7 +15,7 @@ export default function SmallCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [eventMap, setEventMap] = useState({});
   const [viewDate, setViewDate] = useState(new Date()); // controls month/year
-  const monthYearRef = useRef(null);  
+  const monthYearRef = useRef(null);
 
   // Fetch events and map all dates for multi-day events
   useEffect(() => {
@@ -68,32 +65,41 @@ export default function SmallCalendar() {
       {/* Header */}
 
       <div className="calendar-header">
-  <div className="weekday">
-    {selectedDate.toLocaleDateString("en-US", { weekday: "long" })}
-  </div>
+        <div className="weekday">
+          {selectedDate.toLocaleDateString("en-US", { weekday: "long" })}
+        </div>
 
-  <div className="month-year">
-    <span className="day">{selectedDate.getDate()}</span>
-    <span className="month"> {selectedDate.toLocaleDateString("en-US", { month: "long" })}</span>
-    <span className="year"> {selectedDate.getFullYear()}</span>
-  </div>
+        <div className="month-year">
+          <span className="day">{selectedDate.getDate()}</span>
+          <span className="month">
+            {" "}
+            {selectedDate.toLocaleDateString("en-US", { month: "long" })}
+          </span>
+          <span className="year"> {selectedDate.getFullYear()}</span>
+        </div>
 
-  <div className="nav-controls">
-    <div className="month-nav">
-      <button type="button" onClick={() => incrementMonth(-1)}><FaChevronLeft /></button>
-      <span>{currentMonth}</span>
-      <button type="button" onClick={() => incrementMonth(1)}><FaChevronRight /></button>
-    </div>
+        <div className="nav-controls">
+          <div className="month-nav">
+            <button type="button" onClick={() => incrementMonth(-1)}>
+              <FaChevronLeft />
+            </button>
+            <span>{currentMonth}</span>
+            <button type="button" onClick={() => incrementMonth(1)}>
+              <FaChevronRight />
+            </button>
+          </div>
 
-    <div className="year-nav">
-      <button type="button" onClick={() => incrementYear(-1)}><FaChevronLeft /></button>
-      <span>{currentYear}</span>
-      <button type="button" onClick={() => incrementYear(1)}><FaChevronRight /></button>
-    </div>
-  </div>
-</div>
-
-
+          <div className="year-nav">
+            <button type="button" onClick={() => incrementYear(-1)}>
+              <FaChevronLeft />
+            </button>
+            <span>{currentYear}</span>
+            <button type="button" onClick={() => incrementYear(1)}>
+              <FaChevronRight />
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Calendar */}
       <Calendar
@@ -113,13 +119,13 @@ export default function SmallCalendar() {
 
       {/* Event details below calendar */}
       {todayEvents.length > 0 && (
-        <div className="event-details">
-          <h4>Events on {formatted}:</h4>
+        <div className="calendar-event-details">
+          <h5>Events on {formatted}:</h5>
           {todayEvents.map((event) => (
             <EventItem
               key={event._id || event.id}
               event={event}
-               size="small"
+              size="small"
               linkToDetail
             />
           ))}
@@ -128,4 +134,3 @@ export default function SmallCalendar() {
     </div>
   );
 }
-

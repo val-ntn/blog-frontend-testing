@@ -126,6 +126,20 @@
   --color-background-muted: var(
     --color-neutral-200
   ); /* for sidebar, hero mockup, widgets */
+
+  /* Calendar colors */
+  --color-calendar-bg: var(
+    --color-background-alt
+  ); /* default calendar background */
+  --color-calendar-header-bg: var(--color-primary); /* header teal */
+  --color-calendar-header-text: var(--color-white);
+  --color-calendar-text: var(--color-text); /* default text color */
+  --color-calendar-tile-hover: #f0f4ff; /* light blue hover in light mode */
+  --color-calendar-tile-hover-text: #1a73e8; /* hover text color */
+  --color-calendar-event: #e8f0fe; /* light blue event tile */
+  --color-calendar-event-text: #1a73e8; /* event tile text */
+  --color-calendar-event-active: #1a73e8; /* selected event tile */
+  --color-calendar-event-active-text: var(); /* text on selected */
 }
 
 /* Dark mode */
@@ -137,4 +151,15 @@
   --color-text-light: var(--color-neutral-300);
   --color-divider: var(--color-neutral-700);
   --color-button: var(--color-primary);
+
+  --color-calendar-bg: var(--color-neutral-900);
+  --color-calendar-header-bg: var(--color-teal-700);
+  --color-calendar-header-text: var(--color-white);
+  --color-calendar-text: var(--color-neutral-50);
+  --color-calendar-tile-hover: #3a4a6a; /* darker hover */
+  --color-calendar-tile-hover-text: #a8c4ff; /* lighter hover text */
+  --color-calendar-event: #2a3b5a; /* dark mode event tile */
+  --color-calendar-event-text: #a8c4ff;
+  --color-calendar-event-active: #1a73e8;
+  --color-calendar-event-active-text: var(--color-background);
 }
