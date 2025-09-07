@@ -18,8 +18,12 @@ export default function CarouselList({
           </div>
           {!disableDelete && onDelete && (
             <>
-              <button onClick={() => onDelete(carousel._id)}>Delete</button>
-              <button onClick={() => onSelect?.(carousel)}>Edit</button>{" "}
+              <button type="button" onClick={() => onDelete(carousel._id)}>
+                Delete
+              </button>
+              <button type="button" onClick={() => onSelect?.(carousel)}>
+                Edit
+              </button>{" "}
               {/* Add Edit */}
             </>
           )}

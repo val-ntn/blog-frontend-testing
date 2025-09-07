@@ -23,6 +23,7 @@ export default function DarkModeToggle() {
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       style={{ fontSize: "1.5rem", background: "none", border: "none" }}
       aria-label="Toggle Dark Mode"

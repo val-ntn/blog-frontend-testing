@@ -14,11 +14,15 @@ export default function CalendarPopup() {
 
   return (
     <div>
-      <button onClick={() => openForDate(new Date())}>📅 Open Calendar</button>
+      <button type="button" onClick={() => openForDate(new Date())}>
+        📅 Open Calendar
+      </button>
 
       {show && (
         <div className="calendar-popup">
-          <button onClick={() => setShow(false)}>✖ Close</button>
+          <button type="button" onClick={() => setShow(false)}>
+            ✖ Close
+          </button>
           <SmallCalendar initialDate={initialDate} />
         </div>
       )}

@@ -57,6 +57,7 @@ export default function CarouselListControl({
       {/* ✅ View Toggle Button */}
       <div style={{ marginBottom: "1rem" }}>
         <button
+          type="button"
           onClick={() =>
             setViewMode((prev) => (prev === "grid" ? "list" : "grid"))
           }

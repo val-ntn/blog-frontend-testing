@@ -47,6 +47,7 @@ export default function ImageToolbar({
   return (
     <div ref={toolbarRef} className={styles.toolbar}>
       <button
+        type="button"
         onClick={() => toggleSide("all")}
         style={getButtonStyle("all")}
         title="All sides"
@@ -54,6 +55,7 @@ export default function ImageToolbar({
         ■
       </button>
       <button
+        type="button"
         onClick={() => toggleSide("top")}
         style={getButtonStyle("top")}
         title="Top margin"
@@ -61,6 +63,7 @@ export default function ImageToolbar({
         ▀
       </button>
       <button
+        type="button"
         onClick={() => toggleSide("right")}
         style={getButtonStyle("right")}
         title="Right margin"
@@ -68,6 +71,7 @@ export default function ImageToolbar({
         ▐
       </button>
       <button
+        type="button"
         onClick={() => toggleSide("bottom")}
         style={getButtonStyle("bottom")}
         title="Bottom margin"
@@ -75,6 +79,7 @@ export default function ImageToolbar({
         ▄
       </button>
       <button
+        type="button"
         onClick={() => toggleSide("left")}
         style={getButtonStyle("left")}
         title="Left margin"
@@ -82,24 +87,38 @@ export default function ImageToolbar({
         ▌
       </button>
       <button
+        type="button"
         onClick={() => onAction("increase-margin")}
         title="Increase margin"
       >
         ➕
       </button>
       <button
+        type="button"
         onClick={() => onAction("decrease-margin")}
         title="Decrease margin"
       >
         ➖
       </button>
-      <button onClick={() => onAction("align-left")} title="Align Left">
+      <button
+        type="button"
+        onClick={() => onAction("align-left")}
+        title="Align Left"
+      >
         ▌
       </button>
-      <button onClick={() => onAction("align-right")} title="Align Right">
+      <button
+        type="button"
+        onClick={() => onAction("align-right")}
+        title="Align Right"
+      >
         ▐
       </button>
-      <button onClick={() => onAction("reset-styles")} title="Reset styles">
+      <button
+        type="button"
+        onClick={() => onAction("reset-styles")}
+        title="Reset styles"
+      >
         ⟲
       </button>
     </div>

@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PicturesList from "../../../Images-Carousels/PicturesList";
+import PictureDisplay from "../../../Images-Carousels/PictureDisplay"; //testing PictureDisplay
 import { API_BASE_URL } from "../../../../utils/api";
 
 export default function PicturesListControl() {
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [viewMode, setViewMode] = useState("grid"); // NEW
+  const [displayMode, setDisplayMode] = useState("list");
 
   const fetchImages = () => {
     axios
@@ -20,6 +22,28 @@ export default function PicturesListControl() {
   useEffect(() => {
     fetchImages();
   }, []);
+
+  const handleUploadNew = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      await axios.post(`${API_BASE_URL}/upload/images`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
+      fetchImages();
+    } catch (err) {
+      console.error("Upload failed", err);
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
@@ -58,22 +82,51 @@ export default function PicturesListControl() {
     <div>
       <h3 className="dashboard-content--text">Manage Pictures</h3>
 
-      {/* 👇 Toggle Button */}
+      {/*Upload control centralized here */}
       <div style={{ marginBottom: "1rem" }}>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleUploadNew}
+          disabled={uploading}
+        />
+        {uploading && <p>Uploading...</p>}
+      </div>
+
+      {/*<div style={{ marginBottom: "1rem" }}>
         <button
           type="button"
           onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
         >
           Switch to {viewMode === "grid" ? "List View" : "Thumbnail View"}
         </button>
+      </div>*/}
+
+      <div style={{ marginBottom: "1rem" }}>
+        <button
+          type="button"
+          onClick={() =>
+            setDisplayMode(displayMode === "grid" ? "list" : "grid")
+          }
+        >
+          Switch to {displayMode === "grid" ? "List View" : "Thumbnail View"}
+        </button>
       </div>
 
-      <PicturesList
+      {/*<PicturesList
         images={images}
         uploading={uploading}
         onUpload={handleUpload}
         onDelete={handleDelete}
         viewMode={viewMode} // 👈 Pass it in
+      />*/}
+      <PictureDisplay
+        images={images}
+        uploading={uploading}
+        onUpload={handleUpload}
+        onDelete={handleDelete}
+        //showThumbnail={false}
+        displayMode={displayMode}
       />
     </div>
   );

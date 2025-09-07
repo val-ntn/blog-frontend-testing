@@ -29,7 +29,6 @@ export default function PicturesList({
           <tbody>
             {images.map((image) => (
               <Picture
-                //key={image.name}
                 key={image.filename}
                 image={image}
                 onSelect={onSelect}

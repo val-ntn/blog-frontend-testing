@@ -14,8 +14,12 @@ export default function PictureRecycleItem({ image, onRestore, onDelete }) {
         width={100}
       />
       <div>
-        <button onClick={() => onRestore(image.filename)}>Restore</button>
-        <button onClick={() => onDelete(image.filename)}>🗑 Delete</button>
+        <button type="button" onClick={() => onRestore(image.filename)}>
+          Restore
+        </button>
+        <button type="button" onClick={() => onDelete(image.filename)}>
+          🗑 Delete
+        </button>
       </div>
     </div>
   );
