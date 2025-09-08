@@ -50,7 +50,7 @@ function AdminLogin() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="admin-content .page-content--login">
+    <div className="admin-content page-content--login">
       <h2>Admin Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -61,6 +61,7 @@ function AdminLogin() {
             name="email"
             value={form.email}
             onChange={handleChange}
+            autoComplete="username"
             required
           />
         </div>
@@ -71,6 +72,7 @@ function AdminLogin() {
             name="password"
             value={form.password}
             onChange={handleChange}
+            autoComplete="current-password"
             required
           />
         </div>
