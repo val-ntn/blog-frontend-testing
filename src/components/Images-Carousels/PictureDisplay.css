@@ -112,26 +112,37 @@
 .picture-scroll-wrapper {
   display: flex;
   gap: 1rem;
+  flex: 1 1 auto; /* fill remaining space inside wrapper */
+  overflow: hidden; /* prevents overflow from preview */
 }
 
 .picture-list {
-  max-height: 500px; /* roughly 10 rows */
+  flex: 1 1 300px; /* list can grow but takes up space */
   overflow-y: auto;
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .picture-preview {
-  flex: 1;
+  flex: 2 1 0; /* take remaining width */
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+}
+
+.picture-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 .picture-row {
   color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-dashboard);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -171,4 +182,14 @@
   max-width: 100%;
   max-height: 100%;
   border-radius: 6px;
+}
+
+.picture-display-wrapper {
+  max-height: 600px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
