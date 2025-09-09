@@ -10,6 +10,7 @@ import PostForm from "../Forms/PostForm/PostForm";
 import EventForm from "../Forms/EventForm/EventForm";
 import CarouselForm from "../Forms/CarouselForm/CarouselForm";
 import PicturesListControl from "./Controls/PicturesListControl";
+import PictureDisplayControl from "./Controls/PictureDisplayControl";
 import ReportListControl from "./Controls/ReportListControl";
 import ReportForm from "../Forms/ReportForm/ReportForm";
 import DashboardHeader from "./DashboardHeader";
@@ -225,7 +226,7 @@ export default function Dashboard() {
             {/* === Pictures & Carousels Section === */}
             {selectedSection === "pictures" && (
               <>
-                <PicturesListControl />
+                <PictureDisplayControl />
 
                 <hr style={{ margin: "2rem 0" }} />
 
