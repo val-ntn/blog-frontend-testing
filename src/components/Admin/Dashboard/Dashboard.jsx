@@ -11,6 +11,7 @@ import EventForm from "../Forms/EventForm/EventForm";
 import CarouselForm from "../Forms/CarouselForm/CarouselForm";
 import PicturesListControl from "./Controls/PicturesListControl";
 import PictureDisplayControl from "./Controls/PictureDisplayControl";
+import CarouselDisplayControl from "./Controls/CarouselDisplayControl";
 import ReportListControl from "./Controls/ReportListControl";
 import ReportForm from "../Forms/ReportForm/ReportForm";
 import DashboardHeader from "./DashboardHeader";
@@ -227,6 +228,10 @@ export default function Dashboard() {
             {selectedSection === "pictures" && (
               <>
                 <PictureDisplayControl />
+
+                <hr style={{ margin: "2rem 0" }} />
+
+                <CarouselDisplayControl />
 
                 <hr style={{ margin: "2rem 0" }} />
 

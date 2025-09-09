@@ -79,13 +79,13 @@
   max-height: 600px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 .picture-display-header {
-  max-width: 1024px;
+  max-width: 1200px;
   display: flex;
   margin: 0 auto;
 }

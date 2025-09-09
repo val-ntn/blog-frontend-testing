@@ -93,7 +93,7 @@ export default function PictureDisplay({
                           if (isSelected) setSelectedImage(null);
                         }}
                       >
-                        Delete
+                        🗑 Delete
                       </button>
                     )}
                   </div>
