@@ -173,7 +173,7 @@ export default function CarouselDisplay({
   };
 
   return (
-    <div className="carousel-display">
+    <div className="carousel">
       {/* Admin-only "Add new" button */}
       {mode === "admin" && (
         <div style={{ marginBottom: "1rem" }}>
@@ -185,36 +185,36 @@ export default function CarouselDisplay({
       )}
 
       {/* Header with toggle button (shared) */}
-      <div className="carousel-display-header">
-        <div className="spaceing"></div>
+      <div className="carousel__display-header">
+        <div className="carousel__header-spacer"></div>
         <button type="button" onClick={toggleDisplayMode}>
           Switch to {displayMode === "grid" ? "List View" : "Thumbnail View"}
         </button>
       </div>
 
       {/* Main display area */}
-      <div className="carousel-display-wrapper">
+      <div className="carousel__display-wrapper">
         {displayMode === "grid" ? (
-          <div className="carousel-scroll-wrapper">
-            <div className="carousel-grid">
+          <div className="carousel__scroll-wrapper">
+            <div className="carousel__grid">
               {carousels.map((carousel) => {
                 const isSelected = selectedCarousel?._id === carousel._id;
                 return (
                   <div
                     key={carousel._id}
-                    className={`carousel-row-${displayMode} ${
-                      isSelected ? "selected" : ""
+                    className={`carousel__row carousel__row--grid ${
+                      isSelected ? "carousel__row--selected" : ""
                     }`}
                   >
                     {/* Carousel preview */}
                     <CarouselItem carousel={carousel} />
 
                     {/* Buttons below the carousel */}
-                    <div className="carousel-buttons">
+                    <div className="carousel__buttons">
                       {mode === "picker" && (
                         <button
                           type="button"
-                          className="carousel-select"
+                          className="carousel__select"
                           onClick={(e) => {
                             e.stopPropagation();
                             onSelect?.(carousel);
@@ -227,7 +227,7 @@ export default function CarouselDisplay({
                         <>
                           <button
                             type="button"
-                            className="carousel-delete"
+                            className="carousel__delete"
                             onClick={(e) => {
                               e.stopPropagation();
                               onDelete?.(carousel._id);
@@ -239,7 +239,7 @@ export default function CarouselDisplay({
                           </button>
                           <button
                             type="button"
-                            className="carousel-delete"
+                            className="carousel__delete"
                             onClick={(e) => {
                               e.stopPropagation();
                               onEdit?.(carousel);
@@ -256,26 +256,26 @@ export default function CarouselDisplay({
             </div>
           </div>
         ) : (
-          <div className="carousel-display-content">
-            <div className="carousel-scroll-wrapper">
+          <div className="carousel__display-content">
+            <div className="carousel__scroll-wrapper">
               {/* Left: List */}
-              <div className="carousel-list">
+              <div className="carousel__list">
                 {carousels.map((carousel) => {
                   const isSelected = selectedCarousel?._id === carousel._id;
                   return (
                     <div
                       key={carousel._id}
-                      className={`carousel-row-${displayMode} ${
-                        isSelected ? "selected" : ""
+                      className={`carousel__row carousel__row--list ${
+                        isSelected ? "carousel__row--selected" : ""
                       }`}
                       onClick={() => handleSelect(carousel)}
                     >
-                      <div className="carousel-symbol">🎞️</div>
-                      <div className="carousel-filename">{carousel.title}</div>
-                      <div className="carousel-type">
+                      <div className="carousel__symbol">🎞️</div>
+                      <div className="carousel__filename">{carousel.title}</div>
+                      <div className="carousel__type">
                         {carousel.type || "basic"}
                       </div>
-                      <div className="carousel-size">
+                      <div className="carousel__size">
                         {carousel.images?.length || 0} images
                       </div>
 
@@ -284,7 +284,7 @@ export default function CarouselDisplay({
                         <>
                           <button
                             type="button"
-                            className="carousel-delete"
+                            className="carousel__delete"
                             onClick={(e) => {
                               e.stopPropagation();
                               onDelete(carousel._id);
@@ -295,7 +295,7 @@ export default function CarouselDisplay({
                           </button>
                           <button
                             type="button"
-                            className="carousel-delete"
+                            className="carousel__delete"
                             onClick={(e) => {
                               e.stopPropagation();
                               onEdit?.(carousel);
@@ -310,7 +310,7 @@ export default function CarouselDisplay({
                       {mode === "picker" && (
                         <button
                           type="button"
-                          className="carousel-select"
+                          className="carousel__select"
                           onClick={(e) => {
                             e.stopPropagation();
                             onSelect?.(carousel);
@@ -326,7 +326,7 @@ export default function CarouselDisplay({
             </div>
 
             {/*  Preview */}
-            <div className="carousel-preview">
+            <div className="carousel__preview">
               {selectedCarousel && <CarouselItem carousel={selectedCarousel} />}
             </div>
           </div>

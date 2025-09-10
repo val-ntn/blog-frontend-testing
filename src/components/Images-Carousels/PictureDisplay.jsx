@@ -24,7 +24,7 @@ export default function PictureDisplay({
   };
 
   return (
-    <div className="picture-display">
+    <div className="picture">
       {/* Upload input + View toggle */}
       <div style={{ marginBottom: "1rem" }}>
         <input
@@ -37,18 +37,18 @@ export default function PictureDisplay({
       </div>
 
       {/* Header with toggle button */}
-      <div className="picture-display-header">
-        <div className="spaceing"></div>
+      <div className="picture__display-header">
+        <div className="picture__header-spacer"></div>
         <button type="button" onClick={toggleDisplayMode}>
           Switch to {displayMode === "grid" ? "List View" : "Thumbnail View"}
         </button>
       </div>
 
       {/* Main display area */}
-      <div className="picture-display-wrapper">
+      <div className="picture__display-wrapper">
         {displayMode === "grid" ? (
-          <div className="picture-scroll-wrapper">
-            <div className="picture-grid">
+          <div className="picture__scroll-wrapper">
+            <div className="picture__grid">
               {images.map((image) => (
                 <Picture
                   key={image.filename}
@@ -62,32 +62,34 @@ export default function PictureDisplay({
             </div>
           </div>
         ) : (
-          <div className="picture-display-content">
+          <div className="picture__display-content">
             {/* Left: List */}
-            <div className="picture-scroll-wrapper">
-              <div className="picture-list">
+            <div className="picture__scroll-wrapper">
+              <div className="picture__list">
                 {images.map((image) => {
                   const isSelected = selectedImage?.filename === image.filename;
                   return (
                     <div
                       key={image.filename}
-                      className={`picture-row ${isSelected ? "selected" : ""}`}
+                      className={`picture__row ${
+                        isSelected ? "picture__row--selected" : ""
+                      }`}
                       onClick={() => handleSelect(image)}
                     >
-                      <div className="picture-symbol">🖼️</div>
-                      <div className="picture-filename">
+                      <div className="picture__symbol">🖼️</div>
+                      <div className="picture__filename">
                         {image.originalName || image.filename}
                       </div>
-                      <div className="picture-type">
+                      <div className="picture__type">
                         {image.mimetype || "image"}
                       </div>
-                      <div className="picture-size">
+                      <div className="picture__size">
                         {Math.round(image.size / 1024)} KB
                       </div>
                       {onDelete && (
                         <button
                           type="button"
-                          className="picture-delete"
+                          className="picture__delete"
                           onClick={(e) => {
                             e.stopPropagation();
                             onDelete(image.filename);
@@ -104,7 +106,7 @@ export default function PictureDisplay({
             </div>
 
             {/* Right: Large preview */}
-            <div className="picture-preview">
+            <div className="picture__preview">
               {selectedImage && (
                 <img
                   src={`${API_BASE_URL}/uploads/${selectedImage.filename}`}
