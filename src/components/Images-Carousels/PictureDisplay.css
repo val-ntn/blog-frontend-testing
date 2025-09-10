@@ -1,10 +1,14 @@
 /* src/components/Images-Carousels/PictureDisplay.css */
 
 .picture-scroll-wrapper {
-  display: flex;
-  gap: 1rem;
-  flex: 1 1 auto; /* fill remaining space inside wrapper */
+  display: flex; /* fill remaining space inside wrapper */
+  flex: 1;
+  flex-direction: column;
   overflow: hidden; /* prevents overflow from preview */
+}
+.picture-display-content {
+  height: 600px;
+  display: flex;
 }
 
 .picture-list {
@@ -16,7 +20,7 @@
 }
 
 .picture-preview {
-  flex: 2 1 0; /* take remaining width */
+  flex: 1; /* take remaining width */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,13 +83,13 @@
   max-height: 600px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  max-width: 1200px;
+  max-width: 1024px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 .picture-display-header {
-  max-width: 1200px;
+  max-width: 1024px;
   display: flex;
   margin: 0 auto;
 }

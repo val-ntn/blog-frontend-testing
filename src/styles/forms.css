@@ -1,1 +1,4 @@
 /* src/styles/formst.css */
+form {
+  font-family: var(--font-family-dashboard);
+}

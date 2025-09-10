@@ -1,7 +1,7 @@
 // src/components/Images-Carousels/PictureDisplay.jsx
 import { useState } from "react";
 import { API_BASE_URL } from "../../utils/api";
-import Picture from "./Picture";
+import Picture from "./PictureObj";
 import "./PictureDisplay.css";
 
 export default function PictureDisplay({
@@ -62,43 +62,45 @@ export default function PictureDisplay({
             </div>
           </div>
         ) : (
-          <div className="picture-scroll-wrapper">
+          <div className="picture-display-content">
             {/* Left: List */}
-            <div className="picture-list">
-              {images.map((image) => {
-                const isSelected = selectedImage?.filename === image.filename;
-                return (
-                  <div
-                    key={image.filename}
-                    className={`picture-row ${isSelected ? "selected" : ""}`}
-                    onClick={() => handleSelect(image)}
-                  >
-                    <div className="picture-symbol">🖼️</div>
-                    <div className="picture-filename">
-                      {image.originalName || image.filename}
+            <div className="picture-scroll-wrapper">
+              <div className="picture-list">
+                {images.map((image) => {
+                  const isSelected = selectedImage?.filename === image.filename;
+                  return (
+                    <div
+                      key={image.filename}
+                      className={`picture-row ${isSelected ? "selected" : ""}`}
+                      onClick={() => handleSelect(image)}
+                    >
+                      <div className="picture-symbol">🖼️</div>
+                      <div className="picture-filename">
+                        {image.originalName || image.filename}
+                      </div>
+                      <div className="picture-type">
+                        {image.mimetype || "image"}
+                      </div>
+                      <div className="picture-size">
+                        {Math.round(image.size / 1024)} KB
+                      </div>
+                      {onDelete && (
+                        <button
+                          type="button"
+                          className="picture-delete"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onDelete(image.filename);
+                            if (isSelected) setSelectedImage(null);
+                          }}
+                        >
+                          🗑 Delete
+                        </button>
+                      )}
                     </div>
-                    <div className="picture-type">
-                      {image.mimetype || "image"}
-                    </div>
-                    <div className="picture-size">
-                      {Math.round(image.size / 1024)} KB
-                    </div>
-                    {onDelete && (
-                      <button
-                        type="button"
-                        className="picture-delete"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onDelete(image.filename);
-                          if (isSelected) setSelectedImage(null);
-                        }}
-                      >
-                        🗑 Delete
-                      </button>
-                    )}
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
 
             {/* Right: Large preview */}

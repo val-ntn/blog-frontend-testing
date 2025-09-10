@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { API_BASE_URL } from "../../utils/api";
 import "../../styles/layout.css";
 import "../../styles/pages.css";
+import "../../styles/forms.css";
 
 function AdminLogin() {
   const { user, setUser, loading } = useAuth(); // <-- include setUser here
@@ -55,8 +56,9 @@ function AdminLogin() {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
+            id="email"
             type="email"
             name="email"
             value={form.email}
@@ -66,8 +68,9 @@ function AdminLogin() {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
+            id="password"
             type="password"
             name="password"
             value={form.password}
