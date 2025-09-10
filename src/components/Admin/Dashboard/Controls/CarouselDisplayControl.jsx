@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CarouselDisplay from "../../../Images-Carousels/CarouselDisplay";
-import CarouselForm from "../../Forms/CarouselForm/CarouselForm";
+import CarouselForm from "../../Forms/CarouselForm/CarouselFormObj";
 import { API_BASE_URL } from "../../../../utils/api";
 
 export default function CarouselDisplayControl() {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/api";
 import PropTypes from "prop-types";
-import PicturesList from "../Images-Carousels/PicturesListObj";
+import PicturesList from "../Images-Carousels/PictureListObj";
 import Button from "../UI/Button";
 
 export default function ImageSelector({ onSelect }) {

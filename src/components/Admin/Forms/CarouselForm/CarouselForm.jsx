@@ -1,5 +1,6 @@
 // frontend/src/components/Admin/Forms/CarouselForm/CarouselForm.jsx
 
+/*
 import { useState, useEffect } from "react";
 import ImageSelector from "../../ImageSelector";
 import axios from "axios";
@@ -189,4 +190,4 @@ export default function CarouselForm({
       </Button>
     </form>
   );
-}
+}*/

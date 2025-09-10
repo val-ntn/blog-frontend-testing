@@ -69,6 +69,7 @@ export default function Picture({
     </div>
   );
 }
+
 /*import { API_BASE_URL } from "../../utils/api";
 export default function Picture({
   image,

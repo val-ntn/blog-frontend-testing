@@ -8,7 +8,7 @@ import CarouselListControl from "./Controls/CarouselListControl";
 import DashboardSidebar from "./DashboardSidebar";
 import PostForm from "../Forms/PostForm/PostForm";
 import EventForm from "../Forms/EventForm/EventForm";
-import CarouselForm from "../Forms/CarouselForm/CarouselForm";
+import CarouselForm from "../Forms/CarouselForm/CarouselFormObj";
 import PicturesListControl from "./Controls/PicturesListControl";
 import PictureDisplayControl from "./Controls/PictureDisplayControl";
 import CarouselDisplayControl from "./Controls/CarouselDisplayControl";
@@ -235,7 +235,7 @@ export default function Dashboard() {
 
                 <hr style={{ margin: "2rem 0" }} />
 
-                <CarouselListControl
+                {/*<CarouselListControl
                   refreshFlag={carouselRefreshFlag}
                   onRecycleRefresh={triggerCarouselRecycleRefresh}
                   onEdit={(carousel) => {
@@ -269,7 +269,7 @@ export default function Dashboard() {
                       setCarouselRefreshFlag((prev) => prev + 1);
                     }}
                   />
-                )}
+                )}*/}
               </>
             )}
             {/* === Recycle Bin Section === */}

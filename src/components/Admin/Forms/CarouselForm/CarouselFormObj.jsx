@@ -134,7 +134,12 @@ export default function CarouselForm({
 
       <div style={{ margin: "1rem 0" }}>
         <ImageSelector
-          onSelect={(url) => setImages((prev) => [...prev, url])}
+          onSelect={(imageObj) =>
+            setImages((prev) => [
+              ...prev,
+              `${API_BASE_URL}/uploads/${imageObj.filename}`,
+            ])
+          }
         />
 
         {images.length > 0 && (

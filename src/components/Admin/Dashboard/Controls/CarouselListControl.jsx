@@ -54,7 +54,6 @@ export default function CarouselListControl({
     <div>
       <h3 className="dashboard-content--text">All Carousels</h3>
 
-      {/* ✅ View Toggle Button */}
       <div style={{ marginBottom: "1rem" }}>
         <button
           type="button"
@@ -66,7 +65,6 @@ export default function CarouselListControl({
         </button>
       </div>
 
-      {/* ✅ Final Output */}
       {loading ? (
         <p>Loading carousels...</p>
       ) : carousels.length === 0 ? (
