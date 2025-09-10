@@ -1,8 +1,11 @@
 /* src/components/Images-Carousels/CarouselDisplay.css */
 
+/* src/components/Images-Carousels/CarouselDisplay.css */
+
 .carousel-scroll-wrapper {
   display: flex; /* fill remaining space inside wrapper */
   flex: 1;
+  justify-content: center;
   flex-direction: column;
   overflow: hidden; /* prevents overflow from preview */
 }
@@ -36,7 +39,7 @@
   border-radius: 6px;
 }
 
-.carousel-row {
+.carousel-row-list {
   color: var(--color-white);
   font-size: var(--font-size-sm);
   font-family: var(--font-family-dashboard);
@@ -47,10 +50,7 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.carousel-row.selected {
-  border: 2px solid blue;
+  transition: border 0.2s;
 }
 
 .carousel-symbol {
@@ -68,17 +68,26 @@
   margin-right: 1rem;
 }
 
+.carousel-filename {
+  flex: 2; /* takes available space */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carousel-type {
+  flex: 1;
+}
+
+.carousel-size {
+  flex: 1;
+}
+
 .carousel-delete {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
-}
-
-.carousel-preview img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 6px;
 }
 
 .carousel-display-wrapper {
@@ -89,31 +98,55 @@
   display: flex;
   flex-direction: column;
 }
+
 .carousel-display-header {
   max-width: 1024px;
   display: flex;
   margin: 0 auto;
 }
+
 .spaceing {
   flex: 1;
 }
+
 .carousel-grid {
   display: flex;
-  flex-wrap: wrap; /* allow multiple rows */
+  flex-direction: column;
   gap: 0.5rem;
-  max-height: 400px; /* optional, for vertical scroll */
+  max-height: 960px; /* optional, for vertical scroll */
   overflow-y: auto; /* scroll vertically if needed */
 }
 
-.carousel-filename {
-  flex: 2; /* takes available space */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+/* Grid mode carousel row */
+.carousel-row-grid {
+  display: flex;
+  flex-direction: column; /* stack carousel and buttons */
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border 0.2s;
 }
-.carousel-type {
-  flex: 1;
+
+.carousel-row-grid .carousel-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  width: 100%;
 }
-.carousel-size {
-  flex: 1;
+
+/* List mode carousel row */
+.carousel-row-list .carousel-buttons {
+  margin-left: auto; /* inline on right side */
+}
+
+/* Optional preview shrink (if using grid cards) */
+.carousel-row.grid-mode .carousel-item {
+  width: 100%; /* or max-width: 300px for uniform cards */
+}
+
+/* Selected state */
+.carousel-row-grid.selected,
+.carousel-row-list.selected {
+  border: 2px solid blue;
 }
