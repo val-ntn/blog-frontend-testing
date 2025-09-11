@@ -8,6 +8,7 @@ import CarouselSelector from "../../CarouselSelector";
 import styles from "./ReportForm.module.css";
 import ImageToolbar from "./ImageToolbar";
 import RichTextEditor from "./RichTextEditor";
+import ImageSelectorThumbnail from "../../ImageSelectorThumbnail";
 
 export default function ReportForm({ onCreateSuccess, initialData }) {
   const [events, setEvents] = useState([]);
@@ -291,7 +292,8 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
         <label className={styles.label}>
           Thumbnail:
           <div style={{ marginTop: "0.5rem" }}>
-            <ImageSelector onSelect={(url) => setThumbnail(url)} />
+            {/*<ImageSelector onSelect={(url) => setThumbnail(url)} />*/}
+            <ImageSelectorThumbnail onSelect={setThumbnail} />
             {thumbnail && (
               <div style={{ marginTop: "0.5rem" }}>
                 <img

@@ -1,6 +1,6 @@
 // frontend/src/components/admin/ImageSelectorObj.jsx
 
-import { useEffect, useState } from "react";
+/*import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/api";
 import PropTypes from "prop-types";
@@ -46,7 +46,7 @@ export default function ImageSelector({ onSelect }) {
         >
           {images.length === 0 && <p>No images available</p>}
 
-          {/* 👇 Toggle View Mode */}
+      
           <div style={{ marginBottom: "1rem" }}>
             <button
               type="button"
@@ -70,4 +70,4 @@ export default function ImageSelector({ onSelect }) {
 
 ImageSelector.propTypes = {
   onSelect: PropTypes.func.isRequired,
-};
+};*/

@@ -8,6 +8,7 @@ import styles from "./PostForm.module.css";
 import ImageToolbar from "./ImageToolbar";
 import RichTextEditor from "./RichTextEditor";
 import CarouselSelector from "../../CarouselSelector";
+import ImageSelectorThumbnail from "../../ImageSelectorThumbnail";
 
 export default function PostForm({ onCreateSuccess, initialData }) {
   const [users, setUsers] = useState([]);
@@ -312,7 +313,8 @@ export default function PostForm({ onCreateSuccess, initialData }) {
         <label className={styles.label}>
           Thumbnail:
           <div style={{ marginTop: "0.5rem" }}>
-            <ImageSelector onSelect={(url) => setThumbnail(url)} />
+            {/*<ImageSelector onSelect={(url) => setThumbnail(url)} />*/}
+            <ImageSelectorThumbnail onSelect={setThumbnail} />
             {thumbnail && (
               <div style={{ marginTop: "0.5rem" }}>
                 <img
