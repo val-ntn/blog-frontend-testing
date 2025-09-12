@@ -3,10 +3,10 @@
 
 /* Generic page content wrapper */
 .page-content {
-  padding: 1rem;             /* inner spacing */
-  background-color: var(--color-background);    /* default page background */
+  padding: 1rem; /* inner spacing */
+  background-color: var(--color-background); /* default page background */
   max-width: var(--max-content-width);
-  margin: 0 auto;             /* center if needed */
+  margin: 0 auto; /* center if needed */
   box-sizing: border-box;
 }
 
@@ -44,13 +44,12 @@
 }
 
 .page-content--dashboard {
-  background-color: rgb(77, 174, 213);
+  background-color: var(--color-netral-800);
 }
 
 .page-content--login {
-  background-color: var(--color-background-alt);
+  background-color: var(--color-netral-800);
 }
-
 
 /* -------------------- */
 /* Page headers (BEM modifier) */

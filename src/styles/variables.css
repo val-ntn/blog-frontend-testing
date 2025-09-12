@@ -76,6 +76,7 @@
   --font-size-lg: 1.5rem; /* 24px → headings / medium event titles */
   --font-size-xl: 2rem; /* 32px → main headings / large event titles */
   --font-size-xxl: 2.25rem;
+  --font-size-xxxl: 2.5rem;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
 
@@ -120,17 +121,16 @@
 
   /* Semantic backgrounds */
   --color-background: var(--color-white); /* main body background */
-  --color-background-alt: var(
-    --color-neutral-25
-  ); /* used for content sections/cards */
+  --color-background-alt: var(--color-neutral-25);
+  /* used for content sections/cards */
   --color-background-muted: var(
     --color-neutral-200
   ); /* for sidebar, hero mockup, widgets */
 
   /* Calendar colors */
-  --color-calendar-bg: var(
-    --color-background-alt
-  ); /* default calendar background */
+  --color-calendar-bg: var(--color-background-alt);
+
+  /* default calendar background */
   --color-calendar-header-bg: var(--color-primary); /* header teal */
   --color-calendar-header-text: var(--color-white);
   --color-calendar-text: var(--color-text); /* default text color */
@@ -140,6 +140,11 @@
   --color-calendar-event-text: #1a73e8; /* event tile text */
   --color-calendar-event-active: #1a73e8; /* selected event tile */
   --color-calendar-event-active-text: var(); /* text on selected */
+
+  /* Dashboard colors */
+  --color-dashboard-main: #252526;
+  --color-dashboard-second: #313131;
+  --color-dashboard-second: #1e1e1e;
 }
 
 /* Dark mode */

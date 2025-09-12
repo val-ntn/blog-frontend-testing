@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { API_BASE_URL } from "../../utils/api";
+import "./AdminLogin.css";
 import "../../styles/layout.css";
 import "../../styles/pages.css";
 import "../../styles/forms.css";
@@ -52,35 +53,45 @@ function AdminLogin() {
 
   return (
     <div className="admin-content page-content--login">
-      <h2>Admin Login</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            autoComplete="username"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            autoComplete="current-password"
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      <div className="admin-login">
+        <h1 className="admin-login__title">Admin Login</h1>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <form className="admin-login__form" onSubmit={handleSubmit}>
+          <div>
+            <label className="admin-login__label" htmlFor="email">
+              Email:
+            </label>
+            <input
+              className="admin-login__input"
+              id="email"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              autoComplete="username"
+              required
+            />
+          </div>
+          <div>
+            <label className="admin-login__label" htmlFor="password">
+              Password:
+            </label>
+            <input
+              className="admin-login__input"
+              id="password"
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              autoComplete="current-password"
+              required
+            />
+          </div>
+          <button className="admin-login__button" type="submit">
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
