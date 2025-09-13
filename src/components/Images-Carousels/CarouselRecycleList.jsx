@@ -40,7 +40,7 @@ export default function CarouselRecycleList({ onRestore, refreshFlag }) {
 
   return (
     <div>
-      <h3>Deleted Carousels</h3>
+      <h3 className="dashboard-content--text">Deleted Carousels</h3>
       {carousels.length === 0 && <p>No deleted carousels.</p>}
       {carousels.map((carousel) => (
         <CarouselRecycleItem

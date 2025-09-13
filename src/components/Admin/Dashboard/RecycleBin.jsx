@@ -5,7 +5,7 @@ import CarouselRecycleList from "../../Images-Carousels/CarouselRecycleList";
 import EventRecycleControl from "./Controls/EventRecycleControl";
 import ReportRecycleControl from "./Controls/ReportRecycleControl";
 import PostRecycleControl from "./Controls/PostRecycleControl";
-
+import PictureRecycleControl from "./Controls/PictureRecycleControl";
 import ReportRecycleList from "../../Reports/ReportRecycleList";
 import PictureRecycleList from "../../Images-Carousels/PictureRecycleList";
 
@@ -93,10 +93,14 @@ export default function RecycleBin({
             onRestore={onCarouselRestore}
             refreshFlag={carouselRecycleRefreshFlag}
           />
-          <PictureRecycleList
+          <PictureRecycleControl
             onRestore={onImageRestore}
             refreshFlag={imageRecycleRefreshFlag}
           />
+          {/*<PictureRecycleList
+            onRestore={onImageRestore}
+            refreshFlag={imageRecycleRefreshFlag}
+          />*/}
         </>
       )}
     </div>

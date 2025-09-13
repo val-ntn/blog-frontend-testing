@@ -111,6 +111,9 @@
   background: #e6f0ff;
 }
 
+.picture-recycle__actions {
+  flex-direction: column;
+}
 /* Main dashboard area */
 .dashboard-main {
   flex-grow: 1;
