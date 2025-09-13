@@ -1,7 +1,7 @@
 // src/components/Admin/Dashboard/RecycleBin.jsx
 
 import { useState } from "react";
-import CarouselRecycleList from "../../Images-Carousels/CarouselRecycleList";
+import CarouselRecycleControl from "./Controls/CarouselRecycleControl";
 import EventRecycleControl from "./Controls/EventRecycleControl";
 import ReportRecycleControl from "./Controls/ReportRecycleControl";
 import PostRecycleControl from "./Controls/PostRecycleControl";
@@ -89,10 +89,14 @@ export default function RecycleBin({
             onRestore={onReportRestore}
             refreshFlag={reportRecycleRefreshFlag}
           />
-          <CarouselRecycleList
+          <CarouselRecycleControl
             onRestore={onCarouselRestore}
             refreshFlag={carouselRecycleRefreshFlag}
           />
+          {/*<CarouselRecycleList
+            onRestore={onCarouselRestore}
+            refreshFlag={carouselRecycleRefreshFlag}
+          />*/}
           <PictureRecycleControl
             onRestore={onImageRestore}
             refreshFlag={imageRecycleRefreshFlag}
