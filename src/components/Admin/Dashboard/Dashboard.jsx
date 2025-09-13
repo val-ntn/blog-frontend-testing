@@ -277,9 +277,9 @@ export default function Dashboard() {
               <RecycleBin
                 //onPostRestore={triggerPostRefresh}
                 onPostRestore={triggerPostRecycleRefresh}
-                onEventRestore={triggerEventRefresh}
+                onEventRestore={triggerEventRecycleRefresh}
+                onReportRestore={triggerReportRecycleRefresh}
                 onCarouselRestore={triggerCarouselRecycleRefresh}
-                onReportRestore={triggerReportRefresh}
                 onImageRestore={triggerImageRecycleRefresh}
                 postRecycleRefreshFlag={postRecycleRefreshFlag}
                 eventRecycleRefreshFlag={eventRecycleRefreshFlag}

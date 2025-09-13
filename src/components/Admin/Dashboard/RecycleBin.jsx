@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import CarouselRecycleList from "../../Images-Carousels/CarouselRecycleList";
-import PostRecycleList from "../../Posts/PostRecycleList";
+import EventRecycleControl from "./Controls/EventRecycleControl";
+import ReportRecycleControl from "./Controls/ReportRecycleControl";
 import PostRecycleControl from "./Controls/PostRecycleControl";
-import EventRecycleList from "../../Events/EventRecycleList";
+
 import ReportRecycleList from "../../Reports/ReportRecycleList";
 import PictureRecycleList from "../../Images-Carousels/PictureRecycleList";
 
@@ -45,13 +46,13 @@ export default function RecycleBin({
         />
       )}
       {filter === "event" && (
-        <EventRecycleList
+        <EventRecycleControl
           onRestore={onEventRestore}
           refreshFlag={eventRecycleRefreshFlag}
         />
       )}
       {filter === "report" && (
-        <ReportRecycleList
+        <ReportRecycleControl
           onRestore={onReportRestore}
           refreshFlag={reportRecycleRefreshFlag}
         />
@@ -76,15 +77,15 @@ export default function RecycleBin({
           />*/}
 
           <PostRecycleControl
-            refreshFlag={postRecycleRefreshFlag}
             onRestore={onPostRestore}
+            refreshFlag={postRecycleRefreshFlag}
           />
 
-          <EventRecycleList
+          <EventRecycleControl
             onRestore={onEventRestore}
             refreshFlag={eventRecycleRefreshFlag}
           />
-          <ReportRecycleList
+          <ReportRecycleControl
             onRestore={onReportRestore}
             refreshFlag={reportRecycleRefreshFlag}
           />
