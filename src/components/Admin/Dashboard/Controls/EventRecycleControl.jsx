@@ -44,15 +44,27 @@ export default function EventRecycleControl({ refreshFlag, onRestore }) {
         renderActions={(event) => (
           <div className="dashboard-action-buttons">
             <div className="dashboard-action-buttons__left">
-              <button onClick={() => handleRestore(event._id)}>
+              <button
+                className="dashboard-action-buttons__restore"
+                type="button"
+                onClick={() => handleRestore(event._id)}
+              >
                 ♻ Restore
               </button>
-              <button onClick={() => handleHardDelete(event._id)}>
+              <button
+                className="dashboard-action-buttons__delete"
+                type="button"
+                onClick={() => handleHardDelete(event._id)}
+              >
                 🗑 Hard Delete
               </button>
             </div>
             <div className="dashboard-action-buttons__right">
-              <button onClick={() => toggleEventSize(event._id)}>
+              <button
+                type="button"
+                className="dashboard-action-buttons__expand"
+                onClick={() => toggleEventSize(event._id)}
+              >
                 {expandedEvents[event._id] ? (
                   <FaChevronUp />
                 ) : (

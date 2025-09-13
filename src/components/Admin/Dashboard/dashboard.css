@@ -85,7 +85,8 @@
 .dashboard-action-buttons__edit,
 .dashboard-action-buttons__delete,
 .dashboard-action-buttons__expand,
-.dashboard-action-buttons__reports {
+.dashboard-action-buttons__reports,
+.dashboard-action-buttons__restore {
   padding: 4px 8px;
   border: 1px solid #ccc;
   background: white;
