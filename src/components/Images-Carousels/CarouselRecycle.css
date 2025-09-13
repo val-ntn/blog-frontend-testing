@@ -15,7 +15,10 @@
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  background: var(--color-bg-light, #111);
+  background: var(--color-text);
+  color: var(--color-white);
+  font-family: var(--font-family-dashboard);
+  font-size: var(--font-size-sm);
 }
 
 .carousel-recycle__symbol {
@@ -41,21 +44,4 @@
   margin-left: auto;
   display: flex;
   gap: 0.5rem;
-}
-
-.carousel-recycle__button {
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-}
-
-.carousel-recycle__button--restore {
-  background: #3c763d;
-  color: white;
-}
-
-.carousel-recycle__button--delete {
-  background: #a94442;
-  color: white;
 }

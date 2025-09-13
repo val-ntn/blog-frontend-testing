@@ -31,7 +31,7 @@ export default function CarouselRecycleControl({ refreshFlag, onRestore }) {
 
   return (
     <div>
-      <h3 className="dashboard-content--text">Deleted Carousels</h3>
+      <h3 className="recycle-bin__section-title">Deleted Carousels</h3>
       <CarouselRecycleList
         refreshFlag={refreshFlag}
         onRestore={handleRestore}

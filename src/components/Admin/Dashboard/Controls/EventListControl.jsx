@@ -92,8 +92,6 @@ export default function EventListControl({
 
   return (
     <div>
-      <h3 className="dashboard-content--text">All Events</h3>
-
       <EventList
         refreshFlag={refreshFlag}
         renderActions={(event) => (

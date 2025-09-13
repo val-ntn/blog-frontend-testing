@@ -24,89 +24,101 @@ export default function RecycleBin({
   const [filter, setFilter] = useState("all");
 
   return (
-    <div>
-      <h2>Recycle Bin</h2>
-      <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => setFilter("all")}>All</button>
-        <button onClick={() => setFilter("post")}>Posts</button>
-        <button onClick={() => setFilter("event")}>Events</button>
-        <button onClick={() => setFilter("report")}>Reports</button>
-        <button onClick={() => setFilter("carousel")}>Carousels</button>
-        <button onClick={() => setFilter("image")}>Images</button>
+    <div className="recycle-bin">
+      <div className="recycle-bin__filter-bar">
+        <button type="button" onClick={() => setFilter("all")}>
+          All
+        </button>
+        <button type="button" onClick={() => setFilter("post")}>
+          Posts
+        </button>
+        <button type="button" onClick={() => setFilter("event")}>
+          Events
+        </button>
+        <button type="button" onClick={() => setFilter("report")}>
+          Reports
+        </button>
+        <button type="button" onClick={() => setFilter("carousel")}>
+          Carousels
+        </button>
+        <button type="button" onClick={() => setFilter("image")}>
+          Images
+        </button>
       </div>
-
-      {filter === "post" && (
-        /*<PostRecycleList
+      <div className="recycle-bin__content">
+        {filter === "post" && (
+          /*<PostRecycleList
          onRestore={onPostRestore}
          refreshFlag={postRecycleRefreshFlag}
         /> */
-        <PostRecycleControl
-          refreshFlag={postRecycleRefreshFlag}
-          onRestore={onPostRestore}
-        />
-      )}
-      {filter === "event" && (
-        <EventRecycleControl
-          onRestore={onEventRestore}
-          refreshFlag={eventRecycleRefreshFlag}
-        />
-      )}
-      {filter === "report" && (
-        <ReportRecycleControl
-          onRestore={onReportRestore}
-          refreshFlag={reportRecycleRefreshFlag}
-        />
-      )}
-      {filter === "carousel" && (
-        <CarouselRecycleList
-          onRestore={onCarouselRestore}
-          refreshFlag={carouselRecycleRefreshFlag}
-        />
-      )}
-      {filter === "image" && (
-        <PictureRecycleList
-          onRestore={onImageRestore}
-          refreshFlag={imageRecycleRefreshFlag}
-        />
-      )}
-      {filter === "all" && (
-        <>
-          {/*<PostRecycleList
-            onRestore={onPostRestore}
-            refreshFlag={postRecycleRefreshFlag}
-          />*/}
-
           <PostRecycleControl
-            onRestore={onPostRestore}
             refreshFlag={postRecycleRefreshFlag}
+            onRestore={onPostRestore}
           />
-
+        )}
+        {filter === "event" && (
           <EventRecycleControl
             onRestore={onEventRestore}
             refreshFlag={eventRecycleRefreshFlag}
           />
+        )}
+        {filter === "report" && (
           <ReportRecycleControl
             onRestore={onReportRestore}
             refreshFlag={reportRecycleRefreshFlag}
           />
+        )}
+        {filter === "carousel" && (
           <CarouselRecycleControl
             onRestore={onCarouselRestore}
             refreshFlag={carouselRecycleRefreshFlag}
           />
-          {/*<CarouselRecycleList
-            onRestore={onCarouselRestore}
-            refreshFlag={carouselRecycleRefreshFlag}
-          />*/}
-          <PictureRecycleControl
+        )}
+        {filter === "image" && (
+          <PictureRecycleList
             onRestore={onImageRestore}
             refreshFlag={imageRecycleRefreshFlag}
           />
-          {/*<PictureRecycleList
+        )}
+        {filter === "all" && (
+          <>
+            {/*<PostRecycleList
+            onRestore={onPostRestore}
+            refreshFlag={postRecycleRefreshFlag}
+          />*/}
+
+            <PostRecycleControl
+              onRestore={onPostRestore}
+              refreshFlag={postRecycleRefreshFlag}
+            />
+
+            <EventRecycleControl
+              onRestore={onEventRestore}
+              refreshFlag={eventRecycleRefreshFlag}
+            />
+            <ReportRecycleControl
+              onRestore={onReportRestore}
+              refreshFlag={reportRecycleRefreshFlag}
+            />
+            <CarouselRecycleControl
+              onRestore={onCarouselRestore}
+              refreshFlag={carouselRecycleRefreshFlag}
+            />
+            {/*<CarouselRecycleList
+            onRestore={onCarouselRestore}
+            refreshFlag={carouselRecycleRefreshFlag}
+          />*/}
+            <PictureRecycleControl
+              onRestore={onImageRestore}
+              refreshFlag={imageRecycleRefreshFlag}
+            />
+            {/*<PictureRecycleList
             onRestore={onImageRestore}
             refreshFlag={imageRecycleRefreshFlag}
           />*/}
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

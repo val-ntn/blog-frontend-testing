@@ -30,7 +30,7 @@ export default function PictureRecycleControl({ refreshFlag, onRestore }) {
 
   return (
     <div>
-      <h3 className="dashboard-content--text">Deleted Images</h3>
+      <h3 className="recycle-bin__section-title">Deleted Images</h3>
 
       <PictureRecycleList
         refreshFlag={refreshFlag}

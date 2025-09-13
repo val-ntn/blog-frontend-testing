@@ -118,7 +118,7 @@ export default function ReportRecycleControl({ refreshFlag, onRestore }) {
   console.log("Rendering PostRecycleControl");
   return (
     <div>
-      <h3 className="dashboard-content--text">Deleted Reports</h3>
+      <h3 className="recycle-bin__section-title">Deleted Reports</h3>
       <ReportRecycleList
         refreshFlag={refreshFlag}
         renderActions={(report) => (

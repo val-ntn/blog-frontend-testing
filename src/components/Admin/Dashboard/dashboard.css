@@ -123,18 +123,28 @@
   background-color: #1e1e1e;
 }
 
+.dashboard__section-title {
+  font-family: var(--font-family-event-title);
+  margin: 4rem;
+}
+
 /* Header */
 .dashboard-header {
-  font-family: var(--font-family-dashboard);
   flex-shrink: 0;
   padding: 1rem;
   background-color: #313131;
   color: #fff;
   border-bottom: 1px solid #569cd6;
+  height: 108px;
+
+  display: flex; /* make header a flex container */
+  justify-content: flex-end; /* push children (h2) to the right */
+  align-items: center; /* vertically center h2 */
 }
 
 .dashboard-header > h2 {
   font-family: var(--font-family-event-title);
+  margin: 0 4rem 0 0; /* remove default margin to avoid spacing issues */
 }
 
 /* Scrollable content */
@@ -152,7 +162,7 @@
 
 .dashboard-content label {
   color: white; /* or use your dark-mode variable */
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-family-dashboard);
   font-weight: 500; /* optional, make them stand out */
 }
 
@@ -168,4 +178,48 @@
 
 .dashboard-sidebar__logout:hover {
   background-color: #313131;
+}
+
+.recycle-bin__filter-bar {
+  display: flex;
+
+  gap: 0.5rem; /* spacing between buttons */
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.recycle-bin__filter-bar button {
+  flex: 1 1 auto; /* optional: let buttons stretch evenly */
+  padding: 0.5rem 1rem;
+  font-family: var(--font-family-dashboard);
+  font-size: var(--font-size-sm);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.recycle-bin__filter-bar button:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.recycle-bin__filter-bar button:active {
+  background-color: #e0e0e0;
+}
+
+.recycle-bin__section-title {
+  color: var(--color-white);
+  font-family: var(--font-family-dashboard);
+  margin: 2rem;
+}
+
+/* Overall container */
+.recycle-bin__content {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem; /* space between filter bar and sections */
+
+  margin: 0 auto; /* center */
+  padding: 1rem;
 }

@@ -33,8 +33,6 @@ export default function PostListControl({
 
   return (
     <div>
-      <h3 className="dashboard-content--text">All Posts</h3>
-
       <PostList
         refreshFlag={refreshFlag}
         renderActions={(post) => (

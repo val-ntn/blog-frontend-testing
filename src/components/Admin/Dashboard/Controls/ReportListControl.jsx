@@ -33,7 +33,6 @@ export default function ReportListControl({
   };
   return (
     <div>
-      <h3 className="dashboard-content--text">All Reports</h3>
       <ReportList
         refreshFlag={refreshFlag}
         renderActions={(report) => (

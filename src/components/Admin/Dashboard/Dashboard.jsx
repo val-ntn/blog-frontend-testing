@@ -81,8 +81,10 @@ export default function Dashboard() {
           <DashboardHeader />
           <div className="dashboard-content">
             {/* === Posts Section === */}
+
             {selectedSection === "posts" && (
               <>
+                <h1 className="dashboard__section-title">Posts</h1>
                 {!showPostForm ? (
                   <>
                     <button
@@ -131,6 +133,7 @@ export default function Dashboard() {
             {/* === Events Section === */}
             {selectedSection === "events" && (
               <>
+                <h1 className="dashboard__section-title">Events</h1>
                 {!showEventForm ? (
                   <>
                     <button
@@ -179,6 +182,7 @@ export default function Dashboard() {
             {/* === Reports Section === */}
             {selectedSection === "reports" && (
               <>
+                <h1 className="dashboard__section-title">Reports</h1>
                 {!showReportForm ? (
                   <>
                     <button
@@ -227,14 +231,12 @@ export default function Dashboard() {
             {/* === Pictures & Carousels Section === */}
             {selectedSection === "pictures" && (
               <>
-                <PictureDisplayControl />
+                <div>
+                  <h1 className="dashboard__section-title">Pictures</h1>
+                  <PictureDisplayControl />
 
-                <hr style={{ margin: "2rem 0" }} />
-
-                <CarouselDisplayControl />
-
-                <hr style={{ margin: "2rem 0" }} />
-
+                  <CarouselDisplayControl />
+                </div>
                 {/*<CarouselListControl
                   refreshFlag={carouselRefreshFlag}
                   onRecycleRefresh={triggerCarouselRecycleRefresh}
@@ -274,25 +276,31 @@ export default function Dashboard() {
             )}
             {/* === Recycle Bin Section === */}
             {selectedSection === "bin" && (
-              <RecycleBin
-                //onPostRestore={triggerPostRefresh}
-                onPostRestore={triggerPostRecycleRefresh}
-                onEventRestore={triggerEventRecycleRefresh}
-                onReportRestore={triggerReportRecycleRefresh}
-                onCarouselRestore={triggerCarouselRecycleRefresh}
-                onImageRestore={triggerImageRecycleRefresh}
-                postRecycleRefreshFlag={postRecycleRefreshFlag}
-                eventRecycleRefreshFlag={eventRecycleRefreshFlag}
-                carouselRecycleRefreshFlag={carouselRecycleRefreshFlag}
-                reportRecycleRefreshFlag={reportRecycleRefreshFlag}
-                imageRecycleRefreshFlag={imageRecycleRefreshFlag}
-              />
+              <>
+                <h1 className="dashboard__section-title">Recycle Bin</h1>
+                <RecycleBin
+                  //onPostRestore={triggerPostRefresh}
+                  onPostRestore={triggerPostRecycleRefresh}
+                  onEventRestore={triggerEventRecycleRefresh}
+                  onReportRestore={triggerReportRecycleRefresh}
+                  onCarouselRestore={triggerCarouselRecycleRefresh}
+                  onImageRestore={triggerImageRecycleRefresh}
+                  postRecycleRefreshFlag={postRecycleRefreshFlag}
+                  eventRecycleRefreshFlag={eventRecycleRefreshFlag}
+                  carouselRecycleRefreshFlag={carouselRecycleRefreshFlag}
+                  reportRecycleRefreshFlag={reportRecycleRefreshFlag}
+                  imageRecycleRefreshFlag={imageRecycleRefreshFlag}
+                />
+              </>
             )}
             {/* === Users Section Placeholder === */}
             {selectedSection === "users" && (
-              <div className="dashboard-content--text">
-                User management coming soon...
-              </div>
+              <>
+                <h1 className="dashboard__section-title">Users</h1>
+                <div className="dashboard-content--text">
+                  User management coming soon...
+                </div>
+              </>
             )}
           </div>
         </div>

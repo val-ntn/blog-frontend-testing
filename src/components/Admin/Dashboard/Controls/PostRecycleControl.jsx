@@ -224,7 +224,7 @@ export default function PostRecycleControl({ refreshFlag, onRestore }) {
 
   return (
     <div>
-      <h3 className="dashboard-content--text">Deleted Posts</h3>
+      <h3 className="recycle-bin__section-title">Deleted Posts</h3>
 
       <PostRecycleList
         refreshFlag={refreshFlag}

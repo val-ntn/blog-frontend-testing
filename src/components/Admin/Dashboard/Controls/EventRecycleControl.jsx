@@ -38,7 +38,7 @@ export default function EventRecycleControl({ refreshFlag, onRestore }) {
 
   return (
     <div>
-      <h3 className="dashboard-content--text">Deleted Events</h3>
+      <h3 className="recycle-bin__section-title">Deleted Events</h3>
       <EventRecycleList
         refreshFlag={refreshFlag}
         renderActions={(event) => (
