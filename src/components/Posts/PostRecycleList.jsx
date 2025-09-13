@@ -135,7 +135,7 @@ PostRecycleList.propTypes = {
 
 // src/components/Posts/PostRecycleList.jsx
 import React, { useEffect, useState } from "react";
-import PostItem from "./PostItem";
+import PostRecycleItem from "./PostRecycleItem";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/api";
@@ -161,9 +161,9 @@ export default function PostRecycleList({
       {posts.length === 0 && <p>No deleted posts found</p>}
       {posts.map((post) => (
         <div key={post._id}>
-          <PostItem
+          <PostRecycleItem
             post={post}
-            size={renderSize ? renderSize(post) : "medium"}
+            size={renderSize ? renderSize(post) : "small"}
           />
           {renderActions && renderActions(post)}
         </div>
