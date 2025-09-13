@@ -275,7 +275,8 @@ export default function Dashboard() {
             {/* === Recycle Bin Section === */}
             {selectedSection === "bin" && (
               <RecycleBin
-                onPostRestore={triggerPostRefresh}
+                //onPostRestore={triggerPostRefresh}
+                onPostRestore={triggerPostRecycleRefresh}
                 onEventRestore={triggerEventRefresh}
                 onCarouselRestore={triggerCarouselRecycleRefresh}
                 onReportRestore={triggerReportRefresh}

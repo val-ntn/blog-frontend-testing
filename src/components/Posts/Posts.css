@@ -57,3 +57,56 @@
   display: block;
   clear: both;
 }
+
+/* ---- Recylce content ---- */
+
+/* Wrapper for the recycle items */
+.post-recycle-item--wrapper {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-background-alt);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Header row: title + actions */
+.post-recycle-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Actions on the right (buttons) */
+.post-recycle-item__actions button {
+  margin-left: var(--spacing-xs);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.post-recycle-item__actions button:hover {
+  background-color: var(--color-teal-50);
+}
+
+/* Expanded content */
+.post-recycle-item__content {
+  margin-top: var(--spacing-sm);
+  padding-left: var(--spacing-sm);
+  font-size: 0.9rem;
+}
+
+/* Optional: small shadow for expanded content */
+.post-recycle-item__content {
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-background);
+  padding: var(--spacing-sm);
+}
