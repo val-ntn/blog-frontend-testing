@@ -253,7 +253,6 @@ export default function PostForm({ onCreateSuccess, initialData }) {
 
   return (
     <>
-      <h3>{initialData ? "Edit Blog Post" : "Create Blog Post"}</h3>
       {/*testing live Preview*/}
       <PostPreview
         post={{
@@ -275,56 +274,123 @@ export default function PostForm({ onCreateSuccess, initialData }) {
       />
 
       <form onSubmit={handleSubmit} className="post-form">
-        <label className="post-form-label">
-          Title:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            className="post-form-input"
-          />
-        </label>
+        <div className="post-form__main">
+          <div className="post-form__main-inner">
+            <label className="post-form__label">
+              <RichTextEditor
+                value={content}
+                onChange={setContent}
+                editorRef={editorRef}
+                onNodeChange={(e) => {
+                  const editor = editorRef.current;
+                  if (e.element.nodeName === "IMG") {
+                    showToolbarForImage(e.element, editor);
+                  } else {
+                    hideToolbar();
+                  }
+                }}
+              />
+            </label>
 
-        <label className="post-form-label">
-          Content:
-          <RichTextEditor
-            value={content}
-            onChange={setContent}
-            editorRef={editorRef}
-            onNodeChange={(e) => {
-              const editor = editorRef.current;
-              if (e.element.nodeName === "IMG") {
-                showToolbarForImage(e.element, editor);
-              } else {
-                hideToolbar();
-              }
-            }}
-          />
-        </label>
-        <label className="post-form-label">
-          Excerpt (optional):
-          <textarea
-            value={excerpt}
-            onChange={(e) => setExcerpt(e.target.value)}
-            rows={3}
-            placeholder="Write a short summary or leave blank to auto-generate."
-            className="post-form-textarea"
-          />
-        </label>
-        <label className="post-form-label">
-          Teaser (optional):
-          <textarea
-            value={teaser}
-            onChange={(e) => setTeaser(e.target.value)}
-            rows={2}
-            placeholder="Short promotional teaser text"
-            className="post-form-textarea"
-          />
-        </label>
-        <label className="post-form-label">
-          Thumbnail:
-          <div style={{ marginTop: "0.5rem" }}>
+            <div className="post-form__sidebar">
+              <label className="post-form__label">
+                Title:
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                  className="post-form__input"
+                />
+              </label>
+              <label className="post-form__label">
+                Author:
+                <select
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                  required
+                  className="post-form__select"
+                >
+                  <option value="">Select author</option>
+                  {users.map((user) => (
+                    <option key={user._id} value={user._id}>
+                      {user.name || user.username}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="post-form__label">
+                Category:
+                <input
+                  type="text"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="post-form__input"
+                />
+              </label>
+
+              <label className="post-form__label">
+                Tags (comma separated):
+                <input
+                  type="text"
+                  value={tags}
+                  onChange={(e) => setTags(e.target.value)}
+                  className="post-form__input"
+                />
+              </label>
+
+              <label className="post-form__label">
+                External Links (comma separated):
+                <input
+                  type="text"
+                  value={externalLinks}
+                  onChange={(e) => setExternalLinks(e.target.value)}
+                  className="post-form__input"
+                />
+              </label>
+              <label className="post-form__label">
+                Excerpt (optional):
+                <textarea
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
+                  rows={3}
+                  placeholder="Write a short summary or leave blank to auto-generate."
+                  className="post-form__textarea"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="post-form__media">
+            <div className="post-form__label">
+              <ImageSelector
+                onSelect={(url) => {
+                  if (editorRef.current) {
+                    editorRef.current.insertContent(
+                      `<img src="${url}" alt="Image" />`
+                    );
+                  }
+                }}
+              />
+            </div>
+            <div className="post-form__label">
+              <CarouselSelector
+                selected={selectedCarousel}
+                onSelect={setSelectedCarousel}
+              />
+              {selectedCarousel && (
+                <div style={{ marginTop: "0.5rem", fontStyle: "italic" }}>
+                  Selected Carousel: <strong>{selectedCarousel.title}</strong>{" "}
+                  (Type: {selectedCarousel.type})
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="post-form__thumbnail">
+          <label className="post-form__label">
+            Thumbnail:
             {/*<ImageSelector onSelect={(url) => setThumbnail(url)} />*/}
             <ImageSelectorThumbnail onSelect={setThumbnail} />
             {thumbnail && (
@@ -343,81 +409,19 @@ export default function PostForm({ onCreateSuccess, initialData }) {
                 </button>
               </div>
             )}
-          </div>
-        </label>
-
-        <div style={{ margin: "1rem 0" }}>
-          <ImageSelector
-            onSelect={(url) => {
-              if (editorRef.current) {
-                editorRef.current.insertContent(
-                  `<img src="${url}" alt="Image" />`
-                );
-              }
-            }}
-          />
+          </label>
+          <label className="post-form__label">
+            Teaser (optional):
+            <textarea
+              value={teaser}
+              onChange={(e) => setTeaser(e.target.value)}
+              rows={2}
+              placeholder="Short promotional teaser text"
+              className="post-form__textarea"
+            />
+          </label>
         </div>
-        <div className="post-form-label">
-          <CarouselSelector
-            selected={selectedCarousel}
-            onSelect={setSelectedCarousel}
-          />
-          {selectedCarousel && (
-            <div style={{ marginTop: "0.5rem", fontStyle: "italic" }}>
-              Selected Carousel: <strong>{selectedCarousel.title}</strong>{" "}
-              (Type: {selectedCarousel.type})
-            </div>
-          )}
-        </div>
-
-        <label className="post-form-label">
-          Author:
-          <select
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            required
-            className="post-form-select"
-          >
-            <option value="">Select author</option>
-            {users.map((user) => (
-              <option key={user._id} value={user._id}>
-                {user.name || user.username}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="post-form-label">
-          Category:
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="post-form-input"
-          />
-        </label>
-
-        <label className="post-form-label">
-          Tags (comma separated):
-          <input
-            type="text"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-            className="post-form-input"
-          />
-        </label>
-
-        <label className="post-form-label">
-          External Links (comma separated):
-          <input
-            type="text"
-            value={externalLinks}
-            onChange={(e) => setExternalLinks(e.target.value)}
-            className="post-form-input"
-          />
-        </label>
-
-        <button type="submit" className="post-form-submit-button">
+        <button type="submit" className="post-form__button--submit">
           {initialData ? "Update Post" : "Create Post"}
         </button>
       </form>

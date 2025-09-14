@@ -201,6 +201,23 @@
   margin: 0 auto; /* center content */
 }
 
+/* Cancel button */
+.button--cancel {
+  background-color: #dc3545; /* red, indicates cancellation */
+  color: white;
+  padding: 0.85rem 1.5rem; /* slightly larger than submit */
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: flex-start; /* aligns to the left */
+  transition: background-color 0.2s ease;
+}
+
+.button--cancel:hover {
+  background-color: #c82333; /* darker red on hover */
+}
+
 /* Remove horizontal padding on small screens */
 
 @media (max-width: 600px) {

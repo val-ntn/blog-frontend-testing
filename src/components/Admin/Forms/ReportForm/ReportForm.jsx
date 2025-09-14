@@ -211,7 +211,6 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
 
   return (
     <>
-      <h3>{initialData ? "Edit Report" : "Create Report"}</h3>
       <ReportPreview
         report={{
           title,
@@ -233,143 +232,148 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       />
 
       <form onSubmit={handleSubmit} className="report-form">
-        <label className="report-form__label">
-          Event:
-          <select
-            value={eventId}
-            onChange={(e) => setEventId(e.target.value)}
-            required
-            className="report-form__select"
-            disabled={loading}
-          >
-            <option value="">Select event</option>
-            {events.map((ev) => (
-              <option key={ev._id} value={ev._id}>
-                {ev.title}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="report-form__label">
-          Title:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            className="report-form__input"
-            disabled={loading}
-          />
-        </label>
-
-        <label className="report-form__label">
-          Content:
-          <RichTextEditor
-            value={content}
-            onChange={setContent}
-            editorRef={editorRef}
-            onNodeChange={(e) => {
-              const editor = editorRef.current;
-              if (e.element?.nodeName === "IMG") {
-                showToolbarForImage(e.element, editor);
-              } else {
-                hideToolbar();
-              }
-            }}
-          />
-        </label>
-
-        <label className="report-form__label">
-          Excerpt:
-          <textarea
-            value={excerpt}
-            onChange={(e) => setExcerpt(e.target.value)}
-            rows={3}
-            placeholder="Short summary of report"
-            className="report-form__textarea"
-            disabled={loading}
-          />
-        </label>
-        <label className="report-form__label">
-          Teaser (optional):
-          <textarea
-            value={teaser}
-            onChange={(e) => setTeaser(e.target.value)}
-            rows={2}
-            placeholder="Short promotional teaser text"
-            className="report-form__textarea"
-          />
-        </label>
-        <label className="report-form__label">
-          Thumbnail:
-          <div style={{ marginTop: "0.5rem" }}>
-            {/*<ImageSelector onSelect={(url) => setThumbnail(url)} />*/}
-            <ImageSelectorThumbnail onSelect={setThumbnail} />
-            {thumbnail && (
-              <div style={{ marginTop: "0.5rem" }}>
-                <img
-                  src={thumbnail}
-                  alt="Thumbnail preview"
-                  style={{ maxWidth: "150px", borderRadius: "4px" }}
+        <div className="report-form__main">
+          <div className="report-form__main-inner">
+            <label className="report-form__label">
+              <RichTextEditor
+                value={content}
+                onChange={setContent}
+                editorRef={editorRef}
+                onNodeChange={(e) => {
+                  const editor = editorRef.current;
+                  if (e.element?.nodeName === "IMG") {
+                    showToolbarForImage(e.element, editor);
+                  } else {
+                    hideToolbar();
+                  }
+                }}
+              />
+            </label>
+            <div className="report-form__sidebar">
+              <label className="report-form__label">
+                Title:
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                  className="report-form__input"
+                  disabled={loading}
                 />
-                <button
-                  type="button"
-                  onClick={() => setThumbnail("")}
-                  style={{ marginLeft: "0.5rem" }}
+              </label>
+              <label className="report-form__label">
+                Author:
+                <select
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                  required
+                  className="report-form__select"
+                  disabled={loading}
                 >
-                  Remove
-                </button>
-              </div>
-            )}
-          </div>
-        </label>
+                  <option value="">Select author</option>
+                  {users.map((user) => (
+                    <option key={user._id} value={user._id}>
+                      {user.name || user.username}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="report-form__label">
+                Event:
+                <select
+                  value={eventId}
+                  onChange={(e) => setEventId(e.target.value)}
+                  required
+                  className="report-form__select"
+                  disabled={loading}
+                >
+                  <option value="">Select event</option>
+                  {events.map((ev) => (
+                    <option key={ev._id} value={ev._id}>
+                      {ev.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-        <div style={{ margin: "1rem 0" }}>
-          <ImageSelector
-            onSelect={(url) => {
-              if (editorRef.current) {
-                editorRef.current.insertContent(
-                  `<img src="${url}" alt="Image" />`
-                );
-              }
-            }}
-          />
+              <label className="report-form__label">
+                Excerpt:
+                <textarea
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
+                  rows={3}
+                  placeholder="Short summary of report"
+                  className="report-form__textarea"
+                  disabled={loading}
+                />
+              </label>
+            </div>
+          </div>
+          <div className="post-form__media">
+            <div className="post-form__label">
+              <ImageSelector
+                onSelect={(url) => {
+                  if (editorRef.current) {
+                    editorRef.current.insertContent(
+                      `<img src="${url}" alt="Image" />`
+                    );
+                  }
+                }}
+              />
+            </div>
+            <div className="post-form__label">
+              <CarouselSelector
+                onSelect={(carousel) => setSelectedCarousel(carousel)}
+                disabled={loading}
+              />
+
+              {selectedCarousel && (
+                <div>
+                  Selected Carousel: <strong>{selectedCarousel.title}</strong>{" "}
+                  (Type: {selectedCarousel.type})
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-
-        <CarouselSelector
-          onSelect={(carousel) => setSelectedCarousel(carousel)}
-          disabled={loading}
-        />
-
-        {selectedCarousel && (
-          <div>
-            Selected Carousel: <strong>{selectedCarousel.title}</strong> (Type:{" "}
-            {selectedCarousel.type})
-          </div>
-        )}
-
-        <label className="report-form__label">
-          Author:
-          <select
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            required
-            className="report-form__select"
-            disabled={loading}
-          >
-            <option value="">Select author</option>
-            {users.map((user) => (
-              <option key={user._id} value={user._id}>
-                {user.name || user.username}
-              </option>
-            ))}
-          </select>
-        </label>
-
+        <div className="report-form__thumbnail">
+          <label className="report-form__label">
+            Thumbnail:
+            <div style={{ marginTop: "0.5rem" }}>
+              {/*<ImageSelector onSelect={(url) => setThumbnail(url)} />*/}
+              <ImageSelectorThumbnail onSelect={setThumbnail} />
+              {thumbnail && (
+                <div style={{ marginTop: "0.5rem" }}>
+                  <img
+                    src={thumbnail}
+                    alt="Thumbnail preview"
+                    style={{ maxWidth: "150px", borderRadius: "4px" }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setThumbnail("")}
+                    style={{ marginLeft: "0.5rem" }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              )}
+            </div>
+          </label>
+          <label className="report-form__label">
+            Teaser (optional):
+            <textarea
+              value={teaser}
+              onChange={(e) => setTeaser(e.target.value)}
+              rows={2}
+              placeholder="Short promotional teaser text"
+              className="report-form__textarea"
+            />
+          </label>
+        </div>
         <button
           type="submit"
-          className="report-form__submit-button"
+          className="report-form__button--submit"
           disabled={loading}
         >
           {loading

@@ -61,6 +61,7 @@ export default function RichTextEditor({
             styles: { display: "block", margin: "0 auto" },
           },
         ],
+        content_style: "body { margin: 0; padding: 0; }",
         init_instance_callback: (editor) => {
           const promo = editor
             .getContainer()

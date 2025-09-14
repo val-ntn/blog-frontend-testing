@@ -118,6 +118,7 @@ export default function Dashboard() {
                       }}
                     />
                     <button
+                      className="button--cancel"
                       type="button"
                       onClick={() => {
                         setShowPostForm(false);
@@ -167,6 +168,7 @@ export default function Dashboard() {
                       }}
                     />
                     <button
+                      className="button--cancel"
                       type="button"
                       onClick={() => {
                         setShowEventForm(false);
@@ -216,6 +218,7 @@ export default function Dashboard() {
                       }}
                     />
                     <button
+                      className="button--cancel"
                       type="button"
                       onClick={() => {
                         setShowReportForm(false);

@@ -89,6 +89,7 @@
 .event-item--small {
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-md);
+  width: 100%;
 }
 
 .event-item--large {

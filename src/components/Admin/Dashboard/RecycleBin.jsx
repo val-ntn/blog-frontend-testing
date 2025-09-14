@@ -75,7 +75,7 @@ export default function RecycleBin({
           />
         )}
         {filter === "image" && (
-          <PictureRecycleList
+          <PictureRecycleControl
             onRestore={onImageRestore}
             refreshFlag={imageRecycleRefreshFlag}
           />
