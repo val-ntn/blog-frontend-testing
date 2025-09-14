@@ -27,7 +27,7 @@ export default function EventItem({
       //sizeClass = "event-item--small";
       break;
     case "medium":
-      contentToRender = event.description;
+      contentToRender = event.excerpt || getExcerpt(event.description, 60);
       //sizeClass = "event-item--medium";
       break;
     case "large":
