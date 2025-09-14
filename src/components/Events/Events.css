@@ -108,6 +108,8 @@
   display: flex;
   flex-direction: column; /* two-column layout for large events */
   gap: var(--spacing-md);
+  max-width: 1024px;
+  margin: 0 auto;
 }
 .event-item__body {
   display: flex;
@@ -120,6 +122,8 @@
   display: flex;
   flex-direction: column; /* stacked layout for medium & small */
   gap: var(--spacing-xs);
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 /* Columns inside wrapper */

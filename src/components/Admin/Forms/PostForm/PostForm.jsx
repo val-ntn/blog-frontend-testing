@@ -9,6 +9,7 @@ import ImageToolbar from "./ImageToolbar";
 import RichTextEditor from "./RichTextEditor";
 import CarouselSelector from "../../CarouselSelector";
 import ImageSelectorThumbnail from "../../ImageSelectorThumbnail";
+import PostPreview from "../../../Posts/PostPreview";
 
 export default function PostForm({ onCreateSuccess, initialData }) {
   const [users, setUsers] = useState([]);
@@ -28,6 +29,15 @@ export default function PostForm({ onCreateSuccess, initialData }) {
   const selectedImgRef = useRef(null);
 
   const nodeChangeHandler = useRef(null);
+
+  //testing live Preview
+  const [formData, setFormData] = useState({
+    title: "",
+    excerpt: "",
+    content: "",
+    carousel: null,
+    author: { name: "You" },
+  });
 
   // Selected sides state
   const [selectedSides, setSelectedSides] = useState(new Set(["all"]));
@@ -253,6 +263,17 @@ export default function PostForm({ onCreateSuccess, initialData }) {
   return (
     <>
       <h3>{initialData ? "Edit Blog Post" : "Create Blog Post"}</h3>
+      {/*testing live Preview*/}
+      <PostPreview
+        post={{
+          title,
+          content,
+          excerpt,
+          carousel: selectedCarousel,
+          author: { name: "You" },
+          thumbnail,
+        }}
+      />
 
       <ImageToolbar
         selectedImgRef={selectedImgRef}

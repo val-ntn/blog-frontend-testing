@@ -52,7 +52,7 @@ export default function CarouselRecycleItem({
     </div>
   );
 }*/
-
+// frontend/src/components/Images-Carousels/CarouselRecycleItem.jsx
 import { useState } from "react";
 import CarouselItem from "./CarouselItem";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";

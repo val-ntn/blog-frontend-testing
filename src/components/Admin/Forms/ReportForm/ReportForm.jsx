@@ -9,6 +9,7 @@ import styles from "./ReportForm.module.css";
 import ImageToolbar from "./ImageToolbar";
 import RichTextEditor from "./RichTextEditor";
 import ImageSelectorThumbnail from "../../ImageSelectorThumbnail";
+import ReportPreview from "../../../Reports/ReportPreview";
 
 export default function ReportForm({ onCreateSuccess, initialData }) {
   const [events, setEvents] = useState([]);
@@ -211,6 +212,17 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
   return (
     <>
       <h3>{initialData ? "Edit Report" : "Create Report"}</h3>
+      <ReportPreview
+        report={{
+          title,
+          content,
+          excerpt,
+          carousel: selectedCarousel,
+          author: { name: "You" },
+          event: events.find((ev) => ev._id === eventId),
+          thumbnail,
+        }}
+      />
 
       <ImageToolbar
         selectedImgRef={selectedImgRef}
