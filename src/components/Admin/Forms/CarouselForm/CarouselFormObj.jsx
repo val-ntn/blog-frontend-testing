@@ -114,28 +114,6 @@ export default function CarouselForm({
                 onChange={(e) => setTitle(e.target.value)}
                 required
               />
-
-              {/*<label
-              className="carousel-form__label-inline"
-              htmlFor="carousel-title"
-            >
-              Title:
-            </label>
-            <input
-              className="carousel-form__input"
-              type="text"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />*/}
-
-              {/*<textarea
-          className="carousel-form__textarea"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />*/}
             </div>
             <div className="carousel-form__field-inline">
               <label
@@ -156,24 +134,6 @@ export default function CarouselForm({
                 <option value="thumbs">Thumbnails</option>
                 <option value="multi-row">Multi-Row</option>
               </select>
-
-              {/*<label
-              htmlFor="carousel-type"
-              className="carousel-form__label-inline"
-            >
-              Carousel Type:
-            </label>
-            <select
-              className="carousel-form__select"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              style={{ marginLeft: "0.5rem" }}
-              required
-            >
-              <option value="basic">Basic</option>
-              <option value="thumbs">Thumbnails</option>
-              <option value="multi-row">Multi-Row</option>
-            </select>*/}
             </div>
           </div>
         </div>
@@ -225,21 +185,6 @@ export default function CarouselForm({
             )}
           </div>
         </div>
-        {/*<input
-          type="text"
-          placeholder="External Link (optional)"
-          value={externalLink}
-          onChange={(e) => setExternalLink(e.target.value)}
-        />*/}
-
-        {/*<label>
-          <input
-            type="checkbox"
-            checked={isActive}
-            onChange={(e) => setIsActive(e.target.checked)}
-          />
-          Active
-        </label>*/}
 
         <Button type="submit" variant="primary">
           Save

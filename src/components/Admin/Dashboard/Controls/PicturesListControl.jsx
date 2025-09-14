@@ -93,15 +93,6 @@ export default function PicturesListControl() {
         {uploading && <p>Uploading...</p>}
       </div>
 
-      {/*<div style={{ marginBottom: "1rem" }}>
-        <button
-          type="button"
-          onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
-        >
-          Switch to {viewMode === "grid" ? "List View" : "Thumbnail View"}
-        </button>
-      </div>*/}
-
       <div style={{ marginBottom: "1rem" }}>
         <button
           type="button"
@@ -113,13 +104,6 @@ export default function PicturesListControl() {
         </button>
       </div>
 
-      {/*<PicturesList
-        images={images}
-        uploading={uploading}
-        onUpload={handleUpload}
-        onDelete={handleDelete}
-        viewMode={viewMode} // 👈 Pass it in
-      />*/}
       <PictureDisplay
         images={images}
         uploading={uploading}

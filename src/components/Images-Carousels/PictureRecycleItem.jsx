@@ -33,21 +33,6 @@ import "./PictureRecycle.css";
 export default function PictureRecycleItem({ image }) {
   const imageUrl = `${API_BASE_URL}/uploads/${image.filename}`;
 
-  /*return (
-    <div className="picture-item">
-      <div className="picture-item picture-item--small">
-        <h4 className="picture-item__title">
-          {image.originalName || image.filename}
-        </h4>
-        <img
-          className="picture-item__img"
-          src={imageUrl}
-          alt={image.originalName || "Deleted image"}
-          width={100}
-        />
-      </div>
-    </div>
-  );*/
   return (
     <div className="picture-recycle__item">
       <h4 className="picture-recycle__title">

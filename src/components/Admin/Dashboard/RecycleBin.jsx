@@ -47,10 +47,6 @@ export default function RecycleBin({
       </div>
       <div className="recycle-bin__content">
         {filter === "post" && (
-          /*<PostRecycleList
-         onRestore={onPostRestore}
-         refreshFlag={postRecycleRefreshFlag}
-        /> */
           <PostRecycleControl
             refreshFlag={postRecycleRefreshFlag}
             onRestore={onPostRestore}
@@ -82,11 +78,6 @@ export default function RecycleBin({
         )}
         {filter === "all" && (
           <>
-            {/*<PostRecycleList
-            onRestore={onPostRestore}
-            refreshFlag={postRecycleRefreshFlag}
-          />*/}
-
             <PostRecycleControl
               onRestore={onPostRestore}
               refreshFlag={postRecycleRefreshFlag}
@@ -104,18 +95,11 @@ export default function RecycleBin({
               onRestore={onCarouselRestore}
               refreshFlag={carouselRecycleRefreshFlag}
             />
-            {/*<CarouselRecycleList
-            onRestore={onCarouselRestore}
-            refreshFlag={carouselRecycleRefreshFlag}
-          />*/}
+
             <PictureRecycleControl
               onRestore={onImageRestore}
               refreshFlag={imageRecycleRefreshFlag}
             />
-            {/*<PictureRecycleList
-            onRestore={onImageRestore}
-            refreshFlag={imageRecycleRefreshFlag}
-          />*/}
           </>
         )}
       </div>

@@ -240,41 +240,6 @@ export default function Dashboard() {
 
                   <CarouselDisplayControl />
                 </div>
-                {/*<CarouselListControl
-                  refreshFlag={carouselRefreshFlag}
-                  onRecycleRefresh={triggerCarouselRecycleRefresh}
-                  onEdit={(carousel) => {
-                    setEditingCarousel(carousel);
-                    setShowCarouselForm(true);
-                  }}
-                />
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setEditingCarousel(null);
-                    setShowCarouselForm(!showCarouselForm);
-                  }}
-                >
-                  {showCarouselForm
-                    ? "Close Carousel Form"
-                    : "Add New Carousel"}
-                </button>
-
-                {showCarouselForm && (
-                  <CarouselForm
-                    initialData={editingCarousel}
-                    onClose={() => {
-                      setShowCarouselForm(false);
-                      setEditingCarousel(null);
-                    }}
-                    onCreateSuccess={() => {
-                      setShowCarouselForm(false);
-                      setEditingCarousel(null);
-                      setCarouselRefreshFlag((prev) => prev + 1);
-                    }}
-                  />
-                )}*/}
               </>
             )}
             {/* === Recycle Bin Section === */}
