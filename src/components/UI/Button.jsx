@@ -1,6 +1,6 @@
 //frontend/src/components/UI/Button.jsx
 
-/*import "./Button.css";
+import "./Button.css";
 
 export default function Button({ children, variant = "primary", ...props }) {
   return (
@@ -8,4 +8,4 @@ export default function Button({ children, variant = "primary", ...props }) {
       {children}
     </button>
   );
-}*/
+}
