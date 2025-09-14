@@ -110,3 +110,18 @@
   background-color: var(--color-background);
   padding: var(--spacing-sm);
 }
+.post-item img {
+  max-width: 100%; /* scale down if larger than container */
+  height: auto; /* maintain aspect ratio */
+  display: block; /* avoid inline spacing issues */
+  outline: none; /* remove blue border from focus */
+}
+
+.post-item .safe-html p {
+  margin-bottom: calc(var(--spacing-lg) + var(--spacing-md));
+}
+.post-item .safe-html::after {
+  content: "";
+  display: block;
+  clear: both;
+}

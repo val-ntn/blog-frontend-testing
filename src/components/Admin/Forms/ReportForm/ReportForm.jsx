@@ -5,7 +5,7 @@ import axios from "axios";
 import { API_BASE_URL } from "../../../../utils/api";
 import ImageSelector from "../../ImageSelector";
 import CarouselSelector from "../../CarouselSelector";
-import styles from "./ReportForm.module.css";
+import "./ReportForm.css";
 import ImageToolbar from "./ImageToolbar";
 import RichTextEditor from "./RichTextEditor";
 import ImageSelectorThumbnail from "../../ImageSelectorThumbnail";
@@ -192,7 +192,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
       editor.getBody().querySelectorAll("img"),
       "margin-highlighted"
     );
-    editor.dom.addClass(img, styles.imageHighlighted);
+    //editor.dom.addClass(img, styles.imageHighlighted); //is this the the cause for border around image in the editor?
 
     selectedImgRef.current = img;
 
@@ -232,14 +232,14 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
         onAction={handleToolbarAction}
       />
 
-      <form onSubmit={handleSubmit} className={styles.formWrapper}>
-        <label className={styles.label}>
+      <form onSubmit={handleSubmit} className="report-form">
+        <label className="report-form__label">
           Event:
           <select
             value={eventId}
             onChange={(e) => setEventId(e.target.value)}
             required
-            className={styles.select}
+            className="report-form__select"
             disabled={loading}
           >
             <option value="">Select event</option>
@@ -251,19 +251,19 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
           </select>
         </label>
 
-        <label className={styles.label}>
+        <label className="report-form__label">
           Title:
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className={styles.input}
+            className="report-form__input"
             disabled={loading}
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="report-form__label">
           Content:
           <RichTextEditor
             value={content}
@@ -280,28 +280,28 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="report-form__label">
           Excerpt:
           <textarea
             value={excerpt}
             onChange={(e) => setExcerpt(e.target.value)}
             rows={3}
             placeholder="Short summary of report"
-            className={styles.textarea}
+            className="report-form__textarea"
             disabled={loading}
           />
         </label>
-        <label className={styles.label}>
+        <label className="report-form__label">
           Teaser (optional):
           <textarea
             value={teaser}
             onChange={(e) => setTeaser(e.target.value)}
             rows={2}
             placeholder="Short promotional teaser text"
-            className={styles.textarea}
+            className="report-form__textarea"
           />
         </label>
-        <label className={styles.label}>
+        <label className="report-form__label">
           Thumbnail:
           <div style={{ marginTop: "0.5rem" }}>
             {/*<ImageSelector onSelect={(url) => setThumbnail(url)} />*/}
@@ -349,13 +349,13 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
           </div>
         )}
 
-        <label className={styles.label}>
+        <label className="report-form__label">
           Author:
           <select
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             required
-            className={styles.select}
+            className="report-form__select"
             disabled={loading}
           >
             <option value="">Select author</option>
@@ -369,7 +369,7 @@ export default function ReportForm({ onCreateSuccess, initialData }) {
 
         <button
           type="submit"
-          className={styles.submitButton}
+          className="report-form__submit-button"
           disabled={loading}
         >
           {loading

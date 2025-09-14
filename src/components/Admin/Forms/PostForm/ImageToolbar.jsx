@@ -1,6 +1,6 @@
 // frontend/src/components/Admin/PostForm/ImageToolbar.jsx
 import { useRef } from "react";
-import styles from "./PostForm.module.css";
+import "./PostForm.css";
 
 export default function ImageToolbar({
   selectedImgRef,
@@ -45,7 +45,7 @@ export default function ImageToolbar({
   });
 
   return (
-    <div ref={toolbarRef} className={styles.toolbar}>
+    <div ref={toolbarRef} className="post-form-toolbar">
       <button
         type="button"
         onClick={() => toggleSide("all")}

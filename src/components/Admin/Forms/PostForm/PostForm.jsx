@@ -4,12 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../../../utils/api";
 import ImageSelector from "../../ImageSelector";
-import styles from "./PostForm.module.css";
 import ImageToolbar from "./ImageToolbar";
 import RichTextEditor from "./RichTextEditor";
 import CarouselSelector from "../../CarouselSelector";
 import ImageSelectorThumbnail from "../../ImageSelectorThumbnail";
 import PostPreview from "../../../Posts/PostPreview";
+import "./PostForm.css";
 
 export default function PostForm({ onCreateSuccess, initialData }) {
   const [users, setUsers] = useState([]);
@@ -29,15 +29,6 @@ export default function PostForm({ onCreateSuccess, initialData }) {
   const selectedImgRef = useRef(null);
 
   const nodeChangeHandler = useRef(null);
-
-  //testing live Preview
-  const [formData, setFormData] = useState({
-    title: "",
-    excerpt: "",
-    content: "",
-    carousel: null,
-    author: { name: "You" },
-  });
 
   // Selected sides state
   const [selectedSides, setSelectedSides] = useState(new Set(["all"]));
@@ -222,7 +213,7 @@ export default function PostForm({ onCreateSuccess, initialData }) {
       editor.getBody().querySelectorAll("img"),
       "margin-highlighted"
     );
-    editor.dom.addClass(img, styles.imageHighlighted);
+    //editor.dom.addClass(img, styles.imageHighlighted);
 
     selectedImgRef.current = img;
 
@@ -283,19 +274,19 @@ export default function PostForm({ onCreateSuccess, initialData }) {
         onAction={handleToolbarAction}
       />
 
-      <form onSubmit={handleSubmit} className={styles.formWrapper}>
-        <label className={styles.label}>
+      <form onSubmit={handleSubmit} className="post-form">
+        <label className="post-form-label">
           Title:
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className={styles.input}
+            className="post-form-input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="post-form-label">
           Content:
           <RichTextEditor
             value={content}
@@ -311,27 +302,27 @@ export default function PostForm({ onCreateSuccess, initialData }) {
             }}
           />
         </label>
-        <label className={styles.label}>
+        <label className="post-form-label">
           Excerpt (optional):
           <textarea
             value={excerpt}
             onChange={(e) => setExcerpt(e.target.value)}
             rows={3}
             placeholder="Write a short summary or leave blank to auto-generate."
-            className={styles.textarea}
+            className="post-form-textarea"
           />
         </label>
-        <label className={styles.label}>
+        <label className="post-form-label">
           Teaser (optional):
           <textarea
             value={teaser}
             onChange={(e) => setTeaser(e.target.value)}
             rows={2}
             placeholder="Short promotional teaser text"
-            className={styles.textarea}
+            className="post-form-textarea"
           />
         </label>
-        <label className={styles.label}>
+        <label className="post-form-label">
           Thumbnail:
           <div style={{ marginTop: "0.5rem" }}>
             {/*<ImageSelector onSelect={(url) => setThumbnail(url)} />*/}
@@ -366,7 +357,7 @@ export default function PostForm({ onCreateSuccess, initialData }) {
             }}
           />
         </div>
-        <div className={styles.label}>
+        <div className="post-form-label">
           <CarouselSelector
             selected={selectedCarousel}
             onSelect={setSelectedCarousel}
@@ -379,13 +370,13 @@ export default function PostForm({ onCreateSuccess, initialData }) {
           )}
         </div>
 
-        <label className={styles.label}>
+        <label className="post-form-label">
           Author:
           <select
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             required
-            className={styles.select}
+            className="post-form-select"
           >
             <option value="">Select author</option>
             {users.map((user) => (
@@ -396,34 +387,37 @@ export default function PostForm({ onCreateSuccess, initialData }) {
           </select>
         </label>
 
-        <label className={styles.label}>
+        <label className="post-form-label">
           Category:
           <input
             type="text"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            className="post-form-input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="post-form-label">
           Tags (comma separated):
           <input
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
+            className="post-form-input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="post-form-label">
           External Links (comma separated):
           <input
             type="text"
             value={externalLinks}
             onChange={(e) => setExternalLinks(e.target.value)}
+            className="post-form-input"
           />
         </label>
 
-        <button type="submit" className={styles.submitButton}>
+        <button type="submit" className="post-form-submit-button">
           {initialData ? "Update Post" : "Create Post"}
         </button>
       </form>

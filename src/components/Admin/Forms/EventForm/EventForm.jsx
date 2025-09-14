@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../../../utils/api";
-import styles from "./EventForm.module.css";
+import "./EventForm.css";
 import EventPreview from "../../../Events/EventPreview";
 
 export default function EventForm({ initialData = null, onCreateSuccess }) {
@@ -112,122 +112,122 @@ export default function EventForm({ initialData = null, onCreateSuccess }) {
         }}
       />
 
-      <form onSubmit={handleSubmit} className={styles.formWrapper}>
-        <label className={styles.label}>
+      <form onSubmit={handleSubmit} className="event-form">
+        <label className="event-form__label">
           Title
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Start Date
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             required
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           End Date
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             required
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Location
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Contact
           <input
             type="text"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Description
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             placeholder="Enter a short description of the event"
-            className={styles.textarea}
+            className="event-form__textarea"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Schedule
           <input
             type="text"
             value={schedule}
             onChange={(e) => setSchedule(e.target.value)}
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Costs
           <input
             type="text"
             value={costs}
             onChange={(e) => setCosts(e.target.value)}
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Source
           <input
             type="text"
             value={source}
             onChange={(e) => setSource(e.target.value)}
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Icon URL
           <input
             type="text"
             value={iconURL}
             onChange={(e) => setIconURL(e.target.value)}
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <label className={styles.label}>
+        <label className="event-form__label">
           Image URL
           <input
             type="text"
             value={imageURL}
             onChange={(e) => setImageURL(e.target.value)}
-            className={styles.input}
+            className="event-form__input"
           />
         </label>
 
-        <button type="submit" className={styles.submitButton}>
+        <button type="submit" className="event-form__submit-button">
           {initialData ? "Update Event" : "Create Event"}
         </button>
       </form>
